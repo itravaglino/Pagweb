@@ -1,0 +1,17 @@
+{
+  "name": "Pagweb",
+  "install": "npm install",
+  "terminals": [
+    {
+      "name": "web",
+      "command": "npm run dev",
+      "description": "Studio + Mejor Día en el puerto 3000"
+    }
+  ],
+  "ports": [
+    {
+      "name": "Pagweb",
+      "port": 3000
+    }
+  ]
+}

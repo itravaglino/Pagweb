@@ -1,0 +1,28 @@
+{
+  "name": "pagweb",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Studio customizable de avances + demo Mejor Día (Fitbit + NVIDIA NIM)",
+  "scripts": {
+    "dev": "node server/index.js",
+    "build": "vite build --config client/vite.config.js",
+    "start": "NODE_ENV=production node server/index.js",
+    "test": "node --test tests/*.test.js",
+    "preview": "npm run build && npm start"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^6.3.5"
+  }
+}

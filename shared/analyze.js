@@ -201,7 +201,15 @@ function buildPlan(metrics, scores, profile, hour) {
       );
     }
   } else if (hour < 20) {
-    if (stepsLeft > 1500 && stepsLeft < 8000) {
+    const depleted = scores.sleep < 52 || scores.recovery < 52;
+    if (depleted) {
+      push(
+        "ahora",
+        "Movimiento mínimo: 8–12 min al aire o estirar. No persigas los pasos.",
+        "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche.",
+        "recuperacion"
+      );
+    } else if (stepsLeft > 1500 && stepsLeft < 8000) {
       const mins = Math.min(45, Math.max(12, Math.round(stepsLeft / 100)));
       push(
         "ahora",
@@ -261,7 +269,7 @@ function buildPlan(metrics, scores, profile, hour) {
 
   if (metrics.waterMl && metrics.waterMl < 1500 && hour < 21) {
     push(
-      "durante el día",
+      hour >= 16 ? "ahora" : "durante el día",
       "Llegá a 2 L de agua. Un vaso ahora.",
       "La fatiga de la tarde muchas veces es sed disfrazada.",
       "energia"

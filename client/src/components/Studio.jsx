@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { FONTS, THEMES } from "../lib/store.js";
+import { FONTS, THEMES, defaultStudio } from "../lib/store.js";
 import { Field } from "./ui.jsx";
 
 function markdownLite(text = "") {
@@ -231,6 +231,55 @@ export function Studio({ studio, setStudio, edit, setEdit }) {
   );
 }
 
+function nid(prefix) {
+  return `${prefix}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function RowsEditor({ items, onChange, fields, create }) {
+  return (
+    <div>
+      {(items || []).map((item, i) => (
+        <div className={`editor-row ${fields.length > 2 ? "wide" : ""}`} key={item.id || i}>
+          {fields.map((f) =>
+            f.type === "checkbox" ? (
+              <label key={f.key} className="muted" style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                <input
+                  type="checkbox"
+                  checked={Boolean(item[f.key])}
+                  onChange={(e) => {
+                    const next = [...items];
+                    next[i] = { ...item, [f.key]: e.target.checked };
+                    onChange(next);
+                  }}
+                />
+                {f.label}
+              </label>
+            ) : (
+              <input
+                key={f.key}
+                type="text"
+                placeholder={f.label}
+                value={item[f.key] ?? ""}
+                onChange={(e) => {
+                  const next = [...items];
+                  next[i] = { ...item, [f.key]: e.target.value };
+                  onChange(next);
+                }}
+              />
+            )
+          )}
+          <button className="btn" type="button" onClick={() => onChange(items.filter((_, j) => j !== i))}>
+            ×
+          </button>
+        </div>
+      ))}
+      <button className="btn" type="button" onClick={() => onChange([...(items || []), create()])}>
+        + agregar
+      </button>
+    </div>
+  );
+}
+
 function Customizer({ studio, patch, setEdit, setStudio }) {
   function toggleHidden(id) {
     const hidden = new Set(studio.hidden || []);
@@ -360,28 +409,39 @@ function Customizer({ studio, patch, setEdit, setStudio }) {
           </label>
         ))}
 
-        <Field label="KPIs (JSON)">
-          <textarea
-            value={JSON.stringify(studio.kpis, null, 2)}
-            onChange={(e) => {
-              try {
-                patch({ kpis: JSON.parse(e.target.value) });
-              } catch {
-                /* keep typing */
-              }
-            }}
+        <Field label="Números (pulso)">
+          <RowsEditor
+            items={studio.kpis}
+            onChange={(kpis) => patch({ kpis })}
+            fields={[
+              { key: "label", label: "etiqueta" },
+              { key: "value", label: "valor" },
+              { key: "hint", label: "detalle" },
+            ]}
+            create={() => ({ id: nid("k"), label: "Nuevo", value: "0", hint: "" })}
           />
         </Field>
-        <Field label="Hitos (JSON)">
-          <textarea
-            value={JSON.stringify(studio.milestones, null, 2)}
-            onChange={(e) => {
-              try {
-                patch({ milestones: JSON.parse(e.target.value) });
-              } catch {
-                /* keep typing */
-              }
-            }}
+        <Field label="Hitos">
+          <RowsEditor
+            items={studio.milestones}
+            onChange={(milestones) => patch({ milestones })}
+            fields={[
+              { key: "title", label: "título" },
+              { key: "detail", label: "detalle" },
+              { key: "done", label: "listo", type: "checkbox" },
+            ]}
+            create={() => ({ id: nid("m"), title: "Nuevo hito", detail: "", done: false })}
+          />
+        </Field>
+        <Field label="Siguiente">
+          <RowsEditor
+            items={studio.nextActions}
+            onChange={(nextActions) => patch({ nextActions })}
+            fields={[
+              { key: "text", label: "acción" },
+              { key: "done", label: "hecho", type: "checkbox" },
+            ]}
+            create={() => ({ id: nid("n"), text: "Nueva acción", done: false })}
           />
         </Field>
         <Field label="Notas">
@@ -406,6 +466,16 @@ function Customizer({ studio, patch, setEdit, setStudio }) {
             Importar
             <input type="file" accept="application/json" hidden onChange={importJson} />
           </label>
+          <button
+            className="btn"
+            type="button"
+            onClick={() => {
+              localStorage.removeItem("pagweb-studio-v1");
+              setStudio(defaultStudio());
+            }}
+          >
+            Reset
+          </button>
         </div>
       </aside>
     </>

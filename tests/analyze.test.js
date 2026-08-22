@@ -15,6 +15,19 @@ test("persona agotada puntúa peor que recargada", () => {
   assert.ok(fresh.scores.sleep > 75);
 });
 
+test("tarde agotada no pide una caminata larga", () => {
+  const evening = new Date("2026-08-22T17:30:00-03:00");
+  const analysis = analyzeDay(
+    toMetrics(getPersonaPayload("agotado")),
+    { timezone: "America/Argentina/Buenos_Aires" },
+    evening
+  );
+  const blob = analysis.plan.map((p) => p.action).join(" ").toLowerCase();
+  assert.equal(analysis.band.id, "recuperacion");
+  assert.ok(!blob.includes("36 min") && !blob.includes("45 min"));
+  assert.ok(blob.includes("mínimo") || blob.includes("minimo") || blob.includes("estirar"));
+});
+
 test("plan de la noche prioriza sueño si hay deuda", () => {
   const night = new Date("2026-08-22T23:30:00-03:00");
   const analysis = analyzeDay(toMetrics(getPersonaPayload("agotado")), {

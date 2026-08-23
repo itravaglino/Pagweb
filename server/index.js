@@ -15,6 +15,7 @@ import {
   fetchToday,
   makePkce,
 } from "./fitbit.js";
+import { addEntry, mountDbRoutes, seedIfEmpty } from "./db.js";
 
 dotenv.config();
 
@@ -38,9 +39,11 @@ function getSession(req, res) {
   if (!sid || !sessions.has(sid)) {
     sid = crypto.randomUUID();
     sessions.set(sid, { createdAt: Date.now() });
+    const secure = req.protocol === "https" || req.headers["x-forwarded-proto"] === "https";
     res.cookie("pagweb_sid", sid, {
       httpOnly: true,
       sameSite: "lax",
+      secure,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
   }
@@ -56,16 +59,36 @@ function profileFrom(body = {}, payload = {}) {
     sleepGoal: Number(body.profile?.sleepGoal) || 7.5,
     activeGoal: Number(body.profile?.activeGoal) || 30,
     bedtime: body.profile?.bedtime || "23:15",
+    mode: body.profile?.mode || body.mode || "general",
   };
 }
 
 const app = express();
 app.disable("x-powered-by");
+app.set("trust proxy", 1);
 app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
+app.use("/data", express.static(path.join(ROOT, "data")));
+
+seedIfEmpty();
+mountDbRoutes(app);
 
 app.get("/api/health", (_req, res) => {
-  res.json({ ok: true, service: "pagweb", nvidia: Boolean(process.env.NVIDIA_API_KEY), fitbit: fitbitConfigured() });
+  res.json({
+    ok: true,
+    service: "pagweb",
+    public: true,
+    nvidia: Boolean(process.env.NVIDIA_API_KEY),
+    fitbit: fitbitConfigured(),
+  });
+});
+
+app.get("/api/host", (req, res) => {
+  res.json({
+    origin: publicUrl(req),
+    forwardedHost: req.get("host"),
+    note: "Cursor Cloud abre el puerto 3000. Esta URL pública es el túnel HTTPS mientras el agente corre.",
+  });
 });
 
 app.get("/api/demo/personas", (_req, res) => {
@@ -130,7 +153,26 @@ app.post("/api/coach", async (req, res) => {
       profile,
       apiKey: req.body?.nvidiaKey,
       model: req.body?.model,
+      mode: req.body?.mode || profile.mode,
     });
+    try {
+      addEntry({
+        kind: "fitbit-day",
+        persona: req.body?.persona || metrics?.persona || "mixto",
+        label: profile.name,
+        metrics,
+        analysis: {
+          overall: result.analysis?.overall,
+          band: result.analysis?.band,
+          scores: result.analysis?.scores,
+        },
+        narrative: result.narrative,
+        engine: result.engine,
+        mode: req.body?.mode || profile.mode,
+      });
+    } catch (persistError) {
+      result.persistWarning = persistError.message;
+    }
     res.json(result);
   } catch (error) {
     res.status(500).json({ error: error.message || "coach_failed" });
@@ -215,7 +257,11 @@ async function main() {
   const httpServer = http.createServer(app);
   const vite = await createViteServer({
     configFile: path.join(ROOT, "client/vite.config.js"),
-    server: { middlewareMode: true, hmr: { server: httpServer } },
+    server: {
+      middlewareMode: true,
+      allowedHosts: true,
+      hmr: { server: httpServer },
+    },
     appType: "spa",
   });
   app.use(vite.middlewares);

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { FONTS, THEMES, defaultStudio } from "../lib/store.js";
+import { FONTS, STORAGE_KEY, THEMES, defaultStudio } from "../lib/store.js";
 import { Field } from "./ui.jsx";
 
 function markdownLite(text = "") {
@@ -10,30 +10,14 @@ function markdownLite(text = "") {
   return escaped.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br/>");
 }
 
-function ProgressSun({ value }) {
+function ProgressSlab({ value }) {
   const v = Math.max(0, Math.min(100, Number(value) || 0));
-  const r = 54;
-  const c = 2 * Math.PI * r;
   return (
     <div className="progress-wrap">
-      <svg width="160" height="160" viewBox="0 0 140 140">
-        <circle cx="70" cy="70" r={r} fill="none" stroke="var(--line)" strokeWidth="10" />
-        <circle
-          cx="70"
-          cy="70"
-          r={r}
-          fill="none"
-          stroke="var(--accent)"
-          strokeWidth="10"
-          strokeLinecap="round"
-          strokeDasharray={c}
-          strokeDashoffset={c - (v / 100) * c}
-          transform="rotate(-90 70 70)"
-        />
-        <text x="70" y="76" textAnchor="middle" fill="currentColor" fontSize="28" fontFamily="var(--font-display)">
-          {v}%
-        </text>
-      </svg>
+      <div className="progress-slab" aria-label={`${v}%`}>
+        <i style={{ height: `${v}%` }} />
+        <b>{v}%</b>
+      </div>
     </div>
   );
 }
@@ -85,11 +69,14 @@ export function Studio({ studio, setStudio, edit, setEdit }) {
           <div className="meta-row">
             <span className="chip good">{studio.status}</span>
             <span className="chip">{studio.owner}</span>
+            <span className="chip">
+              {studio.profile?.org || "UNC"} · {studio.profile?.city || "Córdoba"}
+            </span>
             <span className="chip">actualizado {studio.updatedLabel}</span>
           </div>
         </div>
         <div>
-          <ProgressSun value={studio.percent} />
+          <ProgressSlab value={studio.percent} />
           <div className="progress-label">{studio.percentLabel}</div>
         </div>
       </article>
@@ -336,6 +323,49 @@ function Customizer({ studio, patch, setEdit, setStudio }) {
         <Field label="Dueño / equipo">
           <input value={studio.owner} onChange={(e) => patch({ owner: e.target.value })} />
         </Field>
+        <h3>Perfil de Nacho</h3>
+        <Field label="Nombre completo">
+          <input
+            value={studio.profile?.fullName || ""}
+            onChange={(e) => patch({ profile: { ...studio.profile, fullName: e.target.value } })}
+          />
+        </Field>
+        <Field label="Cómo te decimos">
+          <input
+            value={studio.profile?.shortName || ""}
+            onChange={(e) => patch({ profile: { ...studio.profile, shortName: e.target.value } })}
+          />
+        </Field>
+        <Field label="Ciudad">
+          <input
+            value={studio.profile?.city || ""}
+            onChange={(e) => patch({ profile: { ...studio.profile, city: e.target.value } })}
+          />
+        </Field>
+        <Field label="Organización">
+          <input
+            value={studio.profile?.org || ""}
+            onChange={(e) => patch({ profile: { ...studio.profile, org: e.target.value } })}
+          />
+        </Field>
+        <Field label="Mail">
+          <input
+            value={studio.profile?.email || ""}
+            onChange={(e) => patch({ profile: { ...studio.profile, email: e.target.value } })}
+          />
+        </Field>
+        <Field label="Rol">
+          <input
+            value={studio.profile?.role || ""}
+            onChange={(e) => patch({ profile: { ...studio.profile, role: e.target.value } })}
+          />
+        </Field>
+        <Field label="Foco">
+          <input
+            value={studio.profile?.focus || ""}
+            onChange={(e) => patch({ profile: { ...studio.profile, focus: e.target.value } })}
+          />
+        </Field>
         <Field label={`Avance (${studio.percent}%)`}>
           <input
             type="range"
@@ -365,6 +395,16 @@ function Customizer({ studio, patch, setEdit, setStudio }) {
               </button>
             ))}
           </div>
+        </Field>
+        <Field label="Acento (vacío = del tema)">
+          <input
+            type="color"
+            value={studio.accentOverride || THEMES[studio.theme]?.accent || "#b03a2e"}
+            onChange={(e) => patch({ accentOverride: e.target.value })}
+          />
+          <button className="btn" type="button" onClick={() => patch({ accentOverride: "" })}>
+            Usar acento del tema
+          </button>
         </Field>
         <Field label="Tipografía">
           <div className="swatches">
@@ -493,7 +533,7 @@ function Customizer({ studio, patch, setEdit, setStudio }) {
             className="btn"
             type="button"
             onClick={() => {
-              localStorage.removeItem("pagweb-studio-v1");
+              localStorage.removeItem(STORAGE_KEY);
               setStudio(defaultStudio());
             }}
           >

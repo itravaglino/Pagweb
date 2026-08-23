@@ -3,7 +3,19 @@ import { analyzeDay, extractJsonObject, localNarrative } from "../shared/analyze
 const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 const DEFAULT_MODEL = process.env.NVIDIA_MODEL || "meta/llama-3.3-70b-instruct";
 
-function buildMessages(metrics, profile, analysis) {
+const FITNESS_MODES = {
+  general: "Coach de un día mejor posible: sueño, movimiento, recupero y foco.",
+  fitness: "Modo FITNESS: priorizá estímulo, volumen y progresión, sin machacar si el HRV o el sueño están bajos.",
+  recovery: "Modo RECUPERO: el objetivo es bajar inflamación y sistema nervioso. Nada de HIIT.",
+  sleep: "Modo SUEÑO: todo el plan empuja a una noche larga. Corte de cafeína, luz y hora de apagado.",
+  focus: "Modo FOCO / ESTUDIO: bloques profundos para UNC, sin overtraining. Movimiento corto entre bloques.",
+};
+
+function modePrompt(mode) {
+  return FITNESS_MODES[mode] || FITNESS_MODES.general;
+}
+
+function buildMessages(metrics, profile, analysis, mode = "general") {
   return [
     {
       role: "system",
@@ -21,7 +33,9 @@ Devolvé JSON estricto, sin markdown, con esta forma:
   "closing": "cierre de una línea"
 }
 El plan tiene 3 a 5 pasos, accionables HOY, respetando la hora actual (${analysis.hour} h en su zona).
-Si el sueño fue corto, no pidas un PR en el gym. Si está recargado, no lo trates como paciente.`,
+Si el sueño fue corto, no pidas un PR en el gym. Si está recargado, no lo trates como paciente.
+Modo activo: ${modePrompt(mode)}
+La persona quiere una IA personalizada de health/wellness vía NVIDIA NIM (build.nvidia.com).`,
     },
     {
       role: "user",
@@ -45,7 +59,7 @@ Si el sueño fue corto, no pidas un PR en el gym. Si está recargado, no lo trat
   ];
 }
 
-export async function coachWithNvidia({ metrics, profile, analysis, apiKey, model }) {
+export async function coachWithNvidia({ metrics, profile, analysis, apiKey, model, mode }) {
   const key = apiKey || process.env.NVIDIA_API_KEY;
   if (!key) {
     return { ok: false, reason: "missing_key" };
@@ -63,7 +77,7 @@ export async function coachWithNvidia({ metrics, profile, analysis, apiKey, mode
       },
       body: JSON.stringify({
         model: model || DEFAULT_MODEL,
-        messages: buildMessages(metrics, profile, analysis),
+        messages: buildMessages(metrics, profile, analysis, mode),
         temperature: 0.55,
         top_p: 0.85,
         max_tokens: 900,
@@ -113,9 +127,9 @@ export async function coachWithNvidia({ metrics, profile, analysis, apiKey, mode
   }
 }
 
-export async function buildCoach({ metrics, profile, apiKey, model }) {
+export async function buildCoach({ metrics, profile, apiKey, model, mode }) {
   const analysis = analyzeDay(metrics, profile);
-  const nvidia = await coachWithNvidia({ metrics, profile, analysis, apiKey, model });
+  const nvidia = await coachWithNvidia({ metrics, profile, analysis, apiKey, model, mode });
   if (nvidia.ok) {
     return {
       analysis,

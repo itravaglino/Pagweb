@@ -3,6 +3,7 @@ import { Ring, Field } from "../components/ui.jsx";
 import { minutesToHm } from "@shared/analyze.js";
 import { PERSONAS } from "@shared/sampleFitbit.js";
 import { fetchCoach, fetchDay, fetchFitbitStatus } from "../lib/api.js";
+import { saveCoachEntry } from "../lib/db.js";
 
 const MODELS = [
   "meta/llama-3.3-70b-instruct",
@@ -57,6 +58,7 @@ export function Wellness({ settings, setSettings }) {
         persona,
         nvidiaKey: settings.nvidiaKey || undefined,
         model: settings.model,
+        mode: settings.fitnessMode || "general",
         profile: {
           name: settings.name,
           focus: settings.focus,
@@ -65,9 +67,19 @@ export function Wellness({ settings, setSettings }) {
           activeGoal: Number(settings.activeGoal),
           bedtime: settings.bedtime,
           timezone: settings.timezone,
+          mode: settings.fitnessMode || "general",
         },
       });
       setCoach(data);
+      saveCoachEntry({
+        persona,
+        label: settings.name,
+        metrics: payload.metrics,
+        analysis: data.analysis,
+        narrative: data.narrative,
+        engine: data.engine,
+        mode: settings.fitnessMode || "general",
+      }).catch(() => {});
     } catch (err) {
       setError(err.message);
     } finally {
@@ -165,6 +177,24 @@ export function Wellness({ settings, setSettings }) {
             <button className="btn" type="button" onClick={() => setShowKeys((v) => !v)}>
               Claves y metas
             </button>
+          </div>
+          <div className="swatches" style={{ marginTop: 12 }}>
+            {[
+              ["general", "Día completo"],
+              ["fitness", "Fitness"],
+              ["recovery", "Recupero"],
+              ["sleep", "Sueño"],
+              ["focus", "Foco UNC"],
+            ].map(([id, label]) => (
+              <button
+                key={id}
+                className={`swatch ${(settings.fitnessMode || "general") === id ? "on" : ""}`}
+                type="button"
+                onClick={() => setSettings({ ...settings, fitnessMode: id })}
+              >
+                {label}
+              </button>
+            ))}
           </div>
           {coach ? (
             <div className="engine" style={{ marginTop: 12 }}>

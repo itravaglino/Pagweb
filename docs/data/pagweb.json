@@ -1,0 +1,253 @@
+{
+  "version": 2,
+  "updatedAt": "2026-08-23T23:49:23.109Z",
+  "profile": {
+    "fullName": "Ignacio Ricardo Travaglino",
+    "shortName": "Nacho",
+    "city": "Córdoba",
+    "org": "UNC",
+    "email": "ignacio.travaglino@mi.unc.edu.ar",
+    "role": "estudiante",
+    "focus": "estudio, Pagweb y el mejor día posible",
+    "timezone": "America/Argentina/Buenos_Aires"
+  },
+  "studio": {
+    "title": "Pagweb",
+    "owner": "Ignacio Ricardo Travaglino",
+    "theme": "caliza",
+    "font": "editorial"
+  },
+  "entries": [
+    {
+      "id": "seed-mixto",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "date": "2026-08-20",
+      "label": "Hoy realista",
+      "metrics": {
+        "date": "2026-08-20",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 65,
+        "band": {
+          "id": "ajuste",
+          "label": "Con ajustes se arma"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 53
+        }
+      },
+      "narrative": {
+        "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el ritmo del día.",
+        "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "15:00",
+            "action": "Último café. Después, agua o té.",
+            "why": "La cafeína tarda ~6 h en bajar a la mitad: si dormiste poco, este corte vale más que cualquier suplemento.",
+            "kind": "sueno"
+          },
+          {
+            "when": "14:00",
+            "action": "Siesta o quietud 12–18 min, alarma dura. No más.",
+            "why": "Recupera alerta sin comerse el sueño de esta noche.",
+            "kind": "recuperacion"
+          },
+          {
+            "when": "durante el día",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "createdAt": "2026-08-20T17:30:00.000Z"
+    },
+    {
+      "id": "seed-recargado",
+      "kind": "fitbit-day",
+      "persona": "recargado",
+      "date": "2026-08-21",
+      "label": "Día recargado",
+      "metrics": {
+        "date": "2026-08-21",
+        "displayName": "Nacho (demo)",
+        "steps": 10840,
+        "calories": 2460,
+        "floors": 14,
+        "distanceKm": 8.2,
+        "sedentaryMinutes": 428,
+        "lightlyActiveMinutes": 210,
+        "fairlyActiveMinutes": 38,
+        "veryActiveMinutes": 22,
+        "restingHeartRate": 56,
+        "hrvRmssd": 49,
+        "sleepMinutes": 472,
+        "timeInBed": 494,
+        "sleepEfficiency": 91,
+        "deepMinutes": 86,
+        "remMinutes": 102,
+        "lightMinutes": 284,
+        "awakeMinutes": 22,
+        "awakenings": 1,
+        "sleepStart": "2026-08-23T23:18:00",
+        "sleepEnd": "2026-08-23T07:22:00",
+        "waterMl": 1800,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 88,
+        "band": {
+          "id": "excelente",
+          "label": "Día en racha"
+        },
+        "scores": {
+          "sleep": 89,
+          "movement": 100,
+          "recovery": 85,
+          "rhythm": 57
+        }
+      },
+      "narrative": {
+        "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
+        "dayStory": "Dormiste 7.9 h (objetivo 7.5 h) con eficiencia 91%. Vas 10840 de 10000 pasos y 60 min activos. FC en reposo 56 lpm · HRV 49 ms. El cuello de botella de hoy es el ritmo del día.",
+        "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Hacé el trabajo más difícil de estudio, Pagweb y el mejor día posible en los próximos 90 min.",
+            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día.",
+            "kind": "foco"
+          },
+          {
+            "when": "hoy",
+            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
+            "kind": "foco"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "createdAt": "2026-08-21T12:15:00.000Z"
+    },
+    {
+      "id": "seed-agotado",
+      "kind": "fitbit-day",
+      "persona": "agotado",
+      "date": "2026-08-22",
+      "label": "Día en deuda",
+      "metrics": {
+        "date": "2026-08-22",
+        "displayName": "Nacho (demo)",
+        "steps": 2840,
+        "calories": 1620,
+        "floors": 3,
+        "distanceKm": 2.1,
+        "sedentaryMinutes": 812,
+        "lightlyActiveMinutes": 90,
+        "fairlyActiveMinutes": 8,
+        "veryActiveMinutes": 0,
+        "restingHeartRate": 76,
+        "hrvRmssd": 21,
+        "sleepMinutes": 312,
+        "timeInBed": 370,
+        "sleepEfficiency": 71,
+        "deepMinutes": 32,
+        "remMinutes": 48,
+        "lightMinutes": 232,
+        "awakeMinutes": 58,
+        "awakenings": 5,
+        "sleepStart": "2026-08-23T01:40:00",
+        "sleepEnd": "2026-08-23T07:10:00",
+        "waterMl": 700,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 37,
+        "band": {
+          "id": "recuperacion",
+          "label": "Priorizá recuperar"
+        },
+        "scores": {
+          "sleep": 39,
+          "movement": 28,
+          "recovery": 45,
+          "rhythm": 41
+        }
+      },
+      "narrative": {
+        "headline": "Cerrá el día temprano. Mañana se gana esta noche.",
+        "dayStory": "Dormiste 5.2 h (objetivo 7.5 h) con eficiencia 71%. Vas 2840 de 10000 pasos y 8 min activos. FC en reposo 76 lpm · HRV 21 ms. El cuello de botella de hoy es el movimiento.",
+        "energyWindow": "Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Movimiento mínimo: 8–12 min al aire o estirar. No persigas los pasos.",
+            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche.",
+            "kind": "recuperacion"
+          },
+          {
+            "when": "21:00",
+            "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
+            "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": [
+          "Menos de 6 h: no es día para déficits agresivos ni para manejar cansado.",
+          "FC en reposo alta: priorizá calorías de verdad, hidratación y no te exijas al máximo.",
+          "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity."
+        ]
+      },
+      "engine": "local",
+      "createdAt": "2026-08-22T21:40:00.000Z"
+    },
+    {
+      "id": "seed-unc-note",
+      "kind": "note",
+      "date": "2026-08-23",
+      "title": "Nota UNC",
+      "text": "Ignacio Ricardo Travaglino, estudiante en la UNC (Córdoba). Archivo de prueba de Pagweb: tres días Fitbit (mixto, recargado, agotado) y esta nota. Zona America/Argentina/Buenos_Aires. Mail: ignacio.travaglino@mi.unc.edu.ar.",
+      "createdAt": "2026-08-23T14:00:00.000Z"
+    }
+  ]
+}

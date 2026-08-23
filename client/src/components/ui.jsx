@@ -37,3 +37,13 @@ export function Field({ label, children }) {
     </label>
   );
 }
+
+export function FolioMark({ className = "mark" }) {
+  return (
+    <svg className={className} viewBox="0 0 36 44" aria-hidden="true">
+      <path fill="var(--bg-elev)" stroke="currentColor" strokeWidth="1.5" d="M4 2h20l8 8v32H4z" />
+      <path fill="var(--accent)" d="M24 2l8 8h-8z" />
+      <path fill="none" stroke="var(--accent-2)" strokeWidth="1.8" d="M9 26h18" />
+    </svg>
+  );
+}

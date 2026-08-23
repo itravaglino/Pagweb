@@ -74,12 +74,12 @@ async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model }) 
       Accept: "application/json",
     },
     body: JSON.stringify({
-        model: model || "meta/llama-3.3-70b-instruct",
+      model: model || "meta/llama-3.3-70b-instruct",
       messages: [
         {
           role: "system",
           content:
-            'Sos Lumen, coach en español rioplatense. Devolvé JSON {headline, dayStory, energyWindow, bestDayPlan:[{when,action,why}], watchouts, closing}. No inventes métricas.',
+            "Sos Lumen, coach en español rioplatense. Devolvé JSON {headline, dayStory, energyWindow, bestDayPlan:[{when,action,why}], watchouts, closing}. No inventes métricas.",
         },
         {
           role: "user",
@@ -115,12 +115,12 @@ async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model }) 
   };
 }
 
-export async function fetchCoach({ metrics, persona, nvidiaKey, model, profile }) {
+export async function fetchCoach({ metrics, persona, nvidiaKey, model, profile, mode }) {
   try {
     return await tryJson("/api/coach", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ metrics, persona, nvidiaKey, model, profile }),
+      body: JSON.stringify({ metrics, persona, nvidiaKey, model, profile, mode }),
     });
   } catch {
     const analysis = analyzeDay(metrics, profile);

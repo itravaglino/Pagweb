@@ -339,11 +339,23 @@ export function analyzeDay(metrics = {}, profile = {}, now = new Date()) {
   };
 }
 
+export function energyWindowFor(hour, scores = {}) {
+  if ((scores.sleep || 0) < 52 || (scores.recovery || 0) < 52) {
+    return hour < 15
+      ? "Hasta media tarde: esfuerzo liviano. La ventana de calidad es recuperar, no empujar."
+      : "Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.";
+  }
+  if (hour < 12) return "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.";
+  if (hour < 17) return "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.";
+  if (hour < 21) return "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.";
+  return "Pasó la ventana de rendimiento. Todo lo que sume ahora es higiene de sueño.";
+}
+
 export function localNarrative(analysis) {
   return {
     headline: analysis.headline,
     dayStory: analysis.summary,
-    energyWindow: "",
+    energyWindow: energyWindowFor(analysis.hour, analysis.scores),
     closing: "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
     plan: analysis.plan,
     watchouts: analysis.watchouts,

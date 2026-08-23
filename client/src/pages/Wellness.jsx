@@ -1,17 +1,24 @@
 import { useEffect, useMemo, useState } from "react";
 import { Ring, Field } from "../components/ui.jsx";
 import { minutesToHm } from "@shared/analyze.js";
+import { PERSONAS } from "@shared/sampleFitbit.js";
 import { fetchCoach, fetchDay, fetchFitbitStatus } from "../lib/api.js";
 
 const MODELS = [
+  "meta/llama-3.3-70b-instruct",
   "meta/llama-3.1-8b-instruct",
   "meta/llama-3.1-70b-instruct",
-  "meta/llama-3.3-70b-instruct",
   "nvidia/llama-3.1-nemotron-nano-8b-v1",
 ];
 
+const FALLBACK_PERSONAS = [
+  { id: "mixto", label: "Hoy realista" },
+  { id: "recargado", label: "Día recargado" },
+  { id: "agotado", label: "Día en deuda" },
+];
+
 export function Wellness({ settings, setSettings }) {
-  const [personas, setPersonas] = useState([]);
+  const [personas, setPersonas] = useState(Object.values(PERSONAS));
   const [persona, setPersona] = useState("mixto");
   const [day, setDay] = useState(null);
   const [coach, setCoach] = useState(null);
@@ -21,9 +28,16 @@ export function Wellness({ settings, setSettings }) {
   const [showKeys, setShowKeys] = useState(false);
 
   const metrics = day?.metrics;
+  const sources = useMemo(
+    () => [
+      ...(personas.length ? personas : FALLBACK_PERSONAS),
+      { id: "mio", label: "Mis números" },
+    ],
+    [personas]
+  );
 
   async function loadDay(nextPersona = persona, source) {
-    const data = await fetchDay(nextPersona, source);
+    const data = await fetchDay(nextPersona, source, settings);
     setDay(data);
     if (data.personas) setPersonas(data.personas);
     return data;
@@ -32,15 +46,6 @@ export function Wellness({ settings, setSettings }) {
   async function loadStatus() {
     setFitbit(await fetchFitbitStatus());
   }
-
-  useEffect(() => {
-    loadStatus();
-    loadDay();
-    const params = new URLSearchParams(location.hash.split("?")[1] || "");
-    if (params.get("fitbit") === "error") {
-      setError(params.get("reason") || "Fitbit no autorizó");
-    }
-  }, []);
 
   async function runCoach(fromDay) {
     setLoading(true);
@@ -70,9 +75,29 @@ export function Wellness({ settings, setSettings }) {
     }
   }
 
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      await loadStatus();
+      const data = await loadDay();
+      if (cancelled) return;
+      await runCoach(data);
+    })();
+    const params = new URLSearchParams(location.hash.split("?")[1] || "");
+    if (params.get("fitbit") === "error") {
+      setError(params.get("reason") || "Fitbit no autorizó");
+    }
+    return () => {
+      cancelled = true;
+    };
+    // Primera lectura al entrar a Mejor Día.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   async function pickPersona(id) {
     setPersona(id);
-    const data = await loadDay(id, "demo");
+    if (id === "mio") setShowKeys(true);
+    const data = await loadDay(id, id === "mio" ? undefined : "demo");
     setCoach(null);
     await runCoach(data);
   }
@@ -98,7 +123,7 @@ export function Wellness({ settings, setSettings }) {
           <h1>¿Cómo viene tu día?</h1>
           <p className="tagline">
             {narrative?.headline ||
-              "Cargamos un Fitbit de demo (o el tuyo) y NVIDIA te arma el plan para el mejor día posible con las horas que quedan."}
+              "Cargamos un Fitbit de demo (o los números de tu app) y NVIDIA te arma el plan para el mejor día posible con las horas que quedan."}
           </p>
           <div className="meta-row">
             {metricChips.map(([k, v]) => (
@@ -124,12 +149,16 @@ export function Wellness({ settings, setSettings }) {
                 Salir de Fitbit
               </button>
             ) : (
-              <a className="btn" href={fitbit.configured ? "/api/fitbit/login" : undefined} onClick={(e) => {
-                if (!fitbit.configured) {
-                  e.preventDefault();
-                  setShowKeys(true);
-                }
-              }}>
+              <a
+                className="btn"
+                href={fitbit.configured ? "/api/fitbit/login" : undefined}
+                onClick={(e) => {
+                  if (!fitbit.configured) {
+                    e.preventDefault();
+                    setShowKeys(true);
+                  }
+                }}
+              >
                 Conectar Fitbit
               </a>
             )}
@@ -161,14 +190,10 @@ export function Wellness({ settings, setSettings }) {
       <article className="card">
         <div className="widget-head">
           <h2>Fuente de datos</h2>
-          <span className="muted">{day?.connected ? "Fitbit en vivo" : "Demo local"}</span>
+          <span className="muted">{day?.connected ? "Fitbit en vivo" : persona === "mio" ? "Tus números" : "Demo local"}</span>
         </div>
         <div className="swatches">
-          {(personas.length ? personas : [
-            { id: "mixto", label: "Hoy realista" },
-            { id: "recargado", label: "Día recargado" },
-            { id: "agotado", label: "Día en deuda" },
-          ]).map((p) => (
+          {sources.map((p) => (
             <button
               key={p.id}
               className={`swatch ${persona === p.id && !day?.connected ? "on" : ""}`}
@@ -180,7 +205,7 @@ export function Wellness({ settings, setSettings }) {
           ))}
         </div>
         <p className="muted" style={{ marginTop: 10 }}>
-          La demo no necesita cuenta. Para datos reales: app Client en{" "}
+          La demo no necesita cuenta. Pegá los números que ves hoy en Fitbit, o conectá OAuth: app Client en{" "}
           <a href="https://dev.fitbit.com/apps" target="_blank" rel="noreferrer">
             dev.fitbit.com
           </a>{" "}
@@ -188,9 +213,65 @@ export function Wellness({ settings, setSettings }) {
         </p>
       </article>
 
-      {showKeys ? (
+      {showKeys || persona === "mio" ? (
         <article className="card">
-          <h2>Tu día, a medida</h2>
+          <h2>Tus números de Fitbit</h2>
+          <p className="muted">
+            Los copiás de la app (sueño de anoche, pasos de hoy, FC en reposo, HRV). El coach local arma el plan al
+            toque; con clave NVIDIA, el relato lo escribe Llama 3.3.
+          </p>
+          <div className="kpi-grid">
+            <Field label="Sueño anoche (h)">
+              <input
+                type="number"
+                step="0.1"
+                value={settings.mySleepHours}
+                onChange={(e) => setSettings({ ...settings, mySleepHours: e.target.value })}
+              />
+            </Field>
+            <Field label="Pasos de hoy">
+              <input
+                type="number"
+                value={settings.mySteps}
+                onChange={(e) => setSettings({ ...settings, mySteps: e.target.value })}
+              />
+            </Field>
+            <Field label="FC en reposo">
+              <input
+                type="number"
+                value={settings.myRhr}
+                onChange={(e) => setSettings({ ...settings, myRhr: e.target.value })}
+              />
+            </Field>
+            <Field label="HRV (ms)">
+              <input
+                type="number"
+                value={settings.myHrv}
+                onChange={(e) => setSettings({ ...settings, myHrv: e.target.value })}
+              />
+            </Field>
+            <Field label="Minutos activos">
+              <input
+                type="number"
+                value={settings.myActiveMinutes}
+                onChange={(e) => setSettings({ ...settings, myActiveMinutes: e.target.value })}
+              />
+            </Field>
+            <Field label="Agua (ml)">
+              <input
+                type="number"
+                value={settings.myWaterMl}
+                onChange={(e) => setSettings({ ...settings, myWaterMl: e.target.value })}
+              />
+            </Field>
+          </div>
+          <div className="actions" style={{ marginTop: 8 }}>
+            <button className="btn primary" type="button" disabled={loading} onClick={() => pickPersona("mio")}>
+              Leer con estos números
+            </button>
+          </div>
+
+          <h2 style={{ marginTop: 24 }}>Metas y NVIDIA</h2>
           <div className="kpi-grid">
             <Field label="Cómo te decimos">
               <input value={settings.name} onChange={(e) => setSettings({ ...settings, name: e.target.value })} />
@@ -243,8 +324,8 @@ export function Wellness({ settings, setSettings }) {
           </p>
           {!fitbit.configured ? (
             <div className="banner" style={{ marginTop: 12 }}>
-              Fitbit OAuth se activa con <code>FITBIT_CLIENT_ID</code> en el <code>.env</code> del servidor. Mientras tanto,
-              las 3 personas de demo cubren el flujo completo.
+              Fitbit OAuth se activa con <code>FITBIT_CLIENT_ID</code> en el <code>.env</code> del servidor. Mientras
+              tanto, las 3 personas de demo y tus números cubren el flujo completo.
             </div>
           ) : null}
         </article>
@@ -297,8 +378,8 @@ export function Wellness({ settings, setSettings }) {
       ) : (
         <article className="card">
           <p className="muted">
-            Tocá <strong>Leer mi día</strong> o elegí una persona de demo. El coach combina sueño + movimiento +
-            recuperación y, si hay clave NVIDIA, escribe el relato.
+            Tocá <strong>Leer mi día</strong>, cargá tus números de Fitbit o elegí una persona de demo. El coach combina
+            sueño + movimiento + recuperación y, si hay clave NVIDIA, escribe el relato.
           </p>
         </article>
       )}

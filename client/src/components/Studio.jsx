@@ -444,6 +444,29 @@ function Customizer({ studio, patch, setEdit, setStudio }) {
             create={() => ({ id: nid("n"), text: "Nueva acción", done: false })}
           />
         </Field>
+        <Field label="Línea de tiempo">
+          <RowsEditor
+            items={studio.timeline}
+            onChange={(timeline) => patch({ timeline })}
+            fields={[
+              { key: "when", label: "cuándo" },
+              { key: "title", label: "título" },
+              { key: "text", label: "texto" },
+            ]}
+            create={() => ({ id: nid("t"), when: "Ahora", title: "Nuevo", text: "" })}
+          />
+        </Field>
+        <Field label="Changelog">
+          <RowsEditor
+            items={studio.changelog}
+            onChange={(changelog) => patch({ changelog })}
+            fields={[
+              { key: "tag", label: "tag" },
+              { key: "text", label: "texto" },
+            ]}
+            create={() => ({ id: nid("c"), tag: "Nuevo", text: "" })}
+          />
+        </Field>
         <Field label="Notas">
           <textarea value={studio.notes} onChange={(e) => patch({ notes: e.target.value })} />
         </Field>

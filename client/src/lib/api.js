@@ -1,5 +1,5 @@
 import { analyzeDay, extractJsonObject, localNarrative } from "@shared/analyze.js";
-import { PERSONAS, getPersonaPayload, toMetrics } from "@shared/sampleFitbit.js";
+import { PERSONAS, getPersonaPayload, payloadFromManual, toMetrics } from "@shared/sampleFitbit.js";
 
 const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 
@@ -15,7 +15,29 @@ async function tryJson(url, options) {
   return data;
 }
 
-export async function fetchDay(persona = "mixto", source) {
+export function dayFromManual(settings = {}) {
+  const payload = payloadFromManual({
+    sleepHours: settings.mySleepHours,
+    steps: settings.mySteps,
+    restingHeartRate: settings.myRhr,
+    hrv: settings.myHrv,
+    activeMinutes: settings.myActiveMinutes,
+    waterMl: settings.myWaterMl,
+    displayName: settings.name || "vos",
+  });
+  return {
+    payload,
+    metrics: toMetrics(payload),
+    connected: false,
+    demo: true,
+    persona: "mio",
+    personas: Object.values(PERSONAS),
+    fitbitReady: false,
+  };
+}
+
+export async function fetchDay(persona = "mixto", source, settings) {
+  if (persona === "mio") return dayFromManual(settings);
   try {
     const qs = new URLSearchParams({ persona });
     if (source) qs.set("source", source);
@@ -52,7 +74,7 @@ async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model }) 
       Accept: "application/json",
     },
     body: JSON.stringify({
-      model: model || "meta/llama-3.1-8b-instruct",
+        model: model || "meta/llama-3.3-70b-instruct",
       messages: [
         {
           role: "system",

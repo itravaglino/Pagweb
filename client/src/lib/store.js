@@ -78,8 +78,8 @@ export const defaultStudio = () => ({
   kicker: "Studio de avances",
   tagline: "Una página a medida para mostrar cómo avanza el proyecto — y una demo que lee tu Fitbit con NVIDIA.",
   owner: "Ignacio Travaglino",
-  percent: 48,
-  percentLabel: "demo usable + tablero vivo",
+  percent: 78,
+  percentLabel: "studio vivo + mejor día + demo hosteable",
   status: "En curso",
   updatedLabel: "hoy",
   theme: "nocturno",
@@ -99,7 +99,7 @@ export const defaultStudio = () => ({
     { id: "m1", title: "Tablero customizable", detail: "Temas, tipografías, widgets, export JSON.", done: true },
     { id: "m2", title: "Demo Mejor Día", detail: "Personas Fitbit + coach NVIDIA NIM.", done: true },
     { id: "m3", title: "OAuth Fitbit real", detail: "PKCE, scopes activity/heartrate/sleep.", done: false },
-    { id: "m4", title: "Hosting", detail: "Docker + GitHub Pages (modo demo).", done: false },
+    { id: "m4", title: "Hosting", detail: "Estático en /docs + Docker + Pages cuando lo actives.", done: true },
   ],
   timeline: [
     { id: "t1", when: "Ahora", title: "Studio en vivo", text: "Editá colores, copete y hitos desde el panel. Se guarda en este navegador." },
@@ -110,6 +110,7 @@ export const defaultStudio = () => ({
     { id: "c1", tag: "Nuevo", text: "Motor local de scoring para que la demo funcione sin claves." },
     { id: "c2", tag: "Nuevo", text: "Integración NVIDIA NIM (OpenAI-compatible) con JSON estricto." },
     { id: "c3", tag: "WIP", text: "Conexión OAuth Fitbit con PKCE." },
+    { id: "c4", tag: "Nuevo", text: "Mis números de Fitbit + sitio estático listo para hostear." },
   ],
   notes:
     "Usá **Personalizar** para cambiar nombre, % de avance, paleta y qué bloques se ven. Exportá el JSON si lo querés versionar en el repo.",
@@ -123,7 +124,7 @@ export const defaultStudio = () => ({
 
 export const defaultSettings = () => ({
   nvidiaKey: "",
-  model: "meta/llama-3.1-8b-instruct",
+  model: "meta/llama-3.3-70b-instruct",
   name: "Nacho",
   focus: "estudio y el proyecto",
   stepsGoal: 10000,
@@ -131,6 +132,12 @@ export const defaultSettings = () => ({
   activeGoal: 30,
   bedtime: "23:15",
   timezone: "America/Argentina/Buenos_Aires",
+  mySleepHours: 6.4,
+  mySteps: 5400,
+  myRhr: 66,
+  myHrv: 31,
+  myActiveMinutes: 16,
+  myWaterMl: 1000,
 });
 
 export function loadJson(key, fallback) {

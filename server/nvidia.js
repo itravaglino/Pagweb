@@ -1,7 +1,7 @@
 import { analyzeDay, extractJsonObject, localNarrative } from "../shared/analyze.js";
 
 const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
-const DEFAULT_MODEL = process.env.NVIDIA_MODEL || "meta/llama-3.1-8b-instruct";
+const DEFAULT_MODEL = process.env.NVIDIA_MODEL || "meta/llama-3.3-70b-instruct";
 
 function buildMessages(metrics, profile, analysis) {
   return [

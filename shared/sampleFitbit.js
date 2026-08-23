@@ -54,10 +54,11 @@ function pack({
   hrv,
   waterMl,
   displayName,
+  source = "demo",
 }) {
   return {
     date,
-    source: "demo",
+    source,
     profile: {
       displayName,
       timezone: "America/Argentina/Buenos_Aires",
@@ -181,6 +182,59 @@ export function getPersonaPayload(personaId = "mixto") {
     rhr: 68,
     hrv: 32,
     waterMl: 1100,
+  });
+}
+
+/** Armá un payload estilo Fitbit con los números que ves en la app (sin OAuth). */
+export function payloadFromManual({
+  sleepHours = 7,
+  steps = 6000,
+  restingHeartRate = 64,
+  hrv = 35,
+  activeMinutes = 20,
+  waterMl = 1200,
+  displayName = "vos",
+} = {}) {
+  const hours = Number(sleepHours) || 0;
+  const sleepMinutes = Math.round(hours * 60);
+  const active = Math.max(0, Number(activeMinutes) || 0);
+  const fairly = Math.round(active * 0.65);
+  const very = Math.max(0, Math.round(active - fairly));
+  const stepCount = Math.max(0, Number(steps) || 0);
+  const efficiency = Math.round(Math.min(95, Math.max(68, 72 + (hours - 6.5) * 6)));
+  const deep = Math.round(sleepMinutes * 0.14);
+  const rem = Math.round(sleepMinutes * 0.18);
+  const awake = hours < 6 ? 48 : 24;
+  const light = Math.max(0, sleepMinutes - deep - rem);
+  const rhrRaw = restingHeartRate;
+  const rhr = rhrRaw === "" || rhrRaw == null ? 64 : Number(rhrRaw);
+  const hrvRaw = hrv;
+  const hrvN = hrvRaw === "" || hrvRaw == null ? null : Number(hrvRaw);
+
+  return pack({
+    date: todayISO(),
+    displayName,
+    sleepMinutes,
+    efficiency,
+    deep,
+    rem,
+    light,
+    awake,
+    awakenings: hours < 6 ? 4 : hours < 7 ? 3 : 1,
+    start: hours >= 7.5 ? "23:20:00" : "00:40:00",
+    end: "07:30:00",
+    steps: stepCount,
+    calories: 1550 + Math.round(stepCount / 18),
+    floors: Math.max(1, Math.round(stepCount / 1200)),
+    distanceKm: Math.round((stepCount / 1320) * 10) / 10,
+    sedentary: Math.max(240, 880 - fairly - very - 100),
+    lightly: 150,
+    fairly,
+    very,
+    rhr: Number.isFinite(rhr) ? rhr : 64,
+    hrv: Number.isFinite(hrvN) ? hrvN : null,
+    waterMl: Math.max(0, Number(waterMl) || 0),
+    source: "manual",
   });
 }
 

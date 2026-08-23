@@ -50,3 +50,18 @@ test("personas exportadas", () => {
   assert.ok(metrics.steps > 0);
   assert.ok(metrics.sleepMinutes > 0);
 });
+
+test("payloadFromManual respeta sueño y pasos", async () => {
+  const { payloadFromManual } = await import("../shared/sampleFitbit.js");
+  const { energyWindowFor, localNarrative } = await import("../shared/analyze.js");
+  const metrics = toMetrics(
+    payloadFromManual({ sleepHours: 5, steps: 1234, displayName: "Nacho", restingHeartRate: 78, hrv: 20 })
+  );
+  assert.equal(metrics.steps, 1234);
+  assert.equal(metrics.sleepMinutes, 300);
+  assert.equal(metrics.source, "manual");
+  const analysis = analyzeDay(metrics, { timezone: "UTC" }, new Date("2026-08-22T18:00:00Z"));
+  const story = localNarrative(analysis);
+  assert.ok(story.energyWindow.length > 12);
+  assert.ok(energyWindowFor(10, { sleep: 90, recovery: 90 }).toLowerCase().includes("profundo") || energyWindowFor(10, { sleep: 90, recovery: 90 }).length > 8);
+});

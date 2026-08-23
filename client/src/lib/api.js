@@ -65,6 +65,14 @@ export async function fetchFitbitStatus() {
   }
 }
 
+export async function fetchHost() {
+  try {
+    return await tryJson("/api/host");
+  } catch {
+    return null;
+  }
+}
+
 async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model }) {
   const res = await fetch(NVIDIA_URL, {
     method: "POST",

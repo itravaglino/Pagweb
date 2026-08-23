@@ -90,6 +90,7 @@ export const defaultStudio = () => ({
   radius: 8,
   density: "comoda",
   customCss: "",
+  customCss: "",
   accentOverride: "",
   profile: { ...NACHO },
   widgetOrder: ["hero", "kpis", "milestones", "timeline", "next", "changelog", "notes", "wellbeing"],

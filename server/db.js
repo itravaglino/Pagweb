@@ -166,7 +166,8 @@ export function listEntries() {
 
 export function mountDbRoutes(app) {
   app.get("/api/db", (_req, res) => {
-    res.json(loadOrSeed());
+    const db = loadOrSeed();
+    res.json({ ...db, source: "api" });
   });
 
   app.post("/api/db", (req, res) => {

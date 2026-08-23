@@ -478,3 +478,29 @@ html[data-theme="tinta"] .progress-slab b {
 @media (display-mode: standalone) {
   .topbar { border-bottom-color: var(--line); }
 }
+
+.progress-wrap { display: grid; place-items: center; }
+.progress-slab {
+  width: 92px;
+  height: 132px;
+  border: var(--hair) solid var(--ink);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  position: relative;
+  border-radius: 2px 10px 2px 2px;
+  overflow: hidden;
+}
+.progress-slab i { position: absolute; left: 0; right: 0; bottom: 0; background: var(--accent); opacity: 0.88; }
+.progress-slab b {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--font-display); font-size: 22px; font-weight: 600; mix-blend-mode: multiply;
+}
+.widget-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 14px; }
+.check { width: 14px; height: 14px; border-radius: 2px; border: var(--hair) solid var(--ink); margin-top: 4px; }
+.check.on { background: var(--accent-2); border-color: var(--accent-2); }
+.drawer {
+  position: fixed; top: 0; right: 0; height: 100%; width: min(420px, 100%);
+  background: var(--bg-elev); border-left: var(--hair) solid var(--line);
+  z-index: 20; overflow: auto; padding: 22px; padding-top: calc(22px + env(safe-area-inset-top));
+}
+.host-strip { font-size: 13px; color: var(--muted); margin: 0 0 16px; }
+.host-strip a { color: var(--accent); }

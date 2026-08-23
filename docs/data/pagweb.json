@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-08-23T23:49:23.109Z",
+  "updatedAt": "2026-08-23T23:58:41.304Z",
   "profile": {
     "fullName": "Ignacio Ricardo Travaglino",
     "shortName": "Nacho",
@@ -18,6 +18,996 @@
     "font": "editorial"
   },
   "entries": [
+    {
+      "id": "7d7ef091-5102-4cd0-8cb0-545832127a21",
+      "createdAt": "2026-08-23T23:58:41.304Z",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "label": "Nacho",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 68,
+        "band": {
+          "id": "bien",
+          "label": "Vas bien"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 81
+        },
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "summary": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": [],
+        "hour": 20,
+        "goals": {
+          "steps": 10000,
+          "sleepHours": 7.5,
+          "activeMinutes": 30
+        },
+        "generatedAt": "2026-08-23T23:58:41.065Z"
+      },
+      "narrative": {
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "mode": "general"
+    },
+    {
+      "id": "7cd4f5c0-d0a5-468a-ba0b-832fca48624d",
+      "createdAt": "2026-08-23T23:58:41.067Z",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "label": "Nacho",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 68,
+        "band": {
+          "id": "bien",
+          "label": "Vas bien"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 81
+        }
+      },
+      "narrative": {
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "mode": "general"
+    },
+    {
+      "id": "9f9e38cb-4106-4226-a114-cfd701a70ee0",
+      "createdAt": "2026-08-23T23:57:54.055Z",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "label": "Nacho",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 68,
+        "band": {
+          "id": "bien",
+          "label": "Vas bien"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 81
+        },
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "summary": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": [],
+        "hour": 20,
+        "goals": {
+          "steps": 10000,
+          "sleepHours": 7.5,
+          "activeMinutes": 30
+        },
+        "generatedAt": "2026-08-23T23:57:53.609Z"
+      },
+      "narrative": {
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "mode": "general"
+    },
+    {
+      "id": "d3351de5-3168-4208-b4bb-e32ca5938d6f",
+      "createdAt": "2026-08-23T23:57:53.853Z",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "label": "Nacho",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 68,
+        "band": {
+          "id": "bien",
+          "label": "Vas bien"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 81
+        }
+      },
+      "narrative": {
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "mode": "general"
+    },
+    {
+      "id": "8ec800df-6736-47dc-adb3-37c15ca65299",
+      "createdAt": "2026-08-23T23:57:41.265Z",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "label": "Nacho",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 68,
+        "band": {
+          "id": "bien",
+          "label": "Vas bien"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 81
+        },
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "summary": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": [],
+        "hour": 20,
+        "goals": {
+          "steps": 10000,
+          "sleepHours": 7.5,
+          "activeMinutes": 30
+        },
+        "generatedAt": "2026-08-23T23:57:40.798Z"
+      },
+      "narrative": {
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "mode": "general"
+    },
+    {
+      "id": "c5e8d0f1-fda2-4fbd-8ff2-9083c037f681",
+      "createdAt": "2026-08-23T23:57:41.028Z",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "label": "Nacho",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 68,
+        "band": {
+          "id": "bien",
+          "label": "Vas bien"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 81
+        }
+      },
+      "narrative": {
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "mode": "general"
+    },
+    {
+      "id": "9b5be7ad-fbef-44c6-8727-d300bac5ee63",
+      "createdAt": "2026-08-23T23:56:11.795Z",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "label": "Nacho",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 68,
+        "band": {
+          "id": "bien",
+          "label": "Vas bien"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 81
+        },
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "summary": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": [],
+        "hour": 20,
+        "goals": {
+          "steps": 10000,
+          "sleepHours": 7.5,
+          "activeMinutes": 30
+        },
+        "generatedAt": "2026-08-23T23:56:11.371Z"
+      },
+      "narrative": {
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "mode": "general"
+    },
+    {
+      "id": "7a0a8975-17ce-45a9-b441-93b0ad736b5b",
+      "createdAt": "2026-08-23T23:56:11.574Z",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "label": "Nacho",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 68,
+        "band": {
+          "id": "bien",
+          "label": "Vas bien"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 81
+        }
+      },
+      "narrative": {
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "mode": "general"
+    },
+    {
+      "id": "d3d67e58-0db0-4083-b30b-38ea843a9fc2",
+      "createdAt": "2026-08-23T23:53:15.037Z",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "label": "Nacho",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 68,
+        "band": {
+          "id": "bien",
+          "label": "Vas bien"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 81
+        },
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "summary": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": [],
+        "hour": 20,
+        "goals": {
+          "steps": 10000,
+          "sleepHours": 7.5,
+          "activeMinutes": 30
+        },
+        "generatedAt": "2026-08-23T23:53:14.809Z"
+      },
+      "narrative": {
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "mode": "general"
+    },
+    {
+      "id": "0011cad8-b3df-4b70-94db-25e3a3de4b92",
+      "createdAt": "2026-08-23T23:53:14.812Z",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "label": "Nacho",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (demo)",
+        "steps": 6420,
+        "calories": 1980,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-23T00:22:00",
+        "sleepEnd": "2026-08-23T07:04:00",
+        "waterMl": 1100,
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 68,
+        "band": {
+          "id": "bien",
+          "label": "Vas bien"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 81
+        }
+      },
+      "narrative": {
+        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
+        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
+        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
+            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
+            "kind": "sueno"
+          },
+          {
+            "when": "antes de las 22",
+            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
+            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
+            "kind": "movimiento"
+          },
+          {
+            "when": "23:15",
+            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
+            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": []
+      },
+      "engine": "local",
+      "mode": "general"
+    },
     {
       "id": "seed-mixto",
       "kind": "fitbit-day",

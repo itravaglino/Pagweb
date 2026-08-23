@@ -13,6 +13,7 @@ import {
   loadJson,
   saveJson,
 } from "./lib/store.js";
+import { fetchHost } from "./lib/api.js";
 
 function routeFromHash() {
   const hash = location.hash.replace(/^#/, "") || "/estudio";
@@ -29,6 +30,7 @@ export default function App() {
   const [installEvent, setInstallEvent] = useState(null);
   const [installed, setInstalled] = useState(false);
   const [installHint, setInstallHint] = useState(false);
+  const [host, setHost] = useState(null);
 
   useEffect(() => {
     const onHash = () => setRoute(routeFromHash());
@@ -40,6 +42,10 @@ export default function App() {
     applyTheme(studio);
     saveJson(STORAGE_KEY, studio);
   }, [studio]);
+
+  useEffect(() => {
+    fetchHost().then(setHost).catch(() => {});
+  }, []);
 
   useEffect(() => {
     saveJson(SETTINGS_KEY, settings);
@@ -89,7 +95,7 @@ export default function App() {
 
   return (
     <div className="shell">
-      {studio.customCss ? <style>{studio.customCss}</style> : null}
+      {studio.customCss || studio.customCss ? <style>{studio.customCss || studio.customCss}</style> : null}
       <header className="topbar">
         <a className="brand" href="#/estudio">
           <FolioMark className="mark" />
@@ -128,6 +134,15 @@ export default function App() {
           )}
         </div>
       </header>
+      {host?.origin && !/localhost|127\.0\.0\.1/.test(host.origin) ? (
+        <p className="host-strip">
+          Estás en la web: <a href={host.origin}>{host.origin}</a>
+        </p>
+      ) : host ? (
+        <p className="host-strip">
+          Estás en local. El agente de Cursor publica un túnel HTTPS para entrar desde el teléfono.
+        </p>
+      ) : null}
       {installHint && !installEvent ? (
         <p className="install-hint">
           En Android, Chrome → menú → <strong>Instalar app</strong>. En iPhone: Compartir → Añadir a inicio.

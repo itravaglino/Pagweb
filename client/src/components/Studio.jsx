@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { FONTS, STORAGE_KEY, THEMES, defaultStudio } from "../lib/store.js";
 import { Field, Ring } from "./ui.jsx";
-import { fetchCharacter, fetchDay } from "../lib/api.js";
-import { analyzeDay, localNarrative, minutesToHm } from "@shared/analyze.js";
+import { fetchCharacter, fetchCoach, fetchDay } from "../lib/api.js";
+import { minutesToHm } from "@shared/analyze.js";
 import { CharacterPulse } from "./CharacterCalendar.jsx";
 
 function markdownLite(text = "") {
@@ -39,13 +39,29 @@ const WIDGET_META = {
 function WellbeingPreview() {
   const [pulse, setPulse] = useState(null);
   const [character, setCharacter] = useState(null);
+  const [agentLine, setAgentLine] = useState("");
+  const [agentError, setAgentError] = useState("");
   useEffect(() => {
     let cancelled = false;
-    fetchDay("mixto", "demo")
-      .then((data) => {
-        if (!cancelled) setPulse(data);
-      })
-      .catch(() => {});
+    (async () => {
+      try {
+        const data = await fetchDay("mixto", "demo");
+        if (cancelled) return;
+        setPulse(data);
+        const coach = await fetchCoach({
+          metrics: data.metrics,
+          persona: "mixto",
+          profile: { name: "Nacho", nickname: "Nacho", timezone: "America/Argentina/Buenos_Aires" },
+          mode: "general",
+        });
+        if (cancelled) return;
+        const first = coach.narrative?.noticing?.[0];
+        const text = typeof first === "string" ? first : first?.text;
+        setAgentLine(text || coach.narrative?.headline || "");
+      } catch (err) {
+        if (!cancelled) setAgentError(err.message || "no llegó el servidor");
+      }
+    })();
     fetchCharacter()
       .then((data) => {
         if (!cancelled) setCharacter(data);
@@ -57,64 +73,54 @@ function WellbeingPreview() {
   }, []);
   const m = pulse?.metrics;
   const max = Math.max(1, ...(m?.week || []).map((d) => d.steps));
-  const agentLine = useMemo(() => {
-    if (!m) return "";
-    const story = localNarrative(
-      analyzeDay(m, { name: "Nacho", timezone: "America/Argentina/Buenos_Aires" }),
-      m,
-      { profile: { name: "Nacho", nickname: "Nacho" } }
-    );
-    const first = story.noticing?.[0];
-    const text = typeof first === "string" ? first : first?.text;
-    return text || story.headline;
-  }, [m]);
   return (
     <>
       {character?.summary ? (
         <CharacterPulse summary={character.summary} identity={character.identity} />
       ) : null}
       <article className="card">
-      <div className="kicker">Fitbit · demo Córdoba</div>
-      <h2>Mejor Día</h2>
-      {agentLine ? <p className="agent-line">El agente dice: {agentLine}</p> : null}
-      <p className="tagline">
-        {m?.story ||
-          "Cinco días sintéticos con la forma de la Web API de Fitbit. Tocá la demo: pasos por hora, sueño, HRV y el coach."}
-      </p>
-      {m ? (
-        <>
-          <div className="meta-row">
-            <span className="chip good">Sueño {minutesToHm(m.sleepMinutes)}</span>
-            <span className="chip">Pasos {(m.steps || 0).toLocaleString("es-AR")}</span>
-            <span className="chip">FC {m.restingHeartRate}</span>
-            <span className="chip">HRV {Math.round(m.hrvRmssd)} ms</span>
-          </div>
-          <div className="week-bars mini">
-            {(m.week || []).map((d) => (
-              <div key={d.date} className="week-col" title={`${d.label} · ${d.steps}`}>
-                <i style={{ height: `${Math.max(8, (d.steps / max) * 100)}%` }} />
-              </div>
-            ))}
-          </div>
-          <div className="rings" style={{ marginTop: 12 }}>
-            <Ring value={Math.round((m.sleepMinutes / 450) * 100)} label="Sueño" />
-            <Ring value={Math.min(100, Math.round((m.steps / 10000) * 100))} label="Pasos" color="var(--accent-2)" />
-            <Ring value={Math.min(100, m.hrvRmssd * 2)} label="HRV" />
-            <Ring value={Math.min(100, m.azmTotal * 2)} label="AZM" color="var(--accent-2)" />
-          </div>
-        </>
-      ) : (
-        <p className="muted">Cargando el Charge 6 de demo…</p>
-      )}
-      <div className="meta-row">
-        <a className="btn primary" href="#/dia">
-          Abrir la demo
-        </a>
-        <a className="btn" href="#/archivo">
-          Ver el calendario
-        </a>
-      </div>
-    </article>
+        <div className="kicker">Fitbit · demo Córdoba</div>
+        <h2>Mejor Día</h2>
+        {agentLine ? <p className="agent-line">Lumen dice: {agentLine}</p> : null}
+        {agentError ? <div className="banner banner-error">{agentError}</div> : null}
+        <p className="tagline">
+          {m?.story ||
+            "Cinco días sintéticos con la forma de la Web API de Fitbit. Tocá la demo: pasos por hora, sueño, HRV y el coach."}
+        </p>
+        {m ? (
+          <>
+            <div className="meta-row">
+              <span className="chip good">Sueño {minutesToHm(m.sleepMinutes)}</span>
+              <span className="chip">Pasos {(m.steps || 0).toLocaleString("es-AR")}</span>
+              <span className="chip">FC {m.restingHeartRate}</span>
+              <span className="chip">HRV {Math.round(m.hrvRmssd)} ms</span>
+            </div>
+            <div className="week-bars mini">
+              {(m.week || []).map((d) => (
+                <div key={d.date} className="week-col" title={`${d.label} · ${d.steps}`}>
+                  <i style={{ height: `${Math.max(8, (d.steps / max) * 100)}%` }} />
+                </div>
+              ))}
+            </div>
+            <div className="rings" style={{ marginTop: 16 }}>
+              <Ring value={Math.round((m.sleepMinutes / 450) * 100)} label="Sueño" />
+              <Ring value={Math.min(100, Math.round((m.steps / 10000) * 100))} label="Pasos" color="var(--accent-2)" />
+              <Ring value={Math.min(100, m.hrvRmssd * 2)} label="HRV" />
+              <Ring value={Math.min(100, m.azmTotal * 2)} label="AZM" color="var(--accent-2)" />
+            </div>
+          </>
+        ) : (
+          <p className="muted">{agentError || "Cargando el Charge 6 de demo…"}</p>
+        )}
+        <div className="meta-row">
+          <a className="btn primary" href="#/dia">
+            Abrir la demo
+          </a>
+          <a className="btn" href="#/archivo">
+            Ver el calendario
+          </a>
+        </div>
+      </article>
     </>
   );
 }

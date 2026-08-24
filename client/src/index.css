@@ -12,7 +12,7 @@
   --font-body: "IBM Plex Sans", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --shadow: 0 1px 0 var(--line);
-  --pad: 22px;
+  --pad: 24px;
   --hair: 1px;
 }
 
@@ -53,7 +53,7 @@ button { cursor: pointer; }
   z-index: 1;
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 max(22px, env(safe-area-inset-right)) calc(72px + env(safe-area-inset-bottom)) max(22px, env(safe-area-inset-left));
+  padding: 0 max(24px, env(safe-area-inset-right)) calc(72px + env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
 }
 
 /* Vidrio SOLO acá. */
@@ -65,7 +65,7 @@ button { cursor: pointer; }
   align-items: center;
   gap: 16px;
   justify-content: space-between;
-  margin: 0 -8px 28px;
+  margin: 0 -8px 24px;
   padding: calc(12px + env(safe-area-inset-top)) 8px 12px;
   border-bottom: var(--hair) solid var(--line);
   background: color-mix(in srgb, var(--bg) 72%, transparent);
@@ -149,10 +149,14 @@ html[data-theme="rio"] .btn.primary {
 
 .grid {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 .grid.studio {
   grid-template-columns: 1fr;
+}
+.grid.studio > *,
+.card {
+  min-width: 0;
 }
 
 .card {
@@ -304,7 +308,7 @@ html[data-theme="tinta"] .progress-slab b {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 .handle {
   cursor: grab;
@@ -357,8 +361,19 @@ html[data-theme="tinta"] .progress-slab b {
 
 .wellness-hero {
   display: grid;
-  gap: 20px;
+  gap: 24px;
+  align-items: start;
 }
+.wellness-hero h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+.archive-page .hero h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.08;
+}
+.wellness-score { min-width: 0; }
 @media (min-width: 900px) {
   .wellness-hero { grid-template-columns: 1.1fr 0.9fr; }
 }
@@ -388,10 +403,11 @@ html[data-theme="tinta"] .progress-slab b {
 .plan li {
   list-style: none;
   display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 12px;
-  padding: 12px 0;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 0;
   border-bottom: var(--hair) solid var(--line);
+  align-items: start;
 }
 .plan time {
   font-family: var(--font-mono);
@@ -425,9 +441,13 @@ html[data-theme="tinta"] .progress-slab b {
 .banner {
   border: var(--hair) dashed color-mix(in srgb, var(--accent) 55%, var(--line));
   border-radius: var(--radius);
-  padding: 12px 14px;
+  padding: 16px;
   color: var(--muted);
   font-size: 13px;
+}
+.banner-error {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 50%, var(--line));
 }
 
 .footer-note {
@@ -493,31 +513,16 @@ html[data-theme="tinta"] .progress-slab b {
   .topbar { border-bottom-color: var(--line); }
 }
 
-.progress-wrap { display: grid; place-items: center; }
-.progress-slab {
-  width: 92px;
-  height: 132px;
-  border: var(--hair) solid var(--ink);
-  background: color-mix(in srgb, var(--bg) 80%, transparent);
-  position: relative;
-  border-radius: 2px 10px 2px 2px;
-  overflow: hidden;
-}
-.progress-slab i { position: absolute; left: 0; right: 0; bottom: 0; background: var(--accent); opacity: 0.88; }
-.progress-slab b {
-  position: absolute; inset: 0; display: grid; place-items: center;
-  font-family: var(--font-display); font-size: 22px; font-weight: 600; mix-blend-mode: multiply;
-}
-.widget-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 14px; }
-.check { width: 14px; height: 14px; border-radius: 2px; border: var(--hair) solid var(--ink); margin-top: 4px; }
-.check.on { background: var(--accent-2); border-color: var(--accent-2); }
-.drawer {
-  position: fixed; top: 0; right: 0; height: 100%; width: min(420px, 100%);
-  background: var(--bg-elev); border-left: var(--hair) solid var(--line);
-  z-index: 20; overflow: auto; padding: 22px; padding-top: calc(22px + env(safe-area-inset-top));
-}
 .host-strip { font-size: 13px; color: var(--muted); margin: 0 0 16px; }
 .host-strip a { color: var(--accent); }
+.cal-wrap { margin-top: 16px; overflow-x: auto; }
+.keys-sub { margin: 24px 0 8px; }
+.voice-slot {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: var(--hair) solid var(--line);
+}
+.voice-slot h2 { font-size: 18px; }
 
 .metric-tiles {
   display: grid;
@@ -644,12 +649,21 @@ html[data-theme="tinta"] .progress-slab b {
   border: var(--hair) solid var(--line);
   background: var(--bg);
   border-radius: var(--radius);
-  padding: 12px 14px;
+  padding: 16px;
   font-size: 15px;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 .noticing-item.on,
 .noticing-item:hover { border-color: var(--ink); }
+.noticing-item mark {
+  display: inline;
+  padding: 0 0.15em;
+  line-height: inherit;
+  font: inherit;
+  vertical-align: baseline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
 .coach-letter {
   margin: 18px 0 8px;
   padding: 16px 18px;
@@ -694,8 +708,13 @@ html[data-theme="tinta"] .progress-slab b {
 mark {
   background: color-mix(in srgb, var(--accent) 22%, transparent);
   color: inherit;
-  padding: 0 2px;
+  padding: 0 0.15em;
   border-radius: 2px;
+  line-height: inherit;
+  font: inherit;
+  vertical-align: baseline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .character-head h2 .muted { font-size: 0.62em; font-weight: 500; }
@@ -710,11 +729,12 @@ mark {
 }
 .hour-bars {
   display: grid;
-  grid-template-columns: repeat(24, 1fr);
+  grid-template-columns: repeat(24, minmax(0, 1fr));
   gap: 2px;
-  height: 92px;
+  height: 108px;
   align-items: end;
   margin-bottom: 16px;
+  padding-bottom: 16px;
   overflow: visible;
 }
 .hour-bar {
@@ -815,8 +835,8 @@ mark {
 .char-cal-dow,
 .char-cal-week {
   display: grid;
-  grid-template-columns: repeat(7, 1fr) minmax(72px, 0.9fr);
-  gap: 6px;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) 80px;
+  gap: 8px;
   align-items: stretch;
 }
 .char-cal-dow {

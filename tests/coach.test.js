@@ -101,3 +101,20 @@ test("characterSummary expone peor noche, mesas y diarios", () => {
   assert.ok(summary.gymStreak >= 1);
   assert.ok(typeof summary.vsLastWeek.steps === "number");
 });
+
+test("buildCoach siempre devuelve engine y narrative desde el servidor", async () => {
+  const prev = process.env.NVIDIA_API_KEY;
+  delete process.env.NVIDIA_API_KEY;
+  const { buildCoach } = await import("../server/nvidia.js");
+  const metrics = toMetrics(getPersonaPayload("mixto"));
+  const result = await buildCoach({
+    metrics,
+    profile: { name: "Nacho", nickname: "Nacho", timezone: "America/Argentina/Buenos_Aires" },
+    mode: "general",
+  });
+  if (prev !== undefined) process.env.NVIDIA_API_KEY = prev;
+  assert.ok(result.engine === "local" || result.engine === "nvidia", result.engine);
+  assert.ok(result.narrative?.headline);
+  assert.ok(Array.isArray(result.narrative?.plan));
+  assert.ok(result.analysis?.overall != null);
+});

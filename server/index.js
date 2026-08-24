@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-import { getPersonaPayload, PERSONAS, toMetrics, listDemoWeek } from "../shared/sampleFitbit.js";
+import { getPersonaPayload, PERSONAS, toMetrics, listDemoWeek, payloadFromManual } from "../shared/sampleFitbit.js";
 import {
   CHARACTER,
   CHARACTER_TO,
@@ -34,6 +34,7 @@ import {
   makePkce,
 } from "./fitbit.js";
 import { addEntry, mountDbRoutes, seedIfEmpty } from "./db.js";
+import { mountVoiceRoutes } from "./voice.js";
 
 dotenv.config();
 
@@ -97,6 +98,7 @@ app.use("/data", express.static(path.join(ROOT, "data")));
 
 seedIfEmpty();
 mountDbRoutes(app);
+mountVoiceRoutes(app);
 
 app.get("/api/health", (_req, res) => {
   res.json({
@@ -164,6 +166,40 @@ app.get("/api/character/days", (_req, res) => {
     identity: publicIdentity(),
     days: listCharacterDays(),
   });
+});
+
+function dayResponse(payload, extra = {}) {
+  return {
+    payload,
+    metrics: toMetrics(payload),
+    connected: false,
+    demo: true,
+    personas: Object.values(PERSONAS),
+    fitbitReady: fitbitConfigured(),
+    ...extra,
+  };
+}
+
+app.post("/api/day", (req, res) => {
+  const body = req.body || {};
+  const settings = body.settings || body;
+  const payload =
+    body.payload ||
+    payloadFromManual({
+      sleepHours: settings.sleepHours ?? settings.mySleepHours,
+      steps: settings.steps ?? settings.mySteps,
+      restingHeartRate: settings.restingHeartRate ?? settings.myRhr,
+      hrv: settings.hrv ?? settings.myHrv,
+      activeMinutes: settings.activeMinutes ?? settings.myActiveMinutes,
+      waterMl: settings.waterMl ?? settings.myWaterMl,
+      displayName: settings.displayName || settings.name || "vos",
+    });
+  res.json(
+    dayResponse(payload, {
+      persona: body.persona || payload.persona || "mio",
+      source: payload.source || "manual",
+    })
+  );
 });
 
 app.get("/api/day", async (req, res) => {

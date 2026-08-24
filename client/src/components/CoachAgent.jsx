@@ -37,18 +37,20 @@ export function CoachAgent({
   coach,
   loading,
   phase,
+  error,
   nvidiaReady,
   writtenFor = "Nacho",
   modeLabel,
   onNoticing,
   highlightField,
+  children,
 }) {
   const narrative = coach?.narrative;
   const engine = coach?.engine;
   const isNvidia = engine === "nvidia";
   const name = coach?.writtenFor || writtenFor;
 
-  if (loading || (!narrative && phase !== "ready")) {
+  if (loading || (!narrative && phase !== "ready" && !error)) {
     const reading = phase !== "writing";
     return (
       <article className={`card coach-agent ${isNvidia || nvidiaReady ? "nvidia" : "local"} writing`}>
@@ -64,11 +66,24 @@ export function CoachAgent({
             </p>
           </div>
         </div>
+        {children}
       </article>
     );
   }
 
-  if (!narrative) return null;
+  if (!narrative) {
+    if (error) {
+      return (
+        <article className="card coach-agent local">
+          <div className="kicker">Agente Lumen</div>
+          <h2>No llegó el servidor</h2>
+          <p className="muted">{error}</p>
+          {children}
+        </article>
+      );
+    }
+    return children ? <article className="card coach-agent">{children}</article> : null;
+  }
 
   const paragraphs = storyParagraphs(narrative.dayStory);
   const noticing = narrative.noticing || [];
@@ -175,6 +190,7 @@ export function CoachAgent({
       ) : null}
 
       {narrative.closing ? <p className="quote coach-closing">{narrative.closing}</p> : null}
+      {children}
     </article>
   );
 }

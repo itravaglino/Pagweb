@@ -1,213 +1,106 @@
-import { analyzeDay, extractJsonObject, localNarrative } from "@shared/analyze.js";
-import { PERSONAS, getPersonaPayload, payloadFromManual, toMetrics } from "@shared/sampleFitbit.js";
-import {
-  CHARACTER,
-  CHARACTER_TO,
-  getCharacterPayload,
-  listCharacterDays,
-  publicIdentity,
-} from "@shared/character.js";
-import { characterSummary } from "@shared/coach.js";
-import {
-  DEFAULT_NVIDIA_MODEL,
-  NVIDIA_MAX_TOKENS,
-  NVIDIA_TEMPERATURE,
-  NVIDIA_URL,
-  coachUserPayload,
-  normalizeCoachNarrative,
-  nvidiaSystemPrompt,
-} from "@shared/fitness.js";
+const SERVER_DOWN = "no llegó el servidor";
 
 async function tryJson(url, options) {
-  const res = await fetch(url, options);
+  let res;
+  try {
+    res = await fetch(url, options);
+  } catch (err) {
+    const error = new Error(SERVER_DOWN);
+    error.cause = err;
+    error.offline = true;
+    throw error;
+  }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    const error = new Error(data.error || data.message || `HTTP ${res.status}`);
+    const error = new Error(data.error || data.message || SERVER_DOWN);
     error.status = res.status;
     error.data = data;
+    error.offline = res.status >= 500 || res.status === 0;
     throw error;
   }
   return data;
 }
 
-export function dayFromManual(settings = {}) {
-  const payload = payloadFromManual({
-    sleepHours: settings.mySleepHours,
-    steps: settings.mySteps,
-    restingHeartRate: settings.myRhr,
-    hrv: settings.myHrv,
-    activeMinutes: settings.myActiveMinutes,
-    waterMl: settings.myWaterMl,
-    displayName: settings.name || "vos",
+function jsonPost(url, body) {
+  return tryJson(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body ?? {}),
   });
+}
+
+export function manualDayBody(settings = {}) {
   return {
-    payload,
-    metrics: toMetrics(payload),
-    connected: false,
-    demo: true,
     persona: "mio",
-    personas: Object.values(PERSONAS),
-    fitbitReady: false,
+    settings: {
+      sleepHours: settings.mySleepHours,
+      steps: settings.mySteps,
+      restingHeartRate: settings.myRhr,
+      hrv: settings.myHrv,
+      activeMinutes: settings.myActiveMinutes,
+      waterMl: settings.myWaterMl,
+      displayName: settings.name || "vos",
+    },
   };
 }
 
 export async function fetchDay(persona = "mixto", source, settings, { date } = {}) {
-  if (persona === "mio") return dayFromManual(settings);
-  const wantCharacter = persona === CHARACTER.id || Boolean(date);
-  try {
-    const qs = new URLSearchParams();
-    if (wantCharacter) qs.set("date", date || CHARACTER_TO);
-    else qs.set("persona", persona);
-    if (source) qs.set("source", source);
-    return await tryJson(`/api/day?${qs}`);
-  } catch {
-    if (wantCharacter) {
-      const payload = getCharacterPayload(date || CHARACTER_TO);
-      return {
-        payload,
-        metrics: toMetrics(payload),
-        connected: false,
-        demo: true,
-        character: true,
-        offline: true,
-        persona: CHARACTER.id,
-        identity: publicIdentity(),
-        personas: Object.values(PERSONAS),
-        fitbitReady: false,
-      };
-    }
-    const payload = getPersonaPayload(persona);
-    return {
-      payload,
-      metrics: toMetrics(payload),
-      connected: false,
-      demo: true,
-      offline: true,
-      persona,
-      personas: Object.values(PERSONAS),
-      fitbitReady: false,
-    };
+  if (persona === "mio") {
+    return jsonPost("/api/day", manualDayBody(settings));
   }
+  const qs = new URLSearchParams();
+  if (date) qs.set("date", date);
+  if (persona) qs.set("persona", persona);
+  if (source) qs.set("source", source);
+  const suffix = qs.toString();
+  return tryJson(suffix ? `/api/day?${suffix}` : "/api/day");
 }
 
-export async function fetchCharacter() {
-  try {
-    return await tryJson("/api/character");
-  } catch {
-    return { identity: publicIdentity(), summary: characterSummary(), offline: true };
-  }
+export function fetchPersonas() {
+  return tryJson("/api/demo/personas");
 }
 
-export async function fetchCharacterDays() {
-  try {
-    return await tryJson("/api/character/days");
-  } catch {
-    return { identity: publicIdentity(), days: listCharacterDays(), offline: true };
-  }
+export function fetchCharacter() {
+  return tryJson("/api/character");
 }
 
-export async function fetchFitbitStatus() {
-  try {
-    return await tryJson("/api/fitbit/status");
-  } catch {
-    return { configured: false, connected: false, offline: true };
-  }
+export function fetchCharacterDays() {
+  return tryJson("/api/character/days");
 }
 
-export async function fetchHost() {
-  try {
-    return await tryJson("/api/host");
-  } catch {
-    return null;
-  }
+export function fetchFitbitStatus() {
+  return tryJson("/api/fitbit/status").catch(() => ({
+    configured: false,
+    connected: false,
+    offline: true,
+  }));
 }
 
-export async function fetchNvidiaStatus() {
-  try {
-    return await tryJson("/api/nvidia");
-  } catch {
-    return {
-      ok: false,
-      connected: false,
-      source: "none",
-      model: DEFAULT_NVIDIA_MODEL,
-      docs: "https://build.nvidia.com",
-    };
-  }
+export function fetchHost() {
+  return tryJson("/api/host").catch(() => null);
 }
 
-async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model, mode, character, local }) {
-  const res = await fetch(NVIDIA_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      model: model || DEFAULT_NVIDIA_MODEL,
-      messages: [
-        {
-          role: "system",
-          content: nvidiaSystemPrompt(profile, analysis, mode),
-        },
-        {
-          role: "user",
-          content: JSON.stringify(coachUserPayload({ metrics, profile, analysis, mode, character })),
-        },
-      ],
-      temperature: NVIDIA_TEMPERATURE,
-      max_tokens: NVIDIA_MAX_TOKENS,
-    }),
+export function fetchNvidiaStatus() {
+  return tryJson("/api/nvidia").catch(() => ({
+    ok: false,
+    connected: false,
+    source: "none",
+  }));
+}
+
+export function fetchCoach({ metrics, persona, nvidiaKey, model, profile, mode, history, persist } = {}) {
+  return jsonPost("/api/coach", {
+    metrics,
+    persona,
+    nvidiaKey,
+    model,
+    profile,
+    mode,
+    history,
+    persist,
   });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok) return { ok: false, reason: "nvidia_error", message: body?.error?.message || `HTTP ${res.status}` };
-  const parsed = extractJsonObject(body?.choices?.[0]?.message?.content || "");
-  if (!parsed?.headline) return { ok: false, reason: "bad_json" };
-  return {
-    ok: true,
-    model: body.model || model,
-    narrative: normalizeCoachNarrative(parsed, local, "nvidia"),
-  };
 }
 
-export async function fetchCoach({ metrics, persona, nvidiaKey, model, profile, mode, history }) {
-  try {
-    return await tryJson("/api/coach", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ metrics, persona, nvidiaKey, model, profile, mode, history }),
-    });
-  } catch {
-    const analysis = analyzeDay(metrics, { ...profile, mode });
-    const character = history || characterSummary();
-    const local = localNarrative(analysis, metrics, { profile, character });
-    if (nvidiaKey) {
-      try {
-        const nvidia = await nvidiaFromBrowser({
-          metrics,
-          profile,
-          analysis,
-          apiKey: nvidiaKey,
-          model,
-          mode,
-          character,
-          local,
-        });
-        if (nvidia.ok) {
-          return { analysis, narrative: nvidia.narrative, engine: "nvidia", model: nvidia.model, mode, writtenFor: profile?.nickname || profile?.name };
-        }
-      } catch {
-        /* CORS u otro recorte: motor local */
-      }
-    }
-    return {
-      analysis,
-      narrative: local,
-      engine: "local",
-      fallbackReason: "offline",
-      mode,
-      writtenFor: profile?.nickname || profile?.name,
-    };
-  }
+export function fetchVoice(body = {}) {
+  return jsonPost("/api/voice", body);
 }

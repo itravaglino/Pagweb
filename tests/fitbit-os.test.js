@@ -15,12 +15,12 @@ describe('Fitbit Device API polyfill', () => {
     assert.equal(me.screen.height, 336);
   });
 
-  it('clock tick respects granularity', async () => {
+  it('clock tick uses evt.date like the Fitbit Clock API', () => {
     const clock = createClock();
     const dates = [];
     clock.addEventListener('tick', (e) => dates.push(e.date));
     clock.granularity = 'seconds';
-    assert.ok(dates.length >= 1);
+    assert.ok(dates[0] instanceof Date);
     clock.stop();
   });
 
@@ -46,14 +46,14 @@ describe('Fitbit Device API polyfill', () => {
     assert.equal(activity.goals.steps, 10000);
   });
 
-  it('parses BLE heart-rate GATT payloads', () => {
+  it('parses BLE GATT heart-rate payloads (UUID 0x2A37)', () => {
     const eight = new DataView(new Uint8Array([0x00, 72]).buffer);
     assert.equal(parseHeartRateMeasurement(eight), 72);
     const sixteen = new DataView(new Uint8Array([0x01, 0x2c, 0x01]).buffer);
     assert.equal(parseHeartRateMeasurement(sixteen), 300);
   });
 
-  it('starts a device runtime with today.adjusted.steps', () => {
+  it('starts a Sense 2 runtime', () => {
     const device = createFitbitDevice();
     device.start();
     assert.ok(device.today.adjusted.steps > 0);

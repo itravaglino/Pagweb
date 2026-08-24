@@ -2,6 +2,9 @@ import { useState } from 'react';
 import FitbitShell from './watch/FitbitShell.jsx';
 import ClockFace from './watch/ClockFace.jsx';
 import StatsFace from './watch/StatsFace.jsx';
+import HeartFace from './watch/HeartFace.jsx';
+import ExerciseFace from './watch/ExerciseFace.jsx';
+import ControlCenter from './watch/ControlCenter.jsx';
 import GemmaBlob from './gemma/GemmaBlob.jsx';
 import { useWatch } from './watch/useWatch.js';
 import { formatTimer } from '@shared/router.js';
@@ -10,8 +13,32 @@ import './App.css';
 function Screen({ watch }) {
   return (
     <>
-      {watch.screen === 'clock' && <ClockFace now={watch.now} dimmed={!watch.awake} />}
+      {watch.screen === 'clock' && (
+        <ClockFace now={watch.now} dimmed={!watch.awake} metrics={watch.metrics} />
+      )}
       {watch.screen === 'stats' && <StatsFace metrics={watch.metrics} />}
+      {watch.screen === 'heart' && <HeartFace metrics={watch.metrics} />}
+      {watch.screen === 'exercise' && (
+        <ExerciseFace
+          onStart={(sport) => {
+            watch.goTo('gemma');
+            watch.handleUtterance(`empiezo ${sport.label}`);
+          }}
+        />
+      )}
+      {watch.screen === 'control' && (
+        <ControlCenter
+          muted={watch.muted}
+          onMute={() => watch.setMuted((v) => !v)}
+          onLoad={watch.loadOnDevice}
+          onBle={watch.connectBle}
+          onFitbit={() => {
+            window.location.href = '/api/fitbit/login';
+          }}
+          brightness={watch.brightness}
+          onBrightness={watch.setBrightness}
+        />
+      )}
       {watch.screen === 'gemma' && (
         <GemmaBlob
           emotion={watch.emotion}
@@ -86,6 +113,15 @@ function Screen({ watch }) {
           <button type="button" onClick={() => watch.goTo('stats')}>
             Stats
           </button>
+          <button type="button" onClick={() => watch.goTo('heart')}>
+            Ritmo
+          </button>
+          <button type="button" onClick={() => watch.goTo('exercise')}>
+            Ejercicio
+          </button>
+          <button type="button" onClick={() => watch.goTo('control')}>
+            Ajustes
+          </button>
           <button type="button" onClick={watch.loadOnDevice}>
             Cargar Gemma
           </button>
@@ -131,6 +167,7 @@ export default function App() {
         <FitbitShell
           haptic={watch.haptic}
           awake={watch.awake}
+          brightness={watch.brightness}
           onGesture={watch.onGesture}
           onSideButton={watch.goClock}
         >

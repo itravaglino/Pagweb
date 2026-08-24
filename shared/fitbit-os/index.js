@@ -67,3 +67,5 @@ export function createFitbitDevice() {
 export { me } from './device.js';
 export { VIBRATION_PATTERNS } from './haptics.js';
 export { HEART_RATE_SERVICE, parseHeartRateMeasurement } from './heart-rate.js';
+
+

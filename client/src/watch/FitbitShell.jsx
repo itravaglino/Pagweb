@@ -5,6 +5,7 @@ export default function FitbitShell({
   children,
   haptic = false,
   awake = true,
+  brightness = 100,
   onGesture,
   onSideButton,
 }) {
@@ -21,7 +22,14 @@ export default function FitbitShell({
         />
         <div className="watch-bezel">
           <GestureLayer onGesture={onGesture}>
-            <div className="watch-glass">{children}</div>
+            <div
+              className="watch-glass"
+              style={{
+                filter: `brightness(${Math.max(0.35, (awake ? brightness : Math.min(brightness, 45)) / 100)})`,
+              }}
+            >
+              {children}
+            </div>
           </GestureLayer>
         </div>
         <div className="lugs top" />

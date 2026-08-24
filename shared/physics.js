@@ -1,4 +1,4 @@
-export function createBlobState() {
+function makeBlobState() {
   return {
     x: 0,
     y: -18,
@@ -9,7 +9,7 @@ export function createBlobState() {
   };
 }
 
-export function stepBlob(state, dt, options = {}) {
+function advanceBlob(state, dt, options = {}) {
   const gravity = options.gravity ?? 520;
   const arenaR = options.arenaR ?? 118;
   const blobR = options.blobR ?? 54;
@@ -54,6 +54,10 @@ export function stepBlob(state, dt, options = {}) {
   return next;
 }
 
-export function blobInArena(state, arenaR, blobR) {
+function isBlobInArena(state, arenaR, blobR) {
   return Math.hypot(state.x, state.y) <= arenaR - blobR + 0.01;
 }
+
+export const createBlobState = makeBlobState;
+export const stepBlob = advanceBlob;
+export const blobInArena = isBlobInArena;

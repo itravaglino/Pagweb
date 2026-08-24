@@ -4,6 +4,7 @@ import { nextScreen } from '@shared/gestures.js';
 import { createFitbitDevice } from '@shared/fitbit-os/index.js';
 import { createDemoRuntime, createDualRuntime } from '../models/runtime.js';
 import { containsWake, createMic, isSpeechSupported, speak, stopSpeaking } from '../speech/speech.js';
+import { connectBleHeartRate } from '../fitbit/bleHeartRate.js';
 
 const SCREENS = ['gemma', 'clock', 'stats'];
 const IDLE_MS = 22000;
@@ -32,6 +33,7 @@ export function useWatch() {
   const [loadProgress, setLoadProgress] = useState(null);
   const [loadingModels, setLoadingModels] = useState(false);
   const [statusText, setStatusText] = useState('Modo demo listo');
+  const [brightness, setBrightness] = useState(100);
 
   const runtimeRef = useRef(createDemoRuntime());
   const deviceRef = useRef(null);
@@ -357,6 +359,19 @@ export function useWatch() {
 
   const goClock = useCallback(() => goTo('clock'), [goTo]);
 
+  const connectBle = useCallback(async () => {
+    setMenuOpen(false);
+    setStatusText('Buscando pulsómetro BLE…');
+    try {
+      await connectBleHeartRate({
+        onBpm: (bpm) => deviceRef.current?.hrm.ingestExternal(bpm),
+        onStatus: setStatusText,
+      });
+    } catch (err) {
+      setStatusText(err?.message || 'BLE no disponible');
+    }
+  }, []);
+
   return {
     screen,
     setScreen: goTo,
@@ -387,5 +402,8 @@ export function useWatch() {
     goClock,
     goTo,
     wake,
+    brightness,
+    setBrightness,
+    connectBle,
   };
 }

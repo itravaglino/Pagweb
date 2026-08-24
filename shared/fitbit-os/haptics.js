@@ -13,8 +13,9 @@ export const VIBRATION_PATTERNS = {
   ring: [280, 140, 280, 140, 280],
 };
 
-export function createVibration({ vibrate } = {}) {
+export function createVibration(options = {}) {
   let last = null;
+  const vibrate = options.vibrate;
   return {
     get lastPattern() {
       return last;

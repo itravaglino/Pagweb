@@ -3,7 +3,6 @@ import {
   completeByPhrase,
   defaultGoals,
   loadStoredTasks,
-  localVoiceReply,
   mergeTasks,
   progressVsGoals,
   saveStoredTasks,
@@ -127,22 +126,9 @@ export function VoiceCoach({ metrics, persona, settings, character, embedded = f
         engine: data.engine,
       });
     } catch (err) {
-      const fallback = localVoiceReply({
-        transcript: text,
-        metrics,
-        openTasks: payload.openTasks,
-        goals,
-        summary,
-        persona: payload.persona,
-      });
-      setTasks(fallback.tasks);
-      setSpoken(fallback.spoken);
-      setProgressRows(fallback.progressVsGoals);
-      setNoticing(fallback.noticing);
-      setEngine("local");
-      setError(err.message || "fallback local");
-      setStatus("done");
-      playSpoken(fallback.spoken);
+      setEngine("");
+      setError(err.message || "no llegó el servidor");
+      setStatus("idle");
     }
   }
 

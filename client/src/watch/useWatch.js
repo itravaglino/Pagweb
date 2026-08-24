@@ -3,7 +3,7 @@ import { extractWake, formatClock, formatTimer, routeIntent } from '@shared/rout
 import { nextScreen } from '@shared/gestures.js';
 import { createFitbitDevice } from '@shared/fitbit-os/index.js';
 import { createDemoRuntime, createDualRuntime } from '../models/runtime.js';
-import { containsWake, createMic, isSpeechSupported, speak, stopSpeaking } from '../speech/speech.js';
+import { containsWake, createMic, isSpeechSupported, loadVoiceSettings, saveVoiceSettings, speak, stopSpeaking } from '../speech/speech.js';
 import { connectBleHeartRate } from '../fitbit/bleHeartRate.js';
 
 const SCREENS = ['clock', 'stats', 'heart', 'exercise', 'gemma'];
@@ -34,8 +34,11 @@ export function useWatch() {
   const [modelMode, setModelMode] = useState('demo');
   const [loadProgress, setLoadProgress] = useState(null);
   const [loadingModels, setLoadingModels] = useState(false);
-  const [statusText, setStatusText] = useState('Modo demo listo');
+  const [statusText, setStatusText] = useState('Buscando GPU local…');
   const [brightness, setBrightness] = useState(100);
+  const [voice, setVoice] = useState(() =>
+    loadVoiceSettings(typeof localStorage === 'undefined' ? undefined : localStorage),
+  );
 
   const runtimeRef = useRef(createDemoRuntime());
   const deviceRef = useRef(null);
@@ -43,6 +46,7 @@ export function useWatch() {
   const busyRef = useRef(false);
   const listenArmedRef = useRef(false);
   const mutedRef = useRef(muted);
+  const voiceRef = useRef(voice);
   const metricsRef = useRef(metrics);
   const modelModeRef = useRef(modelMode);
   const screenRef = useRef(screen);
@@ -51,11 +55,16 @@ export function useWatch() {
   const loadingRef = useRef(false);
 
   mutedRef.current = muted;
+  voiceRef.current = voice;
   metricsRef.current = metrics;
   modelModeRef.current = modelMode;
   screenRef.current = screen;
   menuOpenRef.current = menuOpen;
   awakeRef.current = awake;
+
+  const say = useCallback((text) => {
+    return speak(text, { muted: mutedRef.current, ...voiceRef.current });
+  }, []);
 
   const buzz = useCallback(() => {
     deviceRef.current?.vibration.start('nudge');
@@ -133,7 +142,7 @@ export function useWatch() {
     setEmotion('excited');
     setBounce(0.9);
     setBubble('¡Listo! El timer terminó.');
-    speak('¡Listo! El timer terminó.', { muted: mutedRef.current });
+    speak('¡Listo! El timer terminó.', { muted: mutedRef.current, ...voiceRef.current });
     buzz();
     wake();
   }, [timer, buzz, wake]);
@@ -146,9 +155,10 @@ export function useWatch() {
     if (routed.intent === 'face' || routed.intent === 'chat') setScreen('gemma');
   }, []);
 
-  const statusForMode = useCallback((mode) => {
-    if (mode === 'dual') return 'Gemma 270M + 1B on-device';
-    if (mode === 'light') return 'Gemma 3 270M on-device';
+  const statusForMode = useCallback((mode, runtime) => {
+    if (mode === 'gpu') return `GPU local · ${runtime?.chatModel || runtime?.gpuLabel || 'Ollama'}`;
+    if (mode === 'dual') return 'WebGPU · Gemma 270M + 1B';
+    if (mode === 'light') return 'WebGPU · Gemma 3 270M';
     return 'Modo demo';
   }, []);
 
@@ -191,7 +201,7 @@ export function useWatch() {
           setTimer(null);
           const line = routed.reply || 'Vale.';
           setBubble(line);
-          speak(line, { muted: mutedRef.current });
+          speak(line, { muted: mutedRef.current, ...voiceRef.current });
           setEmotion('idle');
           return;
         }
@@ -201,7 +211,7 @@ export function useWatch() {
           setScreen('gemma');
           const line = routed.reply || `Timer de ${formatTimer(routed.seconds)}.`;
           setBubble(line);
-          speak(line, { muted: mutedRef.current });
+          speak(line, { muted: mutedRef.current, ...voiceRef.current });
           setEmotion('excited');
           return;
         }
@@ -209,7 +219,7 @@ export function useWatch() {
         if (routed.intent === 'clock') {
           const line = routed.reply || `Son las ${formatClock(new Date())}.`;
           setBubble(line);
-          speak(line, { muted: mutedRef.current });
+          speak(line, { muted: mutedRef.current, ...voiceRef.current });
           return;
         }
 
@@ -217,14 +227,14 @@ export function useWatch() {
           const m = metricsRef.current;
           const line = routed.reply || `Llevas ${m.steps} pasos y el corazón a ${m.hr}.`;
           setBubble(line);
-          speak(line, { muted: mutedRef.current });
+          speak(line, { muted: mutedRef.current, ...voiceRef.current });
           return;
         }
 
         if (routed.intent === 'face') {
           const line = routed.reply || 'Cambio de cara.';
           setBubble(line);
-          speak(line, { muted: mutedRef.current });
+          speak(line, { muted: mutedRef.current, ...voiceRef.current });
           return;
         }
 
@@ -239,7 +249,7 @@ export function useWatch() {
         setBubble(clean);
         setEmotion('speak');
         setSpeaking(true);
-        speak(clean, { muted: mutedRef.current });
+        speak(clean, { muted: mutedRef.current, ...voiceRef.current });
         window.setTimeout(() => {
           setSpeaking(false);
           setEmotion('happy');
@@ -253,7 +263,7 @@ export function useWatch() {
       } finally {
         setThinking(false);
         busyRef.current = false;
-        setStatusText(statusForMode(modelModeRef.current));
+        setStatusText(statusForMode(modelModeRef.current, runtimeRef.current));
       }
     },
     [applyRoute, buzz, statusForMode, wake],
@@ -268,13 +278,17 @@ export function useWatch() {
         handleUtterance(text, { requireWake: true });
       },
       onError: (err) => {
-        if (err !== 'no-speech' && err !== 'aborted') {
+        if (err !== 'no-speech' && err !== 'aborted' && modelModeRef.current === 'demo') {
           setStatusText('Micrófono no disponible · usa el teclado');
         }
       },
     });
     if (mic.supported) mic.start();
-    else setStatusText((s) => (s.includes('escribe') ? s : `${s} · escribe abajo`));
+    else {
+      setStatusText((s) =>
+        modelModeRef.current === 'demo' && !s.includes('escribe') ? `${s} · escribe abajo` : s,
+      );
+    }
     return () => mic.stop();
   }, [handleUtterance]);
 
@@ -335,8 +349,8 @@ export function useWatch() {
     loadingRef.current = true;
     setLoadingModels(true);
     setMenuOpen(false);
-    setLoadProgress({ status: 'Buscando WebGPU…', loaded: 0, total: 1 });
-    setStatusText('Cargando Gemma on-device…');
+    setLoadProgress({ status: 'Buscando GPU local…', loaded: 0, total: 1 });
+    setStatusText('Conectando Gemma a tu GPU…');
     try {
       const runtime = await createDualRuntime({
         onProgress: setLoadProgress,
@@ -344,15 +358,19 @@ export function useWatch() {
       runtimeRef.current?.dispose?.();
       runtimeRef.current = runtime;
       setModelMode(runtime.mode);
-      if (runtime.mode === 'demo') {
-        setStatusText('Sin WebGPU · seguimos en demo');
-        setBubble('Sigo en demo, pero lista.');
+      const label = statusForMode(runtime.mode, runtime);
+      if (runtime.mode === 'gpu') {
+        setStatusText(label);
+        setBubble(`Listo en tu GPU con ${runtime.chatModel}.`);
+      } else if (runtime.mode === 'demo') {
+        setStatusText('Sin GPU local · modo demo');
+        setBubble('Sigo en demo. Abre Ollama o Chrome con WebGPU.');
       } else if (runtime.mode === 'dual') {
-        setStatusText('Gemma 270M + 1B on-device');
-        setBubble('Modelos listos en tu dispositivo.');
+        setStatusText(label);
+        setBubble('Modelos listos en WebGPU.');
       } else {
-        setStatusText('Gemma 3 270M on-device');
-        setBubble('Gemma 270M lista en tu dispositivo.');
+        setStatusText(label);
+        setBubble('Gemma 270M lista en WebGPU.');
       }
       setEmotion('happy');
       setBounce(0.7);
@@ -360,7 +378,11 @@ export function useWatch() {
       loadingRef.current = false;
       setLoadingModels(false);
     }
-  }, []);
+  }, [statusForMode]);
+
+  useEffect(() => {
+    loadOnDevice();
+  }, [loadOnDevice]);
 
   const goTo = useCallback(
     (name) => {
@@ -431,6 +453,13 @@ export function useWatch() {
     bubble,
     muted,
     setMuted,
+    voice,
+    setVoice: (next) => {
+      const value = typeof next === 'function' ? next(voiceRef.current) : next;
+      const saved = saveVoiceSettings(value, typeof localStorage === 'undefined' ? undefined : localStorage);
+      setVoice(saved);
+    },
+    previewVoice: () => say('Hola, soy Gemma. Así suena mi voz.'),
     now,
     metrics,
     timer,

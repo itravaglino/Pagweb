@@ -1,3 +1,10 @@
+import {
+  DEFAULT_VOICE,
+  loadVoiceSettings,
+  pickBestVoice,
+  saveVoiceSettings,
+} from '@shared/voices.js';
+
 const WAKE_RE = /(hey|oye|hola|hi|ok)\s+gem+a/i;
 
 export function isSpeechSupported() {
@@ -11,24 +18,61 @@ export function isTtsSupported() {
   return typeof window !== 'undefined' && 'speechSynthesis' in window;
 }
 
-export function speak(text, { lang = 'es-ES', muted = false } = {}) {
+export function listVoices() {
+  if (!isTtsSupported()) return [];
+  return window.speechSynthesis.getVoices();
+}
+
+export function waitForVoices(timeoutMs = 1500) {
+  if (!isTtsSupported()) return Promise.resolve([]);
+  const current = listVoices();
+  if (current.length) return Promise.resolve(current);
+  return new Promise((resolve) => {
+    const done = () => {
+      window.speechSynthesis.removeEventListener('voiceschanged', onChange);
+      resolve(listVoices());
+    };
+    const onChange = () => done();
+    window.speechSynthesis.addEventListener('voiceschanged', onChange);
+    window.setTimeout(done, timeoutMs);
+  });
+}
+
+export async function speak(text, options = {}) {
+  const {
+    muted = false,
+    voiceURI = '',
+    lang = DEFAULT_VOICE.lang,
+    rate = DEFAULT_VOICE.rate,
+    pitch = DEFAULT_VOICE.pitch,
+    volume = DEFAULT_VOICE.volume,
+  } = options;
   if (muted || !text || !isTtsSupported()) return;
+  const voices = await waitForVoices();
   window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = lang;
-  u.rate = 1.04;
-  u.pitch = 1.15;
-  const voices = window.speechSynthesis.getVoices();
-  const es = voices.find((v) => v.lang.startsWith('es'));
-  if (es) u.voice = es;
-  window.speechSynthesis.speak(u);
+  const u = new SpeechSynthesisUtterance(String(text));
+  const chosen = pickBestVoice(voices, { voiceURI, lang });
+  if (chosen) {
+    u.voice = chosen;
+    u.lang = chosen.lang || lang;
+  } else {
+    u.lang = lang;
+  }
+  u.rate = rate;
+  u.pitch = pitch;
+  u.volume = volume;
+  await new Promise((resolve) => {
+    u.onend = () => resolve();
+    u.onerror = () => resolve();
+    window.speechSynthesis.speak(u);
+  });
 }
 
 export function stopSpeaking() {
   if (isTtsSupported()) window.speechSynthesis.cancel();
 }
 
-export function createMic({ onPartial, onFinal, onError, lang = 'es-ES' } = {}) {
+export function createMic({ onPartial, onFinal, onError, lang = 'es-AR' } = {}) {
   if (!isSpeechSupported()) {
     return {
       supported: false,
@@ -78,3 +122,5 @@ export function createMic({ onPartial, onFinal, onError, lang = 'es-ES' } = {}) 
 export function containsWake(text) {
   return WAKE_RE.test(String(text || ''));
 }
+
+export { loadVoiceSettings, saveVoiceSettings, pickBestVoice };

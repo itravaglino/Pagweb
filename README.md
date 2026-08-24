@@ -29,14 +29,19 @@ El compositor de texto no exige palabra de activación. El micrófono sí, salvo
 
 ## Modelos
 
-La UI funciona al instante en **modo demo** (sin GPU). En Chrome con WebGPU, pulsa **Activar Gemma on-device**:
+Al abrir el emulador intentamos **Ollama en tu GPU**. En esta máquina ya hay `gemma3:1b` (tareas) y `gemma3:4b` (charla). Si Ollama no está corriendo, caemos a **WebGPU en Chrome** y, si tampoco hay GPU, al modo demo.
 
-| Modelo | Rol | Tamaño aprox. |
-| --- | --- | --- |
-| Gemma 3 270M | expresiones, intents, timers, hora | ~300 MB |
-| Gemma 3 1B | preguntas | ~1 GB |
+```bash
+ollama serve
+ollama pull gemma3:1b
+ollama pull gemma3:4b
+```
 
-Los pesos se descargan una vez desde Hugging Face y quedan en caché del navegador. Si no hay WebGPU, seguimos en demo.
+Opcional en `.env`: `OLLAMA_HOST`, `OLLAMA_LIGHT_MODEL`, `OLLAMA_CHAT_MODEL`.
+
+## Voz
+
+La voz usa las voces Neural del sistema (español). En el panel derecho puedes elegir voz, ritmo, tono y volumen. Los presets **Gemma / Clara / Baja** quedan guardados en el navegador.
 
 ## Device API (Fitbit OS)
 

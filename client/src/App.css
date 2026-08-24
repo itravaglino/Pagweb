@@ -91,6 +91,7 @@
   background: linear-gradient(180deg, #f0c6ff, #c084fc);
   color: #2a103a;
   font-weight: 700;
+  margin: 0 8px 8px 0;
 }
 
 .pill:disabled {

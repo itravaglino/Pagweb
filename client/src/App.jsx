@@ -8,6 +8,7 @@ import ControlCenter from './watch/ControlCenter.jsx';
 import GemmaBlob from './gemma/GemmaBlob.jsx';
 import { useWatch } from './watch/useWatch.js';
 import { formatTimer } from '@shared/router.js';
+import VoicePanel from './speech/VoicePanel.jsx';
 import './App.css';
 
 function Screen({ watch }) {
@@ -176,8 +177,8 @@ export default function App() {
         <aside className="hints right">
           <h2>Modelos</h2>
           <p>
-            Demo inmediato. On-device: Gemma 3 270M para caras y tareas; Gemma 3 1B para
-            preguntas.
+            Si Ollama está abierto, Gemma corre en tu GPU (RTX). Si no, intentamos WebGPU en
+            Chrome. Sin GPU, queda el modo demo.
           </p>
           <button
             type="button"
@@ -185,7 +186,7 @@ export default function App() {
             onClick={watch.loadOnDevice}
             disabled={watch.loadingModels}
           >
-            {watch.loadingModels ? 'Cargando…' : 'Activar Gemma on-device'}
+            {watch.loadingModels ? 'Cargando…' : 'Activar GPU local'}
           </button>
           <button type="button" className="pill" onClick={watch.connectFitbitApi}>
             Conectar Fitbit Web API
@@ -193,7 +194,17 @@ export default function App() {
           <button type="button" className="pill" onClick={watch.connectBle}>
             Pulsómetro BLE
           </button>
-          <p className="tiny">Hace falta Chrome con WebGPU para Gemma on-device. Si no hay GPU, seguimos en demo.</p>
+          <p className="tiny">
+            Modelos Ollama: gemma3:1b para tareas, gemma3:4b para charla. Chrome + WebGPU queda
+            como respaldo.
+          </p>
+          <VoicePanel
+            settings={watch.voice}
+            onChange={watch.setVoice}
+            muted={watch.muted}
+            onMute={() => watch.setMuted((v) => !v)}
+            onPreview={watch.previewVoice}
+          />
         </aside>
       </main>
 

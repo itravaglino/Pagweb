@@ -1,0 +1,59 @@
+.voice-panel {
+  margin-top: 18px;
+}
+
+.voice-panel label {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #eadccc;
+}
+
+.voice-panel select,
+.voice-panel input[type='range'] {
+  width: 100%;
+}
+
+.voice-panel select {
+  border: 0;
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: #2a241f;
+  color: #f7f1ea;
+}
+
+.voice-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 4px;
+}
+
+.voice-presets button {
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #2a241f;
+  color: #eadccc;
+  font-size: 12px;
+}
+
+.voice-presets button.is-on {
+  background: #f4efe8;
+  color: #1b1511;
+}
+
+.voice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.pill.ghost {
+  background: #2a241f;
+  color: #eadccc;
+}

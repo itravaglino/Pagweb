@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { mountFitbitRoutes } from './fitbit.js';
+import { mountOllamaRoutes } from './ollama.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -15,6 +16,7 @@ const isolationHeaders = {
 
 const app = express();
 app.disable('x-powered-by');
+app.use(express.json({ limit: '1mb' }));
 app.use((_req, res, next) => {
   for (const [key, value] of Object.entries(isolationHeaders)) {
     res.setHeader(key, value);
@@ -22,6 +24,7 @@ app.use((_req, res, next) => {
   next();
 });
 mountFitbitRoutes(app);
+mountOllamaRoutes(app);
 
 if (isProd) {
   const dist = path.join(root, 'client/dist');

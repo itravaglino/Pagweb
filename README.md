@@ -18,8 +18,7 @@ UI + motor local. NVIDIA **solo** si pegás una clave `nvapi-` en el navegador (
 
 - [jsDelivr](https://cdn.jsdelivr.net/gh/itravaglino/Pagweb@cursor/wellness-dashboard-demo-561c/docs/index.html)
 - [raw.githack](https://raw.githack.com/itravaglino/Pagweb/cursor/wellness-dashboard-demo-561c/docs/index.html)
-
-Si jsDelivr te muestra una versión vieja, usá la URL con el SHA del commit (queda en el PR).
+- jsDelivr por SHA (si el CDN está cacheado): [docs/index.html @ e8d8290](https://cdn.jsdelivr.net/gh/itravaglino/Pagweb@e8d829005a2a6e102830732a92fe7ec90923f34c/docs/index.html)
 
 ### GitHub Pages
 

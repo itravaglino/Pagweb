@@ -50,6 +50,7 @@ async function callNvidia({ key, modelId, metrics, profile, analysis, mode, char
         top_p: 0.85,
         max_tokens: NVIDIA_MAX_TOKENS,
         stream: false,
+        response_format: { type: "json_object" },
       }),
       signal: controller.signal,
     });
@@ -60,7 +61,11 @@ async function callNvidia({ key, modelId, metrics, profile, analysis, mode, char
     }
     const text = body?.choices?.[0]?.message?.content || "";
     const parsed = extractJsonObject(text);
-    if (!parsed?.headline) {
+    const usable =
+      parsed &&
+      typeof parsed === "object" &&
+      (parsed.headline || parsed.dayStory || parsed.noticing || parsed.plan);
+    if (!usable) {
       return { ok: false, reason: "bad_json", raw: text.slice(0, 500) };
     }
     return {

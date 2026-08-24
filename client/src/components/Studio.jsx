@@ -81,7 +81,7 @@ function WellbeingPreview() {
       <article className="card">
         <div className="kicker">Fitbit · demo Córdoba</div>
         <h2>Mejor Día</h2>
-        {agentLine ? <p className="agent-line">Lumen dice: {agentLine}</p> : null}
+        {agentLine ? <p className="agent-line">El agente dice: {agentLine}</p> : null}
         {agentError ? <div className="banner banner-error">{agentError}</div> : null}
         <p className="tagline">
           {m?.story ||

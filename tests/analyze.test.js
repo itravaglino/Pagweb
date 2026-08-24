@@ -44,6 +44,21 @@ test("extractJsonObject tolera fences markdown", () => {
   assert.equal(parsed.headline, "hola");
 });
 
+test("extractJsonObject repara newlines crudos y trailing comma de Llama", () => {
+  const messy = `{
+  "headline": "Nacho, hoy el HRV está en el piso",
+  "noticing": [
+    {"text": "Tu HRV bajó a 21 ms vs 35 ms", "cite": "21 ms", "fitbitField": "hrv"},
+  ],
+  "dayStory": "Anoche 5h 12m.
+El Charge 6 no miente."
+}`;
+  const parsed = extractJsonObject(messy);
+  assert.equal(parsed.headline, "Nacho, hoy el HRV está en el piso");
+  assert.equal(parsed.noticing[0].cite, "21 ms");
+  assert.match(parsed.dayStory, /5h 12m/);
+});
+
 test("personas exportadas", () => {
   assert.ok(["agotado", "mixto", "recargado"].every((id) => PERSONAS[id]));
   assert.ok(PERSONAS.examen && PERSONAS.barrio);

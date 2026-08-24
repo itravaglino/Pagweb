@@ -486,16 +486,108 @@ export function localNarrative(analysis = {}, metricsInput, extras = {}) {
   );
 }
 
+function tryParseJson(raw) {
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+/** Llama often emits raw newlines / trailing commas inside JSON. Keep the coach on NVIDIA. */
+function escapeControlsInStrings(s) {
+  let out = "";
+  let inString = false;
+  let escape = false;
+  for (let i = 0; i < s.length; i += 1) {
+    const ch = s[i];
+    if (!inString) {
+      if (ch === '"') inString = true;
+      out += ch;
+      continue;
+    }
+    if (escape) {
+      out += ch;
+      escape = false;
+      continue;
+    }
+    if (ch === "\\") {
+      out += ch;
+      escape = true;
+      continue;
+    }
+    if (ch === '"') {
+      inString = false;
+      out += ch;
+      continue;
+    }
+    if (ch === "\n") {
+      out += "\\n";
+      continue;
+    }
+    if (ch === "\r") {
+      out += "\\r";
+      continue;
+    }
+    if (ch === "\t") {
+      out += "\\t";
+      continue;
+    }
+    if (ch.charCodeAt(0) < 32) continue;
+    out += ch;
+  }
+  if (inString) out += '"';
+  return out;
+}
+
+function closeTruncatedJson(s) {
+  const stack = [];
+  let inString = false;
+  let escape = false;
+  for (const ch of s) {
+    if (inString) {
+      if (escape) {
+        escape = false;
+        continue;
+      }
+      if (ch === "\\") {
+        escape = true;
+        continue;
+      }
+      if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') {
+      inString = true;
+      continue;
+    }
+    if (ch === "{") stack.push("}");
+    else if (ch === "[") stack.push("]");
+    else if (ch === "}" || ch === "]") stack.pop();
+  }
+  let out = s.trim().replace(/,\s*$/, "");
+  if (inString) out += '"';
+  while (stack.length) out += stack.pop();
+  return out;
+}
+
+function repairJson(s) {
+  const cleaned = escapeControlsInStrings(s).replace(/,\s*([}\]])/g, "$1");
+  return tryParseJson(cleaned) || tryParseJson(closeTruncatedJson(cleaned));
+}
+
 export function extractJsonObject(text) {
   if (!text) return null;
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/i);
   const raw = (fenced ? fenced[1] : text).trim();
   const start = raw.indexOf("{");
-  const end = raw.lastIndexOf("}");
-  if (start === -1 || end === -1) return null;
-  try {
-    return JSON.parse(raw.slice(start, end + 1));
-  } catch {
-    return null;
+  if (start === -1) return null;
+  const body = raw.slice(start);
+  const end = body.lastIndexOf("}");
+  const slices = end === -1 ? [body] : [body.slice(0, end + 1), body];
+  for (const slice of slices) {
+    const parsed = tryParseJson(slice) || repairJson(slice);
+    if (parsed && typeof parsed === "object") return parsed;
   }
+  return null;
 }

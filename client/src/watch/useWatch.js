@@ -6,7 +6,7 @@ import { createDemoRuntime, createDualRuntime } from '../models/runtime.js';
 import { containsWake, createMic, isSpeechSupported, speak, stopSpeaking } from '../speech/speech.js';
 import { connectBleHeartRate } from '../fitbit/bleHeartRate.js';
 
-const SCREENS = ['gemma', 'clock', 'stats'];
+const SCREENS = ['clock', 'stats', 'heart', 'exercise', 'gemma'];
 const ALIASES = { today: 'stats', settings: 'control' };
 const IDLE_MS = 22000;
 
@@ -15,7 +15,8 @@ function initialMetrics() {
 }
 
 export function useWatch() {
-  const [screen, setScreen] = useState('gemma');
+  const [screen, setScreen] = useState('clock');
+  const [layer, setLayer] = useState('app');
   const [awake, setAwake] = useState(true);
   const [haptic, setHaptic] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -283,17 +284,18 @@ export function useWatch() {
       if (g.type === 'swipe') {
         setMenuOpen(false);
         if (g.dir === 'down') {
-          setScreen('control');
+          setLayer('control');
           buzz();
           return;
         }
         if (g.dir === 'up') {
-          setScreen('heart');
+          setLayer('widgets');
           buzz();
           return;
         }
+        setLayer('app');
         setScreen((cur) => {
-          const base = SCREENS.includes(cur) ? cur : 'gemma';
+          const base = SCREENS.includes(cur) ? cur : 'clock';
           return nextScreen(base, g.dir, SCREENS);
         });
         buzz();
@@ -362,7 +364,9 @@ export function useWatch() {
 
   const goTo = useCallback(
     (name) => {
-      setScreen(ALIASES[name] || name);
+      const resolved = ALIASES[name] || name;
+      setLayer(resolved === 'control' ? 'control' : 'app');
+      setScreen(resolved);
       setMenuOpen(false);
       setListening(false);
       listenArmedRef.current = false;
@@ -447,6 +451,7 @@ export function useWatch() {
     connectBleHr: connectBle,
     connectFitbitApi,
     sensorStatus: statusText,
-    layer: 'app',
+    layer,
+    setLayer,
   };
 }

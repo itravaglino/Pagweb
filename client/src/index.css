@@ -1,0 +1,31 @@
+:root {
+  color-scheme: dark;
+  --desk: #16110d;
+  --ink: #f4efe8;
+  --muted: #b7aa9c;
+  --accent: #e8a0ff;
+  --peach: #ffb4a2;
+  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #100c09;
+  color: var(--ink);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}

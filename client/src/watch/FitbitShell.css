@@ -1,0 +1,108 @@
+.watch-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+.band {
+  width: 168px;
+  height: 150px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #2a2d33 0 10px,
+      #23262c 10px 20px
+    );
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.35);
+}
+
+.band-top {
+  border-radius: 18px 18px 8px 8px;
+  mask-image: linear-gradient(#000 70%, transparent);
+}
+
+.band-bottom {
+  border-radius: 8px 8px 22px 22px;
+  height: 170px;
+  mask-image: linear-gradient(transparent, #000 18%);
+}
+
+.watch-body {
+  width: 392px;
+  height: 392px;
+  border-radius: 92px;
+  position: relative;
+  background:
+    linear-gradient(145deg, #5a5e66 0%, #2c3036 38%, #14161a 100%);
+  box-shadow:
+    0 48px 80px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -10px 18px rgba(0, 0, 0, 0.55);
+}
+
+.watch-body.is-haptic {
+  animation: haptic 280ms ease;
+}
+
+@keyframes haptic {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px) rotate(-0.4deg); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+}
+
+.watch-bezel {
+  position: absolute;
+  inset: 16px;
+  border-radius: 78px;
+  background: #07080a;
+  box-shadow:
+    inset 0 0 0 3px #2f333a,
+    0 0 0 1px #0b0c0e;
+  overflow: hidden;
+}
+
+.gesture-layer,
+.watch-glass {
+  width: 100%;
+  height: 100%;
+  border-radius: 74px;
+  position: relative;
+  overflow: hidden;
+  background: #050506;
+  touch-action: none;
+}
+
+.watch-body.is-sleep .watch-glass {
+  filter: brightness(0.62);
+}
+
+.side-btn {
+  position: absolute;
+  left: -11px;
+  top: 46%;
+  width: 14px;
+  height: 58px;
+  border: 0;
+  padding: 0;
+  border-radius: 4px 2px 2px 4px;
+  background: linear-gradient(#8b9099, #3e4248);
+  box-shadow: -2px 4px 8px rgba(0, 0, 0, 0.4);
+  z-index: 3;
+}
+
+.side-btn:active {
+  transform: translateX(1px);
+}
+
+.lugs {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  height: 14px;
+  background: linear-gradient(#3c4046, #1c1e22);
+  z-index: 0;
+}
+.lugs.top { top: -6px; border-radius: 6px 6px 0 0; }
+.lugs.bottom { bottom: -6px; border-radius: 0 0 6px 6px; }

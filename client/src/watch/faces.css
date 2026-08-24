@@ -1,0 +1,146 @@
+.clock-face,
+.stats-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f5f1ea;
+  padding: 18px;
+}
+
+.clock-face.is-dim {
+  opacity: 0.72;
+}
+
+.clock-ring {
+  width: 58%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, #1a1a1c, #050506 72%);
+  box-shadow: inset 0 0 0 1px #2c2c32;
+}
+
+.tick {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 8px;
+  background: #8d8d96;
+  transform-origin: 50% 50%;
+}
+
+.tick.major {
+  height: 12px;
+  background: #e8e4dc;
+}
+
+.hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 3px;
+  height: 28%;
+  background: #fff;
+  border-radius: 3px;
+  transform-origin: 50% 100%;
+}
+
+.hand.hour {
+  height: 20%;
+  width: 4px;
+  background: #ffd7a8;
+}
+
+.cap {
+  position: absolute;
+  inset: 47%;
+  background: #ffd7a8;
+  border-radius: 50%;
+}
+
+.clock-digital {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.clock-digital strong {
+  display: block;
+  font-family: Sora, Outfit, sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+}
+
+.clock-digital em {
+  color: #b9b3c8;
+  font-style: normal;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.stats-kicker {
+  margin: 0 0 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: #9c96ad;
+}
+
+.rings {
+  display: flex;
+  gap: 4px;
+}
+
+.stat-ring {
+  width: 78px;
+  text-align: center;
+  font-size: 10px;
+  color: #c6c0d4;
+}
+
+.stat-ring svg {
+  width: 72px;
+  height: 72px;
+  transform: rotate(-90deg);
+}
+
+.stat-ring .track {
+  fill: none;
+  stroke: #22232a;
+  stroke-width: 6;
+}
+
+.stat-ring .meter {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.stat-ring b {
+  display: block;
+  margin-top: -46px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.vitals {
+  display: flex;
+  gap: 24px;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.vitals small {
+  display: block;
+  color: #9c96ad;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.vitals strong {
+  font-size: 22px;
+}

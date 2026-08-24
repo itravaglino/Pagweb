@@ -133,6 +133,7 @@ function pack(recipe) {
     },
     heart: {
       restingHeartRate: recipe.rhr,
+      current: recipe.rhr + 6,
       zones: [
         { name: "Out of Range", minutes: recipe.sedentary, min: 30, max: 104 },
         { name: "Fat Burn", minutes: fat, min: 105, max: 131 },
@@ -144,6 +145,12 @@ function pack(recipe) {
     spo2: { avg: recipe.spo2 },
     temp: { relative: recipe.skinTemp },
     waterMl: recipe.waterMl,
+    device: {
+      name: CHARACTER.device,
+      type: "TRACKER",
+      batteryLevel: 71,
+      battery: "Medium",
+    },
   };
 }
 

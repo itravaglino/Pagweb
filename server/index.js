@@ -33,6 +33,7 @@ import {
   fetchToday,
   makePkce,
 } from "./fitbit.js";
+import { clipReplyPayload, gemmaCatalog, proxyGemmaAsset } from "./gemma.js";
 import { addEntry, mountDbRoutes, seedIfEmpty } from "./db.js";
 import { mountVoiceRoutes } from "./voice.js";
 
@@ -109,6 +110,7 @@ app.get("/api/health", (_req, res) => {
     nvidia: Boolean(process.env.NVIDIA_API_KEY),
     nvidiaModel: process.env.NVIDIA_MODEL || DEFAULT_NVIDIA_MODEL,
     fitbit: fitbitConfigured(),
+    gemma: true,
   });
 });
 
@@ -307,13 +309,33 @@ app.post("/api/coach", async (req, res) => {
   }
 });
 
+app.get("/api/gemma/models", (_req, res) => {
+  res.json(gemmaCatalog());
+});
+
+app.get("/api/gemma/asset/:id", (req, res) => {
+  proxyGemmaAsset(req, res);
+});
+
 app.get("/api/fitbit/status", (req, res) => {
   const session = getSession(req, res);
   res.json({
     configured: fitbitConfigured(),
     connected: Boolean(session.fitbit?.access_token),
     displayName: session.fitbit?.displayName || null,
+    lastWatchReply: session.watchReply || null,
   });
+});
+
+app.get("/api/fitbit/watch-reply", (req, res) => {
+  const session = getSession(req, res);
+  res.json({ ok: true, reply: session.watchReply || null });
+});
+
+app.post("/api/fitbit/watch-reply", (req, res) => {
+  const session = getSession(req, res);
+  session.watchReply = clipReplyPayload(req.body || {});
+  res.json({ ok: true, reply: session.watchReply });
 });
 
 app.get("/api/fitbit/login", (req, res) => {

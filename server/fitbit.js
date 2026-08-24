@@ -4,7 +4,19 @@ const FITBIT_AUTH = "https://www.fitbit.com/oauth2/authorize";
 const FITBIT_TOKEN = "https://api.fitbit.com/oauth2/token";
 const FITBIT_API = "https://api.fitbit.com";
 
-const SCOPES = ["activity", "heartrate", "sleep", "profile"];
+/** Scopes de la Web API para un reloj de mano. Hay que re-autorizar si la app era más vieja. */
+export const SCOPES = [
+  "activity",
+  "heartrate",
+  "sleep",
+  "profile",
+  "oxygen_saturation",
+  "respiratory_rate",
+  "temperature",
+  "nutrition",
+  "cardio_fitness",
+  "settings",
+];
 
 function b64url(buf) {
   return Buffer.from(buf)
@@ -76,18 +88,83 @@ async function fitbitGet(path, accessToken) {
   return data;
 }
 
+async function optionalGet(path, accessToken) {
+  try {
+    return await fitbitGet(path, accessToken);
+  } catch {
+    return null;
+  }
+}
+
+function lastIntradayHeart(intraday) {
+  const dataset = intraday?.["activities-heart-intraday"]?.dataset;
+  if (!Array.isArray(dataset) || !dataset.length) return null;
+  for (let i = dataset.length - 1; i >= 0; i -= 1) {
+    const value = Number(dataset[i]?.value);
+    if (Number.isFinite(value) && value > 0) return value;
+  }
+  return null;
+}
+
+function spo2From(payload) {
+  if (!payload) return null;
+  const value = payload.value || payload;
+  const avg = value.avg ?? payload.avg;
+  if (avg == null && value.min == null) return null;
+  return { avg, min: value.min ?? null, max: value.max ?? null };
+}
+
+function trackerDevice(devices) {
+  if (!Array.isArray(devices) || !devices.length) return null;
+  const tracker = devices.find((d) => /tracker|watch/i.test(d.type || d.deviceVersion || "")) || devices[0];
+  return {
+    name: tracker.deviceVersion || tracker.id || "Fitbit",
+    type: tracker.type || "TRACKER",
+    batteryLevel: tracker.batteryLevel ?? null,
+    battery: tracker.battery || null,
+    lastSyncTime: tracker.lastSyncTime || null,
+  };
+}
+
 export async function fetchToday(accessToken, date = "today") {
-  const [profile, activity, sleep, heart, hrv] = await Promise.all([
-    fitbitGet("/1/user/-/profile.json", accessToken).catch(() => null),
+  const [
+    profile,
+    activity,
+    sleep,
+    heart,
+    hrv,
+    spo2,
+    temp,
+    breath,
+    devices,
+    water,
+    cardio,
+    heartIntraday,
+  ] = await Promise.all([
+    optionalGet("/1/user/-/profile.json", accessToken),
     fitbitGet(`/1/user/-/activities/date/${date}.json`, accessToken),
-    fitbitGet(`/1.2/user/-/sleep/date/${date}.json`, accessToken).catch(() => null),
-    fitbitGet(`/1/user/-/activities/heart/date/${date}/1d.json`, accessToken).catch(() => null),
-    fitbitGet(`/1/user/-/hrv/date/${date}.json`, accessToken).catch(() => null),
+    optionalGet(`/1.2/user/-/sleep/date/${date}.json`, accessToken),
+    optionalGet(`/1/user/-/activities/heart/date/${date}/1d.json`, accessToken),
+    optionalGet(`/1/user/-/hrv/date/${date}.json`, accessToken),
+    optionalGet(`/1/user/-/spo2/date/${date}.json`, accessToken),
+    optionalGet(`/1/user/-/temp/skin/date/${date}.json`, accessToken),
+    optionalGet(`/1/user/-/br/date/${date}.json`, accessToken),
+    optionalGet("/1/user/-/devices.json", accessToken),
+    optionalGet(`/1/user/-/foods/log/water/date/${date}.json`, accessToken),
+    optionalGet(`/1/user/-/cardioscore/date/${date}.json`, accessToken),
+    optionalGet(`/1/user/-/activities/heart/date/${date}/1d/1min.json`, accessToken),
   ]);
 
   const mainSleep = (sleep?.sleep || []).find((s) => s.isMainSleep) || sleep?.sleep?.[0];
   const heartDay = heart?.["activities-heart"]?.[0];
   const hrvDay = hrv?.hrv?.[0]?.value;
+  const spo2Value = spo2From(spo2);
+  const tempDay = temp?.tempSkin?.[0]?.value || temp?.tempSkin?.[0];
+  const brDay = breath?.br?.[0]?.value || breath?.br?.[0];
+  const cardioDay = cardio?.cardioScore?.[0]?.value || cardio?.cardioScore?.[0];
+  const waterMl = water?.summary?.water ?? water?.water ?? null;
+  const device = trackerDevice(devices);
+  const logged = activity?.activities || [];
 
   return {
     date: activity?.summary ? date : todayStamp(),
@@ -113,12 +190,27 @@ export async function fetchToday(accessToken, date = "today") {
           }
         : null,
     },
-    activity: { summary: activity?.summary || {} },
+    activity: {
+      summary: activity?.summary || {},
+      list: logged.map((item) => ({
+        name: item.name || item.activityName,
+        duration: Math.round((item.duration || 0) / 60000),
+        calories: item.calories,
+        steps: item.steps,
+      })),
+    },
     heart: {
       restingHeartRate: heartDay?.value?.restingHeartRate || activity?.summary?.restingHeartRate,
+      current: lastIntradayHeart(heartIntraday),
       zones: heartDay?.value?.heartRateZones || [],
     },
     hrv: hrvDay ? { dailyRmssd: hrvDay.dailyRmssd || hrvDay.rmssd } : null,
+    spo2: spo2Value,
+    temp: tempDay ? { relative: tempDay.nightlyRelative ?? tempDay.relative ?? tempDay.value ?? null } : null,
+    waterMl: typeof waterMl === "number" ? waterMl : 0,
+    breathingRate: brDay?.breathingRate ?? brDay?.value ?? null,
+    vo2Max: cardioDay?.vo2Max ?? cardioDay?.value ?? null,
+    device,
   };
 }
 

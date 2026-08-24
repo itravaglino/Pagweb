@@ -1,5 +1,6 @@
 import { NACHO } from "../../../shared/profile.js";
 import { DEFAULT_NVIDIA_MODEL } from "../../../shared/fitness.js";
+import { DEFAULT_GEMMA_VARIANT } from "../../../shared/gemma.js";
 
 export const STORAGE_KEY = "pagweb-studio-v2";
 export const SETTINGS_KEY = "pagweb-settings-v2";
@@ -162,6 +163,9 @@ export const defaultSettings = () => ({
   myHrv: 31,
   myActiveMinutes: 16,
   myWaterMl: 1000,
+  gemmaVariant: DEFAULT_GEMMA_VARIANT,
+  gemmaBatterySaver: false,
+  hfToken: "",
 });
 
 export function loadJson(key, fallback) {

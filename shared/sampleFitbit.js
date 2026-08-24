@@ -169,6 +169,7 @@ function pack({
     },
     heart: {
       restingHeartRate: rhr,
+      current: rhr + 6,
       zones: [
         { name: "Out of Range", minutes: sedentary, min: 30, max: 104 },
         { name: "Fat Burn", minutes: fat, min: 105, max: 131 },
@@ -180,6 +181,12 @@ function pack({
     spo2: { avg: spo2 },
     temp: { relative: skinTemp },
     waterMl,
+    device: {
+      name: "Fitbit Charge 6",
+      type: "TRACKER",
+      batteryLevel: 74,
+      battery: "Medium",
+    },
   };
 }
 
@@ -506,5 +513,13 @@ export function toMetrics(payload) {
     waterMl: payload.waterMl || 0,
     week: payload.week || [],
     source: payload.source,
+    currentHeartRate:
+      payload.heart?.current ??
+      (payload.heart?.restingHeartRate != null ? payload.heart.restingHeartRate + 6 : null),
+    breathingRate: payload.breathingRate ?? null,
+    vo2Max: payload.vo2Max ?? null,
+    deviceName: payload.device?.name || "Fitbit Charge 6",
+    battery: payload.device?.batteryLevel ?? payload.battery ?? 74,
+    batteryLabel: payload.device?.battery || payload.batteryLabel || "Medium",
   };
 }

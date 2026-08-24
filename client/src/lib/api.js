@@ -88,6 +88,14 @@ export function fetchNvidiaStatus() {
   }));
 }
 
+export function fetchGemmaStatus() {
+  return tryJson("/api/gemma/models").catch(() => ({
+    ok: false,
+    models: [],
+    offline: true,
+  }));
+}
+
 export function fetchCoach({ metrics, persona, nvidiaKey, model, profile, mode, history, persist } = {}) {
   return jsonPost("/api/coach", {
     metrics,

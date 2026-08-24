@@ -1,4 +1,4 @@
-const CACHE = "pagweb-caliza-v2";
+const CACHE = "pagweb-caliza-v3";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -18,6 +18,12 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
   const url = new URL(request.url);
+  const skipSw =
+    url.pathname.startsWith("/api/gemma/") ||
+    url.hostname.includes("jsdelivr.net") ||
+    url.hostname.includes("huggingface.co") ||
+    url.pathname.includes("gemma.worker");
+  if (skipSw) return;
   if (url.pathname.startsWith("/api/")) {
     event.respondWith(fetch(request).catch(() => caches.match(request)));
     return;

@@ -4,31 +4,23 @@ Studio **customizable** para mostrar los avances de un proyecto, más la demo **
 
 ## Demo en vivo
 
-Abrí **ahora** desde el celular o cualquier navegador (no es localhost):
+Abrí **ahora** desde el celular (Chrome/Edge, HTTPS). Gemma on-device (270M / E2B) necesita el túnel con API:
 
-### 1. Con API + NVIDIA (túnel HTTPS, mientras el agente está prendido)
+### 1. Con API + Gemma + NVIDIA (túnel HTTPS)
 
-**https://construction-forget-lights-ata.trycloudflare.com**
+**https://commodities-adjustment-supervisors-certified.trycloudflare.com**
 
-Ahí corren Estudio, Mejor Día, Archivo, Lumen, voz y NVIDIA NIM del servidor. OAuth Fitbit también, si está configurado. Cuando este agente se apaga, el túnel cae.
+Ahí corren Estudio, Mejor Día, Archivo, Lumen, voz, el proxy de Gemma (`/api/gemma/asset`) y NVIDIA NIM si hay clave. OAuth Fitbit también, si está configurado. Cuando esta PC se apaga o cae el túnel, la URL deja de andar.
 
-### 2. Estático (queda en GitHub, sin servidor)
+Fitbit callback para whitelistear: `https://commodities-adjustment-supervisors-certified.trycloudflare.com/api/fitbit/callback`
 
-UI + motor local. NVIDIA **solo** si pegás una clave `nvapi-` en el navegador (CORS). OAuth Fitbit **no** anda acá: hace falta el túnel.
+### 2. GitHub Pages (estático, permanente)
 
-Abrí este (sirve HTML de verdad, no texto plano):
+**https://itravaglino.github.io/Pagweb/**
 
-- **https://raw.githack.com/itravaglino/Pagweb/cursor/wellness-dashboard-demo-561c/docs/index.html**
+UI + motor local. Gemma **no** baja el modelo acá (el proxy vive en el servidor). NVIDIA solo si pegás `nvapi-` en el navegador (CORS). OAuth Fitbit **no** anda acá.
 
-jsDelivr también tiene el archivo, pero lo sirve como `text/plain` (en el celu puede verse el código). Si el CDN está cacheado, usá el SHA:
-
-- https://cdn.jsdelivr.net/gh/itravaglino/Pagweb@e8d829005a2a6e102830732a92fe7ec90923f34c/docs/index.html
-
-### GitHub Pages
-
-https://itravaglino.github.io/Pagweb/ **todavía no está prendido** (hace falta activarlo una vez; este token no puede — 403). En Settings → Pages → Source: **Deploy from a branch** → `main` (o este branch) y carpeta `/docs`, o **GitHub Actions**. El workflow `pages.yml` solo corre en `main` para no fallar el PR mientras Pages esté apagado.
-
-En Android: Chrome → menú → **Instalar app**.
+En Android: Chrome → menú → **Instalar app**. La primera carga de Gemma 3 270M es ~0.3 GB; Gemma 3n E2B ~1.5 GB. El service worker no intercepta Hugging Face.
 
 
 ## Qué incluye
@@ -38,6 +30,7 @@ En Android: Chrome → menú → **Instalar app**.
 - **Archivo**: una semana sintética persistida en el store de Cursor (`/cursor/stores/self/pagweb/db.json`) y en `data/pagweb.json`.
 - **PWA**: instalable en Android (Chrome → Instalar app). Manifiesto, service worker e iconos maskable.
 - **NVIDIA NIM** y **Fitbit OAuth + PKCE** como antes.
+- **Gemma on-device** (MediaPipe / WebGPU): Gemma 3 270M liviano y Gemma 3n E2B para monitoreo; respuestas cortas al Charge 6.
 
 No es consejo médico.
 
@@ -113,12 +106,10 @@ En Chrome Android: menú → **Instalar app**. Manifiesto, service worker e icon
 
 ## GitHub Pages
 
+Pages ya está activo: **https://itravaglino.github.io/Pagweb/** (workflow `pages.yml` en `main`).
+
 ```bash
 npm run build:pages
 ```
 
-Eso genera `/docs`. En el repo: Settings → Pages → Source: GitHub Actions (workflow `pages.yml`) **o** Deploy from a branch → `/docs`.
-
-En Pages el coach usa el motor local. Si pegás la API key de NVIDIA en la UI, intenta NIM desde el navegador (depende de CORS). OAuth Fitbit real necesita el servidor (`npm start` o Docker).
-
-También: `npm run build:pages` y el HTML de `docs/index.html` se puede ver por CDN (jsDelivr / raw.githack), ver **Demo en vivo**.
+Eso genera `/docs` por si querés Deploy from a branch. En Pages el coach usa el motor local. Gemma on-device y OAuth Fitbit necesitan el servidor (`npm start`, Docker o el túnel).

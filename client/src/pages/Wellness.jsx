@@ -3,6 +3,8 @@ import { FitbitViz } from "../components/FitbitViz.jsx";
 import { CharacterCalendar } from "../components/CharacterCalendar.jsx";
 import { CoachAgent } from "../components/CoachAgent.jsx";
 import { VoiceCoach } from "../components/VoiceCoach.jsx";
+import { Charge6 } from "../components/Charge6.jsx";
+import { WatchGemma } from "../components/WatchGemma.jsx";
 import { Field, Ring } from "../components/ui.jsx";
 import { minutesToHm } from "@shared/analyze.js";
 import { CHARACTER, CHARACTER_TO } from "@shared/character.js";
@@ -90,6 +92,7 @@ export function Wellness({ settings, setSettings }) {
   const [characterDays, setCharacterDays] = useState([]);
   const [camiDate, setCamiDate] = useState(CHARACTER_TO);
   const [highlightField, setHighlightField] = useState("");
+  const [watchReply, setWatchReply] = useState(null);
   const pickSeq = useRef(0);
   const writeTimer = useRef(null);
 
@@ -369,7 +372,13 @@ export function Wellness({ settings, setSettings }) {
             ))}
           </div>
         </div>
-        <div className="wellness-score">
+        <div className="wellness-score hero-watch">
+          <Charge6
+            metrics={metrics}
+            stepsGoal={Number(settings.stepsGoal) || 10000}
+            sleepLabel={metrics ? minutesToHm(metrics.sleepMinutes) : "—"}
+            reply={watchReply}
+          />
           <div className="score-num">{coach?.analysis?.overall ?? "—"}</div>
           <div className="muted">{coach?.analysis?.band?.label || "todavía no leímos el reloj"}</div>
           {scores ? (
@@ -406,6 +415,8 @@ export function Wellness({ settings, setSettings }) {
           </div>
         ) : null}
       </article>
+
+      <WatchGemma metrics={metrics} settings={settings} setSettings={setSettings} onReply={setWatchReply} />
 
       {metrics ? (
         <article className="card" id="fitbit-reloj">

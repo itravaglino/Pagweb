@@ -27,7 +27,8 @@ export function Archive() {
         const data = await fetchArchive();
         if (!cancelled) {
           setDb(data);
-          setOpenId(data.entries?.[0]?.id || null);
+          const firstSeed = (data.entries || []).find((e) => String(e.id).startsWith("seed-semana-"));
+          setOpenId(firstSeed?.id || data.entries?.[0]?.id || null);
         }
       } catch (err) {
         if (!cancelled) setError(err.message);
@@ -38,7 +39,19 @@ export function Archive() {
     };
   }, []);
 
-  const entries = db?.entries || [];
+  const entries = useMemo(() => {
+    const raw = db?.entries || [];
+    const rank = (item) => {
+      if (String(item.id).startsWith("seed-semana-")) return 0;
+      if (item.kind === "note") return 1;
+      return 2;
+    };
+    return [...raw].sort((a, b) => {
+      const d = rank(a) - rank(b);
+      if (d) return d;
+      return String(a.date || a.createdAt || "").localeCompare(String(b.date || b.createdAt || ""));
+    });
+  }, [db]);
   const selected = useMemo(
     () => entries.find((item) => item.id === openId) || entries[0],
     [entries, openId]

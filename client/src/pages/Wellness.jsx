@@ -54,7 +54,7 @@ export function Wellness({ settings, setSettings }) {
     setNvidia(nvidiaStatus);
   }
 
-  async function runCoach(fromDay, nextSettings = settings) {
+  async function runCoach(fromDay, nextSettings = settings, { persist = true, personaId = persona } = {}) {
     setLoading(true);
     setError("");
     try {
@@ -62,9 +62,9 @@ export function Wellness({ settings, setSettings }) {
       const mode = nextSettings.fitnessMode || "general";
       const data = await fetchCoach({
         metrics: payload.metrics,
-        persona,
+        persona: personaId,
         nvidiaKey: nextSettings.nvidiaKey || undefined,
-        model: nextSettings.model,
+        model: nextSettings.model || DEFAULT_NVIDIA_MODEL,
         mode,
         profile: {
           name: nextSettings.name,
@@ -81,15 +81,17 @@ export function Wellness({ settings, setSettings }) {
         },
       });
       setCoach(data);
-      saveCoachEntry({
-        persona,
-        label: nextSettings.name,
-        metrics: payload.metrics,
-        analysis: data.analysis,
-        narrative: data.narrative,
-        engine: data.engine,
-        mode,
-      }).catch(() => {});
+      if (persist) {
+        saveCoachEntry({
+          persona: personaId,
+          label: nextSettings.name,
+          metrics: payload.metrics,
+          analysis: data.analysis,
+          narrative: data.narrative,
+          engine: data.engine,
+          mode,
+        }).catch(() => {});
+      }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -103,7 +105,7 @@ export function Wellness({ settings, setSettings }) {
       await loadStatus();
       const data = await loadDay();
       if (cancelled) return;
-      await runCoach(data);
+      await runCoach(data, settings, { persist: false });
     })();
     const params = new URLSearchParams(location.hash.split("?")[1] || "");
     if (params.get("fitbit") === "error") {
@@ -121,7 +123,7 @@ export function Wellness({ settings, setSettings }) {
     if (id === "mio") setShowKeys(true);
     const data = await loadDay(id, id === "mio" ? undefined : "demo");
     setCoach(null);
-    await runCoach(data);
+    await runCoach(data, settings, { persist: true, personaId: id });
   }
 
   async function pickMode(id) {

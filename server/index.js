@@ -199,23 +199,25 @@ app.post("/api/coach", async (req, res) => {
       model: req.body?.model,
       mode: req.body?.mode || profile.mode,
     });
-    try {
-      addEntry({
-        kind: "fitbit-day",
-        persona: req.body?.persona || metrics?.persona || "mixto",
-        label: profile.name,
-        metrics,
-        analysis: {
-          overall: result.analysis?.overall,
-          band: result.analysis?.band,
-          scores: result.analysis?.scores,
-        },
-        narrative: result.narrative,
-        engine: result.engine,
-        mode: req.body?.mode || profile.mode,
-      });
-    } catch (persistError) {
-      result.persistWarning = persistError.message;
+    if (req.body?.persist) {
+      try {
+        addEntry({
+          kind: "fitbit-day",
+          persona: req.body?.persona || metrics?.persona || "mixto",
+          label: profile.name,
+          metrics,
+          analysis: {
+            overall: result.analysis?.overall,
+            band: result.analysis?.band,
+            scores: result.analysis?.scores,
+          },
+          narrative: result.narrative,
+          engine: result.engine,
+          mode: req.body?.mode || profile.mode,
+        });
+      } catch (persistError) {
+        result.persistWarning = persistError.message;
+      }
     }
     res.json(result);
   } catch (error) {

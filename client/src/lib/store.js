@@ -1,4 +1,5 @@
 import { NACHO } from "../../../shared/profile.js";
+import { DEFAULT_NVIDIA_MODEL } from "../../../shared/fitness.js";
 
 export const STORAGE_KEY = "pagweb-studio-v2";
 export const SETTINGS_KEY = "pagweb-settings-v2";
@@ -146,7 +147,7 @@ export const defaultStudio = () => ({
 
 export const defaultSettings = () => ({
   nvidiaKey: "",
-  model: "meta/llama-3.3-70b-instruct",
+  model: DEFAULT_NVIDIA_MODEL,
   name: NACHO.shortName,
   focus: NACHO.focus,
   stepsGoal: 10000,

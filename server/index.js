@@ -7,6 +7,15 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import { getPersonaPayload, PERSONAS, toMetrics, listDemoWeek } from "../shared/sampleFitbit.js";
+import {
+  CHARACTER,
+  CHARACTER_TO,
+  getCharacterPayload,
+  getCharacterSummary,
+  hasCharacterDate,
+  listCharacterDays,
+  publicIdentity,
+} from "../shared/character.js";
 import { buildCoach } from "./nvidia.js";
 import { NACHO } from "../shared/profile.js";
 import {
@@ -139,9 +148,39 @@ app.get("/api/demo/personas", (_req, res) => {
   res.json({ personas: Object.values(PERSONAS) });
 });
 
+app.get("/api/character", (_req, res) => {
+  res.json({
+    identity: publicIdentity(),
+    summary: getCharacterSummary(),
+  });
+});
+
+app.get("/api/character/days", (_req, res) => {
+  res.json({
+    identity: publicIdentity(),
+    days: listCharacterDays(),
+  });
+});
+
 app.get("/api/day", async (req, res) => {
   const session = getSession(req, res);
   const persona = String(req.query.persona || "mixto");
+  const date = req.query.date ? String(req.query.date) : "";
+  if ((date && hasCharacterDate(date)) || persona === CHARACTER.id) {
+    const payload = getCharacterPayload(date || CHARACTER_TO);
+    return res.json({
+      payload,
+      metrics: toMetrics(payload),
+      connected: false,
+      demo: true,
+      character: true,
+      persona: CHARACTER.id,
+      date: payload.date,
+      identity: publicIdentity(),
+      personas: Object.values(PERSONAS),
+      fitbitReady: fitbitConfigured(),
+    });
+  }
   try {
     if (session.fitbit?.access_token && req.query.source !== "demo") {
       const payload = await fetchToday(session.fitbit.access_token);

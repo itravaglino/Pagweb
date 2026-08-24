@@ -1,6 +1,14 @@
 import { analyzeDay, extractJsonObject, localNarrative } from "@shared/analyze.js";
 import { PERSONAS, getPersonaPayload, payloadFromManual, toMetrics } from "@shared/sampleFitbit.js";
 import {
+  CHARACTER,
+  CHARACTER_TO,
+  getCharacterPayload,
+  getCharacterSummary,
+  listCharacterDays,
+  publicIdentity,
+} from "@shared/character.js";
+import {
   DEFAULT_NVIDIA_MODEL,
   NVIDIA_URL,
   nvidiaSystemPrompt,
@@ -39,13 +47,31 @@ export function dayFromManual(settings = {}) {
   };
 }
 
-export async function fetchDay(persona = "mixto", source, settings) {
+export async function fetchDay(persona = "mixto", source, settings, { date } = {}) {
   if (persona === "mio") return dayFromManual(settings);
+  const wantCharacter = persona === CHARACTER.id || Boolean(date);
   try {
-    const qs = new URLSearchParams({ persona });
+    const qs = new URLSearchParams();
+    if (wantCharacter) qs.set("date", date || CHARACTER_TO);
+    else qs.set("persona", persona);
     if (source) qs.set("source", source);
     return await tryJson(`/api/day?${qs}`);
   } catch {
+    if (wantCharacter) {
+      const payload = getCharacterPayload(date || CHARACTER_TO);
+      return {
+        payload,
+        metrics: toMetrics(payload),
+        connected: false,
+        demo: true,
+        character: true,
+        offline: true,
+        persona: CHARACTER.id,
+        identity: publicIdentity(),
+        personas: Object.values(PERSONAS),
+        fitbitReady: false,
+      };
+    }
     const payload = getPersonaPayload(persona);
     return {
       payload,
@@ -57,6 +83,22 @@ export async function fetchDay(persona = "mixto", source, settings) {
       personas: Object.values(PERSONAS),
       fitbitReady: false,
     };
+  }
+}
+
+export async function fetchCharacter() {
+  try {
+    return await tryJson("/api/character");
+  } catch {
+    return { identity: publicIdentity(), summary: getCharacterSummary(), offline: true };
+  }
+}
+
+export async function fetchCharacterDays() {
+  try {
+    return await tryJson("/api/character/days");
+  } catch {
+    return { identity: publicIdentity(), days: listCharacterDays(), offline: true };
   }
 }
 

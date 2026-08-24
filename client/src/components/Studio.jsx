@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { FONTS, STORAGE_KEY, THEMES, defaultStudio } from "../lib/store.js";
 import { Field, Ring } from "./ui.jsx";
-import { fetchDay } from "../lib/api.js";
+import { fetchCharacter, fetchDay } from "../lib/api.js";
 import { minutesToHm } from "@shared/analyze.js";
+import { CharacterPulse } from "./CharacterCalendar.jsx";
 
 function markdownLite(text = "") {
   const escaped = text
@@ -37,11 +38,17 @@ const WIDGET_META = {
 
 function WellbeingPreview() {
   const [pulse, setPulse] = useState(null);
+  const [character, setCharacter] = useState(null);
   useEffect(() => {
     let cancelled = false;
     fetchDay("mixto", "demo")
       .then((data) => {
         if (!cancelled) setPulse(data);
+      })
+      .catch(() => {});
+    fetchCharacter()
+      .then((data) => {
+        if (!cancelled) setCharacter(data);
       })
       .catch(() => {});
     return () => {
@@ -51,7 +58,11 @@ function WellbeingPreview() {
   const m = pulse?.metrics;
   const max = Math.max(1, ...(m?.week || []).map((d) => d.steps));
   return (
-    <article className="card">
+    <>
+      {character?.summary ? (
+        <CharacterPulse summary={character.summary} identity={character.identity} />
+      ) : null}
+      <article className="card">
       <div className="kicker">Fitbit · demo Córdoba</div>
       <h2>Mejor Día</h2>
       <p className="tagline">
@@ -88,10 +99,11 @@ function WellbeingPreview() {
           Abrir la demo
         </a>
         <a className="btn" href="#/archivo">
-          Ver la semana
+          Ver el calendario
         </a>
       </div>
     </article>
+    </>
   );
 }
 

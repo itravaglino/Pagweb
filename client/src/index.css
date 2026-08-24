@@ -650,3 +650,75 @@ html[data-theme="tinta"] .progress-slab b {
   align-items: start;
 }
 .plan li input[type="checkbox"] { margin-top: 4px; }
+
+.character-head h2 .muted { font-size: 0.62em; font-weight: 500; }
+.char-cal { display: grid; gap: 8px; }
+.char-cal-dow,
+.char-cal-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr) minmax(72px, 0.9fr);
+  gap: 6px;
+  align-items: stretch;
+}
+.char-cal-dow {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.char-cal-cell {
+  text-align: left;
+  border: var(--hair) solid var(--line);
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 8px 8px 6px;
+  min-height: 72px;
+  display: grid;
+  gap: 2px;
+  align-content: start;
+}
+.char-cal-cell em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.char-cal-cell strong {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: -0.03em;
+}
+.char-cal-cell span { font-size: 10px; }
+.char-cal-cell.on {
+  border-color: var(--ink);
+  background: color-mix(in srgb, var(--bg-elev) 70%, var(--ink) 6%);
+}
+.char-cal-cell.kind-exam { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.char-cal-cell.kind-sick { border-style: dashed; opacity: 0.88; }
+.char-cal-cell.kind-gym,
+.char-cal-cell.kind-futbol { border-color: color-mix(in srgb, var(--accent-2) 50%, var(--line)); }
+.char-cal-total {
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  font-size: 12px;
+}
+.char-cal-total strong { font-family: var(--font-display); font-size: 16px; }
+.char-cal-total-h { text-align: right; }
+.pulse-compare {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 720px) {
+  .pulse-compare { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .char-cal-dow,
+  .char-cal-week { grid-template-columns: repeat(7, 1fr); }
+  .char-cal-total-h { display: none; }
+  .char-cal-total { display: none; }
+  .char-cal-cell { min-height: 58px; padding: 6px; }
+  .char-cal-cell strong { font-size: 14px; }
+}
+

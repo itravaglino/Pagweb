@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { FitbitViz, PlanList } from "../components/FitbitViz.jsx";
+import { CharacterHeader } from "../components/CharacterCalendar.jsx";
 import { Field, Ring } from "../components/ui.jsx";
 import { minutesToHm } from "@shared/analyze.js";
 import { PERSONAS } from "@shared/sampleFitbit.js";
+import { CHARACTER, CHARACTER_TO } from "@shared/character.js";
 import {
   DEFAULT_NVIDIA_MODEL,
   FITNESS_MODE_ORDER,
@@ -10,7 +12,7 @@ import {
   NVIDIA_DOCS,
   NVIDIA_MODELS,
 } from "@shared/fitness.js";
-import { fetchCoach, fetchDay, fetchFitbitStatus, fetchNvidiaStatus } from "../lib/api.js";
+import { fetchCharacter, fetchCoach, fetchDay, fetchFitbitStatus, fetchNvidiaStatus } from "../lib/api.js";
 import { saveCoachEntry } from "../lib/db.js";
 
 const FALLBACK_PERSONAS = [
@@ -31,11 +33,13 @@ export function Wellness({ settings, setSettings }) {
   const [fitbit, setFitbit] = useState({ configured: false, connected: false });
   const [nvidia, setNvidia] = useState({ connected: false, source: "none" });
   const [showKeys, setShowKeys] = useState(false);
+  const [character, setCharacter] = useState({ identity: CHARACTER, summary: null });
   const pickSeq = useRef(0);
 
   const metrics = day?.metrics;
   const sources = useMemo(
     () => [
+      { id: CHARACTER.id, label: `Hoy · ${CHARACTER.nickname}` },
       ...(personas.length ? personas : FALLBACK_PERSONAS),
       { id: "mio", label: "Mis números" },
     ],
@@ -43,7 +47,8 @@ export function Wellness({ settings, setSettings }) {
   );
 
   async function loadDay(nextPersona = persona, source, seq) {
-    const data = await fetchDay(nextPersona, source, settings);
+    const opts = nextPersona === CHARACTER.id ? { date: CHARACTER_TO } : {};
+    const data = await fetchDay(nextPersona, source, settings, opts);
     if (seq != null && seq !== pickSeq.current) return data;
     setDay(data);
     if (data.personas) setPersonas(data.personas);
@@ -108,6 +113,11 @@ export function Wellness({ settings, setSettings }) {
     let cancelled = false;
     (async () => {
       await loadStatus();
+      fetchCharacter()
+        .then((info) => {
+          if (!cancelled) setCharacter(info);
+        })
+        .catch(() => {});
       const data = await loadDay();
       if (cancelled) return;
       await runCoach(data, settings, { persist: false });
@@ -131,6 +141,10 @@ export function Wellness({ settings, setSettings }) {
     if (seq !== pickSeq.current) return;
     setCoach(null);
     await runCoach(data, settings, { persist: true, personaId: id, seq });
+  }
+
+  async function pickCharacterHoy() {
+    await pickPersona(CHARACTER.id);
   }
 
   async function pickMode(id) {
@@ -158,6 +172,12 @@ export function Wellness({ settings, setSettings }) {
 
   return (
     <div className="grid">
+      <CharacterHeader
+        identity={character.identity || CHARACTER}
+        summary={character.summary}
+        onLoadHoy={pickCharacterHoy}
+        loading={loading && persona === CHARACTER.id}
+      />
       <article className="card wellness-hero">
         <div>
           <div className="kicker">Fitbit × NVIDIA Developer</div>
@@ -300,7 +320,15 @@ export function Wellness({ settings, setSettings }) {
       <article className="card">
         <div className="widget-head">
           <h2>Fuente de datos</h2>
-          <span className="muted">{day?.connected ? "Fitbit en vivo" : persona === "mio" ? "Tus números" : PERSONAS[persona]?.blurb || "Demo Fitbit"}</span>
+          <span className="muted">
+            {day?.connected
+              ? "Fitbit en vivo"
+              : persona === "mio"
+                ? "Tus números"
+                : persona === CHARACTER.id
+                  ? `Domingo ${CHARACTER_TO} · ${CHARACTER.nickname} en ${CHARACTER.barrio}`
+                  : PERSONAS[persona]?.blurb || "Demo Fitbit"}
+          </span>
         </div>
         <div className="swatches">
           {sources.map((p) => (
@@ -315,7 +343,7 @@ export function Wellness({ settings, setSettings }) {
           ))}
         </div>
         <p className="muted" style={{ marginTop: 10 }}>
-          Cinco días sintéticos de Córdoba (Charge 6). Cada uno trae pasos por hora, etapas de sueño, zonas cardíacas, HRV, SpO₂ y AZM — los mismos campos que recogería la Web API. O conectá OAuth en{" "}
+          El domingo de {CHARACTER.nickname} es el último día del archivo (28 jornadas). También tenés cinco personas sintéticas de Córdoba (Charge 6): pasos por hora, sueño, HRV, SpO₂ y AZM. O conectá OAuth en{" "}
           <a href="https://dev.fitbit.com/apps" target="_blank" rel="noreferrer">
             dev.fitbit.com
           </a>

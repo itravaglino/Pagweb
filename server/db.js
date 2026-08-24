@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { PERSONAS, listDemoWeek, toMetrics } from "../shared/sampleFitbit.js";
 import { analyzeDay, localNarrative } from "../shared/analyze.js";
 import { NACHO } from "../shared/profile.js";
+import { CHARACTER, allCharacterPayloads } from "../shared/character.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -45,33 +46,56 @@ function hasRichWeek(db) {
   const week = (db?.entries || []).filter(
     (e) => String(e.id).startsWith("seed-semana-") && (e.metrics?.hourlySteps?.length || 0) === 24
   );
-  return (db?.version || 0) >= 3 && week.length >= 7;
+  const character = (db?.entries || []).filter(
+    (e) => String(e.id).startsWith("seed-personaje-") && (e.metrics?.hourlySteps?.length || 0) === 24
+  );
+  return (db?.version || 0) >= 4 && week.length >= 7 && character.length >= 28;
+}
+
+function entryFromPayload(payload, { id, label, at, extra = {} }) {
+  const metrics = { ...toMetrics(payload), log: payload.log || payload.story || "" };
+  const analysis = analyzeDay(metrics, coachProfile(), new Date(at));
+  return {
+    id,
+    kind: "fitbit-day",
+    persona: payload.persona,
+    date: payload.date,
+    label,
+    metrics,
+    log: payload.log || payload.story || "",
+    analysis: {
+      overall: analysis.overall,
+      band: analysis.band,
+      scores: analysis.scores,
+    },
+    narrative: localNarrative(analysis),
+    engine: "local",
+    createdAt: new Date(at).toISOString(),
+    ...extra,
+  };
 }
 
 export function seedDatabase() {
   const week = listDemoWeek("2026-08-23").map((payload, i) => {
     const at = `${payload.date}T${["18:40", "16:10", "14:30", "11:05", "19:20", "09:15", "13:00"][i]}:00-03:00`;
-    const metrics = toMetrics(payload);
-    const analysis = analyzeDay(metrics, coachProfile(), new Date(at));
-    return {
+    return entryFromPayload(payload, {
       id: `seed-semana-${payload.persona}-${payload.date}`,
-      kind: "fitbit-day",
-      persona: payload.persona,
-      date: payload.date,
       label: PERSONAS[payload.persona]?.label || payload.persona,
-      metrics,
-      analysis: {
-        overall: analysis.overall,
-        band: analysis.band,
-        scores: analysis.scores,
-      },
-      narrative: localNarrative(analysis),
-      engine: "local",
-      createdAt: new Date(at).toISOString(),
-    };
+      at,
+    });
+  });
+  const characterDays = allCharacterPayloads().map((payload, i) => {
+    const hour = String(10 + (i % 8)).padStart(2, "0");
+    const at = `${payload.date}T${hour}:20:00-03:00`;
+    return entryFromPayload(payload, {
+      id: `seed-personaje-${payload.date}`,
+      label: `${payload.weekday} · ${CHARACTER.nickname}`,
+      at,
+      extra: { character: true, kindDay: payload.kind },
+    });
   });
   return {
-    version: 3,
+    version: 4,
     updatedAt: new Date().toISOString(),
     profile: { ...NACHO },
     studio: {
@@ -81,13 +105,14 @@ export function seedDatabase() {
       font: "editorial",
     },
     entries: [
+      ...characterDays,
       ...week,
       {
         id: "seed-unc-note",
         kind: "note",
         date: "2026-08-23",
-        title: "Semana Fitbit (sintético)",
-        text: `${NACHO.fullName}, ${NACHO.role} en la ${NACHO.org} (${NACHO.city}). Semana de demo: post parcial, mesas, martes UNC, gym y domingo Güemes. Los números imitan Charge 6 (pasos, sueño, FC, HRV, AZM, SpO₂). Zona ${NACHO.timezone}.`,
+        title: "Diario de Cami (28 días)",
+        text: `${CHARACTER.name} (${CHARACTER.nickname}), ${CHARACTER.age}, ${CHARACTER.faculty}, ${CHARACTER.barrio}. Charge 6 del ${CHARACTER.goal.label}. Archivo 2026-07-27 → 2026-08-23: campus, gym, Güemes, mesas y un día enferma. Demo para ${NACHO.shortName} (${NACHO.org} · ${NACHO.city}).`,
         createdAt: "2026-08-23T14:00:00.000Z",
       },
     ],
@@ -157,7 +182,7 @@ export function addEntry(entry = {}) {
     kind: entry.kind || "fitbit-day",
     ...entry,
   };
-  db.entries = [next, ...(db.entries || []).filter((item) => item.id !== next.id)].slice(0, 80);
+  db.entries = [next, ...(db.entries || []).filter((item) => item.id !== next.id)].slice(0, 120);
   writeDb(db);
   return next;
 }

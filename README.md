@@ -1,6 +1,6 @@
-# Pagweb · Emulador Fitbit con Gemma
+# Pagweb · Emulador Fitbit Sense 2 + Gemma
 
-Emulador web de un **Fitbit Sense 2**. El mouse es el dedo: tap, doble tap, swipe y long-press. Dentro de la esfera vive **Gemma**, una bolita circular que rebota y cambia de cara.
+Emulador web de un **Fitbit Sense 2** (`rhea`, 336×336). El mouse es el dedo: tap, doble tap, swipe y long-press. Dentro de la esfera vive **Gemma**, una bolita circular que rebota y cambia de cara.
 
 Di **hey Gemma**, **oye Gemma** o **hola Gemma** (o escríbelo) para hablarle. Un modelo ultraliviano (Gemma 3 270M, o un router local en modo demo) decide expresiones y tareas simples. Las preguntas las responde Gemma 3 1B on-device cuando hay WebGPU.
 
@@ -14,11 +14,14 @@ npm run dev
 
 Abre [http://localhost:3000](http://localhost:3000).
 
+Opcional: copia `.env.example` y rellena las claves de [dev.fitbit.com](https://dev.fitbit.com/) para sincronizar el día real.
+
 ## Gestos
 
 - **Tap** en Gemma: empieza a escuchar
 - **Doble tap**: arma / desarma el micrófono
-- **Swipe**: cambia entre Gemma, reloj y stats
+- **Swipe izq/der**: Gemma, reloj y stats
+- **Swipe abajo**: ajustes
 - **Long press**: menú
 - **Botón lateral**: vuelve al reloj
 
@@ -37,7 +40,17 @@ Los pesos se descargan una vez desde Hugging Face y quedan en caché del navegad
 
 ## Device API (Fitbit OS)
 
-`shared/fitbit-os` reproduce APIs del Sense 2 (`clock`, `display`, `haptics`, `hrm`, `accelerometer`, `battery`, `user-activity`, `body-presence`) para alimentar stats y la vibración del emulador.
+`shared/fitbit-os` reproduce APIs del Sense 2:
+
+| Módulo | Uso |
+| --- | --- |
+| `clock` | `granularity`, evento `tick` con `evt.date` |
+| `display` | `on`, `poke()`, AOD |
+| `haptics` | `nudge`, `ping`, `confirmation`, `alert` |
+| `heart-rate` | HR simulado o BLE GATT 0x180D |
+| `user-activity` | pasos, calorías, AZM |
+| `power` | batería |
+| Fitbit Web API | OAuth 2 PKCE (`FITBIT_CLIENT_ID` / `SECRET`) |
 
 ## Intents
 

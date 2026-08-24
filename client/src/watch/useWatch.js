@@ -444,6 +444,9 @@ export function useWatch() {
     brightness,
     setBrightness,
     connectBle,
+    connectBleHr: connectBle,
     connectFitbitApi,
+    sensorStatus: statusText,
+    layer: 'app',
   };
 }

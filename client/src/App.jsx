@@ -102,27 +102,13 @@ function Screen({ watch }) {
             if (e.target === e.currentTarget) watch.setMenuOpen(false);
           }}
         >
-          <button type="button" onClick={() => watch.goTo('gemma')}>
-            Gemma
-          </button>
-          <button type="button" onClick={() => watch.goTo('clock')}>
-            Reloj
-          </button>
-          <button type="button" onClick={() => watch.goTo('stats')}>
-            Stats
-          </button>
-          <button type="button" onClick={() => watch.goTo('heart')}>
-            Ritmo
-          </button>
-          <button type="button" onClick={() => watch.goTo('exercise')}>
-            Ejercicio
-          </button>
-          <button type="button" onClick={() => watch.goTo('control')}>
-            Ajustes
-          </button>
-          <button type="button" onClick={watch.loadOnDevice}>
-            Cargar Gemma
-          </button>
+          <button type="button" onClick={() => watch.goTo('gemma')}>Gemma</button>
+          <button type="button" onClick={() => watch.goTo('clock')}>Reloj</button>
+          <button type="button" onClick={() => watch.goTo('stats')}>Hoy</button>
+          <button type="button" onClick={() => watch.goTo('heart')}>Ritmo</button>
+          <button type="button" onClick={() => watch.goTo('exercise')}>Ejercicio</button>
+          <button type="button" onClick={() => watch.goTo('control')}>Ajustes</button>
+          <button type="button" onClick={watch.loadOnDevice}>Cargar Gemma</button>
           <button type="button" onClick={() => watch.setMuted((v) => !v)}>
             {watch.muted ? 'Activar voz' : 'Silenciar'}
           </button>
@@ -139,8 +125,8 @@ export default function App() {
   return (
     <div className="desk">
       <header className="topbar">
-        <p className="brand">Pagweb</p>
-        <h1>Emulador Fitbit · Gemma</h1>
+        <p className="brand">Fitbit Sense 2</p>
+        <h1>Emulador · Gemma</h1>
         <p className="status" data-testid="model-status">
           {watch.statusText}
         </p>
@@ -152,7 +138,8 @@ export default function App() {
           <ul>
             <li>Tap en Gemma para escuchar</li>
             <li>Doble tap activa el micrófono</li>
-            <li>Swipe cambia de pantalla</li>
+            <li>Swipe izq/der cambia Gemma, reloj y stats</li>
+            <li>Swipe abajo abre ajustes</li>
             <li>Long press abre el menú</li>
             <li>Botón lateral vuelve al reloj</li>
           </ul>
@@ -186,7 +173,13 @@ export default function App() {
           >
             {watch.loadingModels ? 'Cargando…' : 'Activar Gemma on-device'}
           </button>
-          <p className="tiny">Hace falta Chrome con WebGPU. Si no hay GPU, seguimos en demo.</p>
+          <button type="button" className="pill" onClick={watch.connectFitbitApi}>
+            Conectar Fitbit Web API
+          </button>
+          <button type="button" className="pill" onClick={watch.connectBle}>
+            Pulsómetro BLE
+          </button>
+          <p className="tiny">Hace falta Chrome con WebGPU para Gemma on-device. Si no hay GPU, seguimos en demo.</p>
         </aside>
       </main>
 

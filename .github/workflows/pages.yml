@@ -1,7 +1,9 @@
 name: pages
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - cursor/wellness-dashboard-demo-561c
   workflow_dispatch:
 permissions:
   contents: read

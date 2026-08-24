@@ -4,34 +4,26 @@ Studio **customizable** para mostrar los avances de un proyecto, más la demo **
 
 ## Demo en vivo
 
-Cuando GitHub Pages esté activo:
+Abrí **ahora** desde el celular o cualquier navegador (no es localhost):
 
-- https://itravaglino.github.io/Pagweb/
+### 1. Con API + NVIDIA (túnel HTTPS, mientras el agente está prendido)
 
-Mientras tanto, el sitio estático queda en `/docs` (motor local + NVIDIA desde el navegador si pegás la clave). En Settings → Pages → Source: **GitHub Actions**, o branch con carpeta `/docs`.
+**https://construction-forget-lights-ata.trycloudflare.com**
 
+Ahí corren Estudio, Mejor Día, Archivo, Lumen, voz y NVIDIA NIM del servidor. OAuth Fitbit también, si está configurado. Cuando este agente se apaga, el túnel cae.
 
-## Acceso desde la web (no solo localhost)
+### 2. Estático (queda en GitHub, sin servidor)
 
-Cursor Cloud **no publica un dominio propio permanente** de la app: el agente corre en un contenedor y, en el escritorio, el puerto 3000 se reenvía a tu `localhost`. Para entrar **desde el teléfono o cualquier navegador** dejamos dos caminos:
+UI + motor local. NVIDIA **solo** si pegás una clave `nvapi-` en el navegador (CORS). OAuth Fitbit **no** anda acá: hace falta el túnel.
 
-### 1. URL pública con API (túnel, mientras el agente está activo)
+- [jsDelivr](https://cdn.jsdelivr.net/gh/itravaglino/Pagweb@cursor/wellness-dashboard-demo-561c/docs/index.html)
+- [raw.githack](https://raw.githack.com/itravaglino/Pagweb/cursor/wellness-dashboard-demo-561c/docs/index.html)
 
-El servidor escucha en `0.0.0.0:3000` y un túnel HTTPS de Cloudflare lo publica:
+Si jsDelivr te muestra una versión vieja, usá la URL con el SHA del commit (queda en el PR).
 
-**https://bracelet-adjustment-boxes-amounts.trycloudflare.com**
+### GitHub Pages
 
-Ahí corre Estudio, Mejor Día, Archivo, NVIDIA NIM y Fitbit. Cuando este agente se apaga, el túnel cae.
-
-### 2. URL pública permanente (estática)
-
-Después de mergear a `main` (o desde este branch):
-
-- GitHub Pages, si lo activás en Settings → Pages: https://itravaglino.github.io/Pagweb/
-- jsDelivr (ya, sin esperar Pages):
-  `https://cdn.jsdelivr.net/gh/itravaglino/Pagweb@cursor/wellness-dashboard-demo-561c/docs/index.html`
-
-En estático el coach usa el motor local; NVIDIA desde el navegador si pegás la clave (CORS). OAuth Fitbit necesita el servidor.
+https://itravaglino.github.io/Pagweb/ **todavía no está prendido**: este token no puede activar Pages (403). Para publicarlo: Settings → Pages → Source: **Deploy from a branch** → este branch (`cursor/wellness-dashboard-demo-561c`) y carpeta `/docs`, o **GitHub Actions** (el workflow `pages.yml` corre en este branch, en `main` y con `workflow_dispatch`).
 
 En Android: Chrome → menú → **Instalar app**.
 
@@ -126,6 +118,4 @@ Eso genera `/docs`. En el repo: Settings → Pages → Source: GitHub Actions (w
 
 En Pages el coach usa el motor local. Si pegás la API key de NVIDIA en la UI, intenta NIM desde el navegador (depende de CORS). OAuth Fitbit real necesita el servidor (`npm start` o Docker).
 
-También: `npm run build:pages` y el HTML de `docs/index.html` se puede ver por CDN, por ejemplo:
-
-`https://cdn.jsdelivr.net/gh/itravaglino/Pagweb@cursor/wellness-dashboard-demo-561c/docs/index.html`
+También: `npm run build:pages` y el HTML de `docs/index.html` se puede ver por CDN (jsDelivr / raw.githack), ver **Demo en vivo**.

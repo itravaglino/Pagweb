@@ -1,6 +1,6 @@
 {
-  "version": 4,
-  "updatedAt": "2026-08-24T03:26:07.810Z",
+  "version": 5,
+  "updatedAt": "2026-08-24T03:45:29.162Z",
   "profile": {
     "fullName": "Ignacio Ricardo Travaglino",
     "shortName": "Nacho",
@@ -29,6 +29,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Lunes de arranque. Bondi hasta Ciudad Universitaria y tres horas de micro I. Los 7k pasos se me fueron entre el pabellón y volver a nva cba.",
+        "log": "Lunes de arranque. Bondi hasta Ciudad Universitaria y tres horas de micro I. Los 7k pasos se me fueron entre el pabellón y volver a nva cba.",
+        "kind": "campus",
+        "weekday": "Lun",
         "steps": 7240,
         "calories": 2010,
         "caloriesBmr": 1246,
@@ -305,50 +308,88 @@
             "calories": 2220
           }
         ],
-        "source": "character",
-        "log": "Lunes de arranque. Bondi hasta Ciudad Universitaria y tres horas de micro I. Los 7k pasos se me fueron entre el pabellón y volver a nva cba."
+        "source": "character"
       },
       "log": "Lunes de arranque. Bondi hasta Ciudad Universitaria y tres horas de micro I. Los 7k pasos se me fueron entre el pabellón y volver a nva cba.",
       "analysis": {
-        "overall": 74,
+        "overall": 77,
         "band": {
           "id": "bien",
           "label": "Vas bien"
         },
         "scores": {
           "sleep": 80,
-          "movement": 82,
+          "movement": 93,
           "recovery": 71,
           "rhythm": 34
         }
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 7.0 h (objetivo 7.5 h) con eficiencia 86%. Vas 7240 de 10000 pasos y 30 min activos. FC en reposo 64 lpm · HRV 38 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 02m, 68 min de profundo y 82 min de REM — tu meta es 7.5h. Eficiencia 86%, 2 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 02m"
+          },
+          {
+            "text": "Tu HRV está en 38 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 64 lpm.",
+            "fitbitField": "hrv",
+            "cite": "38 ms"
+          },
+          {
+            "text": "Vas 7.240 de 8.000 pasos · 540 min sentado · 5.4 km.",
+            "fitbitField": "steps",
+            "cite": "7.240"
+          },
+          {
+            "text": "Zonas activas 30 min · SpO₂ 96.6% · agua 1400 ml.",
+            "fitbitField": "azm",
+            "cite": "30 min"
+          },
+          {
+            "text": "Tu diario: «Lunes de arranque. Bondi hasta Ciudad Universitaria y tres horas de micro I. Los 7k pasos se me fueron entre el pabellón y volver a nva cba.»",
+            "fitbitField": "steps",
+            "cite": "7h 02m"
+          }
+        ],
+        "because": [
+          "Vas 1400 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 02m — tu meta son 7.5h — con 68 min de profundo, 82 de REM y 2 despertares (eficiencia 86%). HRV 38 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 64 lpm.\n\nTu diario de hoy: «Lunes de arranque. Bondi hasta Ciudad Universitaria y tres horas de micro I. Los 7k pasos se me fueron entre el pabellón y volver a nva cba.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 7.240 pasos, 540 min sentado, AZM 30 min y 1400 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Hacé el trabajo más difícil de estudio, Pagweb y el mejor día posible en los próximos 90 min.",
-            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día.",
-            "kind": "foco"
+            "action": "Hacé el trabajo más difícil de trabajo en los próximos 90 min.",
+            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día. (anoche 7h 02m, 68 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "durante el día",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 38 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 02m, 68 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 02m, 68 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 02m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-07-27T13:20:00.000Z",
@@ -366,6 +407,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Gym a la tarde en Smart Fit. Empujé press y sentadilla y después caminé por Chacabuco. Dormí decente, por fin.",
+        "log": "Gym a la tarde en Smart Fit. Empujé press y sentadilla y después caminé por Chacabuco. Dormí decente, por fin.",
+        "kind": "gym",
+        "weekday": "Mar",
         "steps": 9860,
         "calories": 2280,
         "caloriesBmr": 1414,
@@ -642,8 +686,7 @@
             "calories": 2220
           }
         ],
-        "source": "character",
-        "log": "Gym a la tarde en Smart Fit. Empujé press y sentadilla y después caminé por Chacabuco. Dormí decente, por fin."
+        "source": "character"
       },
       "log": "Gym a la tarde en Smart Fit. Empujé press y sentadilla y después caminé por Chacabuco. Dormí decente, por fin.",
       "analysis": {
@@ -654,32 +697,69 @@
         },
         "scores": {
           "sleep": 89,
-          "movement": 99,
+          "movement": 100,
           "recovery": 85,
           "rhythm": 49
         }
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.3 h (objetivo 7.5 h) con eficiencia 88%. Vas 9860 de 10000 pasos y 54 min activos. FC en reposo 61 lpm · HRV 42 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 18m, 74 min de profundo y 90 min de REM — tu meta es 7.5h. Eficiencia 88%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 18m"
+          },
+          {
+            "text": "Tu HRV subió a 42 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 61 lpm.",
+            "fitbitField": "hrv",
+            "cite": "42 ms"
+          },
+          {
+            "text": "Vas 9.860 de 8.000 pasos · 470 min sentado · 7.3 km.",
+            "fitbitField": "steps",
+            "cite": "9.860"
+          },
+          {
+            "text": "Zonas activas 53 min · SpO₂ 96.9% · agua 1700 ml.",
+            "fitbitField": "azm",
+            "cite": "53 min"
+          },
+          {
+            "text": "Tu diario: «Gym a la tarde en Smart Fit. Empujé press y sentadilla y después caminé por Chacabuco. Dormí decente, por fin.»",
+            "fitbitField": "steps",
+            "cite": "7h 18m"
+          }
+        ],
+        "because": [
+          "Con 7h 18m y 9.860 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 18m — tu meta son 7.5h — con 74 min de profundo, 90 de REM y 1 despertares (eficiencia 88%). HRV 42 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 61 lpm.\n\nTu diario de hoy: «Gym a la tarde en Smart Fit. Empujé press y sentadilla y después caminé por Chacabuco. Dormí decente, por fin.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 9.860 pasos, 470 min sentado, AZM 53 min y 1700 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 18m, 74 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 18m, 74 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 18m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-07-28T14:20:00.000Z",
@@ -697,6 +777,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Llovió todo el día. Me quedé más en la facu de lo que quería y salí con los auriculares puestos. El Charge 6 casi ni se enteró.",
+        "log": "Llovió todo el día. Me quedé más en la facu de lo que quería y salí con los auriculares puestos. El Charge 6 casi ni se enteró.",
+        "kind": "rest",
+        "weekday": "Mié",
         "steps": 6120,
         "calories": 1880,
         "caloriesBmr": 1166,
@@ -967,50 +1050,88 @@
             "calories": 2220
           }
         ],
-        "source": "character",
-        "log": "Llovió todo el día. Me quedé más en la facu de lo que quería y salí con los auriculares puestos. El Charge 6 casi ni se enteró."
+        "source": "character"
       },
       "log": "Llovió todo el día. Me quedé más en la facu de lo que quería y salí con los auriculares puestos. El Charge 6 casi ni se enteró.",
       "analysis": {
-        "overall": 64,
+        "overall": 67,
         "band": {
           "id": "ajuste",
           "label": "Con ajustes se arma"
         },
         "scores": {
           "sleep": 67,
-          "movement": 61,
+          "movement": 70,
           "recovery": 71,
           "rhythm": 49
         }
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 6.7 h (objetivo 7.5 h) con eficiencia 81%. Vas 6120 de 10000 pasos y 18 min activos. FC en reposo 66 lpm · HRV 34 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 6h 44m, 58 min de profundo y 72 min de REM — tu meta es 7.5h. Eficiencia 81%, 3 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "6h 44m"
+          },
+          {
+            "text": "Tu HRV está en 34 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 66 lpm.",
+            "fitbitField": "hrv",
+            "cite": "34 ms"
+          },
+          {
+            "text": "Vas 6.120 de 8.000 pasos · 628 min sentado · 4.5 km.",
+            "fitbitField": "steps",
+            "cite": "6.120"
+          },
+          {
+            "text": "Zonas activas 18 min · SpO₂ 96.2% · agua 1200 ml.",
+            "fitbitField": "azm",
+            "cite": "18 min"
+          },
+          {
+            "text": "Tu diario: «Llovió todo el día. Me quedé más en la facu de lo que quería y salí con los auriculares puestos. El Charge 6 casi ni se enteró.»",
+            "fitbitField": "steps",
+            "cite": "6h 44m"
+          }
+        ],
+        "because": [
+          "Vas 1200 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 6h 44m — tu meta son 7.5h — con 58 min de profundo, 72 de REM y 3 despertares (eficiencia 81%). HRV 34 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 66 lpm.\n\nTu diario de hoy: «Llovió todo el día. Me quedé más en la facu de lo que quería y salí con los auriculares puestos. El Charge 6 casi ni se enteró.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 6.120 pasos, 628 min sentado, AZM 18 min y 1200 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "durante el día",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 34 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 6h 44m, 58 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 6h 44m, 58 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 6h 44m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-07-29T15:20:00.000Z",
@@ -1028,6 +1149,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Doble turno: teórica a la mañana y pesas a las 18. Llegué a casa con hambre de caballo y me comí una milanesa en el depto.",
+        "log": "Doble turno: teórica a la mañana y pesas a las 18. Llegué a casa con hambre de caballo y me comí una milanesa en el depto.",
+        "kind": "gym",
+        "weekday": "Jue",
         "steps": 10240,
         "calories": 2340,
         "caloriesBmr": 1451,
@@ -1304,8 +1428,7 @@
             "calories": 2220
           }
         ],
-        "source": "character",
-        "log": "Doble turno: teórica a la mañana y pesas a las 18. Llegué a casa con hambre de caballo y me comí una milanesa en el depto."
+        "source": "character"
       },
       "log": "Doble turno: teórica a la mañana y pesas a las 18. Llegué a casa con hambre de caballo y me comí una milanesa en el depto.",
       "analysis": {
@@ -1323,25 +1446,62 @@
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.5 h (objetivo 7.5 h) con eficiencia 89%. Vas 10240 de 10000 pasos y 58 min activos. FC en reposo 60 lpm · HRV 44 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 28m, 78 min de profundo y 94 min de REM — tu meta es 7.5h. Eficiencia 89%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 28m"
+          },
+          {
+            "text": "Tu HRV subió a 44 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 60 lpm.",
+            "fitbitField": "hrv",
+            "cite": "44 ms"
+          },
+          {
+            "text": "Vas 10.240 de 8.000 pasos · 452 min sentado · 7.6 km.",
+            "fitbitField": "steps",
+            "cite": "10.240"
+          },
+          {
+            "text": "Zonas activas 58 min · SpO₂ 97% · agua 1750 ml.",
+            "fitbitField": "azm",
+            "cite": "58 min"
+          },
+          {
+            "text": "Tu diario: «Doble turno: teórica a la mañana y pesas a las 18. Llegué a casa con hambre de caballo y me comí una milanesa en el depto.»",
+            "fitbitField": "steps",
+            "cite": "7h 28m"
+          }
+        ],
+        "because": [
+          "Con 7h 28m y 10.240 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 28m — tu meta son 7.5h — con 78 min de profundo, 94 de REM y 1 despertares (eficiencia 89%). HRV 44 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 60 lpm.\n\nTu diario de hoy: «Doble turno: teórica a la mañana y pesas a las 18. Llegué a casa con hambre de caballo y me comí una milanesa en el depto.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 10.240 pasos, 452 min sentado, AZM 58 min y 1750 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 28m, 78 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 28m, 78 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 28m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-07-30T16:20:00.000Z",
@@ -1359,6 +1519,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Salimos a Güemes después de la última clase. Cerveza, frío y la caminata de vuelta por Plaza España. Me acosté más tarde de lo que prometí.",
+        "log": "Salimos a Güemes después de la última clase. Cerveza, frío y la caminata de vuelta por Plaza España. Me acosté más tarde de lo que prometí.",
+        "kind": "social",
+        "weekday": "Vie",
         "steps": 8840,
         "calories": 2140,
         "caloriesBmr": 1327,
@@ -1635,26 +1798,56 @@
             "calories": 2220
           }
         ],
-        "source": "character",
-        "log": "Salimos a Güemes después de la última clase. Cerveza, frío y la caminata de vuelta por Plaza España. Me acosté más tarde de lo que prometí."
+        "source": "character"
       },
       "log": "Salimos a Güemes después de la última clase. Cerveza, frío y la caminata de vuelta por Plaza España. Me acosté más tarde de lo que prometí.",
       "analysis": {
-        "overall": 71,
+        "overall": 73,
         "band": {
           "id": "bien",
           "label": "Vas bien"
         },
         "scores": {
           "sleep": 52,
-          "movement": 93,
+          "movement": 100,
           "recovery": 71,
           "rhythm": 73
         }
       },
       "narrative": {
         "headline": "El cuerpo rindió; el sueño no. Hoy el upgrade es apagar a tiempo.",
-        "dayStory": "Dormiste 6.1 h (objetivo 7.5 h) con eficiencia 76%. Vas 8840 de 10000 pasos y 38 min activos. FC en reposo 68 lpm · HRV 31 ms. El cuello de botella de hoy es el sueño.",
+        "noticing": [
+          {
+            "text": "Anoche 6h 08m, 46 min de profundo y 62 min de REM — tu meta es 7.5h. Eficiencia 76%, 4 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "6h 08m"
+          },
+          {
+            "text": "Tu HRV bajó a 31 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 68 lpm.",
+            "fitbitField": "hrv",
+            "cite": "31 ms"
+          },
+          {
+            "text": "Vas 8.840 de 8.000 pasos · 510 min sentado · 6.5 km.",
+            "fitbitField": "steps",
+            "cite": "8.840"
+          },
+          {
+            "text": "Zonas activas 37 min · SpO₂ 96% · agua 1100 ml.",
+            "fitbitField": "azm",
+            "cite": "37 min"
+          },
+          {
+            "text": "Tu diario: «Salimos a Güemes después de la última clase. Cerveza, frío y la caminata de vuelta por Plaza España. Me acosté más tarde de lo que prometí.»",
+            "fitbitField": "steps",
+            "cite": "6h 08m"
+          }
+        ],
+        "because": [
+          "Dormiste 6h 08m con 46 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "Vas 1100 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 6h 08m — tu meta son 7.5h — con 46 min de profundo, 62 de REM y 4 despertares (eficiencia 76%). HRV 31 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 68 lpm.\n\nTu diario de hoy: «Salimos a Güemes después de la última clase. Cerveza, frío y la caminata de vuelta por Plaza España. Me acosté más tarde de lo que prometí.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 8.840 pasos, 510 min sentado, AZM 37 min y 1100 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
@@ -1662,25 +1855,34 @@
             "when": "15:00",
             "action": "Último café. Después, agua o té.",
             "why": "La cafeína tarda ~6 h en bajar a la mitad: si dormiste poco, este corte vale más que cualquier suplemento.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "14:00",
             "action": "Siesta o quietud 12–18 min, alarma dura. No más.",
-            "why": "Recupera alerta sin comerse el sueño de esta noche.",
-            "kind": "recuperacion"
+            "why": "Recupera alerta sin comerse el sueño de esta noche. (HRV 31 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "durante el día",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 31 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
           "Alto output con bajo sueño: es el combo que termina en lesión o bajón mañana."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 6h 08m, 46 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 6h 08m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-07-31T17:20:00.000Z",
@@ -1698,6 +1900,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Sábado de piernas y después una vuelta larga por el barrio. Nueva Córdoba a mil, el reloj contento.",
+        "log": "Sábado de piernas y después una vuelta larga por el barrio. Nueva Córdoba a mil, el reloj contento.",
+        "kind": "barrio",
+        "weekday": "Sáb",
         "steps": 11420,
         "calories": 2460,
         "caloriesBmr": 1525,
@@ -1974,8 +2179,7 @@
             "calories": 2220
           }
         ],
-        "source": "character",
-        "log": "Sábado de piernas y después una vuelta larga por el barrio. Nueva Córdoba a mil, el reloj contento."
+        "source": "character"
       },
       "log": "Sábado de piernas y después una vuelta larga por el barrio. Nueva Córdoba a mil, el reloj contento.",
       "analysis": {
@@ -1993,25 +2197,62 @@
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.9 h (objetivo 7.5 h) con eficiencia 91%. Vas 11420 de 10000 pasos y 56 min activos. FC en reposo 58 lpm · HRV 47 ms. El cuello de botella de hoy es la recuperación.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 52m, 84 min de profundo y 102 min de REM — tu meta es 7.5h. Eficiencia 91%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 52m"
+          },
+          {
+            "text": "Tu HRV subió a 47 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 58 lpm.",
+            "fitbitField": "hrv",
+            "cite": "47 ms"
+          },
+          {
+            "text": "Vas 11.420 de 8.000 pasos · 430 min sentado · 8.5 km.",
+            "fitbitField": "steps",
+            "cite": "11.420"
+          },
+          {
+            "text": "Zonas activas 54 min · SpO₂ 97.2% · agua 1800 ml.",
+            "fitbitField": "azm",
+            "cite": "54 min"
+          },
+          {
+            "text": "Tu diario: «Sábado de piernas y después una vuelta larga por el barrio. Nueva Córdoba a mil, el reloj contento.»",
+            "fitbitField": "steps",
+            "cite": "7h 52m"
+          }
+        ],
+        "because": [
+          "Con 7h 52m y 11.420 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 52m — tu meta son 7.5h — con 84 min de profundo, 102 de REM y 1 despertares (eficiencia 91%). HRV 47 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 58 lpm.\n\nTu diario de hoy: «Sábado de piernas y después una vuelta larga por el barrio. Nueva Córdoba a mil, el reloj contento.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 11.420 pasos, 430 min sentado, AZM 54 min y 1800 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 52m, 84 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 52m, 84 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 52m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-01T18:20:00.000Z",
@@ -2029,6 +2270,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Parque Sarmiento con Meli. Caminata zona 2, mate y siesta corta. Semana redonda, sin drama.",
+        "log": "Parque Sarmiento con Meli. Caminata zona 2, mate y siesta corta. Semana redonda, sin drama.",
+        "kind": "barrio",
+        "weekday": "Dom",
         "steps": 9680,
         "calories": 2220,
         "caloriesBmr": 1376,
@@ -2299,26 +2543,55 @@
             "calories": 2220
           }
         ],
-        "source": "character",
-        "log": "Parque Sarmiento con Meli. Caminata zona 2, mate y siesta corta. Semana redonda, sin drama."
+        "source": "character"
       },
       "log": "Parque Sarmiento con Meli. Caminata zona 2, mate y siesta corta. Semana redonda, sin drama.",
       "analysis": {
-        "overall": 89,
+        "overall": 90,
         "band": {
           "id": "excelente",
           "label": "Día en racha"
         },
         "scores": {
           "sleep": 87,
-          "movement": 98,
+          "movement": 100,
           "recovery": 85,
           "rhythm": 78
         }
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 8.1 h (objetivo 7.5 h) con eficiencia 90%. Vas 9680 de 10000 pasos y 42 min activos. FC en reposo 59 lpm · HRV 45 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 8h 06m, 86 min de profundo y 108 min de REM — tu meta es 7.5h. Eficiencia 90%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "8h 06m"
+          },
+          {
+            "text": "Tu HRV subió a 45 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 59 lpm.",
+            "fitbitField": "hrv",
+            "cite": "45 ms"
+          },
+          {
+            "text": "Vas 9.680 de 8.000 pasos · 488 min sentado · 7.2 km.",
+            "fitbitField": "steps",
+            "cite": "9.680"
+          },
+          {
+            "text": "Zonas activas 43 min · SpO₂ 97.1% · agua 1600 ml.",
+            "fitbitField": "azm",
+            "cite": "43 min"
+          },
+          {
+            "text": "Tu diario: «Parque Sarmiento con Meli. Caminata zona 2, mate y siesta corta. Semana redonda, sin drama.»",
+            "fitbitField": "steps",
+            "cite": "8h 06m"
+          }
+        ],
+        "because": [
+          "Con 8h 06m y 9.680 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 8h 06m — tu meta son 7.5h — con 86 min de profundo, 108 de REM y 1 despertares (eficiencia 90%). HRV 45 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 59 lpm.\n\nTu diario de hoy: «Parque Sarmiento con Meli. Caminata zona 2, mate y siesta corta. Semana redonda, sin drama.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 9.680 pasos, 488 min sentado, AZM 43 min y 1600 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
@@ -2326,17 +2599,24 @@
             "when": "21:00",
             "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
             "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 8h 06m, 86 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 8h 06m, 86 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 8h 06m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-02T19:20:00.000Z",
@@ -2354,6 +2634,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Arranqué la semana con el 8k puesto. Clases en el Pabellón y un café en el buffet que me salvó la tarde.",
+        "log": "Arranqué la semana con el 8k puesto. Clases en el Pabellón y un café en el buffet que me salvó la tarde.",
+        "kind": "campus",
+        "weekday": "Lun",
         "steps": 8120,
         "calories": 2080,
         "caloriesBmr": 1290,
@@ -2630,50 +2913,88 @@
             "calories": 1980
           }
         ],
-        "source": "character",
-        "log": "Arranqué la semana con el 8k puesto. Clases en el Pabellón y un café en el buffet que me salvó la tarde."
+        "source": "character"
       },
       "log": "Arranqué la semana con el 8k puesto. Clases en el Pabellón y un café en el buffet que me salvó la tarde.",
       "analysis": {
-        "overall": 83,
+        "overall": 87,
         "band": {
           "id": "excelente",
           "label": "Día en racha"
         },
         "scores": {
           "sleep": 82,
-          "movement": 88,
+          "movement": 100,
           "recovery": 85,
           "rhythm": 70
         }
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.2 h (objetivo 7.5 h) con eficiencia 87%. Vas 8120 de 10000 pasos y 32 min activos. FC en reposo 62 lpm · HRV 40 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 10m, 70 min de profundo y 86 min de REM — tu meta es 7.5h. Eficiencia 87%, 2 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 10m"
+          },
+          {
+            "text": "Tu HRV subió a 40 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 62 lpm.",
+            "fitbitField": "hrv",
+            "cite": "40 ms"
+          },
+          {
+            "text": "Vas 8.120 de 8.000 pasos · 522 min sentado · 6 km.",
+            "fitbitField": "steps",
+            "cite": "8.120"
+          },
+          {
+            "text": "Zonas activas 32 min · SpO₂ 96.7% · agua 1450 ml.",
+            "fitbitField": "azm",
+            "cite": "32 min"
+          },
+          {
+            "text": "Tu diario: «Arranqué la semana con el 8k puesto. Clases en el Pabellón y un café en el buffet que me salvó la tarde.»",
+            "fitbitField": "steps",
+            "cite": "7h 10m"
+          }
+        ],
+        "because": [
+          "Vas 1450 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 10m — tu meta son 7.5h — con 70 min de profundo, 86 de REM y 2 despertares (eficiencia 87%). HRV 40 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 62 lpm.\n\nTu diario de hoy: «Arranqué la semana con el 8k puesto. Clases en el Pabellón y un café en el buffet que me salvó la tarde.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 8.120 pasos, 522 min sentado, AZM 32 min y 1450 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
-            "when": "ahora",
-            "action": "Caminata de 19 min. Es el atajo más limpio para cerrar el movimiento.",
-            "why": "A esta hora una caminata también baja el estrés y prepara el sueño.",
-            "kind": "movimiento"
-          },
-          {
             "when": "21:00",
             "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
             "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "ahora",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 40 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
+          },
+          {
+            "when": "hoy",
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 10m, 70 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 10m, 70 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 10m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-03T20:20:00.000Z",
@@ -2691,6 +3012,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Gym pesado: dominadas y press. El HRV vino alto, así que me animé a empujar un toque más. Volví a pata por Bv. San Juan.",
+        "log": "Gym pesado: dominadas y press. El HRV vino alto, así que me animé a empujar un toque más. Volví a pata por Bv. San Juan.",
+        "kind": "gym",
+        "weekday": "Mar",
         "steps": 10540,
         "calories": 2380,
         "caloriesBmr": 1476,
@@ -2967,8 +3291,7 @@
             "calories": 1980
           }
         ],
-        "source": "character",
-        "log": "Gym pesado: dominadas y press. El HRV vino alto, así que me animé a empujar un toque más. Volví a pata por Bv. San Juan."
+        "source": "character"
       },
       "log": "Gym pesado: dominadas y press. El HRV vino alto, así que me animé a empujar un toque más. Volví a pata por Bv. San Juan.",
       "analysis": {
@@ -2986,25 +3309,62 @@
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.4 h (objetivo 7.5 h) con eficiencia 89%. Vas 10540 de 10000 pasos y 62 min activos. FC en reposo 59 lpm · HRV 46 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 24m, 76 min de profundo y 92 min de REM — tu meta es 7.5h. Eficiencia 89%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 24m"
+          },
+          {
+            "text": "Tu HRV subió a 46 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 59 lpm.",
+            "fitbitField": "hrv",
+            "cite": "46 ms"
+          },
+          {
+            "text": "Vas 10.540 de 8.000 pasos · 448 min sentado · 7.8 km.",
+            "fitbitField": "steps",
+            "cite": "10.540"
+          },
+          {
+            "text": "Zonas activas 62 min · SpO₂ 97.1% · agua 1850 ml.",
+            "fitbitField": "azm",
+            "cite": "62 min"
+          },
+          {
+            "text": "Tu diario: «Gym pesado: dominadas y press. El HRV vino alto, así que me animé a empujar un toque más. Volví a pata por Bv. San Juan.»",
+            "fitbitField": "steps",
+            "cite": "7h 24m"
+          }
+        ],
+        "because": [
+          "Con 7h 24m y 10.540 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 24m — tu meta son 7.5h — con 76 min de profundo, 92 de REM y 1 despertares (eficiencia 89%). HRV 46 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 59 lpm.\n\nTu diario de hoy: «Gym pesado: dominadas y press. El HRV vino alto, así que me animé a empujar un toque más. Volví a pata por Bv. San Juan.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 10.540 pasos, 448 min sentado, AZM 62 min y 1850 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Hacé el trabajo más difícil de estudio, Pagweb y el mejor día posible en los próximos 90 min.",
-            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día.",
-            "kind": "foco"
+            "action": "Hacé el trabajo más difícil de trabajo en los próximos 90 min.",
+            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día. (anoche 7h 24m, 76 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 24m, 76 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 24m, 76 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 24m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-04T13:20:00.000Z",
@@ -3022,6 +3382,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Día de biblioteca en Económicas. Poco movimiento, bastante mate. A la noche me fui a caminar un rato para no terminar en 5k.",
+        "log": "Día de biblioteca en Económicas. Poco movimiento, bastante mate. A la noche me fui a caminar un rato para no terminar en 5k.",
+        "kind": "campus",
+        "weekday": "Mié",
         "steps": 6940,
         "calories": 1960,
         "caloriesBmr": 1215,
@@ -3298,50 +3661,88 @@
             "calories": 1980
           }
         ],
-        "source": "character",
-        "log": "Día de biblioteca en Económicas. Poco movimiento, bastante mate. A la noche me fui a caminar un rato para no terminar en 5k."
+        "source": "character"
       },
       "log": "Día de biblioteca en Económicas. Poco movimiento, bastante mate. A la noche me fui a caminar un rato para no terminar en 5k.",
       "analysis": {
-        "overall": 66,
+        "overall": 69,
         "band": {
-          "id": "ajuste",
-          "label": "Con ajustes se arma"
+          "id": "bien",
+          "label": "Vas bien"
         },
         "scores": {
           "sleep": 70,
-          "movement": 71,
+          "movement": 81,
           "recovery": 71,
           "rhythm": 27
         }
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 6.9 h (objetivo 7.5 h) con eficiencia 83%. Vas 6940 de 10000 pasos y 22 min activos. FC en reposo 65 lpm · HRV 36 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 6h 52m, 62 min de profundo y 78 min de REM — tu meta es 7.5h. Eficiencia 83%, 3 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "6h 52m"
+          },
+          {
+            "text": "Tu HRV está en 36 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 65 lpm.",
+            "fitbitField": "hrv",
+            "cite": "36 ms"
+          },
+          {
+            "text": "Vas 6.940 de 8.000 pasos · 586 min sentado · 5.1 km.",
+            "fitbitField": "steps",
+            "cite": "6.940"
+          },
+          {
+            "text": "Zonas activas 22 min · SpO₂ 96.4% · agua 1300 ml.",
+            "fitbitField": "azm",
+            "cite": "22 min"
+          },
+          {
+            "text": "Tu diario: «Día de biblioteca en Económicas. Poco movimiento, bastante mate. A la noche me fui a caminar un rato para no terminar en 5k.»",
+            "fitbitField": "steps",
+            "cite": "6h 52m"
+          }
+        ],
+        "because": [
+          "Vas 1300 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 6h 52m — tu meta son 7.5h — con 62 min de profundo, 78 de REM y 3 despertares (eficiencia 83%). HRV 36 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 65 lpm.\n\nTu diario de hoy: «Día de biblioteca en Económicas. Poco movimiento, bastante mate. A la noche me fui a caminar un rato para no terminar en 5k.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 6.940 pasos, 586 min sentado, AZM 22 min y 1300 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "durante el día",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 36 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 6h 52m, 62 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 6h 52m, 62 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 6h 52m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-05T14:20:00.000Z",
@@ -3359,6 +3760,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Gym a las 18 y después fútbol 5 en Güemes. Las piernas mañana van a pedir clemencia. Hoy el reloj explotó.",
+        "log": "Gym a las 18 y después fútbol 5 en Güemes. Las piernas mañana van a pedir clemencia. Hoy el reloj explotó.",
+        "kind": "futbol",
+        "weekday": "Jue",
         "steps": 12880,
         "calories": 2680,
         "caloriesBmr": 1662,
@@ -3635,8 +4039,7 @@
             "calories": 1980
           }
         ],
-        "source": "character",
-        "log": "Gym a las 18 y después fútbol 5 en Güemes. Las piernas mañana van a pedir clemencia. Hoy el reloj explotó."
+        "source": "character"
       },
       "log": "Gym a las 18 y después fútbol 5 en Güemes. Las piernas mañana van a pedir clemencia. Hoy el reloj explotó.",
       "analysis": {
@@ -3654,25 +4057,62 @@
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.1 h (objetivo 7.5 h) con eficiencia 85%. Vas 12880 de 10000 pasos y 76 min activos. FC en reposo 63 lpm · HRV 41 ms. El cuello de botella de hoy es la recuperación.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 08m, 66 min de profundo y 84 min de REM — tu meta es 7.5h. Eficiencia 85%, 2 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 08m"
+          },
+          {
+            "text": "Tu HRV subió a 41 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 63 lpm.",
+            "fitbitField": "hrv",
+            "cite": "41 ms"
+          },
+          {
+            "text": "Vas 12.880 de 8.000 pasos · 398 min sentado · 9.6 km.",
+            "fitbitField": "steps",
+            "cite": "12.880"
+          },
+          {
+            "text": "Zonas activas 74 min · SpO₂ 96.8% · agua 1900 ml.",
+            "fitbitField": "azm",
+            "cite": "74 min"
+          },
+          {
+            "text": "Tu diario: «Gym a las 18 y después fútbol 5 en Güemes. Las piernas mañana van a pedir clemencia. Hoy el reloj explotó.»",
+            "fitbitField": "steps",
+            "cite": "7h 08m"
+          }
+        ],
+        "because": [
+          "Con 7h 08m y 12.880 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 08m — tu meta son 7.5h — con 66 min de profundo, 84 de REM y 2 despertares (eficiencia 85%). HRV 41 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 63 lpm.\n\nTu diario de hoy: «Gym a las 18 y después fútbol 5 en Güemes. Las piernas mañana van a pedir clemencia. Hoy el reloj explotó.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 12.880 pasos, 398 min sentado, AZM 74 min y 1900 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 08m, 66 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 08m, 66 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 08m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-06T15:20:00.000Z",
@@ -3690,6 +4130,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Salida en Güemes, barra llena y la típica caminata de las 2 de la mañana. Dormí poco, pero el barrio estaba hermoso.",
+        "log": "Salida en Güemes, barra llena y la típica caminata de las 2 de la mañana. Dormí poco, pero el barrio estaba hermoso.",
+        "kind": "social",
+        "weekday": "Vie",
         "steps": 9260,
         "calories": 2180,
         "caloriesBmr": 1352,
@@ -3960,26 +4403,57 @@
             "calories": 1980
           }
         ],
-        "source": "character",
-        "log": "Salida en Güemes, barra llena y la típica caminata de las 2 de la mañana. Dormí poco, pero el barrio estaba hermoso."
+        "source": "character"
       },
       "log": "Salida en Güemes, barra llena y la típica caminata de las 2 de la mañana. Dormí poco, pero el barrio estaba hermoso.",
       "analysis": {
-        "overall": 64,
+        "overall": 66,
         "band": {
           "id": "ajuste",
           "label": "Con ajustes se arma"
         },
         "scores": {
           "sleep": 43,
-          "movement": 95,
+          "movement": 100,
           "recovery": 52,
           "rhythm": 75
         }
       },
       "narrative": {
         "headline": "El cuerpo pide suavidad: hoy el mejor día es el que te recarga.",
-        "dayStory": "Dormiste 5.5 h (objetivo 7.5 h) con eficiencia 72%. Vas 9260 de 10000 pasos y 42 min activos. FC en reposo 71 lpm · HRV 27 ms. El cuello de botella de hoy es el sueño.",
+        "noticing": [
+          {
+            "text": "Anoche 5h 32m, 38 min de profundo y 54 min de REM — tu meta es 7.5h. Eficiencia 72%, 5 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "5h 32m"
+          },
+          {
+            "text": "Tu HRV bajó a 27 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 71 lpm.",
+            "fitbitField": "hrv",
+            "cite": "27 ms"
+          },
+          {
+            "text": "Vas 9.260 de 8.000 pasos · 502 min sentado · 6.9 km.",
+            "fitbitField": "steps",
+            "cite": "9.260"
+          },
+          {
+            "text": "Zonas activas 42 min · SpO₂ 95.7% · agua 900 ml.",
+            "fitbitField": "azm",
+            "cite": "42 min"
+          },
+          {
+            "text": "Tu diario: «Salida en Güemes, barra llena y la típica caminata de las 2 de la mañana. Dormí poco, pero el barrio estaba hermoso.»",
+            "fitbitField": "steps",
+            "cite": "5h 32m"
+          }
+        ],
+        "because": [
+          "Dormiste 5h 32m con 38 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "HRV 27 ms y FC 71 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "Vas 900 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 5h 32m — tu meta son 7.5h — con 38 min de profundo, 54 de REM y 5 despertares (eficiencia 72%). HRV 27 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 71 lpm.\n\nTu diario de hoy: «Salida en Güemes, barra llena y la típica caminata de las 2 de la mañana. Dormí poco, pero el barrio estaba hermoso.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 9.260 pasos, 502 min sentado, AZM 42 min y 900 ml de agua.\n\nEl cuello de botella es recuperar. En Córdoba, con este combo, el mejor estímulo no es el gym: es bajar RPM y no pelearte con el reloj. Hasta media tarde: esfuerzo liviano. La ventana de calidad es recuperar, no empujar.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Hasta media tarde: esfuerzo liviano. La ventana de calidad es recuperar, no empujar.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
@@ -3987,26 +4461,35 @@
             "when": "15:00",
             "action": "Último café. Después, agua o té.",
             "why": "La cafeína tarda ~6 h en bajar a la mitad: si dormiste poco, este corte vale más que cualquier suplemento.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "14:00",
             "action": "Siesta o quietud 12–18 min, alarma dura. No más.",
-            "why": "Recupera alerta sin comerse el sueño de esta noche.",
-            "kind": "recuperacion"
+            "why": "Recupera alerta sin comerse el sueño de esta noche. (HRV 27 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "durante el día",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 27 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
           "Menos de 6 h: no es día para déficits agresivos ni para manejar cansado.",
           "Alto output con bajo sueño: es el combo que termina en lesión o bajón mañana."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 5h 32m, 38 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si Cami te quedás hasta las 1:00, mañana el HRV sigue en 27 ms y el sueño no se recupera con un café. Hoy el ROI es dormir, no un último bloque.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-07T16:20:00.000Z",
@@ -4024,6 +4507,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Resaca ligera. Cancelé el gym y me quedé en el depto con una peli. A la tarde un mandado corto y listo.",
+        "log": "Resaca ligera. Cancelé el gym y me quedé en el depto con una peli. A la tarde un mandado corto y listo.",
+        "kind": "rest",
+        "weekday": "Sáb",
         "steps": 5380,
         "calories": 1760,
         "caloriesBmr": 1091,
@@ -4294,52 +4780,82 @@
             "calories": 1980
           }
         ],
-        "source": "character",
-        "log": "Resaca ligera. Cancelé el gym y me quedé en el depto con una peli. A la tarde un mandado corto y listo."
+        "source": "character"
       },
       "log": "Resaca ligera. Cancelé el gym y me quedé en el depto con una peli. A la tarde un mandado corto y listo.",
       "analysis": {
-        "overall": 61,
+        "overall": 63,
         "band": {
           "id": "ajuste",
           "label": "Con ajustes se arma"
         },
         "scores": {
           "sleep": 77,
-          "movement": 49,
+          "movement": 58,
           "recovery": 62,
           "rhythm": 34
         }
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 7.6 h (objetivo 7.5 h) con eficiencia 84%. Vas 5380 de 10000 pasos y 12 min activos. FC en reposo 69 lpm · HRV 29 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 34m, 72 min de profundo y 88 min de REM — tu meta es 7.5h. Eficiencia 84%, 3 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 34m"
+          },
+          {
+            "text": "Tu HRV bajó a 29 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 69 lpm.",
+            "fitbitField": "hrv",
+            "cite": "29 ms"
+          },
+          {
+            "text": "Vas 5.380 de 8.000 pasos · 702 min sentado · 4 km.",
+            "fitbitField": "steps",
+            "cite": "5.380"
+          },
+          {
+            "text": "Zonas activas 12 min · SpO₂ 96.1% · agua 1500 ml.",
+            "fitbitField": "azm",
+            "cite": "12 min"
+          },
+          {
+            "text": "Tu diario: «Resaca ligera. Cancelé el gym y me quedé en el depto con una peli. A la tarde un mandado corto y listo.»",
+            "fitbitField": "steps",
+            "cite": "7h 34m"
+          }
+        ],
+        "because": [
+          "Con 7h 34m y 5.380 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 34m — tu meta son 7.5h — con 72 min de profundo, 88 de REM y 3 despertares (eficiencia 84%). HRV 29 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 69 lpm.\n\nTu diario de hoy: «Resaca ligera. Cancelé el gym y me quedé en el depto con una peli. A la tarde un mandado corto y listo.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 5.380 pasos, 702 min sentado, AZM 12 min y 1500 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Salí 15–20 min a caminar (llamada o podcast). No lo dejes para la noche.",
-            "why": "Te faltan ~4.620 pasos; a esta hora todavía hay luz y margen.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 34m, 72 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [
           "Muchas horas sentado: levantate 2 min cada 45."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 34m, 72 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 34m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-08T17:20:00.000Z",
@@ -4357,6 +4873,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Recupero: caminata suave hasta el Parque, agua y cama temprano. El Charge 6 pide calma y le hago caso.",
+        "log": "Recupero: caminata suave hasta el Parque, agua y cama temprano. El Charge 6 pide calma y le hago caso.",
+        "kind": "recover",
+        "weekday": "Dom",
         "steps": 7820,
         "calories": 1980,
         "caloriesBmr": 1228,
@@ -4627,44 +5146,80 @@
             "calories": 1980
           }
         ],
-        "source": "character",
-        "log": "Recupero: caminata suave hasta el Parque, agua y cama temprano. El Charge 6 pide calma y le hago caso."
+        "source": "character"
       },
       "log": "Recupero: caminata suave hasta el Parque, agua y cama temprano. El Charge 6 pide calma y le hago caso.",
       "analysis": {
-        "overall": 82,
+        "overall": 86,
         "band": {
           "id": "excelente",
           "label": "Día en racha"
         },
         "scores": {
           "sleep": 86,
-          "movement": 81,
+          "movement": 93,
           "recovery": 85,
           "rhythm": 67
         }
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 8.3 h (objetivo 7.5 h) con eficiencia 92%. Vas 7820 de 10000 pasos y 26 min activos. FC en reposo 60 lpm · HRV 43 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 8h 18m, 90 min de profundo y 110 min de REM — tu meta es 7.5h. Eficiencia 92%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "8h 18m"
+          },
+          {
+            "text": "Tu HRV subió a 43 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 60 lpm.",
+            "fitbitField": "hrv",
+            "cite": "43 ms"
+          },
+          {
+            "text": "Vas 7.820 de 8.000 pasos · 534 min sentado · 5.8 km.",
+            "fitbitField": "steps",
+            "cite": "7.820"
+          },
+          {
+            "text": "Zonas activas 26 min · SpO₂ 97% · agua 1700 ml.",
+            "fitbitField": "azm",
+            "cite": "26 min"
+          },
+          {
+            "text": "Tu diario: «Recupero: caminata suave hasta el Parque, agua y cama temprano. El Charge 6 pide calma y le hago caso.»",
+            "fitbitField": "steps",
+            "cite": "8h 18m"
+          }
+        ],
+        "because": [
+          "Con 8h 18m y 7.820 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 8h 18m — tu meta son 7.5h — con 90 min de profundo, 110 de REM y 1 despertares (eficiencia 92%). HRV 43 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 60 lpm.\n\nTu diario de hoy: «Recupero: caminata suave hasta el Parque, agua y cama temprano. El Charge 6 pide calma y le hago caso.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 7.820 pasos, 534 min sentado, AZM 26 min y 1700 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 8h 18m, 90 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 8h 18m, 90 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 8h 18m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-09T18:20:00.000Z",
@@ -4682,6 +5237,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Arrancan las mesas. Estuve en la biblio hasta tarde, café de máquina y silla. El sueño se fue al tacho.",
+        "log": "Arrancan las mesas. Estuve en la biblio hasta tarde, café de máquina y silla. El sueño se fue al tacho.",
+        "kind": "exam",
+        "weekday": "Lun",
         "steps": 4180,
         "calories": 1720,
         "caloriesBmr": 1066,
@@ -4952,46 +5510,89 @@
             "calories": 1580
           }
         ],
-        "source": "character",
-        "log": "Arrancan las mesas. Estuve en la biblio hasta tarde, café de máquina y silla. El sueño se fue al tacho."
+        "source": "character"
       },
       "log": "Arrancan las mesas. Estuve en la biblio hasta tarde, café de máquina y silla. El sueño se fue al tacho.",
       "analysis": {
-        "overall": 43,
+        "overall": 45,
         "band": {
           "id": "recuperacion",
           "label": "Priorizá recuperar"
         },
         "scores": {
           "sleep": 43,
-          "movement": 41,
+          "movement": 48,
           "recovery": 52,
           "rhythm": 26
         }
       },
       "narrative": {
         "headline": "Cerrá el día temprano. Mañana se gana esta noche.",
-        "dayStory": "Dormiste 5.5 h (objetivo 7.5 h) con eficiencia 73%. Vas 4180 de 10000 pasos y 12 min activos. FC en reposo 72 lpm · HRV 24 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 5h 28m, 36 min de profundo y 50 min de REM — tu meta es 7.5h. Eficiencia 73%, 4 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "5h 28m"
+          },
+          {
+            "text": "Tu HRV bajó a 24 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 72 lpm.",
+            "fitbitField": "hrv",
+            "cite": "24 ms"
+          },
+          {
+            "text": "Vas 4.180 de 8.000 pasos · 748 min sentado · 3.1 km.",
+            "fitbitField": "steps",
+            "cite": "4.180"
+          },
+          {
+            "text": "Zonas activas 12 min · SpO₂ 95.6% · agua 800 ml.",
+            "fitbitField": "azm",
+            "cite": "12 min"
+          },
+          {
+            "text": "Tu diario: «Arrancan las mesas. Estuve en la biblio hasta tarde, café de máquina y silla. El sueño se fue al tacho.»",
+            "fitbitField": "sleepMinutes",
+            "cite": "5h 28m"
+          },
+          {
+            "text": "En tu semana de mesas el HRV promedió 23 ms y el sueño 5h 48m. Hoy no está lejos de ese piso.",
+            "fitbitField": "hrv",
+            "cite": "23 ms"
+          }
+        ],
+        "because": [
+          "Dormiste 5h 28m con 36 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "HRV 24 ms y FC 72 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "4.180 pasos y 748 min sentado → caminatas cortas entre bloques, no persigas el 10k de noche.",
+          "Vas 800 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 5h 28m — tu meta son 7.5h — con 36 min de profundo, 50 de REM y 4 despertares (eficiencia 73%). HRV 24 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 72 lpm.\n\nTu diario de hoy: «Arrancan las mesas. Estuve en la biblio hasta tarde, café de máquina y silla. El sueño se fue al tacho.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 4.180 pasos, 748 min sentado, AZM 12 min y 800 ml de agua.\n\nEl cuello de botella es recuperar. En Córdoba, con este combo, el mejor estímulo no es el gym: es bajar RPM y no pelearte con el reloj. Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
             "action": "Movimiento mínimo: 8–12 min al aire o estirar. No persigas los pasos.",
-            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche.",
-            "kind": "recuperacion"
+            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche. (HRV 24 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "21:00",
             "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
             "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "ahora",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 24 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
@@ -4999,7 +5600,10 @@
           "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity.",
           "Muchas horas sentado: levantate 2 min cada 45."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 5h 28m, 36 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si Cami te quedás hasta las 1:00, mañana el HRV sigue en 24 ms y el sueño no se recupera con un café. Hoy el ROI es dormir, no un último bloque.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-10T19:20:00.000Z",
@@ -5017,6 +5621,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Mesa de macro a las 8. Me levanté a las 5, nervios a mil y 3k pasos. El café no alcanzó y el HRV se cayó.",
+        "log": "Mesa de macro a las 8. Me levanté a las 5, nervios a mil y 3k pasos. El café no alcanzó y el HRV se cayó.",
+        "kind": "exam",
+        "weekday": "Mar",
         "steps": 3120,
         "calories": 1640,
         "caloriesBmr": 1017,
@@ -5287,46 +5894,89 @@
             "calories": 1580
           }
         ],
-        "source": "character",
-        "log": "Mesa de macro a las 8. Me levanté a las 5, nervios a mil y 3k pasos. El café no alcanzó y el HRV se cayó."
+        "source": "character"
       },
       "log": "Mesa de macro a las 8. Me levanté a las 5, nervios a mil y 3k pasos. El café no alcanzó y el HRV se cayó.",
       "analysis": {
-        "overall": 35,
+        "overall": 37,
         "band": {
           "id": "recuperacion",
           "label": "Priorizá recuperar"
         },
         "scores": {
           "sleep": 37,
-          "movement": 30,
+          "movement": 35,
           "recovery": 45,
           "rhythm": 22
         }
       },
       "narrative": {
         "headline": "Cerrá el día temprano. Mañana se gana esta noche.",
-        "dayStory": "Dormiste 5.1 h (objetivo 7.5 h) con eficiencia 69%. Vas 3120 de 10000 pasos y 8 min activos. FC en reposo 76 lpm · HRV 20 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 5h 06m, 30 min de profundo y 44 min de REM — tu meta es 7.5h. Eficiencia 69%, 5 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "5h 06m"
+          },
+          {
+            "text": "Tu HRV bajó a 20 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 76 lpm.",
+            "fitbitField": "hrv",
+            "cite": "20 ms"
+          },
+          {
+            "text": "Vas 3.120 de 8.000 pasos · 802 min sentado · 2.3 km.",
+            "fitbitField": "steps",
+            "cite": "3.120"
+          },
+          {
+            "text": "Zonas activas 8 min · SpO₂ 95.2% · agua 700 ml.",
+            "fitbitField": "azm",
+            "cite": "8 min"
+          },
+          {
+            "text": "Tu diario: «Mesa de macro a las 8. Me levanté a las 5, nervios a mil y 3k pasos. El café no alcanzó y el HRV se cayó.»",
+            "fitbitField": "sleepMinutes",
+            "cite": "5h 06m"
+          },
+          {
+            "text": "En tu semana de mesas el HRV promedió 23 ms y el sueño 5h 48m. Hoy no está lejos de ese piso.",
+            "fitbitField": "hrv",
+            "cite": "23 ms"
+          }
+        ],
+        "because": [
+          "Dormiste 5h 06m con 30 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "HRV 20 ms y FC 76 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "3.120 pasos y 802 min sentado → caminatas cortas entre bloques, no persigas el 10k de noche.",
+          "Vas 700 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 5h 06m — tu meta son 7.5h — con 30 min de profundo, 44 de REM y 5 despertares (eficiencia 69%). HRV 20 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 76 lpm.\n\nTu diario de hoy: «Mesa de macro a las 8. Me levanté a las 5, nervios a mil y 3k pasos. El café no alcanzó y el HRV se cayó.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 3.120 pasos, 802 min sentado, AZM 8 min y 700 ml de agua.\n\nEl cuello de botella es recuperar. En Córdoba, con este combo, el mejor estímulo no es el gym: es bajar RPM y no pelearte con el reloj. Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
             "action": "Movimiento mínimo: 8–12 min al aire o estirar. No persigas los pasos.",
-            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche.",
-            "kind": "recuperacion"
+            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche. (HRV 20 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "21:00",
             "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
             "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "ahora",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 20 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
@@ -5334,7 +5984,10 @@
           "FC en reposo alta: priorizá calorías de verdad, hidratación y no te exijas al máximo.",
           "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 5h 06m, 30 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si Cami te quedás hasta las 1:00, mañana el HRV sigue en 20 ms y el sueño no se recupera con un café. Hoy el ROI es dormir, no un último bloque.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-11T20:20:00.000Z",
@@ -5352,6 +6005,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Otra mesa. Entre el bondi y el aula no caminé nada. A la noche intenté dormir y me quedé dando vueltas.",
+        "log": "Otra mesa. Entre el bondi y el aula no caminé nada. A la noche intenté dormir y me quedé dando vueltas.",
+        "kind": "exam",
+        "weekday": "Mié",
         "steps": 3840,
         "calories": 1690,
         "caloriesBmr": 1048,
@@ -5622,52 +6278,97 @@
             "calories": 1580
           }
         ],
-        "source": "character",
-        "log": "Otra mesa. Entre el bondi y el aula no caminé nada. A la noche intenté dormir y me quedé dando vueltas."
+        "source": "character"
       },
       "log": "Otra mesa. Entre el bondi y el aula no caminé nada. A la noche intenté dormir y me quedé dando vueltas.",
       "analysis": {
-        "overall": 43,
+        "overall": 45,
         "band": {
           "id": "recuperacion",
           "label": "Priorizá recuperar"
         },
         "scores": {
           "sleep": 47,
-          "movement": 37,
+          "movement": 43,
           "recovery": 52,
           "rhythm": 23
         }
       },
       "narrative": {
         "headline": "El cuerpo pide suavidad: hoy el mejor día es el que te recarga.",
-        "dayStory": "Dormiste 5.8 h (objetivo 7.5 h) con eficiencia 74%. Vas 3840 de 10000 pasos y 10 min activos. FC en reposo 74 lpm · HRV 22 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 5h 48m, 40 min de profundo y 54 min de REM — tu meta es 7.5h. Eficiencia 74%, 4 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "5h 48m"
+          },
+          {
+            "text": "Tu HRV bajó a 22 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 74 lpm.",
+            "fitbitField": "hrv",
+            "cite": "22 ms"
+          },
+          {
+            "text": "Vas 3.840 de 8.000 pasos · 772 min sentado · 2.8 km.",
+            "fitbitField": "steps",
+            "cite": "3.840"
+          },
+          {
+            "text": "Zonas activas 10 min · SpO₂ 95.4% · agua 750 ml.",
+            "fitbitField": "azm",
+            "cite": "10 min"
+          },
+          {
+            "text": "Tu diario: «Otra mesa. Entre el bondi y el aula no caminé nada. A la noche intenté dormir y me quedé dando vueltas.»",
+            "fitbitField": "sleepMinutes",
+            "cite": "5h 48m"
+          },
+          {
+            "text": "En tu semana de mesas el HRV promedió 23 ms y el sueño 5h 48m. Hoy no está lejos de ese piso.",
+            "fitbitField": "hrv",
+            "cite": "23 ms"
+          }
+        ],
+        "because": [
+          "Dormiste 5h 48m con 40 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "HRV 22 ms y FC 74 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "3.840 pasos y 772 min sentado → caminatas cortas entre bloques, no persigas el 10k de noche.",
+          "Vas 750 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 5h 48m — tu meta son 7.5h — con 40 min de profundo, 54 de REM y 4 despertares (eficiencia 74%). HRV 22 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 74 lpm.\n\nTu diario de hoy: «Otra mesa. Entre el bondi y el aula no caminé nada. A la noche intenté dormir y me quedé dando vueltas.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 3.840 pasos, 772 min sentado, AZM 10 min y 750 ml de agua.\n\nEl cuello de botella es recuperar. En Córdoba, con este combo, el mejor estímulo no es el gym: es bajar RPM y no pelearte con el reloj. Hasta media tarde: esfuerzo liviano. La ventana de calidad es recuperar, no empujar.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Hasta media tarde: esfuerzo liviano. La ventana de calidad es recuperar, no empujar.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
             "action": "Desayuno con proteína y luz de afuera 10 min. Evitá arrancar en pila de café.",
-            "why": "Con poco sueño, el cortisol ya está alto: un café gigante te va a estrellar a la siesta.",
-            "kind": "energia"
+            "why": "Con poco sueño, el cortisol ya está alto: un café gigante te va a estrellar a la siesta. (HRV 22 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "mañana",
-            "action": "Bloque corto de estudio, Pagweb y el mejor día posible (50 min) y nada de decisiones pesadas hasta mediodía.",
-            "why": "Hoy el cerebro no está en modo peak: protegés calidad, no cantidad.",
-            "kind": "foco"
+            "action": "Bloque corto de trabajo (50 min) y nada de decisiones pesadas hasta mediodía.",
+            "why": "Hoy el cerebro no está en modo peak: protegés calidad, no cantidad. (anoche 5h 48m, 40 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "10:30",
             "action": "Caminata o tramos de escalera 8–10 min entre tareas.",
-            "why": "Rompe el sedentarismo temprano y hace más fácil llegar al objetivo de pasos.",
-            "kind": "movimiento"
+            "why": "Rompe el sedentarismo temprano y hace más fácil llegar al objetivo de pasos. (3.840 pasos · 772 min sentado).",
+            "kind": "movimiento",
+            "from": "local",
+            "fitbitField": "steps"
           },
           {
             "when": "durante el día",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 22 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
@@ -5675,7 +6376,10 @@
           "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity.",
           "Muchas horas sentado: levantate 2 min cada 45."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 5h 48m, 40 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si Cami te quedás hasta las 1:00, mañana el HRV sigue en 22 ms y el sueño no se recupera con un café. Hoy el ROI es dormir, no un último bloque.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-12T13:20:00.000Z",
@@ -5693,6 +6397,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Estudié en el depto todo el día. Pedí una milanesa, no salí. El reloj me marca sedentaria y tiene razón.",
+        "log": "Estudié en el depto todo el día. Pedí una milanesa, no salí. El reloj me marca sedentaria y tiene razón.",
+        "kind": "exam",
+        "weekday": "Jue",
         "steps": 4460,
         "calories": 1740,
         "caloriesBmr": 1079,
@@ -5963,59 +6670,99 @@
             "calories": 1580
           }
         ],
-        "source": "character",
-        "log": "Estudié en el depto todo el día. Pedí una milanesa, no salí. El reloj me marca sedentaria y tiene razón."
+        "source": "character"
       },
       "log": "Estudié en el depto todo el día. Pedí una milanesa, no salí. El reloj me marca sedentaria y tiene razón.",
       "analysis": {
-        "overall": 47,
+        "overall": 49,
         "band": {
           "id": "recuperacion",
           "label": "Priorizá recuperar"
         },
         "scores": {
           "sleep": 52,
-          "movement": 43,
+          "movement": 50,
           "recovery": 52,
           "rhythm": 24
         }
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 6.2 h (objetivo 7.5 h) con eficiencia 76%. Vas 4460 de 10000 pasos y 12 min activos. FC en reposo 73 lpm · HRV 23 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 6h 12m, 44 min de profundo y 58 min de REM — tu meta es 7.5h. Eficiencia 76%, 4 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "6h 12m"
+          },
+          {
+            "text": "Tu HRV bajó a 23 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 73 lpm.",
+            "fitbitField": "hrv",
+            "cite": "23 ms"
+          },
+          {
+            "text": "Vas 4.460 de 8.000 pasos · 736 min sentado · 3.3 km.",
+            "fitbitField": "steps",
+            "cite": "4.460"
+          },
+          {
+            "text": "Zonas activas 12 min · SpO₂ 95.5% · agua 850 ml.",
+            "fitbitField": "azm",
+            "cite": "12 min"
+          },
+          {
+            "text": "Tu diario: «Estudié en el depto todo el día. Pedí una milanesa, no salí. El reloj me marca sedentaria y tiene razón.»",
+            "fitbitField": "sleepMinutes",
+            "cite": "6h 12m"
+          },
+          {
+            "text": "En tu semana de mesas el HRV promedió 23 ms y el sueño 5h 48m. Hoy no está lejos de ese piso.",
+            "fitbitField": "hrv",
+            "cite": "23 ms"
+          }
+        ],
+        "because": [
+          "Dormiste 6h 12m con 44 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "HRV 23 ms y FC 73 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "4.460 pasos y 736 min sentado → caminatas cortas entre bloques, no persigas el 10k de noche.",
+          "Vas 850 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 6h 12m — tu meta son 7.5h — con 44 min de profundo, 58 de REM y 4 despertares (eficiencia 76%). HRV 23 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 73 lpm.\n\nTu diario de hoy: «Estudié en el depto todo el día. Pedí una milanesa, no salí. El reloj me marca sedentaria y tiene razón.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 4.460 pasos, 736 min sentado, AZM 12 min y 850 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
-            "when": "ahora",
-            "action": "Salí 15–20 min a caminar (llamada o podcast). No lo dejes para la noche.",
-            "why": "Te faltan ~5.540 pasos; a esta hora todavía hay luz y margen.",
-            "kind": "movimiento"
-          },
-          {
             "when": "15:00",
             "action": "Último café. Después, agua o té.",
             "why": "La cafeína tarda ~6 h en bajar a la mitad: si dormiste poco, este corte vale más que cualquier suplemento.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "14:00",
             "action": "Siesta o quietud 12–18 min, alarma dura. No más.",
-            "why": "Recupera alerta sin comerse el sueño de esta noche.",
-            "kind": "recuperacion"
+            "why": "Recupera alerta sin comerse el sueño de esta noche. (HRV 23 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "durante el día",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 23 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
           "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity.",
           "Muchas horas sentado: levantate 2 min cada 45."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 6h 12m, 44 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si Cami te quedás hasta las 1:00, mañana el HRV sigue en 23 ms y el sueño no se recupera con un café. Hoy el ROI es dormir, no un último bloque.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-13T14:20:00.000Z",
@@ -6033,6 +6780,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Última mesa de la semana. Salí más liviana, pero el cuerpo está hecho bolsa. Me fui derecho a la cama.",
+        "log": "Última mesa de la semana. Salí más liviana, pero el cuerpo está hecho bolsa. Me fui derecho a la cama.",
+        "kind": "exam",
+        "weekday": "Vie",
         "steps": 5240,
         "calories": 1820,
         "caloriesBmr": 1128,
@@ -6303,56 +7053,95 @@
             "calories": 1580
           }
         ],
-        "source": "character",
-        "log": "Última mesa de la semana. Salí más liviana, pero el cuerpo está hecho bolsa. Me fui derecho a la cama."
+        "source": "character"
       },
       "log": "Última mesa de la semana. Salí más liviana, pero el cuerpo está hecho bolsa. Me fui derecho a la cama.",
       "analysis": {
-        "overall": 56,
+        "overall": 59,
         "band": {
           "id": "ajuste",
           "label": "Con ajustes se arma"
         },
         "scores": {
           "sleep": 61,
-          "movement": 52,
+          "movement": 61,
           "recovery": 62,
           "rhythm": 37
         }
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 6.4 h (objetivo 7.5 h) con eficiencia 78%. Vas 5240 de 10000 pasos y 16 min activos. FC en reposo 70 lpm · HRV 26 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 6h 24m, 48 min de profundo y 64 min de REM — tu meta es 7.5h. Eficiencia 78%, 3 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "6h 24m"
+          },
+          {
+            "text": "Tu HRV bajó a 26 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 70 lpm.",
+            "fitbitField": "hrv",
+            "cite": "26 ms"
+          },
+          {
+            "text": "Vas 5.240 de 8.000 pasos · 690 min sentado · 3.9 km.",
+            "fitbitField": "steps",
+            "cite": "5.240"
+          },
+          {
+            "text": "Zonas activas 16 min · SpO₂ 95.8% · agua 1000 ml.",
+            "fitbitField": "azm",
+            "cite": "16 min"
+          },
+          {
+            "text": "Tu diario: «Última mesa de la semana. Salí más liviana, pero el cuerpo está hecho bolsa. Me fui derecho a la cama.»",
+            "fitbitField": "sleepMinutes",
+            "cite": "6h 24m"
+          },
+          {
+            "text": "En tu semana de mesas el HRV promedió 23 ms y el sueño 5h 48m. Hoy no está lejos de ese piso.",
+            "fitbitField": "hrv",
+            "cite": "23 ms"
+          }
+        ],
+        "because": [
+          "Dormiste 6h 24m con 48 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "HRV 26 ms y FC 70 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "Vas 1000 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 6h 24m — tu meta son 7.5h — con 48 min de profundo, 64 de REM y 3 despertares (eficiencia 78%). HRV 26 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 70 lpm.\n\nTu diario de hoy: «Última mesa de la semana. Salí más liviana, pero el cuerpo está hecho bolsa. Me fui derecho a la cama.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 5.240 pasos, 690 min sentado, AZM 16 min y 1000 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
-            "when": "ahora",
-            "action": "Salí 15–20 min a caminar (llamada o podcast). No lo dejes para la noche.",
-            "why": "Te faltan ~4.760 pasos; a esta hora todavía hay luz y margen.",
-            "kind": "movimiento"
-          },
-          {
             "when": "15:00",
             "action": "Último café. Después, agua o té.",
             "why": "La cafeína tarda ~6 h en bajar a la mitad: si dormiste poco, este corte vale más que cualquier suplemento.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "14:00",
             "action": "Siesta o quietud 12–18 min, alarma dura. No más.",
-            "why": "Recupera alerta sin comerse el sueño de esta noche.",
-            "kind": "recuperacion"
+            "why": "Recupera alerta sin comerse el sueño de esta noche. (HRV 26 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "durante el día",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 26 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 6h 24m, 48 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 6h 24m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-14T15:20:00.000Z",
@@ -6370,6 +7159,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Me desperté con fiebre baja y la garganta hecha un trapo. Día de cama, té y el Charge 6 casi en silencio.",
+        "log": "Me desperté con fiebre baja y la garganta hecha un trapo. Día de cama, té y el Charge 6 casi en silencio.",
+        "kind": "sick",
+        "weekday": "Sáb",
         "steps": 1860,
         "calories": 1480,
         "caloriesBmr": 918,
@@ -6640,46 +7432,87 @@
             "calories": 1580
           }
         ],
-        "source": "character",
-        "log": "Me desperté con fiebre baja y la garganta hecha un trapo. Día de cama, té y el Charge 6 casi en silencio."
+        "source": "character"
       },
       "log": "Me desperté con fiebre baja y la garganta hecha un trapo. Día de cama, té y el Charge 6 casi en silencio.",
       "analysis": {
-        "overall": 36,
+        "overall": 37,
         "band": {
           "id": "recuperacion",
           "label": "Priorizá recuperar"
         },
         "scores": {
           "sleep": 59,
-          "movement": 16,
+          "movement": 19,
           "recovery": 35,
           "rhythm": 20
         }
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 9.4 h (objetivo 7.5 h) con eficiencia 88%. Vas 1860 de 10000 pasos y 4 min activos. FC en reposo 82 lpm · HRV 16 ms. El cuello de botella de hoy es el movimiento.",
+        "noticing": [
+          {
+            "text": "Anoche 9h 22m, 96 min de profundo y 118 min de REM — tu meta es 7.5h. Eficiencia 88%, 4 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "9h 22m"
+          },
+          {
+            "text": "Tu HRV bajó a 16 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 82 lpm.",
+            "fitbitField": "hrv",
+            "cite": "16 ms"
+          },
+          {
+            "text": "Vas 1.860 de 8.000 pasos · 890 min sentado · 1.4 km.",
+            "fitbitField": "steps",
+            "cite": "1.860"
+          },
+          {
+            "text": "Zonas activas 4 min · SpO₂ 94.8% · agua 1600 ml.",
+            "fitbitField": "azm",
+            "cite": "4 min"
+          },
+          {
+            "text": "Tu diario: «Me desperté con fiebre baja y la garganta hecha un trapo. Día de cama, té y el Charge 6 casi en silencio.»",
+            "fitbitField": "steps",
+            "cite": "9h 22m"
+          },
+          {
+            "text": "En tu semana de mesas el HRV promedió 23 ms y el sueño 5h 48m. Hoy no está lejos de ese piso.",
+            "fitbitField": "hrv",
+            "cite": "23 ms"
+          }
+        ],
+        "because": [
+          "HRV 16 ms y FC 82 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "1.860 pasos y 890 min sentado → caminatas cortas entre bloques, no persigas el 10k de noche."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 9h 22m — tu meta son 7.5h — con 96 min de profundo, 118 de REM y 4 despertares (eficiencia 88%). HRV 16 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 82 lpm.\n\nTu diario de hoy: «Me desperté con fiebre baja y la garganta hecha un trapo. Día de cama, té y el Charge 6 casi en silencio.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 1.860 pasos, 890 min sentado, AZM 4 min y 1600 ml de agua.\n\nEl cuello de botella es recuperar. En Córdoba, con este combo, el mejor estímulo no es el gym: es bajar RPM y no pelearte con el reloj. Hasta media tarde: esfuerzo liviano. La ventana de calidad es recuperar, no empujar.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Hasta media tarde: esfuerzo liviano. La ventana de calidad es recuperar, no empujar.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
             "action": "Salí 15–20 min a caminar (llamada o podcast). No lo dejes para la noche.",
-            "why": "Te faltan ~8.140 pasos; a esta hora todavía hay luz y margen.",
-            "kind": "movimiento"
+            "why": "Te faltan ~6.140 pasos; a esta hora todavía hay luz y margen.",
+            "kind": "movimiento",
+            "from": "local",
+            "fitbitField": "steps"
           },
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "tarde",
             "action": "Entrenamiento suave (zona 2) o yoga. Nada de HIIT hoy.",
-            "why": "FC en reposo/HRV dicen que el sistema está cargado: el mejor estímulo es aeróbico fácil.",
-            "kind": "recuperacion"
+            "why": "FC en reposo/HRV dicen que el sistema está cargado: el mejor estímulo es aeróbico fácil. (HRV 16 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
@@ -6687,7 +7520,10 @@
           "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity.",
           "Muchas horas sentado: levantate 2 min cada 45."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 9h 22m, 96 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si Cami te quedás hasta las 1:00, mañana el HRV sigue en 16 ms y el sueño no se recupera con un café. Hoy el ROI es dormir, no un último bloque.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-15T16:20:00.000Z",
@@ -6705,6 +7541,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Sigo medio bajón. Caminé hasta la esquina a comprar algo y volví. Prioridad: dormir, no el gym.",
+        "log": "Sigo medio bajón. Caminé hasta la esquina a comprar algo y volví. Prioridad: dormir, no el gym.",
+        "kind": "sick",
+        "weekday": "Dom",
         "steps": 3280,
         "calories": 1580,
         "caloriesBmr": 980,
@@ -6975,46 +7814,87 @@
             "calories": 1580
           }
         ],
-        "source": "character",
-        "log": "Sigo medio bajón. Caminé hasta la esquina a comprar algo y volví. Prioridad: dormir, no el gym."
+        "source": "character"
       },
       "log": "Sigo medio bajón. Caminé hasta la esquina a comprar algo y volví. Prioridad: dormir, no el gym.",
       "analysis": {
-        "overall": 48,
+        "overall": 50,
         "band": {
-          "id": "recuperacion",
-          "label": "Priorizá recuperar"
+          "id": "ajuste",
+          "label": "Con ajustes se arma"
         },
         "scores": {
           "sleep": 76,
-          "movement": 28,
+          "movement": 33,
           "recovery": 45,
           "rhythm": 22
         }
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 8.7 h (objetivo 7.5 h) con eficiencia 90%. Vas 3280 de 10000 pasos y 6 min activos. FC en reposo 76 lpm · HRV 21 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 8h 40m, 92 min de profundo y 112 min de REM — tu meta es 7.5h. Eficiencia 90%, 2 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "8h 40m"
+          },
+          {
+            "text": "Tu HRV bajó a 21 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 76 lpm.",
+            "fitbitField": "hrv",
+            "cite": "21 ms"
+          },
+          {
+            "text": "Vas 3.280 de 8.000 pasos · 812 min sentado · 2.4 km.",
+            "fitbitField": "steps",
+            "cite": "3.280"
+          },
+          {
+            "text": "Zonas activas 6 min · SpO₂ 95.3% · agua 1700 ml.",
+            "fitbitField": "azm",
+            "cite": "6 min"
+          },
+          {
+            "text": "Tu diario: «Sigo medio bajón. Caminé hasta la esquina a comprar algo y volví. Prioridad: dormir, no el gym.»",
+            "fitbitField": "steps",
+            "cite": "8h 40m"
+          },
+          {
+            "text": "En tu semana de mesas el HRV promedió 23 ms y el sueño 5h 48m. Hoy no está lejos de ese piso.",
+            "fitbitField": "hrv",
+            "cite": "23 ms"
+          }
+        ],
+        "because": [
+          "HRV 21 ms y FC 76 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "3.280 pasos y 812 min sentado → caminatas cortas entre bloques, no persigas el 10k de noche."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 8h 40m — tu meta son 7.5h — con 92 min de profundo, 112 de REM y 2 despertares (eficiencia 90%). HRV 21 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 76 lpm.\n\nTu diario de hoy: «Sigo medio bajón. Caminé hasta la esquina a comprar algo y volví. Prioridad: dormir, no el gym.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 3.280 pasos, 812 min sentado, AZM 6 min y 1700 ml de agua.\n\nEl cuello de botella es recuperar. En Córdoba, con este combo, el mejor estímulo no es el gym: es bajar RPM y no pelearte con el reloj. Hasta media tarde: esfuerzo liviano. La ventana de calidad es recuperar, no empujar.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Hasta media tarde: esfuerzo liviano. La ventana de calidad es recuperar, no empujar.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
             "action": "Salí 15–20 min a caminar (llamada o podcast). No lo dejes para la noche.",
-            "why": "Te faltan ~6.720 pasos; a esta hora todavía hay luz y margen.",
-            "kind": "movimiento"
+            "why": "Te faltan ~4.720 pasos; a esta hora todavía hay luz y margen.",
+            "kind": "movimiento",
+            "from": "local",
+            "fitbitField": "steps"
           },
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "tarde",
             "action": "Entrenamiento suave (zona 2) o yoga. Nada de HIIT hoy.",
-            "why": "FC en reposo/HRV dicen que el sistema está cargado: el mejor estímulo es aeróbico fácil.",
-            "kind": "recuperacion"
+            "why": "FC en reposo/HRV dicen que el sistema está cargado: el mejor estímulo es aeróbico fácil. (HRV 21 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
@@ -7022,7 +7902,10 @@
           "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity.",
           "Muchas horas sentado: levantate 2 min cada 45."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 8h 40m, 92 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si Cami te quedás hasta las 1:00, mañana el HRV sigue en 21 ms y el sueño no se recupera con un café. Hoy el ROI es dormir, no un último bloque.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-16T17:20:00.000Z",
@@ -7040,6 +7923,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Volví a la facu sin forzar. Clases livianas, más agua, menos café. El cuerpo está volviendo de a poco.",
+        "log": "Volví a la facu sin forzar. Clases livianas, más agua, menos café. El cuerpo está volviendo de a poco.",
+        "kind": "recover",
+        "weekday": "Lun",
         "steps": 6140,
         "calories": 1860,
         "caloriesBmr": 1153,
@@ -7316,44 +8202,80 @@
             "calories": 2140
           }
         ],
-        "source": "character",
-        "log": "Volví a la facu sin forzar. Clases livianas, más agua, menos café. El cuerpo está volviendo de a poco."
+        "source": "character"
       },
       "log": "Volví a la facu sin forzar. Clases livianas, más agua, menos café. El cuerpo está volviendo de a poco.",
       "analysis": {
-        "overall": 71,
+        "overall": 73,
         "band": {
           "id": "bien",
           "label": "Vas bien"
         },
         "scores": {
           "sleep": 84,
-          "movement": 61,
+          "movement": 70,
           "recovery": 71,
           "rhythm": 53
         }
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 7.6 h (objetivo 7.5 h) con eficiencia 88%. Vas 6140 de 10000 pasos y 18 min activos. FC en reposo 66 lpm · HRV 32 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 36m, 76 min de profundo y 94 min de REM — tu meta es 7.5h. Eficiencia 88%, 2 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 36m"
+          },
+          {
+            "text": "Tu HRV está en 32 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 66 lpm.",
+            "fitbitField": "hrv",
+            "cite": "32 ms"
+          },
+          {
+            "text": "Vas 6.140 de 8.000 pasos · 602 min sentado · 4.5 km.",
+            "fitbitField": "steps",
+            "cite": "6.140"
+          },
+          {
+            "text": "Zonas activas 18 min · SpO₂ 96.2% · agua 1550 ml.",
+            "fitbitField": "azm",
+            "cite": "18 min"
+          },
+          {
+            "text": "Tu diario: «Volví a la facu sin forzar. Clases livianas, más agua, menos café. El cuerpo está volviendo de a poco.»",
+            "fitbitField": "steps",
+            "cite": "7h 36m"
+          }
+        ],
+        "because": [
+          "Con 7h 36m y 6.140 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 36m — tu meta son 7.5h — con 76 min de profundo, 94 de REM y 2 despertares (eficiencia 88%). HRV 32 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 66 lpm.\n\nTu diario de hoy: «Volví a la facu sin forzar. Clases livianas, más agua, menos café. El cuerpo está volviendo de a poco.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 6.140 pasos, 602 min sentado, AZM 18 min y 1550 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 36m, 76 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 36m, 76 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 36m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-17T18:20:00.000Z",
@@ -7371,6 +8293,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Retomé el gym suave: movilidad y empujes livianos. No es un PR, pero el HRV ya no está en el piso.",
+        "log": "Retomé el gym suave: movilidad y empujes livianos. No es un PR, pero el HRV ya no está en el piso.",
+        "kind": "gym",
+        "weekday": "Mar",
         "steps": 8920,
         "calories": 2160,
         "caloriesBmr": 1339,
@@ -7647,26 +8572,55 @@
             "calories": 2140
           }
         ],
-        "source": "character",
-        "log": "Retomé el gym suave: movilidad y empujes livianos. No es un PR, pero el HRV ya no está en el piso."
+        "source": "character"
       },
       "log": "Retomé el gym suave: movilidad y empujes livianos. No es un PR, pero el HRV ya no está en el piso.",
       "analysis": {
-        "overall": 86,
+        "overall": 88,
         "band": {
           "id": "excelente",
           "label": "Día en racha"
         },
         "scores": {
           "sleep": 89,
-          "movement": 93,
+          "movement": 100,
           "recovery": 79,
           "rhythm": 75
         }
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.4 h (objetivo 7.5 h) con eficiencia 88%. Vas 8920 de 10000 pasos y 44 min activos. FC en reposo 62 lpm · HRV 38 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 22m, 74 min de profundo y 90 min de REM — tu meta es 7.5h. Eficiencia 88%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 22m"
+          },
+          {
+            "text": "Tu HRV está en 38 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 62 lpm.",
+            "fitbitField": "hrv",
+            "cite": "38 ms"
+          },
+          {
+            "text": "Vas 8.920 de 8.000 pasos · 498 min sentado · 6.6 km.",
+            "fitbitField": "steps",
+            "cite": "8.920"
+          },
+          {
+            "text": "Zonas activas 44 min · SpO₂ 96.7% · agua 1650 ml.",
+            "fitbitField": "azm",
+            "cite": "44 min"
+          },
+          {
+            "text": "Tu diario: «Retomé el gym suave: movilidad y empujes livianos. No es un PR, pero el HRV ya no está en el piso.»",
+            "fitbitField": "steps",
+            "cite": "7h 22m"
+          }
+        ],
+        "because": [
+          "Con 7h 22m y 8.920 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 22m — tu meta son 7.5h — con 74 min de profundo, 90 de REM y 1 despertares (eficiencia 88%). HRV 38 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 62 lpm.\n\nTu diario de hoy: «Retomé el gym suave: movilidad y empujes livianos. No es un PR, pero el HRV ya no está en el piso.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 8.920 pasos, 498 min sentado, AZM 44 min y 1650 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
@@ -7674,17 +8628,24 @@
             "when": "21:00",
             "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
             "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 22m, 74 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 22m, 74 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 22m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-18T19:20:00.000Z",
@@ -7702,6 +8663,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Miércoles normal de nva cba: facu, bondi, almuerzo en el patio. Los pasos volvieron a un número decente.",
+        "log": "Miércoles normal de nva cba: facu, bondi, almuerzo en el patio. Los pasos volvieron a un número decente.",
+        "kind": "campus",
+        "weekday": "Mié",
         "steps": 7480,
         "calories": 2020,
         "caloriesBmr": 1252,
@@ -7978,50 +8942,88 @@
             "calories": 2140
           }
         ],
-        "source": "character",
-        "log": "Miércoles normal de nva cba: facu, bondi, almuerzo en el patio. Los pasos volvieron a un número decente."
+        "source": "character"
       },
       "log": "Miércoles normal de nva cba: facu, bondi, almuerzo en el patio. Los pasos volvieron a un número decente.",
       "analysis": {
-        "overall": 77,
+        "overall": 80,
         "band": {
           "id": "bien",
           "label": "Vas bien"
         },
         "scores": {
           "sleep": 80,
-          "movement": 81,
+          "movement": 92,
           "recovery": 71,
           "rhythm": 65
         }
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 7.1 h (objetivo 7.5 h) con eficiencia 86%. Vas 7480 de 10000 pasos y 28 min activos. FC en reposo 63 lpm · HRV 37 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 06m, 68 min de profundo y 84 min de REM — tu meta es 7.5h. Eficiencia 86%, 2 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 06m"
+          },
+          {
+            "text": "Tu HRV está en 37 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 63 lpm.",
+            "fitbitField": "hrv",
+            "cite": "37 ms"
+          },
+          {
+            "text": "Vas 7.480 de 8.000 pasos · 548 min sentado · 5.5 km.",
+            "fitbitField": "steps",
+            "cite": "7.480"
+          },
+          {
+            "text": "Zonas activas 28 min · SpO₂ 96.5% · agua 1400 ml.",
+            "fitbitField": "azm",
+            "cite": "28 min"
+          },
+          {
+            "text": "Tu diario: «Miércoles normal de nva cba: facu, bondi, almuerzo en el patio. Los pasos volvieron a un número decente.»",
+            "fitbitField": "steps",
+            "cite": "7h 06m"
+          }
+        ],
+        "because": [
+          "Vas 1400 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 06m — tu meta son 7.5h — con 68 min de profundo, 84 de REM y 2 despertares (eficiencia 86%). HRV 37 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 63 lpm.\n\nTu diario de hoy: «Miércoles normal de nva cba: facu, bondi, almuerzo en el patio. Los pasos volvieron a un número decente.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 7.480 pasos, 548 min sentado, AZM 28 min y 1400 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
-            "when": "ahora",
-            "action": "Caminata de 25 min. Es el atajo más limpio para cerrar el movimiento.",
-            "why": "A esta hora una caminata también baja el estrés y prepara el sueño.",
-            "kind": "movimiento"
-          },
-          {
             "when": "21:00",
             "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
             "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "ahora",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 37 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
+          },
+          {
+            "when": "hoy",
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 06m, 68 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 06m, 68 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 06m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-19T20:20:00.000Z",
@@ -8039,6 +9041,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Gym completo de nuevo. Salí contenta, me gané un helado en Buen Pastor y caminé de vuelta.",
+        "log": "Gym completo de nuevo. Salí contenta, me gané un helado en Buen Pastor y caminé de vuelta.",
+        "kind": "gym",
+        "weekday": "Jue",
         "steps": 10120,
         "calories": 2320,
         "caloriesBmr": 1438,
@@ -8315,8 +9320,7 @@
             "calories": 2140
           }
         ],
-        "source": "character",
-        "log": "Gym completo de nuevo. Salí contenta, me gané un helado en Buen Pastor y caminé de vuelta."
+        "source": "character"
       },
       "log": "Gym completo de nuevo. Salí contenta, me gané un helado en Buen Pastor y caminé de vuelta.",
       "analysis": {
@@ -8334,25 +9338,62 @@
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.5 h (objetivo 7.5 h) con eficiencia 90%. Vas 10120 de 10000 pasos y 54 min activos. FC en reposo 60 lpm · HRV 43 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 32m, 80 min de profundo y 96 min de REM — tu meta es 7.5h. Eficiencia 90%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 32m"
+          },
+          {
+            "text": "Tu HRV subió a 43 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 60 lpm.",
+            "fitbitField": "hrv",
+            "cite": "43 ms"
+          },
+          {
+            "text": "Vas 10.120 de 8.000 pasos · 456 min sentado · 7.5 km.",
+            "fitbitField": "steps",
+            "cite": "10.120"
+          },
+          {
+            "text": "Zonas activas 55 min · SpO₂ 97% · agua 1750 ml.",
+            "fitbitField": "azm",
+            "cite": "55 min"
+          },
+          {
+            "text": "Tu diario: «Gym completo de nuevo. Salí contenta, me gané un helado en Buen Pastor y caminé de vuelta.»",
+            "fitbitField": "steps",
+            "cite": "7h 32m"
+          }
+        ],
+        "because": [
+          "Con 7h 32m y 10.120 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 32m — tu meta son 7.5h — con 80 min de profundo, 96 de REM y 1 despertares (eficiencia 90%). HRV 43 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 60 lpm.\n\nTu diario de hoy: «Gym completo de nuevo. Salí contenta, me gané un helado en Buen Pastor y caminé de vuelta.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 10.120 pasos, 456 min sentado, AZM 55 min y 1750 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Hacé el trabajo más difícil de estudio, Pagweb y el mejor día posible en los próximos 90 min.",
-            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día.",
-            "kind": "foco"
+            "action": "Hacé el trabajo más difícil de trabajo en los próximos 90 min.",
+            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día. (anoche 7h 32m, 80 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 32m, 80 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 32m, 80 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 32m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-20T13:20:00.000Z",
@@ -8370,6 +9411,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Güemes de nuevo, pero me fui a las 12. Prometí no romper el sueño y esta vez cumplí.",
+        "log": "Güemes de nuevo, pero me fui a las 12. Prometí no romper el sueño y esta vez cumplí.",
+        "kind": "social",
+        "weekday": "Vie",
         "steps": 9680,
         "calories": 2200,
         "caloriesBmr": 1364,
@@ -8640,44 +9684,80 @@
             "calories": 2140
           }
         ],
-        "source": "character",
-        "log": "Güemes de nuevo, pero me fui a las 12. Prometí no romper el sueño y esta vez cumplí."
+        "source": "character"
       },
       "log": "Güemes de nuevo, pero me fui a las 12. Prometí no romper el sueño y esta vez cumplí.",
       "analysis": {
-        "overall": 84,
+        "overall": 85,
         "band": {
           "id": "excelente",
           "label": "Día en racha"
         },
         "scores": {
           "sleep": 82,
-          "movement": 98,
+          "movement": 100,
           "recovery": 85,
           "rhythm": 46
         }
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.2 h (objetivo 7.5 h) con eficiencia 87%. Vas 9680 de 10000 pasos y 38 min activos. FC en reposo 62 lpm · HRV 40 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 14m, 70 min de profundo y 88 min de REM — tu meta es 7.5h. Eficiencia 87%, 2 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 14m"
+          },
+          {
+            "text": "Tu HRV subió a 40 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 62 lpm.",
+            "fitbitField": "hrv",
+            "cite": "40 ms"
+          },
+          {
+            "text": "Vas 9.680 de 8.000 pasos · 490 min sentado · 7.2 km.",
+            "fitbitField": "steps",
+            "cite": "9.680"
+          },
+          {
+            "text": "Zonas activas 39 min · SpO₂ 96.8% · agua 1500 ml.",
+            "fitbitField": "azm",
+            "cite": "39 min"
+          },
+          {
+            "text": "Tu diario: «Güemes de nuevo, pero me fui a las 12. Prometí no romper el sueño y esta vez cumplí.»",
+            "fitbitField": "steps",
+            "cite": "7h 14m"
+          }
+        ],
+        "because": [
+          "Con 7h 14m y 9.680 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 14m — tu meta son 7.5h — con 70 min de profundo, 88 de REM y 2 despertares (eficiencia 87%). HRV 40 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 62 lpm.\n\nTu diario de hoy: «Güemes de nuevo, pero me fui a las 12. Prometí no romper el sueño y esta vez cumplí.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 9.680 pasos, 490 min sentado, AZM 39 min y 1500 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 14m, 70 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 14m, 70 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 14m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-21T14:20:00.000Z",
@@ -8695,6 +9775,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Sábado largo: pesas, feria y una vuelta por el centro. 12k pasos y el reloj feliz.",
+        "log": "Sábado largo: pesas, feria y una vuelta por el centro. 12k pasos y el reloj feliz.",
+        "kind": "barrio",
+        "weekday": "Sáb",
         "steps": 12140,
         "calories": 2520,
         "caloriesBmr": 1562,
@@ -8971,8 +10054,7 @@
             "calories": 2140
           }
         ],
-        "source": "character",
-        "log": "Sábado largo: pesas, feria y una vuelta por el centro. 12k pasos y el reloj feliz."
+        "source": "character"
       },
       "log": "Sábado largo: pesas, feria y una vuelta por el centro. 12k pasos y el reloj feliz.",
       "analysis": {
@@ -8990,25 +10072,62 @@
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.8 h (objetivo 7.5 h) con eficiencia 91%. Vas 12140 de 10000 pasos y 60 min activos. FC en reposo 58 lpm · HRV 46 ms. El cuello de botella de hoy es la recuperación.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 48m, 82 min de profundo y 100 min de REM — tu meta es 7.5h. Eficiencia 91%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 48m"
+          },
+          {
+            "text": "Tu HRV subió a 46 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 58 lpm.",
+            "fitbitField": "hrv",
+            "cite": "46 ms"
+          },
+          {
+            "text": "Vas 12.140 de 8.000 pasos · 412 min sentado · 9 km.",
+            "fitbitField": "steps",
+            "cite": "12.140"
+          },
+          {
+            "text": "Zonas activas 59 min · SpO₂ 97.2% · agua 1850 ml.",
+            "fitbitField": "azm",
+            "cite": "59 min"
+          },
+          {
+            "text": "Tu diario: «Sábado largo: pesas, feria y una vuelta por el centro. 12k pasos y el reloj feliz.»",
+            "fitbitField": "steps",
+            "cite": "7h 48m"
+          }
+        ],
+        "because": [
+          "Con 7h 48m y 12.140 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 48m — tu meta son 7.5h — con 82 min de profundo, 100 de REM y 1 despertares (eficiencia 91%). HRV 46 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 58 lpm.\n\nTu diario de hoy: «Sábado largo: pesas, feria y una vuelta por el centro. 12k pasos y el reloj feliz.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 12.140 pasos, 412 min sentado, AZM 59 min y 1850 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 48m, 82 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 48m, 82 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 48m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-22T15:20:00.000Z",
@@ -9026,6 +10145,9 @@
         "displayName": "Cami (Charge 6 · Nueva Córdoba)",
         "persona": "cami",
         "story": "Cerré la tanda con Parque Sarmiento y un asado en el depto. Dormí bien. Mañana arranca otra semana — hoy el pulso está sano.",
+        "log": "Cerré la tanda con Parque Sarmiento y un asado en el depto. Dormí bien. Mañana arranca otra semana — hoy el pulso está sano.",
+        "kind": "barrio",
+        "weekday": "Dom",
         "steps": 8640,
         "calories": 2140,
         "caloriesBmr": 1327,
@@ -9302,44 +10424,80 @@
             "calories": 2140
           }
         ],
-        "source": "character",
-        "log": "Cerré la tanda con Parque Sarmiento y un asado en el depto. Dormí bien. Mañana arranca otra semana — hoy el pulso está sano."
+        "source": "character"
       },
       "log": "Cerré la tanda con Parque Sarmiento y un asado en el depto. Dormí bien. Mañana arranca otra semana — hoy el pulso está sano.",
       "analysis": {
-        "overall": 87,
+        "overall": 89,
         "band": {
           "id": "excelente",
           "label": "Día en racha"
         },
         "scores": {
           "sleep": 88,
-          "movement": 92,
+          "movement": 100,
           "recovery": 85,
           "rhythm": 73
         }
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 8.0 h (objetivo 7.5 h) con eficiencia 90%. Vas 8640 de 10000 pasos y 34 min activos. FC en reposo 59 lpm · HRV 44 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 58m, 84 min de profundo y 104 min de REM — tu meta es 7.5h. Eficiencia 90%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 58m"
+          },
+          {
+            "text": "Tu HRV subió a 44 ms vs 35 ms de tu promedio de 4 semanas. FC en reposo 59 lpm.",
+            "fitbitField": "hrv",
+            "cite": "44 ms"
+          },
+          {
+            "text": "Vas 8.640 de 8.000 pasos · 508 min sentado · 6.4 km.",
+            "fitbitField": "steps",
+            "cite": "8.640"
+          },
+          {
+            "text": "Zonas activas 35 min · SpO₂ 97.1% · agua 1600 ml.",
+            "fitbitField": "azm",
+            "cite": "35 min"
+          },
+          {
+            "text": "Tu diario: «Cerré la tanda con Parque Sarmiento y un asado en el depto. Dormí bien. Mañana arranca otra semana — hoy el pulso está sano.»",
+            "fitbitField": "steps",
+            "cite": "7h 58m"
+          }
+        ],
+        "because": [
+          "Con 7h 58m y 8.640 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Cami, el Charge 6 no te está mintiendo. Anoche dormiste 7h 58m — tu meta son 7.5h — con 84 min de profundo, 104 de REM y 1 despertares (eficiencia 90%). HRV 44 ms (tu promedio de 4 semanas: 35 ms). FC en reposo 59 lpm.\n\nTu diario de hoy: «Cerré la tanda con Parque Sarmiento y un asado en el depto. Dormí bien. Mañana arranca otra semana — hoy el pulso está sano.». En Nueva Córdoba eso se siente en el cuerpo. Hoy vas 8.640 pasos, 508 min sentado, AZM 35 min y 1600 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, una caminata y apagar a tiempo— este día sube de nivel.\n\nEn tus 4 semanas el promedio es 7.623 pasos y HRV 35 ms. La semana de mesas te dejó el sueño en 5h 48m y el HRV en 23 ms. Hoy el plan es de esta persona, no de un usuario genérico.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
-            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "action": "Segundo bloque profundo de trabajo (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "action": "Cami, elegí UNA cosa de trabajo que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 58m, 84 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 58m, 84 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 58m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-23T16:20:00.000Z",
@@ -9357,6 +10515,7 @@
         "displayName": "Nacho (Charge 6 · demo)",
         "persona": "agotado",
         "story": "Post parcial: 5h 12m, 5 despertares, FC 76, HRV 21 ms. El reloj pide cama, no gym.",
+        "log": "Post parcial: 5h 12m, 5 despertares, FC 76, HRV 21 ms. El reloj pide cama, no gym.",
         "steps": 2840,
         "calories": 1620,
         "caloriesBmr": 1004,
@@ -9627,8 +10786,7 @@
             "calories": 2380
           }
         ],
-        "source": "demo",
-        "log": "Post parcial: 5h 12m, 5 despertares, FC 76, HRV 21 ms. El reloj pide cama, no gym."
+        "source": "demo"
       },
       "log": "Post parcial: 5h 12m, 5 despertares, FC 76, HRV 21 ms. El reloj pide cama, no gym.",
       "analysis": {
@@ -9646,27 +10804,66 @@
       },
       "narrative": {
         "headline": "Cerrá el día temprano. Mañana se gana esta noche.",
-        "dayStory": "Dormiste 5.2 h (objetivo 7.5 h) con eficiencia 71%. Vas 2840 de 10000 pasos y 8 min activos. FC en reposo 76 lpm · HRV 21 ms. El cuello de botella de hoy es el movimiento.",
+        "noticing": [
+          {
+            "text": "Anoche 5h 12m, 32 min de profundo y 48 min de REM — tu meta es 7.5h. Eficiencia 71%, 5 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "5h 12m"
+          },
+          {
+            "text": "Tu HRV bajó a 21 ms vs 32 ms de tu promedio de la semana. FC en reposo 76 lpm.",
+            "fitbitField": "hrv",
+            "cite": "21 ms"
+          },
+          {
+            "text": "Vas 2.840 de 10.000 pasos · 812 min sentado · 2.1 km.",
+            "fitbitField": "steps",
+            "cite": "2.840"
+          },
+          {
+            "text": "Zonas activas 8 min · SpO₂ 95.4% · agua 700 ml.",
+            "fitbitField": "azm",
+            "cite": "8 min"
+          },
+          {
+            "text": "Tu diario: «Post parcial: 5h 12m, 5 despertares, FC 76, HRV 21 ms. El reloj pide cama, no gym.»",
+            "fitbitField": "steps",
+            "cite": "5h 12m"
+          }
+        ],
+        "because": [
+          "Dormiste 5h 12m con 32 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "HRV 21 ms y FC 76 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "2.840 pasos y 812 min sentado → caminatas cortas entre bloques, no persigas el 10k de noche.",
+          "Vas 700 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Nacho, el Charge 6 no te está mintiendo. Anoche dormiste 5h 12m — tu meta son 7.5h — con 32 min de profundo, 48 de REM y 5 despertares (eficiencia 71%). HRV 21 ms (tu promedio de la semana: 32 ms). FC en reposo 76 lpm.\n\nTu diario de hoy: «Post parcial: 5h 12m, 5 despertares, FC 76, HRV 21 ms. El reloj pide cama, no gym.». En Córdoba eso se siente en el cuerpo. Hoy vas 2.840 pasos, 812 min sentado, AZM 8 min y 700 ml de agua.\n\nEl cuello de botella es recuperar. En Córdoba, con este combo, el mejor estímulo no es el gym: es bajar RPM y no pelearte con el reloj. Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.\n\nEsta lectura la arma el motor local de Lumen con tus números exactos. Con NVIDIA NIM el relato se pone todavía más fino; los datos ya son los tuyos.",
         "energyWindow": "Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
             "action": "Movimiento mínimo: 8–12 min al aire o estirar. No persigas los pasos.",
-            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche.",
-            "kind": "recuperacion"
+            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche. (HRV 21 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "21:00",
             "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
             "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "ahora",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 21 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
@@ -9674,7 +10871,10 @@
           "FC en reposo alta: priorizá calorías de verdad, hidratación y no te exijas al máximo.",
           "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 5h 12m, 32 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si Nacho te quedás hasta las 1:00, mañana el HRV sigue en 21 ms y el sueño no se recupera con un café. Hoy el ROI es dormir, no un último bloque.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-17T21:40:00.000Z"
@@ -9690,6 +10890,7 @@
         "displayName": "Nacho (Charge 6 · demo)",
         "persona": "examen",
         "story": "Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.",
+        "log": "Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.",
         "steps": 4120,
         "calories": 1760,
         "caloriesBmr": 1091,
@@ -9960,8 +11161,7 @@
             "calories": 2380
           }
         ],
-        "source": "demo",
-        "log": "Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no."
+        "source": "demo"
       },
       "log": "Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.",
       "analysis": {
@@ -9979,27 +11179,66 @@
       },
       "narrative": {
         "headline": "Cerrá el día temprano. Mañana se gana esta noche.",
-        "dayStory": "Dormiste 5.8 h (objetivo 7.5 h) con eficiencia 74%. Vas 4120 de 10000 pasos y 12 min activos. FC en reposo 72 lpm · HRV 24 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 5h 48m, 38 min de profundo y 52 min de REM — tu meta es 7.5h. Eficiencia 74%, 4 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "5h 48m"
+          },
+          {
+            "text": "Tu HRV bajó a 24 ms vs 32 ms de tu promedio de la semana. FC en reposo 72 lpm.",
+            "fitbitField": "hrv",
+            "cite": "24 ms"
+          },
+          {
+            "text": "Vas 4.120 de 10.000 pasos · 754 min sentado · 3.1 km.",
+            "fitbitField": "steps",
+            "cite": "4.120"
+          },
+          {
+            "text": "Zonas activas 12 min · SpO₂ 95.8% · agua 900 ml.",
+            "fitbitField": "azm",
+            "cite": "12 min"
+          },
+          {
+            "text": "Tu diario: «Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.»",
+            "fitbitField": "steps",
+            "cite": "5h 48m"
+          }
+        ],
+        "because": [
+          "Dormiste 5h 48m con 38 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "HRV 24 ms y FC 72 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "4.120 pasos y 754 min sentado → caminatas cortas entre bloques, no persigas el 10k de noche.",
+          "Vas 900 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Nacho, el Charge 6 no te está mintiendo. Anoche dormiste 5h 48m — tu meta son 7.5h — con 38 min de profundo, 52 de REM y 4 despertares (eficiencia 74%). HRV 24 ms (tu promedio de la semana: 32 ms). FC en reposo 72 lpm.\n\nTu diario de hoy: «Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.». En Córdoba eso se siente en el cuerpo. Hoy vas 4.120 pasos, 754 min sentado, AZM 12 min y 900 ml de agua.\n\nEl cuello de botella es recuperar. En Córdoba, con este combo, el mejor estímulo no es el gym: es bajar RPM y no pelearte con el reloj. Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.\n\nEsta lectura la arma el motor local de Lumen con tus números exactos. Con NVIDIA NIM el relato se pone todavía más fino; los datos ya son los tuyos.",
         "energyWindow": "Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
             "action": "Movimiento mínimo: 8–12 min al aire o estirar. No persigas los pasos.",
-            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche.",
-            "kind": "recuperacion"
+            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche. (HRV 24 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "21:00",
             "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
             "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "ahora",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 24 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
@@ -10007,7 +11246,10 @@
           "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity.",
           "Muchas horas sentado: levantate 2 min cada 45."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 5h 48m, 38 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si Nacho te quedás hasta las 1:00, mañana el HRV sigue en 24 ms y el sueño no se recupera con un café. Hoy el ROI es dormir, no un último bloque.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-18T19:10:00.000Z"
@@ -10023,6 +11265,7 @@
         "displayName": "Nacho (Charge 6 · demo)",
         "persona": "mixto",
         "story": "Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.",
+        "log": "Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.",
         "steps": 6420,
         "calories": 1980,
         "caloriesBmr": 1228,
@@ -10299,8 +11542,7 @@
             "calories": 2380
           }
         ],
-        "source": "demo",
-        "log": "Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms."
+        "source": "demo"
       },
       "log": "Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.",
       "analysis": {
@@ -10318,7 +11560,38 @@
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 6h 18m, 48 min de profundo y 64 min de REM — tu meta es 7.5h. Eficiencia 78%, 3 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "6h 18m"
+          },
+          {
+            "text": "Tu HRV está en 32 ms vs 32 ms de tu promedio de la semana. FC en reposo 68 lpm.",
+            "fitbitField": "hrv",
+            "cite": "32 ms"
+          },
+          {
+            "text": "Vas 6.420 de 10.000 pasos · 612 min sentado · 4.7 km.",
+            "fitbitField": "steps",
+            "cite": "6.420"
+          },
+          {
+            "text": "Zonas activas 24 min · SpO₂ 96.1% · agua 1100 ml.",
+            "fitbitField": "azm",
+            "cite": "24 min"
+          },
+          {
+            "text": "Tu diario: «Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.»",
+            "fitbitField": "steps",
+            "cite": "6h 18m"
+          }
+        ],
+        "because": [
+          "Dormiste 6h 18m con 48 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "Vas 1100 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Nacho, el Charge 6 no te está mintiendo. Anoche dormiste 6h 18m — tu meta son 7.5h — con 48 min de profundo, 64 de REM y 3 despertares (eficiencia 78%). HRV 32 ms (tu promedio de la semana: 32 ms). FC en reposo 68 lpm.\n\nTu diario de hoy: «Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.». En Córdoba eso se siente en el cuerpo. Hoy vas 6.420 pasos, 612 min sentado, AZM 24 min y 1100 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, Pagweb y el mejor día posible, una caminata y apagar a tiempo— este día sube de nivel.\n\nEsta lectura la arma el motor local de Lumen con tus números exactos. Con NVIDIA NIM el relato se pone todavía más fino; los datos ya son los tuyos.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
@@ -10326,23 +11599,32 @@
             "when": "15:00",
             "action": "Último café. Después, agua o té.",
             "why": "La cafeína tarda ~6 h en bajar a la mitad: si dormiste poco, este corte vale más que cualquier suplemento.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "14:00",
             "action": "Siesta o quietud 12–18 min, alarma dura. No más.",
-            "why": "Recupera alerta sin comerse el sueño de esta noche.",
-            "kind": "recuperacion"
+            "why": "Recupera alerta sin comerse el sueño de esta noche. (HRV 32 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "durante el día",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 32 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 6h 18m, 48 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 6h 18m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-19T17:30:00.000Z"
@@ -10358,6 +11640,7 @@
         "displayName": "Nacho (Charge 6 · demo)",
         "persona": "mixto",
         "story": "Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.",
+        "log": "Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.",
         "steps": 6420,
         "calories": 1980,
         "caloriesBmr": 1228,
@@ -10634,8 +11917,7 @@
             "calories": 2380
           }
         ],
-        "source": "demo",
-        "log": "Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms."
+        "source": "demo"
       },
       "log": "Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.",
       "analysis": {
@@ -10653,7 +11935,38 @@
       },
       "narrative": {
         "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 6h 18m, 48 min de profundo y 64 min de REM — tu meta es 7.5h. Eficiencia 78%, 3 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "6h 18m"
+          },
+          {
+            "text": "Tu HRV está en 32 ms vs 32 ms de tu promedio de la semana. FC en reposo 68 lpm.",
+            "fitbitField": "hrv",
+            "cite": "32 ms"
+          },
+          {
+            "text": "Vas 6.420 de 10.000 pasos · 612 min sentado · 4.7 km.",
+            "fitbitField": "steps",
+            "cite": "6.420"
+          },
+          {
+            "text": "Zonas activas 24 min · SpO₂ 96.1% · agua 1100 ml.",
+            "fitbitField": "azm",
+            "cite": "24 min"
+          },
+          {
+            "text": "Tu diario: «Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.»",
+            "fitbitField": "steps",
+            "cite": "6h 18m"
+          }
+        ],
+        "because": [
+          "Dormiste 6h 18m con 48 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "Vas 1100 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Nacho, el Charge 6 no te está mintiendo. Anoche dormiste 6h 18m — tu meta son 7.5h — con 48 min de profundo, 64 de REM y 3 despertares (eficiencia 78%). HRV 32 ms (tu promedio de la semana: 32 ms). FC en reposo 68 lpm.\n\nTu diario de hoy: «Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.». En Córdoba eso se siente en el cuerpo. Hoy vas 6.420 pasos, 612 min sentado, AZM 24 min y 1100 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, Pagweb y el mejor día posible, una caminata y apagar a tiempo— este día sube de nivel.\n\nEsta lectura la arma el motor local de Lumen con tus números exactos. Con NVIDIA NIM el relato se pone todavía más fino; los datos ya son los tuyos.",
         "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
@@ -10661,23 +11974,32 @@
             "when": "15:00",
             "action": "Último café. Después, agua o té.",
             "why": "La cafeína tarda ~6 h en bajar a la mitad: si dormiste poco, este corte vale más que cualquier suplemento.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "14:00",
             "action": "Siesta o quietud 12–18 min, alarma dura. No más.",
-            "why": "Recupera alerta sin comerse el sueño de esta noche.",
-            "kind": "recuperacion"
+            "why": "Recupera alerta sin comerse el sueño de esta noche. (HRV 32 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "durante el día",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 32 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 6h 18m, 48 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 6h 18m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-20T14:05:00.000Z"
@@ -10693,6 +12015,7 @@
         "displayName": "Nacho (Charge 6 · demo)",
         "persona": "examen",
         "story": "Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.",
+        "log": "Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.",
         "steps": 4120,
         "calories": 1760,
         "caloriesBmr": 1091,
@@ -10963,8 +12286,7 @@
             "calories": 2380
           }
         ],
-        "source": "demo",
-        "log": "Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no."
+        "source": "demo"
       },
       "log": "Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.",
       "analysis": {
@@ -10982,27 +12304,66 @@
       },
       "narrative": {
         "headline": "Cerrá el día temprano. Mañana se gana esta noche.",
-        "dayStory": "Dormiste 5.8 h (objetivo 7.5 h) con eficiencia 74%. Vas 4120 de 10000 pasos y 12 min activos. FC en reposo 72 lpm · HRV 24 ms. El cuello de botella de hoy es el movimiento.",
+        "noticing": [
+          {
+            "text": "Anoche 5h 48m, 38 min de profundo y 52 min de REM — tu meta es 7.5h. Eficiencia 74%, 4 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "5h 48m"
+          },
+          {
+            "text": "Tu HRV bajó a 24 ms vs 32 ms de tu promedio de la semana. FC en reposo 72 lpm.",
+            "fitbitField": "hrv",
+            "cite": "24 ms"
+          },
+          {
+            "text": "Vas 4.120 de 10.000 pasos · 754 min sentado · 3.1 km.",
+            "fitbitField": "steps",
+            "cite": "4.120"
+          },
+          {
+            "text": "Zonas activas 12 min · SpO₂ 95.8% · agua 900 ml.",
+            "fitbitField": "azm",
+            "cite": "12 min"
+          },
+          {
+            "text": "Tu diario: «Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.»",
+            "fitbitField": "steps",
+            "cite": "5h 48m"
+          }
+        ],
+        "because": [
+          "Dormiste 5h 48m con 38 min de profundo → nada de HIIT ni PR: el plan empuja a cama, no a volumen.",
+          "HRV 24 ms y FC 72 lpm → estímulo suave / zona 2. El sistema nervioso está cargado.",
+          "4.120 pasos y 754 min sentado → caminatas cortas entre bloques, no persigas el 10k de noche.",
+          "Vas 900 ml de agua → un vaso ahora; la fatiga de la tarde muchas veces es sed."
+        ],
+        "dayStory": "Nacho, el Charge 6 no te está mintiendo. Anoche dormiste 5h 48m — tu meta son 7.5h — con 38 min de profundo, 52 de REM y 4 despertares (eficiencia 74%). HRV 24 ms (tu promedio de la semana: 32 ms). FC en reposo 72 lpm.\n\nTu diario de hoy: «Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.». En Córdoba eso se siente en el cuerpo. Hoy vas 4.120 pasos, 754 min sentado, AZM 12 min y 900 ml de agua.\n\nEl cuello de botella es recuperar. En Córdoba, con este combo, el mejor estímulo no es el gym: es bajar RPM y no pelearte con el reloj. Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.\n\nEsta lectura la arma el motor local de Lumen con tus números exactos. Con NVIDIA NIM el relato se pone todavía más fino; los datos ya son los tuyos.",
         "energyWindow": "Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
             "action": "Movimiento mínimo: 8–12 min al aire o estirar. No persigas los pasos.",
-            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche.",
-            "kind": "recuperacion"
+            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche. (HRV 24 ms).",
+            "kind": "recuperacion",
+            "from": "local",
+            "fitbitField": "hrv"
           },
           {
             "when": "21:00",
             "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
             "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
-            "kind": "sueno"
+            "kind": "sueno",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "ahora",
             "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada. (HRV 24 ms).",
+            "kind": "energia",
+            "from": "local",
+            "fitbitField": "hrv"
           }
         ],
         "watchouts": [
@@ -11010,7 +12371,10 @@
           "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity.",
           "Muchas horas sentado: levantate 2 min cada 45."
         ],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 5h 48m, 38 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si Nacho te quedás hasta las 1:00, mañana el HRV sigue en 24 ms y el sueño no se recupera con un café. Hoy el ROI es dormir, no un último bloque.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-21T22:20:00.000Z"
@@ -11026,6 +12390,7 @@
         "displayName": "Nacho (Charge 6 · demo)",
         "persona": "recargado",
         "story": "Sábado recargado: 7h 52m, HRV 49 ms, pesas + Parque Sarmiento. 10.840 pasos.",
+        "log": "Sábado recargado: 7h 52m, HRV 49 ms, pesas + Parque Sarmiento. 10.840 pasos.",
         "steps": 10840,
         "calories": 2460,
         "caloriesBmr": 1525,
@@ -11302,8 +12667,7 @@
             "calories": 2380
           }
         ],
-        "source": "demo",
-        "log": "Sábado recargado: 7h 52m, HRV 49 ms, pesas + Parque Sarmiento. 10.840 pasos."
+        "source": "demo"
       },
       "log": "Sábado recargado: 7h 52m, HRV 49 ms, pesas + Parque Sarmiento. 10.840 pasos.",
       "analysis": {
@@ -11321,25 +12685,62 @@
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.9 h (objetivo 7.5 h) con eficiencia 91%. Vas 10840 de 10000 pasos y 60 min activos. FC en reposo 56 lpm · HRV 49 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 52m, 86 min de profundo y 102 min de REM — tu meta es 7.5h. Eficiencia 91%, 1 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 52m"
+          },
+          {
+            "text": "Tu HRV subió a 49 ms vs 32 ms de tu promedio de la semana. FC en reposo 56 lpm.",
+            "fitbitField": "hrv",
+            "cite": "49 ms"
+          },
+          {
+            "text": "Vas 10.840 de 10.000 pasos · 428 min sentado · 8.2 km.",
+            "fitbitField": "steps",
+            "cite": "10.840"
+          },
+          {
+            "text": "Zonas activas 58 min · SpO₂ 97.2% · agua 1800 ml.",
+            "fitbitField": "azm",
+            "cite": "58 min"
+          },
+          {
+            "text": "Tu diario: «Sábado recargado: 7h 52m, HRV 49 ms, pesas + Parque Sarmiento. 10.840 pasos.»",
+            "fitbitField": "steps",
+            "cite": "7h 52m"
+          }
+        ],
+        "because": [
+          "Con 7h 52m y 10.840 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Nacho, el Charge 6 no te está mintiendo. Anoche dormiste 7h 52m — tu meta son 7.5h — con 86 min de profundo, 102 de REM y 1 despertares (eficiencia 91%). HRV 49 ms (tu promedio de la semana: 32 ms). FC en reposo 56 lpm.\n\nTu diario de hoy: «Sábado recargado: 7h 52m, HRV 49 ms, pesas + Parque Sarmiento. 10.840 pasos.». En Córdoba eso se siente en el cuerpo. Hoy vas 10.840 pasos, 428 min sentado, AZM 58 min y 1800 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, Pagweb y el mejor día posible, una caminata y apagar a tiempo— este día sube de nivel.\n\nEsta lectura la arma el motor local de Lumen con tus números exactos. Con NVIDIA NIM el relato se pone todavía más fino; los datos ya son los tuyos.",
         "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
             "action": "Hacé el trabajo más difícil de estudio, Pagweb y el mejor día posible en los próximos 90 min.",
-            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día.",
-            "kind": "foco"
+            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día. (anoche 7h 52m, 86 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
             "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 52m, 86 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 52m, 86 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 52m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-22T12:15:00.000Z"
@@ -11355,6 +12756,7 @@
         "displayName": "Nacho (Charge 6 · demo)",
         "persona": "barrio",
         "story": "Domingo por Güemes: 7h 18m y 12.880 pasos de zona 2. Siesta corta, no PR.",
+        "log": "Domingo por Güemes: 7h 18m y 12.880 pasos de zona 2. Siesta corta, no PR.",
         "steps": 12880,
         "calories": 2380,
         "caloriesBmr": 1476,
@@ -11631,8 +13033,7 @@
             "calories": 2380
           }
         ],
-        "source": "demo",
-        "log": "Domingo por Güemes: 7h 18m y 12.880 pasos de zona 2. Siesta corta, no PR."
+        "source": "demo"
       },
       "log": "Domingo por Güemes: 7h 18m y 12.880 pasos de zona 2. Siesta corta, no PR.",
       "analysis": {
@@ -11650,7 +13051,37 @@
       },
       "narrative": {
         "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.3 h (objetivo 7.5 h) con eficiencia 88%. Vas 12880 de 10000 pasos y 54 min activos. FC en reposo 60 lpm · HRV 41 ms. El cuello de botella de hoy es el ritmo del día.",
+        "noticing": [
+          {
+            "text": "Anoche 7h 18m, 72 min de profundo y 88 min de REM — tu meta es 7.5h. Eficiencia 88%, 2 despertares.",
+            "fitbitField": "sleepMinutes",
+            "cite": "7h 18m"
+          },
+          {
+            "text": "Tu HRV subió a 41 ms vs 32 ms de tu promedio de la semana. FC en reposo 60 lpm.",
+            "fitbitField": "hrv",
+            "cite": "41 ms"
+          },
+          {
+            "text": "Vas 12.880 de 10.000 pasos · 490 min sentado · 9.6 km.",
+            "fitbitField": "steps",
+            "cite": "12.880"
+          },
+          {
+            "text": "Zonas activas 55 min · SpO₂ 96.8% · agua 1600 ml.",
+            "fitbitField": "azm",
+            "cite": "55 min"
+          },
+          {
+            "text": "Tu diario: «Domingo por Güemes: 7h 18m y 12.880 pasos de zona 2. Siesta corta, no PR.»",
+            "fitbitField": "steps",
+            "cite": "7h 18m"
+          }
+        ],
+        "because": [
+          "Con 7h 18m y 12.880 pasos, el mejor día es sostener el ritmo, no forzar un extra heroico."
+        ],
+        "dayStory": "Nacho, el Charge 6 no te está mintiendo. Anoche dormiste 7h 18m — tu meta son 7.5h — con 72 min de profundo, 88 de REM y 2 despertares (eficiencia 88%). HRV 41 ms (tu promedio de la semana: 32 ms). FC en reposo 60 lpm.\n\nTu diario de hoy: «Domingo por Güemes: 7h 18m y 12.880 pasos de zona 2. Siesta corta, no PR.». En Córdoba eso se siente en el cuerpo. Hoy vas 12.880 pasos, 490 min sentado, AZM 55 min y 1600 ml de agua.\n\nHay margen real. Con dos o tres movimientos puntuales —un bloque de estudio, Pagweb y el mejor día posible, una caminata y apagar a tiempo— este día sube de nivel.\n\nEsta lectura la arma el motor local de Lumen con tus números exactos. Con NVIDIA NIM el relato se pone todavía más fino; los datos ya son los tuyos.",
         "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
         "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
@@ -11658,17 +13089,24 @@
             "when": "ahora",
             "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
             "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
-            "kind": "foco"
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           },
           {
             "when": "hoy",
             "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa. (anoche 7h 18m, 72 min de profundo (meta 7.5h)).",
+            "kind": "foco",
+            "from": "local",
+            "fitbitField": "sleepMinutes"
           }
         ],
         "watchouts": [],
-        "mode": "general"
+        "tonight": "Apagá a las 23:15. Objetivo 7.5h (anoche fueron 7h 18m, 72 min de profundo). Celular fuera de la cama, luz cálida, sin un último scroll.",
+        "tradeoff": "Si ignorás el apagado, 7h 18m de anoche se convierte en otra noche corta. El Charge 6 lo va a volver a contar mañana.",
+        "mode": "general",
+        "engine": "local"
       },
       "engine": "local",
       "createdAt": "2026-08-23T16:00:00.000Z"

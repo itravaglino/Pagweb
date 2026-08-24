@@ -186,7 +186,8 @@ export function Wellness({ settings, setSettings }) {
       try {
         const data = await loadDay();
         if (cancelled) return;
-        await runCoach(data, settings, { persist: false });
+        const seq = ++pickSeq.current;
+        await runCoach(data, settings, { persist: false, seq });
       } catch (err) {
         if (!cancelled) {
           setError(err.message || SERVER_DOWN);
@@ -246,7 +247,8 @@ export function Wellness({ settings, setSettings }) {
     const next = { ...settings, fitnessMode: id };
     setSettings(next);
     setCoach(null);
-    await runCoach(day, next);
+    const seq = ++pickSeq.current;
+    await runCoach(day, next, { seq });
   }
 
   function focusMetric(field) {
@@ -284,6 +286,27 @@ export function Wellness({ settings, setSettings }) {
   return (
     <div className="grid wellness-page">
       {error ? <div className="banner banner-error">{error}</div> : null}
+
+      <CoachAgent
+        coach={coach}
+        loading={loading}
+        phase={phase}
+        error={error}
+        nvidiaReady={nvidiaReady}
+        writtenFor={who}
+        modeLabel={activeMode.label}
+        onNoticing={focusMetric}
+        highlightField={highlightField}
+      >
+        {/* voice-loop-hook: VoiceCoach — keep on rebase (bc-ad0b7fdc / nacho-voice) */}
+        <VoiceCoach
+          embedded
+          metrics={metrics}
+          persona={persona}
+          settings={settings}
+          character={character}
+        />
+      </CoachAgent>
 
       <article className="card wellness-hero">
         <div>
@@ -383,26 +406,6 @@ export function Wellness({ settings, setSettings }) {
           </div>
         ) : null}
       </article>
-
-      <CoachAgent
-        coach={coach}
-        loading={loading}
-        phase={phase}
-        error={error}
-        nvidiaReady={nvidiaReady}
-        writtenFor={who}
-        modeLabel={activeMode.label}
-        onNoticing={focusMetric}
-        highlightField={highlightField}
-      >
-        <VoiceCoach
-          embedded
-          metrics={metrics}
-          persona={persona}
-          settings={settings}
-          character={character}
-        />
-      </CoachAgent>
 
       {metrics ? (
         <article className="card" id="fitbit-reloj">

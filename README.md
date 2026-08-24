@@ -16,9 +16,13 @@ Ahí corren Estudio, Mejor Día, Archivo, Lumen, voz y NVIDIA NIM del servidor. 
 
 UI + motor local. NVIDIA **solo** si pegás una clave `nvapi-` en el navegador (CORS). OAuth Fitbit **no** anda acá: hace falta el túnel.
 
-- [jsDelivr](https://cdn.jsdelivr.net/gh/itravaglino/Pagweb@cursor/wellness-dashboard-demo-561c/docs/index.html)
-- [raw.githack](https://raw.githack.com/itravaglino/Pagweb/cursor/wellness-dashboard-demo-561c/docs/index.html)
-- jsDelivr por SHA (si el CDN está cacheado): [docs/index.html @ e8d8290](https://cdn.jsdelivr.net/gh/itravaglino/Pagweb@e8d829005a2a6e102830732a92fe7ec90923f34c/docs/index.html)
+Abrí este (sirve HTML de verdad, no texto plano):
+
+- **https://raw.githack.com/itravaglino/Pagweb/cursor/wellness-dashboard-demo-561c/docs/index.html**
+
+jsDelivr también tiene el archivo, pero lo sirve como `text/plain` (en el celu puede verse el código). Si el CDN está cacheado, usá el SHA:
+
+- https://cdn.jsdelivr.net/gh/itravaglino/Pagweb@e8d829005a2a6e102830732a92fe7ec90923f34c/docs/index.html
 
 ### GitHub Pages
 

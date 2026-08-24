@@ -1,0 +1,557 @@
+.clock-face,
+.stats-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f5f1ea;
+  padding: 18px;
+}
+
+.clock-face.is-dim {
+  opacity: 0.72;
+}
+
+.clock-ring {
+  width: 58%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, #1a1a1c, #050506 72%);
+  box-shadow: inset 0 0 0 1px #2c2c32;
+}
+
+.tick {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 8px;
+  background: #8d8d96;
+  transform-origin: 50% 50%;
+}
+
+.tick.major {
+  height: 12px;
+  background: #e8e4dc;
+}
+
+.hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 3px;
+  height: 28%;
+  background: #fff;
+  border-radius: 3px;
+  transform-origin: 50% 100%;
+}
+
+.hand.hour {
+  height: 20%;
+  width: 4px;
+  background: #ffd7a8;
+}
+
+.cap {
+  position: absolute;
+  inset: 47%;
+  background: #ffd7a8;
+  border-radius: 50%;
+}
+
+.clock-digital {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.clock-digital strong {
+  display: block;
+  font-family: Sora, Outfit, sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+}
+
+.clock-digital em {
+  color: #b9b3c8;
+  font-style: normal;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.stats-kicker {
+  margin: 0 0 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: #9c96ad;
+}
+
+.rings {
+  display: flex;
+  gap: 4px;
+}
+
+.stat-ring {
+  width: 78px;
+  text-align: center;
+  font-size: 10px;
+  color: #c6c0d4;
+}
+
+.stat-ring svg {
+  width: 72px;
+  height: 72px;
+  transform: rotate(-90deg);
+}
+
+.stat-ring .track {
+  fill: none;
+  stroke: #22232a;
+  stroke-width: 6;
+}
+
+.stat-ring .meter {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.stat-ring b {
+  display: block;
+  margin-top: -46px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.vitals {
+  display: flex;
+  gap: 24px;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.vitals small {
+  display: block;
+  color: #9c96ad;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.vitals strong {
+  font-size: 22px;
+}
+
+.clock-face.os5 {
+  justify-content: space-between;
+  padding: 28px 22px 26px;
+  background: radial-gradient(circle at 50% 20%, #1c1d22, #050506 62%);
+}
+
+.clock-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #b9b3c8;
+}
+
+.fitbit-dots {
+  display: flex;
+  gap: 4px;
+}
+.fitbit-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c5e86c;
+}
+.fitbit-dots i:nth-child(2) { background: #ff7a59; }
+.fitbit-dots i:nth-child(3) { background: #f04771; }
+.fitbit-dots i:nth-child(4) { background: #7ec8ff; }
+
+.clock-time {
+  margin: 0;
+  font-family: Sora, Outfit, sans-serif;
+  font-size: 64px;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+
+.clock-date {
+  margin: 0;
+  text-transform: capitalize;
+  color: #b9b3c8;
+}
+
+.clock-complications {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.clock-complications small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9c96ad;
+}
+.clock-complications strong {
+  font-size: 22px;
+}
+
+.today-face,
+.heart-face,
+.exercise-face,
+.control-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  color: #f5f1ea;
+}
+
+.today-kicker {
+  margin: 0 0 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: #9c96ad;
+}
+
+.today-rings {
+  display: flex;
+  gap: 2px;
+}
+
+.today-ring {
+  width: 92px;
+  text-align: center;
+  font-size: 10px;
+  color: #c6c0d4;
+}
+.today-ring svg {
+  width: 88px;
+  height: 88px;
+  transform: rotate(-90deg);
+}
+.today-ring .track {
+  fill: none;
+  stroke: #22232a;
+  stroke-width: 7;
+}
+.today-ring .meter {
+  fill: none;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+.today-ring b {
+  display: block;
+  margin-top: -56px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.today-vitals {
+  display: flex;
+  gap: 28px;
+  margin-top: 22px;
+  text-align: center;
+}
+.today-vitals small {
+  display: block;
+  color: #9c96ad;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.today-vitals strong {
+  font-size: 22px;
+}
+
+.heart-bpm {
+  margin: 0;
+  font-size: 64px;
+  font-family: Sora, Outfit, sans-serif;
+  line-height: 1;
+}
+.heart-bpm small {
+  font-size: 16px;
+  margin-left: 6px;
+  color: #f04771;
+}
+.heart-zone {
+  color: #f04771;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.heart-bar {
+  display: flex;
+  width: 70%;
+  height: 8px;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.heart-bar .z { flex: 1; }
+.heart-bar .fat { background: #c5e86c; }
+.heart-bar .cardio { background: #ff7a59; }
+.heart-bar .peak { background: #f04771; }
+
+.exercise-face ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 78%;
+}
+.exercise-face button {
+  width: 100%;
+  margin: 6px 0;
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: #1c1d24;
+  color: #fff;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 80%;
+}
+.control-grid button {
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 8px;
+  background: #1c1d24;
+  color: #fff;
+}
+.bright {
+  margin-top: 14px;
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9c96ad;
+}
+
+
+.clock-face.os5 {
+  justify-content: space-between;
+  padding: 22px 22px 18px;
+}
+
+.clock-face.is-dim,
+.clock-face.os5.is-dim {
+  opacity: 0.55;
+}
+
+.clock-top,
+.clock-complications {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fitbit-dots {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+.fitbit-dots i {
+  background: #00b0b9;
+  border-radius: 50%;
+}
+
+.clock-top .batt {
+  color: #8e8e96;
+  font-size: 11px;
+}
+
+.clock-time {
+  margin: 0;
+  font-family: Sora, Outfit, sans-serif;
+  font-size: 64px;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+
+.clock-date {
+  margin: 0;
+  color: #b9b3c8;
+  text-transform: capitalize;
+}
+
+.clock-complications strong {
+  display: block;
+  font-size: 18px;
+}
+.clock-complications small {
+  color: #8e8e96;
+  letter-spacing: 0.12em;
+  font-size: 9px;
+}
+
+.today-face,
+.heart-face,
+.exercise-face,
+.control-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f5f1ea;
+  padding: 18px;
+}
+
+.today-kicker {
+  margin: 0 0 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: #00b0b9;
+}
+
+.today-rings {
+  display: flex;
+  gap: 2px;
+}
+
+.today-ring {
+  width: 92px;
+  text-align: center;
+  font-size: 10px;
+  color: #c6c0d4;
+}
+.today-ring svg {
+  width: 84px;
+  height: 84px;
+  transform: rotate(-90deg);
+}
+.today-ring .track {
+  fill: none;
+  stroke: #22232a;
+  stroke-width: 7;
+}
+.today-ring .meter {
+  fill: none;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+.today-ring b {
+  display: block;
+  margin-top: -54px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.today-vitals {
+  display: flex;
+  gap: 28px;
+  margin-top: 22px;
+  text-align: center;
+}
+.today-vitals small {
+  display: block;
+  color: #9c96ad;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.today-vitals strong {
+  font-size: 22px;
+}
+
+.heart-bpm {
+  margin: 0;
+  font-size: 72px;
+  line-height: 0.9;
+  font-family: Sora, Outfit, sans-serif;
+}
+.heart-bpm small {
+  font-size: 16px;
+  margin-left: 6px;
+  color: #f04771;
+}
+.heart-zone {
+  color: #f04771;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.heart-bar {
+  display: flex;
+  width: 70%;
+  height: 8px;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.heart-bar .z.fat { flex: 1; background: #f5c542; }
+.heart-bar .z.cardio { flex: 1; background: #ff7a59; }
+.heart-bar .z.peak { flex: 1; background: #f04771; }
+
+.exercise-face ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 78%;
+  display: grid;
+  gap: 8px;
+}
+.exercise-face button {
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: #16181d;
+  color: #fff;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 80%;
+}
+.control-grid button,
+.control-center .bright {
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 8px;
+  background: #16181d;
+  color: #fff;
+}
+.control-center .bright {
+  width: 80%;
+  margin-top: 12px;
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9c96ad;
+}
+

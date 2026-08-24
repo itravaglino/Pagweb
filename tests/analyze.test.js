@@ -124,7 +124,8 @@ test("modo sleep y focus cambian el plan local", () => {
 });
 
 test("nvidiaSystemPrompt incluye el modo y a Nacho", async () => {
-  const { nvidiaSystemPrompt } = await import("../shared/fitness.js");
+  const { characterSummary } = await import("../shared/coach.js");
+  const { nvidiaSystemPrompt, coachUserPayload } = await import("../shared/fitness.js");
   const prompt = nvidiaSystemPrompt(
     { name: "Nacho", org: "UNC", city: "Córdoba", focus: "estudio UNC" },
     { hour: 11 },
@@ -134,4 +135,13 @@ test("nvidiaSystemPrompt incluye el modo y a Nacho", async () => {
   assert.ok(prompt.includes("UNC"));
   assert.ok(prompt.toLowerCase().includes("fitness"));
   assert.ok(prompt.includes("build.nvidia.com") || prompt.includes("NVIDIA"));
+  assert.ok(prompt.includes("noticing"));
+  const payload = coachUserPayload({
+    metrics: { steps: 100, sleepMinutes: 300, hrvRmssd: 20, source: "demo" },
+    profile: { name: "Nacho" },
+    analysis: { hour: 11, overall: 40 },
+    character: characterSummary(),
+  });
+  assert.ok(payload.archivo4semanasCami);
+  assert.ok(JSON.stringify(payload).includes("promedios4semanas"));
 });

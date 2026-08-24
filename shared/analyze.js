@@ -1,6 +1,7 @@
 /** Motor local de "mejor día": puntúa métricas estilo Fitbit y arma un plan horario. */
 
-import { fitnessMode, normalizeMode } from "./fitness.js";
+import { normalizeMode } from "./fitness.js";
+import { buildDeepNarrative } from "./coach.js";
 
 export function clamp(n, min = 0, max = 100) {
   return Math.max(min, Math.min(max, n));
@@ -439,6 +440,8 @@ export function analyzeDay(metrics = {}, profile = {}, now = new Date()) {
     hour,
     goals,
     mode,
+    metrics,
+    profile,
     generatedAt: now.toISOString(),
   };
 }
@@ -473,17 +476,14 @@ export function energyWindowFor(hour, scores = {}, mode = "general") {
   return "Pasó la ventana de rendimiento. Todo lo que sume ahora es higiene de sueño.";
 }
 
-export function localNarrative(analysis) {
-  const spec = fitnessMode(analysis.mode);
-  return {
-    headline: analysis.headline,
-    dayStory: analysis.summary,
-    energyWindow: energyWindowFor(analysis.hour, analysis.scores, analysis.mode),
-    closing: spec.localClosing,
-    plan: analysis.plan,
-    watchouts: analysis.watchouts,
-    mode: spec.id,
-  };
+export function localNarrative(analysis = {}, metricsInput, extras = {}) {
+  const metrics = metricsInput || analysis.metrics || {};
+  return buildDeepNarrative(
+    analysis,
+    metrics,
+    extras,
+    energyWindowFor(analysis.hour, analysis.scores, analysis.mode)
+  );
 }
 
 export function extractJsonObject(text) {

@@ -4,13 +4,17 @@ import {
   CHARACTER,
   CHARACTER_TO,
   getCharacterPayload,
-  getCharacterSummary,
   listCharacterDays,
   publicIdentity,
 } from "@shared/character.js";
+import { characterSummary } from "@shared/coach.js";
 import {
   DEFAULT_NVIDIA_MODEL,
+  NVIDIA_MAX_TOKENS,
+  NVIDIA_TEMPERATURE,
   NVIDIA_URL,
+  coachUserPayload,
+  normalizeCoachNarrative,
   nvidiaSystemPrompt,
 } from "@shared/fitness.js";
 
@@ -90,7 +94,7 @@ export async function fetchCharacter() {
   try {
     return await tryJson("/api/character");
   } catch {
-    return { identity: publicIdentity(), summary: getCharacterSummary(), offline: true };
+    return { identity: publicIdentity(), summary: characterSummary(), offline: true };
   }
 }
 
@@ -132,7 +136,7 @@ export async function fetchNvidiaStatus() {
   }
 }
 
-async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model, mode }) {
+async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model, mode, character, local }) {
   const res = await fetch(NVIDIA_URL, {
     method: "POST",
     headers: {
@@ -149,11 +153,11 @@ async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model, mo
         },
         {
           role: "user",
-          content: JSON.stringify({ fitbit: metrics, persona: profile, analisisLocal: analysis }),
+          content: JSON.stringify(coachUserPayload({ metrics, profile, analysis, mode, character })),
         },
       ],
-      temperature: 0.55,
-      max_tokens: 900,
+      temperature: NVIDIA_TEMPERATURE,
+      max_tokens: NVIDIA_MAX_TOKENS,
     }),
   });
   const body = await res.json().catch(() => ({}));
@@ -163,34 +167,21 @@ async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model, mo
   return {
     ok: true,
     model: body.model || model,
-    narrative: {
-      headline: parsed.headline,
-      dayStory: parsed.dayStory || analysis.summary,
-      energyWindow: parsed.energyWindow || "",
-      closing: parsed.closing || "",
-      plan: Array.isArray(parsed.bestDayPlan)
-        ? parsed.bestDayPlan.slice(0, 5).map((step) => ({
-            when: step.when || "hoy",
-            action: step.action || "",
-            why: step.why || "",
-            kind: "nvidia",
-          }))
-        : analysis.plan,
-      watchouts: Array.isArray(parsed.watchouts) ? parsed.watchouts : analysis.watchouts,
-      mode,
-    },
+    narrative: normalizeCoachNarrative(parsed, local, "nvidia"),
   };
 }
 
-export async function fetchCoach({ metrics, persona, nvidiaKey, model, profile, mode }) {
+export async function fetchCoach({ metrics, persona, nvidiaKey, model, profile, mode, history }) {
   try {
     return await tryJson("/api/coach", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ metrics, persona, nvidiaKey, model, profile, mode }),
+      body: JSON.stringify({ metrics, persona, nvidiaKey, model, profile, mode, history }),
     });
   } catch {
     const analysis = analyzeDay(metrics, { ...profile, mode });
+    const character = history || characterSummary();
+    const local = localNarrative(analysis, metrics, { profile, character });
     if (nvidiaKey) {
       try {
         const nvidia = await nvidiaFromBrowser({
@@ -200,9 +191,11 @@ export async function fetchCoach({ metrics, persona, nvidiaKey, model, profile, 
           apiKey: nvidiaKey,
           model,
           mode,
+          character,
+          local,
         });
         if (nvidia.ok) {
-          return { analysis, narrative: nvidia.narrative, engine: "nvidia", model: nvidia.model, mode };
+          return { analysis, narrative: nvidia.narrative, engine: "nvidia", model: nvidia.model, mode, writtenFor: profile?.nickname || profile?.name };
         }
       } catch {
         /* CORS u otro recorte: motor local */
@@ -210,10 +203,11 @@ export async function fetchCoach({ metrics, persona, nvidiaKey, model, profile, 
     }
     return {
       analysis,
-      narrative: localNarrative(analysis),
+      narrative: local,
       engine: "local",
       fallbackReason: "offline",
       mode,
+      writtenFor: profile?.nickname || profile?.name,
     };
   }
 }

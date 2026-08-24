@@ -540,6 +540,165 @@ html[data-theme="tinta"] .progress-slab b {
 }
 .metric-tile .hint { font-size: 11px; color: var(--muted); }
 .metric-tile.on { border-color: var(--ink); }
+.metric-tile.flash { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent); }
+.plan li.done strong { text-decoration: line-through; opacity: 0.55; }
+.plan li label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.plan li input[type="checkbox"] { margin-top: 4px; }
+.plan-deep .plan-why,
+.plan-why {
+  display: block;
+  margin-top: 6px;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink);
+  cursor: pointer;
+}
+.plan-why span {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-right: 6px;
+}
+
+.coach-agent {
+  border-width: 2px;
+  border-color: var(--ink);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--accent) 7%, var(--bg-elev)), var(--bg-elev) 28%);
+}
+.coach-agent.nvidia { border-color: var(--accent-2); }
+.coach-agent.local { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+.coach-agent.writing { min-height: 180px; }
+.coach-live {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+}
+.coach-pulse {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  animation: coach-blink 1s ease-in-out infinite;
+}
+@keyframes coach-blink {
+  0%, 100% { opacity: 0.35; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+.coach-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.coach-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 7px 11px;
+  border-radius: 4px;
+  border: var(--hair) solid var(--line);
+}
+.coach-badge.on {
+  color: var(--accent-2);
+  border-color: color-mix(in srgb, var(--accent-2) 50%, var(--line));
+}
+.coach-badge.off { color: var(--muted); }
+.coach-headline {
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.05;
+  margin: 6px 0 16px;
+}
+.coach-noticing h2,
+.coach-plan h2 { margin-bottom: 10px; }
+.coach-noticing ul,
+.coach-because ul,
+.coach-watchouts ul,
+.coach-note-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.noticing-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: var(--hair) solid var(--line);
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.noticing-item.on,
+.noticing-item:hover { border-color: var(--ink); }
+.coach-letter {
+  margin: 18px 0 8px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+}
+.coach-letter p {
+  margin: 0 0 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 68ch;
+}
+.coach-letter footer {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.coach-window { margin: 12px 0; }
+.coach-because { margin: 16px 0; }
+.coach-because li { padding-left: 0; font-size: 14px; }
+.coach-closeout {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+@media (min-width: 720px) {
+  .coach-closeout { grid-template-columns: 1fr 1fr; }
+}
+.coach-closeout h3 { margin-bottom: 6px; }
+.coach-watchouts { margin-top: 16px; }
+.coach-closing { margin-top: 18px; }
+.coach-note { margin: 16px 0; }
+.coach-note-list li { font-size: 14px; line-height: 1.45; }
+.agent-line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 8px 0 0;
+  color: var(--ink);
+}
+mark {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: inherit;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.character-head h2 .muted { font-size: 0.62em; font-weight: 500; }
 .viz-detail { margin: 0 0 16px; }
 .viz-grid {
   display: grid;

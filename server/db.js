@@ -5,6 +5,7 @@ import { PERSONAS, listDemoWeek, toMetrics } from "../shared/sampleFitbit.js";
 import { analyzeDay, localNarrative } from "../shared/analyze.js";
 import { NACHO } from "../shared/profile.js";
 import { CHARACTER, allCharacterPayloads } from "../shared/character.js";
+import { characterSummary } from "../shared/coach.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -49,12 +50,23 @@ function hasRichWeek(db) {
   const character = (db?.entries || []).filter(
     (e) => String(e.id).startsWith("seed-personaje-") && (e.metrics?.hourlySteps?.length || 0) === 24
   );
-  return (db?.version || 0) >= 4 && week.length >= 7 && character.length >= 28;
+  return (db?.version || 0) >= 5 && week.length >= 7 && character.length >= 28;
 }
 
 function entryFromPayload(payload, { id, label, at, extra = {} }) {
   const metrics = { ...toMetrics(payload), log: payload.log || payload.story || "" };
-  const analysis = analyzeDay(metrics, coachProfile(), new Date(at));
+  const isCami = Boolean(extra.character || payload.source === "character" || payload.persona === CHARACTER.id);
+  const profile = isCami
+    ? {
+        name: CHARACTER.nickname,
+        nickname: CHARACTER.nickname,
+        barrio: CHARACTER.barrio,
+        timezone: CHARACTER.timezone,
+        stepsGoal: CHARACTER.goal.steps,
+        sleepGoal: CHARACTER.goal.sleepHours,
+      }
+    : coachProfile();
+  const analysis = analyzeDay(metrics, profile, new Date(at));
   return {
     id,
     kind: "fitbit-day",
@@ -68,7 +80,10 @@ function entryFromPayload(payload, { id, label, at, extra = {} }) {
       band: analysis.band,
       scores: analysis.scores,
     },
-    narrative: localNarrative(analysis),
+    narrative: localNarrative(analysis, metrics, {
+      profile,
+      character: isCami ? characterSummary() : null,
+    }),
     engine: "local",
     createdAt: new Date(at).toISOString(),
     ...extra,
@@ -95,7 +110,7 @@ export function seedDatabase() {
     });
   });
   return {
-    version: 4,
+    version: 5,
     updatedAt: new Date().toISOString(),
     profile: { ...NACHO },
     studio: {

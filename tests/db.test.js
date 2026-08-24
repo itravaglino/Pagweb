@@ -30,7 +30,7 @@ test("addEntry prepends and caps", () => {
 test("seedDatabase is deterministic enough", () => {
   const seed = seedDatabase();
   assert.equal(seed.profile.org, "UNC");
-  assert.equal(seed.version, 4);
+  assert.equal(seed.version, 5);
   const week = seed.entries.filter((e) => String(e.id).startsWith("seed-semana-"));
   const character = seed.entries.filter((e) => String(e.id).startsWith("seed-personaje-"));
   assert.equal(week.length, 7);

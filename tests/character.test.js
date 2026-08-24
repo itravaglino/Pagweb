@@ -12,6 +12,7 @@ import {
   listCharacterDays,
   publicIdentity,
 } from "../shared/character.js";
+import { characterSummary } from "../shared/coach.js";
 import { toMetrics } from "../shared/sampleFitbit.js";
 
 test("personaje tiene identidad completa", () => {
@@ -63,11 +64,15 @@ test("etapas de sueño suman los minutos dormidos", () => {
 
 test("API shape de /character y un día", () => {
   const summary = getCharacterSummary();
+  const deep = characterSummary();
   assert.equal(summary.days, 28);
   assert.equal(summary.weeks.length, 4);
   assert.ok(summary.thisWeek.avgSteps > summary.lastWeek.avgSteps);
   assert.ok(summary.streak >= 1);
   assert.equal(summary.lastNight.date, CHARACTER_TO);
+  assert.ok(deep.lastLogs.length === 7);
+  assert.ok(deep.mesasWeek.nights >= 4);
+  assert.ok(deep.worstSleepNight.date);
   const payload = getCharacterPayload("2026-08-11");
   assert.equal(payload.kind, "exam");
   assert.ok(payload.log.toLowerCase().includes("mesa"));

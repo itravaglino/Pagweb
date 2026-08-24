@@ -1,7 +1,12 @@
 import { analyzeDay, extractJsonObject, localNarrative } from "../shared/analyze.js";
+import { characterSummary } from "../shared/coach.js";
 import {
   DEFAULT_NVIDIA_MODEL,
+  NVIDIA_MAX_TOKENS,
+  NVIDIA_TEMPERATURE,
   NVIDIA_URL,
+  coachUserPayload,
+  normalizeCoachNarrative,
   normalizeMode,
   nvidiaSystemPrompt,
 } from "../shared/fitness.js";
@@ -9,55 +14,25 @@ import {
 const DEFAULT_MODEL = process.env.NVIDIA_MODEL || DEFAULT_NVIDIA_MODEL;
 const FAST_MODEL = "meta/llama-3.1-8b-instruct";
 
-function buildMessages(metrics, profile, analysis, mode = "general") {
+function resolveHistory(metrics, history) {
+  try {
+    return { character: history || characterSummary() };
+  } catch {
+    return { character: history || null };
+  }
+}
+
+function buildMessages(metrics, profile, analysis, mode = "general", character) {
   return [
     { role: "system", content: nvidiaSystemPrompt(profile, analysis, mode) },
     {
       role: "user",
-      content: JSON.stringify(
-        {
-          persona: profile,
-          fitbit: metrics,
-          analisisLocal: {
-            overall: analysis.overall,
-            band: analysis.band,
-            scores: analysis.scores,
-            headline: analysis.headline,
-            planBase: analysis.plan,
-            watchouts: analysis.watchouts,
-            hour: analysis.hour,
-            mode: analysis.mode,
-          },
-        },
-        null,
-        2
-      ),
+      content: JSON.stringify(coachUserPayload({ metrics, profile, analysis, mode, character }), null, 2),
     },
   ];
 }
 
-function narrativeFrom(parsed, analysis, mode) {
-  const rawPlan = parsed.bestDayPlan || parsed.bestDayPlan;
-  const plan = Array.isArray(rawPlan)
-    ? rawPlan.slice(0, 5).map((step) => ({
-        when: step.when || step.when || "hoy",
-        action: step.action || step.action || "",
-        why: step.why || step.why || "",
-        kind: "nvidia",
-      }))
-    : analysis.plan;
-  return {
-    headline: parsed.headline,
-    dayStory: parsed.dayStory || parsed.dayStory || analysis.summary,
-    energyWindow: parsed.energyWindow || parsed.energyWindow || "",
-    closing: parsed.closing || "",
-    plan,
-    watchouts: Array.isArray(parsed.watchouts) ? parsed.watchouts.slice(0, 4) : analysis.watchouts,
-    mode: normalizeMode(mode),
-  };
-}
-
-async function callNvidia({ key, modelId, metrics, profile, analysis, mode, ms }) {
+async function callNvidia({ key, modelId, metrics, profile, analysis, mode, character, local, ms }) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), ms);
   try {
@@ -70,10 +45,10 @@ async function callNvidia({ key, modelId, metrics, profile, analysis, mode, ms }
       },
       body: JSON.stringify({
         model: modelId,
-        messages: buildMessages(metrics, profile, analysis, mode),
-        temperature: 0.55,
+        messages: buildMessages(metrics, profile, analysis, mode, character),
+        temperature: NVIDIA_TEMPERATURE,
         top_p: 0.85,
-        max_tokens: 900,
+        max_tokens: NVIDIA_MAX_TOKENS,
         stream: false,
       }),
       signal: controller.signal,
@@ -91,7 +66,7 @@ async function callNvidia({ key, modelId, metrics, profile, analysis, mode, ms }
     return {
       ok: true,
       model: body?.model || modelId,
-      narrative: narrativeFrom(parsed, analysis, mode),
+      narrative: normalizeCoachNarrative(parsed, local, "nvidia"),
     };
   } catch (error) {
     const reason = error.name === "AbortError" ? "timeout" : "network";
@@ -101,14 +76,14 @@ async function callNvidia({ key, modelId, metrics, profile, analysis, mode, ms }
   }
 }
 
-export async function coachWithNvidia({ metrics, profile, analysis, apiKey, model, mode }) {
+export async function coachWithNvidia({ metrics, profile, analysis, apiKey, model, mode, character, local }) {
   const key = apiKey || process.env.NVIDIA_API_KEY;
   if (!key) {
     return { ok: false, reason: "missing_key" };
   }
 
   const chosen = model || DEFAULT_MODEL;
-  const firstTimeout = /70b/i.test(chosen) ? 20000 : 28000;
+  const firstTimeout = /70b/i.test(chosen) ? 22000 : 32000;
   let result = await callNvidia({
     key,
     modelId: chosen,
@@ -116,6 +91,8 @@ export async function coachWithNvidia({ metrics, profile, analysis, apiKey, mode
     profile,
     analysis,
     mode,
+    character,
+    local,
     ms: firstTimeout,
   });
 
@@ -127,22 +104,32 @@ export async function coachWithNvidia({ metrics, profile, analysis, apiKey, mode
       profile,
       analysis,
       mode,
-      ms: 22000,
+      character,
+      local,
+      ms: 24000,
     });
   }
   return result;
 }
 
-export async function buildCoach({ metrics, profile, apiKey, model, mode }) {
+export async function buildCoach({ metrics, profile, apiKey, model, mode, history, persona }) {
   const resolved = normalizeMode(mode || profile?.mode);
-  const analysis = analyzeDay(metrics, { ...profile, mode: resolved });
+  const tagged = {
+    ...metrics,
+    persona: metrics?.persona || persona,
+  };
+  const { character } = resolveHistory(tagged, history);
+  const analysis = analyzeDay(tagged, { ...profile, mode: resolved });
+  const local = localNarrative(analysis, tagged, { profile: { ...profile, mode: resolved }, character });
   const nvidia = await coachWithNvidia({
-    metrics,
+    metrics: tagged,
     profile: { ...profile, mode: resolved },
     analysis,
     apiKey,
     model,
     mode: resolved,
+    character,
+    local,
   });
   if (nvidia.ok) {
     return {
@@ -151,14 +138,16 @@ export async function buildCoach({ metrics, profile, apiKey, model, mode }) {
       engine: "nvidia",
       model: nvidia.model,
       mode: resolved,
+      writtenFor: profile.nickname || profile.name,
     };
   }
   return {
     analysis,
-    narrative: localNarrative(analysis),
+    narrative: local,
     engine: "local",
     fallbackReason: nvidia.reason,
     fallbackMessage: nvidia.message,
     mode: resolved,
+    writtenFor: profile.nickname || profile.name,
   };
 }

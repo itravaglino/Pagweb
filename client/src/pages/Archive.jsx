@@ -3,7 +3,10 @@ import { fetchArchive } from "../lib/db.js";
 import { fetchCharacterDays } from "../lib/api.js";
 import { FitbitViz } from "../components/FitbitViz.jsx";
 import { CharacterCalendar } from "../components/CharacterCalendar.jsx";
+import { CoachNote } from "../components/CoachAgent.jsx";
 import { CHARACTER, CHARACTER_TO } from "@shared/character.js";
+import { characterSummary } from "@shared/coach.js";
+import { analyzeDay, localNarrative } from "@shared/analyze.js";
 
 function formatWhen(iso) {
   if (!iso) return "";
@@ -128,6 +131,35 @@ export function Archive() {
           </div>
           <h2>{selected.label}</h2>
           <p className="quote">{selectedDay.log}</p>
+          {(() => {
+            const narrative =
+              selected.narrative?.noticing?.length
+                ? selected.narrative
+                : selectedDay.metrics
+                  ? localNarrative(
+                      selected.analysis ||
+                        analyzeDay(selectedDay.metrics, {
+                          name: CHARACTER.nickname,
+                          nickname: CHARACTER.nickname,
+                          timezone: CHARACTER.timezone,
+                          stepsGoal: CHARACTER.goal.steps,
+                          sleepGoal: CHARACTER.goal.sleepHours,
+                          barrio: CHARACTER.barrio,
+                        }),
+                      selectedDay.metrics,
+                      {
+                        profile: { name: CHARACTER.nickname, nickname: CHARACTER.nickname, barrio: CHARACTER.barrio },
+                        character: characterSummary(),
+                      }
+                    )
+                  : selected.narrative;
+            return (
+              <CoachNote
+                narrative={narrative}
+                label={selected.narrative?.noticing?.length ? "Nota del agente ese día" : "Así lo leería el agente"}
+              />
+            );
+          })()}
           {selectedDay.metrics?.hourlySteps?.length ? (
             <FitbitViz metrics={{ ...selectedDay.metrics, story: "" }} />
           ) : null}

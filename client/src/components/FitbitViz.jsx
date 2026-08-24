@@ -1,13 +1,17 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { minutesToHm } from "@shared/analyze.js";
 
 function hourLabel(h) {
   return `${String(h).padStart(2, "0")}h`;
 }
 
-export function FitbitViz({ metrics, onSelectHour }) {
-  const [tile, setTile] = useState("steps");
+export function FitbitViz({ metrics, onSelectHour, highlightTile }) {
+  const [tile, setTile] = useState(highlightTile || "steps");
   const [hour, setHour] = useState(null);
+
+  useEffect(() => {
+    if (highlightTile) setTile(highlightTile);
+  }, [highlightTile]);
 
   const maxHour = useMemo(() => {
     const vals = (metrics?.hourlySteps || []).map((x) => x.value);
@@ -50,8 +54,9 @@ export function FitbitViz({ metrics, onSelectHour }) {
         {tiles.map((t) => (
           <button
             key={t.id}
+            id={`fitbit-tile-${t.id}`}
             type="button"
-            className={`metric-tile ${tile === t.id ? "on" : ""}`}
+            className={`metric-tile ${tile === t.id ? "on" : ""} ${highlightTile === t.id ? "flash" : ""}`}
             onClick={() => setTile(t.id)}
           >
             <span className="muted">{t.label}</span>
@@ -173,7 +178,7 @@ export function FitbitViz({ metrics, onSelectHour }) {
 export function PlanList({ plan = [] }) {
   const [done, setDone] = useState(() => new Set());
   return (
-    <ol className="plan">
+    <ol className="plan plan-deep">
       {plan.map((step, i) => (
         <li key={i} className={done.has(i) ? "done" : ""}>
           <time>{step.when}</time>
@@ -192,7 +197,11 @@ export function PlanList({ plan = [] }) {
             />
             <div>
               <strong>{step.action}</strong>
-              <div className="muted">{step.why}</div>
+              {step.why ? (
+                <div className="plan-why">
+                  <span>Porque</span> {step.why}
+                </div>
+              ) : null}
             </div>
           </label>
         </li>

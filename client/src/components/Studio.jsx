@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { FONTS, STORAGE_KEY, THEMES, defaultStudio } from "../lib/store.js";
 import { Field, Ring } from "./ui.jsx";
 import { fetchCharacter, fetchDay } from "../lib/api.js";
-import { minutesToHm } from "@shared/analyze.js";
+import { analyzeDay, localNarrative, minutesToHm } from "@shared/analyze.js";
 import { CharacterPulse } from "./CharacterCalendar.jsx";
 
 function markdownLite(text = "") {
@@ -57,6 +57,17 @@ function WellbeingPreview() {
   }, []);
   const m = pulse?.metrics;
   const max = Math.max(1, ...(m?.week || []).map((d) => d.steps));
+  const agentLine = useMemo(() => {
+    if (!m) return "";
+    const story = localNarrative(
+      analyzeDay(m, { name: "Nacho", timezone: "America/Argentina/Buenos_Aires" }),
+      m,
+      { profile: { name: "Nacho", nickname: "Nacho" } }
+    );
+    const first = story.noticing?.[0];
+    const text = typeof first === "string" ? first : first?.text;
+    return text || story.headline;
+  }, [m]);
   return (
     <>
       {character?.summary ? (
@@ -65,6 +76,7 @@ function WellbeingPreview() {
       <article className="card">
       <div className="kicker">Fitbit · demo Córdoba</div>
       <h2>Mejor Día</h2>
+      {agentLine ? <p className="agent-line">El agente dice: {agentLine}</p> : null}
       <p className="tagline">
         {m?.story ||
           "Cinco días sintéticos con la forma de la Web API de Fitbit. Tocá la demo: pasos por hora, sueño, HRV y el coach."}

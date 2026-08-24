@@ -1161,16 +1161,54 @@ export function getCharacterSummary() {
     else break;
   }
   const last = days.at(-1);
+  const pick = (d) => ({
+    date: d.date,
+    weekday: d.weekday,
+    kind: d.kind,
+    log: d.log,
+    steps: d.metrics.steps,
+    sleepMinutes: d.metrics.sleepMinutes,
+    hrv: d.metrics.hrvRmssd,
+    rhr: d.metrics.restingHeartRate,
+  });
+  const worstSleep = days.reduce((a, d) => (d.metrics.sleepMinutes < a.metrics.sleepMinutes ? d : a));
+  const worstHrv = days.reduce((a, d) => (d.metrics.hrvRmssd < a.metrics.hrvRmssd ? d : a));
+  const bestSteps = days.reduce((a, d) => (d.metrics.steps > a.metrics.steps ? d : a));
+  const mesas = days.filter((d) => d.kind === "exam");
+  const avgOf = (list, fn) => (list.length ? Math.round(list.reduce((a, d) => a + (fn(d) || 0), 0) / list.length) : 0);
+  let gymStreak = 0;
+  let run = 0;
+  for (const d of days) {
+    if (d.kind === "gym" || d.kind === "futbol") {
+      run += 1;
+      gymStreak = Math.max(gymStreak, run);
+    } else {
+      run = 0;
+    }
+  }
+  const thisWeek = weeks[3] || weeks.at(-1);
+  const lastWeek = weeks[2] || weeks.at(-2);
+  const avgSteps = Math.round(sum((m) => m.steps) / n);
+  const avgSleepMinutes = Math.round(sum((m) => m.sleepMinutes) / n);
+  const avgHrv = Math.round(sum((m) => m.hrvRmssd) / n);
+  const avgRhr = Math.round(sum((m) => m.restingHeartRate) / n);
   return {
+    nickname: CHARACTER.nickname,
+    name: CHARACTER.name,
+    barrio: CHARACTER.barrio,
+    faculty: CHARACTER.faculty,
+    device: CHARACTER.device,
+    goal: CHARACTER.goal,
     days: n,
     from: CHARACTER_FROM,
     to: CHARACTER_TO,
-    avgSteps: Math.round(sum((m) => m.steps) / n),
-    avgSleepMinutes: Math.round(sum((m) => m.sleepMinutes) / n),
-    avgHrv: Math.round(sum((m) => m.hrvRmssd) / n),
-    avgRhr: Math.round(sum((m) => m.restingHeartRate) / n),
+    avgSteps,
+    avgSleepMinutes,
+    avgHrv,
+    avgRhr,
     totalSteps: sum((m) => m.steps),
     gymDays: days.filter((d) => d.kind === "gym" || d.kind === "futbol").length,
+    gymStreak,
     streak,
     lastNight: {
       date: last.date,
@@ -1179,10 +1217,36 @@ export function getCharacterSummary() {
       hrv: last.metrics.hrvRmssd,
       rhr: last.metrics.restingHeartRate,
     },
-    thisWeek: weeks[3] || weeks.at(-1),
-    lastWeek: weeks[2] || weeks.at(-2),
+    thisWeek,
+    lastWeek,
+    vsLastWeek: {
+      steps: (thisWeek?.avgSteps || 0) - (lastWeek?.avgSteps || 0),
+      sleep: (thisWeek?.avgSleep || 0) - (lastWeek?.avgSleep || 0),
+      hrv: (thisWeek?.avgHrv || 0) - (lastWeek?.avgHrv || 0),
+    },
+    worstSleepNight: pick(worstSleep),
+    worstHrvNight: pick(worstHrv),
+    bestStepsDay: pick(bestSteps),
+    mesasWeek: {
+      from: mesas[0]?.date,
+      to: mesas.at(-1)?.date,
+      nights: mesas.length,
+      avgSteps: avgOf(mesas, (d) => d.metrics.steps),
+      avgSleep: avgOf(mesas, (d) => d.metrics.sleepMinutes),
+      avgHrv: avgOf(mesas, (d) => d.metrics.hrvRmssd),
+      logs: mesas.map((d) => ({ date: d.date, log: d.log, hrv: d.metrics.hrvRmssd, sleepMinutes: d.metrics.sleepMinutes })),
+    },
+    lastLogs: days.slice(-7).map(pick),
+    notableDays: [pick(worstSleep), pick(worstHrv), pick(bestSteps)].filter(
+      (d, i, all) => all.findIndex((x) => x.date === d.date) === i
+    ),
     weeks,
   };
+}
+
+/** Alias explícito para el prompt del coach (promedios, tendencias, diarios). */
+export function characterSummary() {
+  return getCharacterSummary();
 }
 
 export function hourlyKindLengths() {

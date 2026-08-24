@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { FitbitViz, PlanList } from "../components/FitbitViz.jsx";
-import { CharacterHeader } from "../components/CharacterCalendar.jsx";
+import { FitbitViz } from "../components/FitbitViz.jsx";
+import { CharacterCalendar, CharacterHeader } from "../components/CharacterCalendar.jsx";
+import { CoachAgent } from "../components/CoachAgent.jsx";
 import { Field, Ring } from "../components/ui.jsx";
 import { minutesToHm } from "@shared/analyze.js";
 import { PERSONAS } from "@shared/sampleFitbit.js";
@@ -11,8 +12,9 @@ import {
   FITNESS_MODES,
   NVIDIA_DOCS,
   NVIDIA_MODELS,
+  tileForField,
 } from "@shared/fitness.js";
-import { fetchCharacter, fetchCoach, fetchDay, fetchFitbitStatus, fetchNvidiaStatus } from "../lib/api.js";
+import { fetchCharacter, fetchCharacterDays, fetchCoach, fetchDay, fetchFitbitStatus, fetchNvidiaStatus } from "../lib/api.js";
 import { saveCoachEntry } from "../lib/db.js";
 
 const FALLBACK_PERSONAS = [
@@ -23,18 +25,63 @@ const FALLBACK_PERSONAS = [
   { id: "barrio", label: "Domingo Güemes" },
 ];
 
+function subjectProfile(settings, day, personaId) {
+  const isCami = personaId === CHARACTER.id || day?.character;
+  if (isCami) {
+    return {
+      name: CHARACTER.nickname,
+      nickname: CHARACTER.nickname,
+      fullName: CHARACTER.name,
+      focus: "facu FCE-UNC, gym Smart Fit y no romper el sueño",
+      stepsGoal: CHARACTER.goal.steps,
+      sleepGoal: CHARACTER.goal.sleepHours,
+      activeGoal: 30,
+      bedtime: settings.bedtime,
+      timezone: CHARACTER.timezone,
+      org: CHARACTER.faculty,
+      city: CHARACTER.city,
+      barrio: CHARACTER.barrio,
+      faculty: CHARACTER.faculty,
+      role: "estudiante",
+      device: CHARACTER.device,
+      mode: settings.fitnessMode || "general",
+    };
+  }
+  return {
+    name: settings.name,
+    nickname: settings.name,
+    focus: settings.focus,
+    stepsGoal: Number(settings.stepsGoal),
+    sleepGoal: Number(settings.sleepGoal),
+    activeGoal: Number(settings.activeGoal),
+    bedtime: settings.bedtime,
+    timezone: settings.timezone,
+    org: "UNC",
+    city: "Córdoba",
+    barrio: "",
+    role: "estudiante",
+    device: "Fitbit Charge 6",
+    mode: settings.fitnessMode || "general",
+  };
+}
+
 export function Wellness({ settings, setSettings }) {
   const [personas, setPersonas] = useState(Object.values(PERSONAS));
   const [persona, setPersona] = useState("mixto");
   const [day, setDay] = useState(null);
   const [coach, setCoach] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [phase, setPhase] = useState("idle");
   const [error, setError] = useState("");
   const [fitbit, setFitbit] = useState({ configured: false, connected: false });
   const [nvidia, setNvidia] = useState({ connected: false, source: "none" });
   const [showKeys, setShowKeys] = useState(false);
   const [character, setCharacter] = useState({ identity: CHARACTER, summary: null });
+  const [characterDays, setCharacterDays] = useState([]);
+  const [camiDate, setCamiDate] = useState(CHARACTER_TO);
+  const [highlightField, setHighlightField] = useState("");
   const pickSeq = useRef(0);
+  const writeTimer = useRef(null);
 
   const metrics = day?.metrics;
   const sources = useMemo(
@@ -46,12 +93,13 @@ export function Wellness({ settings, setSettings }) {
     [personas]
   );
 
-  async function loadDay(nextPersona = persona, source, seq) {
-    const opts = nextPersona === CHARACTER.id ? { date: CHARACTER_TO } : {};
+  async function loadDay(nextPersona = persona, source, seq, date) {
+    const opts = nextPersona === CHARACTER.id || date ? { date: date || camiDate || CHARACTER_TO } : {};
     const data = await fetchDay(nextPersona, source, settings, opts);
     if (seq != null && seq !== pickSeq.current) return data;
     setDay(data);
     if (data.personas) setPersonas(data.personas);
+    if (data.date && nextPersona === CHARACTER.id) setCamiDate(data.date);
     return data;
   }
 
@@ -63,37 +111,31 @@ export function Wellness({ settings, setSettings }) {
 
   async function runCoach(fromDay, nextSettings = settings, { persist = true, personaId = persona, seq } = {}) {
     setLoading(true);
+    setPhase("reading");
     setError("");
+    if (writeTimer.current) clearTimeout(writeTimer.current);
+    writeTimer.current = setTimeout(() => setPhase("writing"), 480);
     try {
       const payload = fromDay || day || (await loadDay());
       if (seq != null && seq !== pickSeq.current) return;
       const mode = nextSettings.fitnessMode || "general";
+      const profile = subjectProfile(nextSettings, payload, personaId);
       const data = await fetchCoach({
         metrics: payload.metrics,
         persona: personaId,
         nvidiaKey: nextSettings.nvidiaKey || undefined,
         model: nextSettings.model || DEFAULT_NVIDIA_MODEL,
         mode,
-        profile: {
-          name: nextSettings.name,
-          focus: nextSettings.focus,
-          stepsGoal: Number(nextSettings.stepsGoal),
-          sleepGoal: Number(nextSettings.sleepGoal),
-          activeGoal: Number(nextSettings.activeGoal),
-          bedtime: nextSettings.bedtime,
-          timezone: nextSettings.timezone,
-          org: "UNC",
-          city: "Córdoba",
-          role: "estudiante",
-          mode,
-        },
+        profile,
+        history: character.summary,
       });
       if (seq != null && seq !== pickSeq.current) return;
-      setCoach(data);
+      setCoach({ ...data, writtenFor: data.writtenFor || profile.nickname || profile.name });
+      setPhase("ready");
       if (persist) {
         saveCoachEntry({
           persona: personaId,
-          label: nextSettings.name,
+          label: profile.nickname || profile.name,
           metrics: payload.metrics,
           analysis: data.analysis,
           narrative: data.narrative,
@@ -104,7 +146,9 @@ export function Wellness({ settings, setSettings }) {
     } catch (err) {
       if (seq != null && seq !== pickSeq.current) return;
       setError(err.message);
+      setPhase("ready");
     } finally {
+      if (writeTimer.current) clearTimeout(writeTimer.current);
       if (seq == null || seq === pickSeq.current) setLoading(false);
     }
   }
@@ -118,6 +162,11 @@ export function Wellness({ settings, setSettings }) {
           if (!cancelled) setCharacter(info);
         })
         .catch(() => {});
+      fetchCharacterDays()
+        .then((info) => {
+          if (!cancelled) setCharacterDays(info.days || []);
+        })
+        .catch(() => {});
       const data = await loadDay();
       if (cancelled) return;
       await runCoach(data, settings, { persist: false });
@@ -128,6 +177,7 @@ export function Wellness({ settings, setSettings }) {
     }
     return () => {
       cancelled = true;
+      if (writeTimer.current) clearTimeout(writeTimer.current);
     };
     // Primera lectura al entrar a Mejor Día.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -136,10 +186,11 @@ export function Wellness({ settings, setSettings }) {
   async function pickPersona(id) {
     const seq = ++pickSeq.current;
     setPersona(id);
+    setCoach(null);
+    setHighlightField("");
     if (id === "mio") setShowKeys(true);
     const data = await loadDay(id, id === "mio" ? undefined : "demo", seq);
     if (seq !== pickSeq.current) return;
-    setCoach(null);
     await runCoach(data, settings, { persist: true, personaId: id, seq });
   }
 
@@ -147,18 +198,37 @@ export function Wellness({ settings, setSettings }) {
     await pickPersona(CHARACTER.id);
   }
 
+  async function pickCamiDay(entry) {
+    const seq = ++pickSeq.current;
+    setPersona(CHARACTER.id);
+    setCamiDate(entry.date);
+    setCoach(null);
+    setHighlightField("");
+    const data = await loadDay(CHARACTER.id, "demo", seq, entry.date);
+    if (seq !== pickSeq.current) return;
+    await runCoach(data, settings, { persist: true, personaId: CHARACTER.id, seq });
+  }
+
   async function pickMode(id) {
     const next = { ...settings, fitnessMode: id };
     setSettings(next);
+    setCoach(null);
     await runCoach(day, next);
+  }
+
+  function focusMetric(field) {
+    if (!field) return;
+    setHighlightField(field);
+    const tile = tileForField(field);
+    const node = document.getElementById(`fitbit-tile-${tile}`) || document.getElementById("fitbit-reloj");
+    node?.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
   const nvidiaReady =
     nvidia.connected || Boolean(settings.nvidiaKey && String(settings.nvidiaKey).startsWith("nvapi-"));
   const activeMode = FITNESS_MODES[settings.fitnessMode] || FITNESS_MODES.general;
-
   const scores = coach?.analysis?.scores;
-  const narrative = coach?.narrative;
+  const who = persona === CHARACTER.id ? CHARACTER.nickname : settings.name || "Nacho";
 
   const metricChips = useMemo(() => {
     if (!metrics) return [];
@@ -172,19 +242,23 @@ export function Wellness({ settings, setSettings }) {
 
   return (
     <div className="grid">
-      <CharacterHeader
-        identity={character.identity || CHARACTER}
-        summary={character.summary}
-        onLoadHoy={pickCharacterHoy}
-        loading={loading && persona === CHARACTER.id}
+      <CoachAgent
+        coach={coach}
+        loading={loading}
+        phase={phase}
+        nvidiaReady={nvidiaReady}
+        writtenFor={who}
+        modeLabel={activeMode.label}
+        onNoticing={focusMetric}
+        highlightField={highlightField}
       />
+
       <article className="card wellness-hero">
         <div>
-          <div className="kicker">Fitbit × NVIDIA Developer</div>
-          <h1>¿Cómo viene tu día?</h1>
+          <div className="kicker">Fitbit Charge 6 × el agente</div>
+          <h2>El reloj de {who}</h2>
           <p className="tagline">
-            {narrative?.headline ||
-              "Datos sintéticos con forma de Fitbit Web API (pasos, sueño, FC, HRV, zonas, SpO₂). Tocá un día, un modo y las barras: el coach arma el plan con lo que el reloj habría medido."}
+            Tocá un día o un modo. El agente lee sueño, HRV, pasos, AZM y el diario, y te escribe el plan arriba.
           </p>
           <div className="meta-row">
             {metricChips.map(([k, v]) => (
@@ -195,7 +269,7 @@ export function Wellness({ settings, setSettings }) {
           </div>
           <div className="actions" style={{ marginTop: 16 }}>
             <button className="btn primary" type="button" disabled={loading} onClick={() => runCoach()}>
-              {loading ? "Pensando…" : coach ? "Recalcular el día" : "Leer mi día"}
+              {loading ? "Escribiendo…" : "Recalcular el día"}
             </button>
             {fitbit.connected ? (
               <button
@@ -240,17 +314,6 @@ export function Wellness({ settings, setSettings }) {
             ))}
           </div>
           <p className="muted mode-hint">{activeMode.blurb}</p>
-          {coach ? (
-            <div className="engine" style={{ marginTop: 12 }}>
-              <span className={`status-dot ${nvidiaReady && coach.engine === "nvidia" ? "on" : "off"}`} />
-              Motor:{" "}
-              {coach.engine === "nvidia"
-                ? `NVIDIA NIM · ${coach.model}`
-                : "local (sin clave NIM o fallback)"}
-              {coach.mode ? ` · modo ${FITNESS_MODES[coach.mode]?.label || coach.mode}` : ""}
-              {coach.fallbackReason ? ` · ${coach.fallbackReason}` : ""}
-            </div>
-          ) : null}
         </div>
         <div>
           <div className="score-num">{coach?.analysis?.overall ?? "—"}</div>
@@ -266,57 +329,6 @@ export function Wellness({ settings, setSettings }) {
         </div>
       </article>
 
-      <article className="card nvidia-card">
-        <div className="widget-head">
-          <h2>NVIDIA Developer</h2>
-          <span className={`chip ${nvidiaReady ? "good" : ""}`}>
-            {nvidiaReady
-              ? nvidia.connected
-                ? "conectado (servidor)"
-                : "clave en este navegador"
-              : "sin clave · motor local"}
-          </span>
-        </div>
-        <p className="muted">
-          IA personalizada vía{" "}
-          <a href={NVIDIA_DOCS} target="_blank" rel="noreferrer">
-            NVIDIA NIM
-          </a>
-          . En{" "}
-          <a href={NVIDIA_DOCS} target="_blank" rel="noreferrer">
-            build.nvidia.com
-          </a>{" "}
-          → <strong>Get API Key</strong>. La clave empieza con <code>nvapi-</code> y no se sube al repo. Si el servidor
-          tiene <code>NVIDIA_API_KEY</code> en el <code>.env</code>, ya está conectado.
-        </p>
-        <div className="kpi-grid">
-          <Field label="API key (nvapi-…) — queda en este navegador">
-            <input
-              type="password"
-              placeholder="nvapi-…"
-              value={settings.nvidiaKey}
-              onChange={(e) => setSettings({ ...settings, nvidiaKey: e.target.value })}
-            />
-          </Field>
-          <Field label="Modelo NIM">
-            <select
-              value={settings.model || DEFAULT_NVIDIA_MODEL}
-              onChange={(e) => setSettings({ ...settings, model: e.target.value })}
-            >
-              {NVIDIA_MODELS.map((m) => (
-                <option key={m} value={m}>
-                  {m}
-                </option>
-              ))}
-            </select>
-          </Field>
-        </div>
-        <p className="muted" style={{ marginTop: 8 }}>
-          El coach se personaliza con tu nombre, UNC Córdoba, zona America/Argentina/Buenos_Aires y el modo fitness
-          activo. No es consejo médico.
-        </p>
-      </article>
-
       <article className="card">
         <div className="widget-head">
           <h2>Fuente de datos</h2>
@@ -326,7 +338,7 @@ export function Wellness({ settings, setSettings }) {
               : persona === "mio"
                 ? "Tus números"
                 : persona === CHARACTER.id
-                  ? `Domingo ${CHARACTER_TO} · ${CHARACTER.nickname} en ${CHARACTER.barrio}`
+                  ? `${camiDate} · ${CHARACTER.nickname} en ${CHARACTER.barrio}`
                   : PERSONAS[persona]?.blurb || "Demo Fitbit"}
           </span>
         </div>
@@ -343,30 +355,91 @@ export function Wellness({ settings, setSettings }) {
           ))}
         </div>
         <p className="muted" style={{ marginTop: 10 }}>
-          El domingo de {CHARACTER.nickname} es el último día del archivo (28 jornadas). También tenés cinco personas sintéticas de Córdoba (Charge 6): pasos por hora, sueño, HRV, SpO₂ y AZM. O conectá OAuth en{" "}
-          <a href="https://dev.fitbit.com/apps" target="_blank" rel="noreferrer">
-            dev.fitbit.com
-          </a>
-          .
+          Post parcial, mesas o un día de {CHARACTER.nickname}: el agente tiene que cambiar lo que nota. También hay cinco
+          personas sintéticas de Córdoba (Charge 6).
         </p>
+        {persona === CHARACTER.id && characterDays.length ? (
+          <div style={{ marginTop: 16 }}>
+            <CharacterCalendar days={characterDays} selectedDate={camiDate} onSelect={pickCamiDay} />
+          </div>
+        ) : null}
       </article>
 
       {metrics ? (
-        <article className="card">
+        <article className="card" id="fitbit-reloj">
           <div className="widget-head">
             <h2>El reloj, en números</h2>
             <span className="muted">{metrics.date}</span>
           </div>
-          <FitbitViz metrics={metrics} />
+          <FitbitViz metrics={metrics} highlightTile={highlightField ? tileForField(highlightField) : undefined} />
         </article>
       ) : null}
+
+      <CharacterHeader
+        identity={character.identity || CHARACTER}
+        summary={character.summary}
+        onLoadHoy={pickCharacterHoy}
+        loading={loading && persona === CHARACTER.id}
+      />
+
+      <article className="card nvidia-card">
+        <div className="widget-head">
+          <h2>NVIDIA Developer (clave)</h2>
+          <span className={`chip ${nvidiaReady ? "good" : ""}`}>
+            {nvidiaReady
+              ? nvidia.connected
+                ? "conectado (servidor)"
+                : "clave en este navegador"
+              : "sin clave · motor local"}
+          </span>
+        </div>
+        <p className="muted">
+          El agente de arriba es Lumen. Si hay{" "}
+          <a href={NVIDIA_DOCS} target="_blank" rel="noreferrer">
+            NVIDIA NIM
+          </a>{" "}
+          (clave <code>nvapi-</code> en{" "}
+          <a href={NVIDIA_DOCS} target="_blank" rel="noreferrer">
+            build.nvidia.com
+          </a>
+          ), escribe él. Si no, el motor local cita los mismos números para que la demo no se caiga.
+        </p>
+        {showKeys ? (
+          <div className="kpi-grid">
+            <Field label="API key (nvapi-…) — queda en este navegador">
+              <input
+                type="password"
+                placeholder="nvapi-…"
+                value={settings.nvidiaKey}
+                onChange={(e) => setSettings({ ...settings, nvidiaKey: e.target.value })}
+              />
+            </Field>
+            <Field label="Modelo NIM">
+              <select
+                value={settings.model || DEFAULT_NVIDIA_MODEL}
+                onChange={(e) => setSettings({ ...settings, model: e.target.value })}
+              >
+                {NVIDIA_MODELS.map((m) => (
+                  <option key={m} value={m}>
+                    {m}
+                  </option>
+                ))}
+              </select>
+            </Field>
+          </div>
+        ) : (
+          <button className="btn" type="button" onClick={() => setShowKeys(true)}>
+            Mostrar clave y modelo
+          </button>
+        )}
+      </article>
 
       {showKeys || persona === "mio" ? (
         <article className="card">
           <h2>Tus números de Fitbit</h2>
           <p className="muted">
-            Los copiás de la app (sueño de anoche, pasos de hoy, FC en reposo, HRV). El coach local arma el plan al
-            toque; con clave NVIDIA, el relato lo escribe Llama 3.3.
+            Los copiás de la app (sueño de anoche, pasos de hoy, FC en reposo, HRV). El agente local arma el plan al
+            toque; con clave NVIDIA, el relato lo escribe Llama.
           </p>
           <div className="kpi-grid">
             <Field label="Sueño anoche (h)">
@@ -455,76 +528,14 @@ export function Wellness({ settings, setSettings }) {
               </select>
             </Field>
           </div>
-          <Field label="NVIDIA API key (nvapi-…) — se queda en este navegador">
-            <input
-              type="password"
-              placeholder="nvapi-…"
-              value={settings.nvidiaKey}
-              onChange={(e) => setSettings({ ...settings, nvidiaKey: e.target.value })}
-            />
-          </Field>
-          <p className="muted">
-            Gratis en{" "}
-            <a href="https://build.nvidia.com" target="_blank" rel="noreferrer">
-              build.nvidia.com
-            </a>
-            . Si no hay clave, el motor local igual te arma el plan.
-          </p>
-          {!fitbit.configured ? (
-            <div className="banner" style={{ marginTop: 12 }}>
-              Fitbit OAuth se activa con <code>FITBIT_CLIENT_ID</code> en el <code>.env</code> del servidor. Mientras
-              tanto, los cinco días de demo y tus números cubren el flujo completo.
-            </div>
-          ) : null}
         </article>
       ) : null}
 
       {error ? <div className="banner">{error}</div> : null}
 
-      {narrative ? (
-        <>
-          <article className="card">
-            <div className="kicker">Cómo está siendo</div>
-            <h2>{narrative.headline}</h2>
-            <p className="tagline">{narrative.dayStory}</p>
-            {narrative.energyWindow ? (
-              <p>
-                <strong>Ventana de energía: </strong>
-                {narrative.energyWindow}
-              </p>
-            ) : null}
-          </article>
-          <article className="card">
-            <div className="kicker">Para tu mejor día posible</div>
-            <h2>Qué tenés que hacer</h2>
-            <PlanList key={`${persona}-${settings.fitnessMode}-${narrative?.headline || ""}`} plan={narrative.plan || []} />
-            {(narrative.watchouts || []).length ? (
-              <div style={{ marginTop: 16 }}>
-                <h3>Ojo con</h3>
-                <ul>
-                  {narrative.watchouts.map((w) => (
-                    <li key={w} className="muted">
-                      {w}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-            {narrative.closing ? <p className="quote">{narrative.closing}</p> : null}
-          </article>
-        </>
-      ) : (
-        <article className="card">
-          <p className="muted">
-            Tocá <strong>Leer mi día</strong>, cargá tus números de Fitbit o elegí una persona de demo. El coach combina
-            sueño + movimiento + recuperación y, si hay clave NVIDIA, escribe el relato.
-          </p>
-        </article>
-      )}
-
       <p className="footer-note">
-        No es consejo médico. Las métricas de demo imitan la Web API de Fitbit (activity, sleep, heart, HRV). NVIDIA
-        NIM: <code>https://integrate.api.nvidia.com/v1</code>.
+        No es consejo médico. Las métricas de demo imitan la Web API de Fitbit. NVIDIA NIM:{" "}
+        <code>https://integrate.api.nvidia.com/v1</code>.
       </p>
     </div>
   );

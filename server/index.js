@@ -71,6 +71,7 @@ function getSession(req, res) {
 function profileFrom(body = {}, payload = {}) {
   return {
     name: body.profile?.name || payload.profile?.displayName || NACHO.shortName,
+    nickname: body.profile?.nickname || body.profile?.name || payload.profile?.displayName || NACHO.shortName,
     focus: body.profile?.focus || NACHO.focus,
     timezone: body.profile?.timezone || payload.profile?.timezone || NACHO.timezone,
     stepsGoal: Number(body.profile?.stepsGoal) || 10000,
@@ -80,7 +81,10 @@ function profileFrom(body = {}, payload = {}) {
     mode: body.profile?.mode || body.mode || "general",
     org: body.profile?.org || NACHO.org,
     city: body.profile?.city || NACHO.city,
+    barrio: body.profile?.barrio || payload.profile?.barrio || "",
+    faculty: body.profile?.faculty || payload.profile?.faculty || "",
     role: body.profile?.role || NACHO.role,
+    device: body.profile?.device || "Fitbit Charge 6",
   };
 }
 
@@ -237,6 +241,8 @@ app.post("/api/coach", async (req, res) => {
       apiKey: req.body?.nvidiaKey,
       model: req.body?.model,
       mode: req.body?.mode || profile.mode,
+      history: req.body?.history,
+      persona: req.body?.persona,
     });
     if (req.body?.persist) {
       try {

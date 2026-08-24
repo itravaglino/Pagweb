@@ -182,7 +182,7 @@ export function Archive() {
           <article className="card">
             <div className="widget-head">
               <h2>Lumen</h2>
-              <span className="muted">{coach?.engine ? `engine: ${coach.engine}` : "POST /api/coach"}</span>
+              <span className="muted">{coachLoading ? "leyendo…" : coach?.engine ? `Lumen · ${coach.engine}` : "desde el servidor"}</span>
             </div>
             {coachLoading ? <p className="muted">Lumen está leyendo este día…</p> : null}
             {coachError ? <div className="banner banner-error">{coachError}</div> : null}

@@ -287,27 +287,6 @@ export function Wellness({ settings, setSettings }) {
     <div className="grid wellness-page">
       {error ? <div className="banner banner-error">{error}</div> : null}
 
-      <CoachAgent
-        coach={coach}
-        loading={loading}
-        phase={phase}
-        error={error}
-        nvidiaReady={nvidiaReady}
-        writtenFor={who}
-        modeLabel={activeMode.label}
-        onNoticing={focusMetric}
-        highlightField={highlightField}
-      >
-        {/* voice-loop-hook: VoiceCoach — keep on rebase (bc-ad0b7fdc / nacho-voice) */}
-        <VoiceCoach
-          embedded
-          metrics={metrics}
-          persona={persona}
-          settings={settings}
-          character={character}
-        />
-      </CoachAgent>
-
       <article className="card wellness-hero">
         <div>
           <div className="kicker">Mejor Día</div>
@@ -406,6 +385,27 @@ export function Wellness({ settings, setSettings }) {
           </div>
         ) : null}
       </article>
+
+      <CoachAgent
+        coach={coach}
+        loading={loading}
+        phase={phase}
+        error={error}
+        nvidiaReady={nvidiaReady}
+        writtenFor={who}
+        modeLabel={activeMode.label}
+        onNoticing={focusMetric}
+        highlightField={highlightField}
+      >
+        {/* voice-loop-hook: VoiceCoach — keep on rebase (bc-ad0b7fdc / nacho-voice) */}
+        <VoiceCoach
+          embedded
+          metrics={metrics}
+          persona={persona}
+          settings={settings}
+          character={character}
+        />
+      </CoachAgent>
 
       {metrics ? (
         <article className="card" id="fitbit-reloj">

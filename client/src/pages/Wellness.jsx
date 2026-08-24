@@ -2,15 +2,15 @@ import { useEffect, useMemo, useState } from "react";
 import { Ring, Field } from "../components/ui.jsx";
 import { minutesToHm } from "@shared/analyze.js";
 import { PERSONAS } from "@shared/sampleFitbit.js";
-import { fetchCoach, fetchDay, fetchFitbitStatus } from "../lib/api.js";
+import {
+  DEFAULT_NVIDIA_MODEL,
+  FITNESS_MODE_ORDER,
+  FITNESS_MODES,
+  NVIDIA_DOCS,
+  NVIDIA_MODELS,
+} from "@shared/fitness.js";
+import { fetchCoach, fetchDay, fetchFitbitStatus, fetchNvidiaStatus } from "../lib/api.js";
 import { saveCoachEntry } from "../lib/db.js";
-
-const MODELS = [
-  "meta/llama-3.3-70b-instruct",
-  "meta/llama-3.1-8b-instruct",
-  "meta/llama-3.1-70b-instruct",
-  "nvidia/llama-3.1-nemotron-nano-8b-v1",
-];
 
 const FALLBACK_PERSONAS = [
   { id: "mixto", label: "Hoy realista" },
@@ -26,6 +26,7 @@ export function Wellness({ settings, setSettings }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [fitbit, setFitbit] = useState({ configured: false, connected: false });
+  const [nvidia, setNvidia] = useState({ connected: false, source: "none" });
   const [showKeys, setShowKeys] = useState(false);
 
   const metrics = day?.metrics;
@@ -45,40 +46,46 @@ export function Wellness({ settings, setSettings }) {
   }
 
   async function loadStatus() {
-    setFitbit(await fetchFitbitStatus());
+    const [fitbitStatus, nvidiaStatus] = await Promise.all([fetchFitbitStatus(), fetchNvidiaStatus()]);
+    setFitbit(fitbitStatus);
+    setNvidia(nvidiaStatus);
   }
 
-  async function runCoach(fromDay) {
+  async function runCoach(fromDay, nextSettings = settings) {
     setLoading(true);
     setError("");
     try {
       const payload = fromDay || day || (await loadDay());
+      const mode = nextSettings.fitnessMode || "general";
       const data = await fetchCoach({
         metrics: payload.metrics,
         persona,
-        nvidiaKey: settings.nvidiaKey || undefined,
-        model: settings.model,
-        mode: settings.fitnessMode || "general",
+        nvidiaKey: nextSettings.nvidiaKey || undefined,
+        model: nextSettings.model,
+        mode,
         profile: {
-          name: settings.name,
-          focus: settings.focus,
-          stepsGoal: Number(settings.stepsGoal),
-          sleepGoal: Number(settings.sleepGoal),
-          activeGoal: Number(settings.activeGoal),
-          bedtime: settings.bedtime,
-          timezone: settings.timezone,
-          mode: settings.fitnessMode || "general",
+          name: nextSettings.name,
+          focus: nextSettings.focus,
+          stepsGoal: Number(nextSettings.stepsGoal),
+          sleepGoal: Number(nextSettings.sleepGoal),
+          activeGoal: Number(nextSettings.activeGoal),
+          bedtime: nextSettings.bedtime,
+          timezone: nextSettings.timezone,
+          org: "UNC",
+          city: "Córdoba",
+          role: "estudiante",
+          mode,
         },
       });
       setCoach(data);
       saveCoachEntry({
         persona,
-        label: settings.name,
+        label: nextSettings.name,
         metrics: payload.metrics,
         analysis: data.analysis,
         narrative: data.narrative,
         engine: data.engine,
-        mode: settings.fitnessMode || "general",
+        mode,
       }).catch(() => {});
     } catch (err) {
       setError(err.message);
@@ -114,6 +121,16 @@ export function Wellness({ settings, setSettings }) {
     await runCoach(data);
   }
 
+  async function pickMode(id) {
+    const next = { ...settings, fitnessMode: id };
+    setSettings(next);
+    await runCoach(day, next);
+  }
+
+  const nvidiaReady =
+    nvidia.connected || Boolean(settings.nvidiaKey && String(settings.nvidiaKey).startsWith("nvapi-"));
+  const activeMode = FITNESS_MODES[settings.fitnessMode] || FITNESS_MODES.general;
+
   const scores = coach?.analysis?.scores;
   const narrative = coach?.narrative;
 
@@ -131,7 +148,7 @@ export function Wellness({ settings, setSettings }) {
     <div className="grid">
       <article className="card wellness-hero">
         <div>
-          <div className="kicker">Fitbit × NVIDIA NIM</div>
+          <div className="kicker">Fitbit × NVIDIA Developer</div>
           <h1>¿Cómo viene tu día?</h1>
           <p className="tagline">
             {narrative?.headline ||
@@ -179,26 +196,26 @@ export function Wellness({ settings, setSettings }) {
             </button>
           </div>
           <div className="swatches" style={{ marginTop: 12 }}>
-            {[
-              ["general", "Día completo"],
-              ["fitness", "Fitness"],
-              ["recovery", "Recupero"],
-              ["sleep", "Sueño"],
-              ["focus", "Foco UNC"],
-            ].map(([id, label]) => (
+            {FITNESS_MODE_ORDER.map((id) => (
               <button
                 key={id}
                 className={`swatch ${(settings.fitnessMode || "general") === id ? "on" : ""}`}
                 type="button"
-                onClick={() => setSettings({ ...settings, fitnessMode: id })}
+                onClick={() => pickMode(id)}
               >
-                {label}
+                {FITNESS_MODES[id].label}
               </button>
             ))}
           </div>
+          <p className="muted mode-hint">{activeMode.blurb}</p>
           {coach ? (
             <div className="engine" style={{ marginTop: 12 }}>
-              Motor: {coach.engine === "nvidia" ? `NVIDIA · ${coach.model}` : "local (sin clave NIM o fallback)"}
+              <span className={`status-dot ${nvidiaReady && coach.engine === "nvidia" ? "on" : "off"}`} />
+              Motor:{" "}
+              {coach.engine === "nvidia"
+                ? `NVIDIA NIM · ${coach.model}`
+                : "local (sin clave NIM o fallback)"}
+              {coach.mode ? ` · modo ${FITNESS_MODES[coach.mode]?.label || coach.mode}` : ""}
               {coach.fallbackReason ? ` · ${coach.fallbackReason}` : ""}
             </div>
           ) : null}
@@ -215,6 +232,57 @@ export function Wellness({ settings, setSettings }) {
             </div>
           ) : null}
         </div>
+      </article>
+
+      <article className="card nvidia-card">
+        <div className="widget-head">
+          <h2>NVIDIA Developer</h2>
+          <span className={`chip ${nvidiaReady ? "good" : ""}`}>
+            {nvidiaReady
+              ? nvidia.connected
+                ? "conectado (servidor)"
+                : "clave en este navegador"
+              : "sin clave · motor local"}
+          </span>
+        </div>
+        <p className="muted">
+          IA personalizada vía{" "}
+          <a href={NVIDIA_DOCS} target="_blank" rel="noreferrer">
+            NVIDIA NIM
+          </a>
+          . En{" "}
+          <a href={NVIDIA_DOCS} target="_blank" rel="noreferrer">
+            build.nvidia.com
+          </a>{" "}
+          → <strong>Get API Key</strong>. La clave empieza con <code>nvapi-</code> y no se sube al repo. Si el servidor
+          tiene <code>NVIDIA_API_KEY</code> en el <code>.env</code>, ya está conectado.
+        </p>
+        <div className="kpi-grid">
+          <Field label="API key (nvapi-…) — queda en este navegador">
+            <input
+              type="password"
+              placeholder="nvapi-…"
+              value={settings.nvidiaKey}
+              onChange={(e) => setSettings({ ...settings, nvidiaKey: e.target.value })}
+            />
+          </Field>
+          <Field label="Modelo NIM">
+            <select
+              value={settings.model || DEFAULT_NVIDIA_MODEL}
+              onChange={(e) => setSettings({ ...settings, model: e.target.value })}
+            >
+              {NVIDIA_MODELS.map((m) => (
+                <option key={m} value={m}>
+                  {m}
+                </option>
+              ))}
+            </select>
+          </Field>
+        </div>
+        <p className="muted" style={{ marginTop: 8 }}>
+          El coach se personaliza con tu nombre, UNC Córdoba, zona America/Argentina/Buenos_Aires y el modo fitness
+          activo. No es consejo médico.
+        </p>
       </article>
 
       <article className="card">
@@ -301,7 +369,7 @@ export function Wellness({ settings, setSettings }) {
             </button>
           </div>
 
-          <h2 style={{ marginTop: 24 }}>Metas y NVIDIA</h2>
+          <h2 style={{ marginTop: 24 }}>Metas (van al prompt de NVIDIA)</h2>
           <div className="kpi-grid">
             <Field label="Cómo te decimos">
               <input value={settings.name} onChange={(e) => setSettings({ ...settings, name: e.target.value })} />
@@ -329,7 +397,7 @@ export function Wellness({ settings, setSettings }) {
             </Field>
             <Field label="Modelo NIM">
               <select value={settings.model} onChange={(e) => setSettings({ ...settings, model: e.target.value })}>
-                {MODELS.map((m) => (
+                {NVIDIA_MODELS.map((m) => (
                   <option key={m} value={m}>
                     {m}
                   </option>

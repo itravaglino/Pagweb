@@ -95,7 +95,7 @@ export default function App() {
 
   return (
     <div className="shell">
-      {studio.customCss || studio.customCss ? <style>{studio.customCss || studio.customCss}</style> : null}
+      {studio.customCss ? <style>{studio.customCss}</style> : null}
       <header className="topbar">
         <a className="brand" href="#/estudio">
           <FolioMark className="mark" />

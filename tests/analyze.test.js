@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { analyzeDay, extractJsonObject, minutesToHm } from "../shared/analyze.js";
+import { analyzeDay, extractJsonObject, minutesToHm, localNarrative } from "../shared/analyze.js";
 import { PERSONAS, getPersonaPayload, toMetrics } from "../shared/sampleFitbit.js";
 
 test("minutesToHm formatea sueño", () => {
@@ -64,4 +64,62 @@ test("payloadFromManual respeta sueño y pasos", async () => {
   const story = localNarrative(analysis);
   assert.ok(story.energyWindow.length > 12);
   assert.ok(energyWindowFor(10, { sleep: 90, recovery: 90 }).toLowerCase().includes("profundo") || energyWindowFor(10, { sleep: 90, recovery: 90 }).length > 8);
+});
+
+test("modo fitness pide estímulo si hay margen", () => {
+  const at = new Date("2026-08-22T11:00:00-03:00");
+  const analysis = analyzeDay(
+    toMetrics(getPersonaPayload("recargado")),
+    {
+      timezone: "America/Argentina/Buenos_Aires",
+      name: "Nacho",
+      focus: "estudio UNC",
+      mode: "fitness",
+    },
+    at
+  );
+  const blob = analysis.plan.map((p) => `${p.action} ${p.why}`).join(" ").toLowerCase();
+  assert.ok(
+    blob.includes("estímulo") || blob.includes("estimulo") || blob.includes("volumen") || blob.includes("progresión") || blob.includes("progresion"),
+    blob
+  );
+});
+
+test("modo recovery nunca pide HIIT", () => {
+  const at = new Date("2026-08-22T11:00:00-03:00");
+  const analysis = analyzeDay(
+    toMetrics(getPersonaPayload("recargado")),
+    { timezone: "America/Argentina/Buenos_Aires", mode: "recovery" },
+    at
+  );
+  const blob = analysis.plan.map((p) => `${p.action} ${p.why}`).join(" ").toLowerCase();
+  assert.ok(blob.includes("nada de hiit") || blob.includes("hiit"), blob);
+  assert.ok(blob.includes("recupero") || blob.includes("movilidad") || blob.includes("caminata"), blob);
+});
+
+test("modo sleep y focus cambian el plan local", () => {
+  const at = new Date("2026-08-22T15:00:00-03:00");
+  const profile = { timezone: "America/Argentina/Buenos_Aires", name: "Nacho", focus: "estudio UNC" };
+  const sleep = analyzeDay(toMetrics(getPersonaPayload("mixto")), { ...profile, mode: "sleep" }, at);
+  const focus = analyzeDay(toMetrics(getPersonaPayload("mixto")), { ...profile, mode: "focus" }, at);
+  const sleepBlob = sleep.plan.map((p) => `${p.action} ${p.why}`).join(" ").toLowerCase();
+  const focusBlob = focus.plan.map((p) => `${p.action} ${p.why}`).join(" ").toLowerCase();
+  assert.ok(sleepBlob.includes("noche larga") || sleepBlob.includes("cafeína") || sleepBlob.includes("cafeina") || sleepBlob.includes("apagado"), sleepBlob);
+  assert.ok(focusBlob.includes("unc") || focusBlob.includes("bloque"), focusBlob);
+  const sleepStory = localNarrative(sleep);
+  const focusStory = localNarrative(focus);
+  assert.notEqual(sleepStory.closing, focusStory.closing);
+});
+
+test("nvidiaSystemPrompt incluye el modo y a Nacho", async () => {
+  const { nvidiaSystemPrompt } = await import("../shared/fitness.js");
+  const prompt = nvidiaSystemPrompt(
+    { name: "Nacho", org: "UNC", city: "Córdoba", focus: "estudio UNC" },
+    { hour: 11 },
+    "fitness"
+  );
+  assert.ok(prompt.includes("Nacho"));
+  assert.ok(prompt.includes("UNC"));
+  assert.ok(prompt.toLowerCase().includes("fitness"));
+  assert.ok(prompt.includes("build.nvidia.com") || prompt.includes("NVIDIA"));
 });

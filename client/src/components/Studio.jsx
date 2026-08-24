@@ -179,7 +179,7 @@ export function Studio({ studio, setStudio, edit, setEdit }) {
         <div className="kicker">Demo</div>
         <h2>Mejor Día</h2>
         <p className="tagline">
-          NVIDIA NIM lee métricas estilo Fitbit (sueño, pasos, FC, HRV) y te dice cómo viene el día y qué hacer con las horas que quedan.
+          NVIDIA Developer (NIM) lee métricas estilo Fitbit y, en modos fitness / recupero / sueño / foco UNC / wellness, te arma el plan con las horas que quedan.
         </p>
         <div className="meta-row">
           <a className="btn primary" href="#/dia">

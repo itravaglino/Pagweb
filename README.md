@@ -68,11 +68,30 @@ npm start
 
 Docker: `docker build -t pagweb . && docker run -p 3000:3000 --env-file .env pagweb`
 
-## NVIDIA (gratis)
+## NVIDIA Developer (gratis)
 
-1. Entrá a [build.nvidia.com](https://build.nvidia.com) y generá un API key (`nvapi-…`).
-2. Pegalo en **Mejor Día → Claves y metas**, o en `.env` como `NVIDIA_API_KEY`.
-3. El servidor lo manda a NIM; la clave del navegador no se commitea.
+Conexión de primera con [NVIDIA NIM](https://build.nvidia.com) para una IA personalizada de health / wellness.
+
+1. Entrá a [build.nvidia.com](https://build.nvidia.com) y creá cuenta.
+2. **Get API Key**. La clave empieza con `nvapi-`.
+3. Pegala en **Mejor Día → NVIDIA Developer**, o en `.env` como `NVIDIA_API_KEY`.
+4. Elegí el modelo (por defecto `meta/llama-3.3-70b-instruct`).
+5. Tocá un modo fitness; el coach (NIM o motor local) cambia de verdad, no solo el chip.
+
+La clave del navegador queda en `localStorage`. **No se commitea.**
+
+### Modos
+
+| Modo | Qué hace |
+| --- | --- |
+| Día completo | Sueño, movimiento, recupero y foco con las horas que quedan. |
+| Fitness | Estímulo, volumen y progresión. Si HRV/sueño están bajos, no machaca. |
+| Recupero | Nada de HIIT. Caminata fácil, movilidad, sistema nervioso. |
+| Sueño | Empuja a una noche larga: cafeína, luz, hora de apagado. |
+| Foco UNC | Bloques profundos de estudio y movimiento corto entre bloques. |
+| Wellness | Ánimo, aire, hidratación. Sin obsesionarte con el 10k. |
+
+El perfil de Nacho (UNC Córdoba, `America/Argentina/Buenos_Aires`, estudio + wellness) entra al prompt. No es consejo médico.
 
 ## Fitbit
 

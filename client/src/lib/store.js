@@ -90,7 +90,6 @@ export const defaultStudio = () => ({
   radius: 8,
   density: "comoda",
   customCss: "",
-  customCss: "",
   accentOverride: "",
   profile: { ...NACHO },
   widgetOrder: ["hero", "kpis", "milestones", "timeline", "next", "changelog", "notes", "wellbeing"],
@@ -132,6 +131,7 @@ export const defaultStudio = () => ({
     { id: "c2", tag: "Nuevo", text: "Archivo persistente en el store de Cursor + data/pagweb.json." },
     { id: "c3", tag: "Nuevo", text: "PWA instalable (Chrome → Instalar app) sobre HTTPS." },
     { id: "c4", tag: "Nuevo", text: "Modos fitness / recupero / sueño / foco UNC para el coach." },
+    { id: "c5", tag: "Nuevo", text: "NVIDIA Developer de primera: build.nvidia.com, clave nvapi- y modos wellness." },
   ],
   notes:
     "Usá **Personalizar** para cambiar nombre, % de avance, paleta y qué bloques se ven. Exportá el JSON si lo querés versionar en el repo. El archivo de días vive en el servidor, no solo en este navegador.",

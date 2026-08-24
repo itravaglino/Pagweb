@@ -1,42 +1,16 @@
 import { analyzeDay, extractJsonObject, localNarrative } from "../shared/analyze.js";
+import {
+  DEFAULT_NVIDIA_MODEL,
+  NVIDIA_URL,
+  normalizeMode,
+  nvidiaSystemPrompt,
+} from "../shared/fitness.js";
 
-const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
-const DEFAULT_MODEL = process.env.NVIDIA_MODEL || "meta/llama-3.3-70b-instruct";
-
-const FITNESS_MODES = {
-  general: "Coach de un día mejor posible: sueño, movimiento, recupero y foco.",
-  fitness: "Modo FITNESS: priorizá estímulo, volumen y progresión, sin machacar si el HRV o el sueño están bajos.",
-  recovery: "Modo RECUPERO: el objetivo es bajar inflamación y sistema nervioso. Nada de HIIT.",
-  sleep: "Modo SUEÑO: todo el plan empuja a una noche larga. Corte de cafeína, luz y hora de apagado.",
-  focus: "Modo FOCO / ESTUDIO: bloques profundos para UNC, sin overtraining. Movimiento corto entre bloques.",
-};
-
-function modePrompt(mode) {
-  return FITNESS_MODES[mode] || FITNESS_MODES.general;
-}
+const DEFAULT_MODEL = process.env.NVIDIA_MODEL || DEFAULT_NVIDIA_MODEL;
 
 function buildMessages(metrics, profile, analysis, mode = "general") {
   return [
-    {
-      role: "system",
-      content: `Sos Lumen, coach de un día mejor posible. Hablás en español rioplatense (voseo).
-No sos médico. No diagnostiques. No inventes métricas: usá solo las que te pasan.
-Devolvé JSON estricto, sin markdown, con esta forma:
-{
-  "headline": "una frase potente, humana, máx 140 chars",
-  "dayStory": "2-3 oraciones: cómo está siendo el día, con los números reales",
-  "energyWindow": "en qué rato del día restante conviene el esfuerzo vs la calma",
-  "bestDayPlan": [
-    {"when": "ahora|horario","action":"qué hacer","why":"por qué, atado a un dato"}
-  ],
-  "watchouts": ["aviso corto"],
-  "closing": "cierre de una línea"
-}
-El plan tiene 3 a 5 pasos, accionables HOY, respetando la hora actual (${analysis.hour} h en su zona).
-Si el sueño fue corto, no pidas un PR en el gym. Si está recargado, no lo trates como paciente.
-Modo activo: ${modePrompt(mode)}
-La persona quiere una IA personalizada de health/wellness vía NVIDIA NIM (build.nvidia.com).`,
-    },
+    { role: "system", content: nvidiaSystemPrompt(profile, analysis, mode) },
     {
       role: "user",
       content: JSON.stringify(
@@ -50,6 +24,8 @@ La persona quiere una IA personalizada de health/wellness vía NVIDIA NIM (build
             headline: analysis.headline,
             planBase: analysis.plan,
             watchouts: analysis.watchouts,
+            hour: analysis.hour,
+            mode: analysis.mode,
           },
         },
         null,
@@ -117,6 +93,7 @@ export async function coachWithNvidia({ metrics, profile, analysis, apiKey, mode
         closing: parsed.closing || "",
         plan,
         watchouts: Array.isArray(parsed.watchouts) ? parsed.watchouts.slice(0, 4) : analysis.watchouts,
+        mode: normalizeMode(mode),
       },
     };
   } catch (error) {
@@ -128,14 +105,23 @@ export async function coachWithNvidia({ metrics, profile, analysis, apiKey, mode
 }
 
 export async function buildCoach({ metrics, profile, apiKey, model, mode }) {
-  const analysis = analyzeDay(metrics, profile);
-  const nvidia = await coachWithNvidia({ metrics, profile, analysis, apiKey, model, mode });
+  const resolved = normalizeMode(mode || profile?.mode);
+  const analysis = analyzeDay(metrics, { ...profile, mode: resolved });
+  const nvidia = await coachWithNvidia({
+    metrics,
+    profile: { ...profile, mode: resolved },
+    analysis,
+    apiKey,
+    model,
+    mode: resolved,
+  });
   if (nvidia.ok) {
     return {
       analysis,
       narrative: nvidia.narrative,
       engine: "nvidia",
       model: nvidia.model,
+      mode: resolved,
     };
   }
   return {
@@ -144,5 +130,6 @@ export async function buildCoach({ metrics, profile, apiKey, model, mode }) {
     engine: "local",
     fallbackReason: nvidia.reason,
     fallbackMessage: nvidia.message,
+    mode: resolved,
   };
 }

@@ -8,6 +8,15 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import { getPersonaPayload, PERSONAS, toMetrics } from "../shared/sampleFitbit.js";
 import { buildCoach } from "./nvidia.js";
+import { NACHO } from "../shared/profile.js";
+import {
+  DEFAULT_NVIDIA_MODEL,
+  FITNESS_MODE_ORDER,
+  FITNESS_MODES,
+  NVIDIA_DOCS,
+  NVIDIA_MODELS,
+  NVIDIA_URL,
+} from "../shared/fitness.js";
 import {
   authorizeUrl,
   configured as fitbitConfigured,
@@ -52,14 +61,17 @@ function getSession(req, res) {
 
 function profileFrom(body = {}, payload = {}) {
   return {
-    name: body.profile?.name || payload.profile?.displayName || "vos",
-    focus: body.profile?.focus || "trabajo",
-    timezone: body.profile?.timezone || payload.profile?.timezone || "America/Argentina/Buenos_Aires",
+    name: body.profile?.name || payload.profile?.displayName || NACHO.shortName,
+    focus: body.profile?.focus || NACHO.focus,
+    timezone: body.profile?.timezone || payload.profile?.timezone || NACHO.timezone,
     stepsGoal: Number(body.profile?.stepsGoal) || 10000,
     sleepGoal: Number(body.profile?.sleepGoal) || 7.5,
     activeGoal: Number(body.profile?.activeGoal) || 30,
     bedtime: body.profile?.bedtime || "23:15",
     mode: body.profile?.mode || body.mode || "general",
+    org: body.profile?.org || NACHO.org,
+    city: body.profile?.city || NACHO.city,
+    role: body.profile?.role || NACHO.role,
   };
 }
 
@@ -79,7 +91,29 @@ app.get("/api/health", (_req, res) => {
     service: "pagweb",
     public: true,
     nvidia: Boolean(process.env.NVIDIA_API_KEY),
+    nvidiaModel: process.env.NVIDIA_MODEL || DEFAULT_NVIDIA_MODEL,
     fitbit: fitbitConfigured(),
+  });
+});
+
+app.get("/api/nvidia", (_req, res) => {
+  const connected = Boolean(process.env.NVIDIA_API_KEY);
+  res.json({
+    ok: true,
+    connected,
+    source: connected ? "env" : "none",
+    model: process.env.NVIDIA_MODEL || DEFAULT_NVIDIA_MODEL,
+    models: NVIDIA_MODELS,
+    modes: FITNESS_MODE_ORDER.map((id) => ({
+      id,
+      label: FITNESS_MODES[id].label,
+      blurb: FITNESS_MODES[id].blurb,
+    })),
+    docs: NVIDIA_DOCS,
+    endpoint: NVIDIA_URL,
+    hint: connected
+      ? "El servidor ya tiene NVIDIA_API_KEY. También podés pegar otra clave nvapi- en el navegador."
+      : "Pedí una API key gratis en build.nvidia.com (Get API Key). Empieza con nvapi-.",
   });
 });
 

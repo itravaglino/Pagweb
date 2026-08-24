@@ -1,7 +1,10 @@
 import { analyzeDay, extractJsonObject, localNarrative } from "@shared/analyze.js";
 import { PERSONAS, getPersonaPayload, payloadFromManual, toMetrics } from "@shared/sampleFitbit.js";
-
-const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
+import {
+  DEFAULT_NVIDIA_MODEL,
+  NVIDIA_URL,
+  nvidiaSystemPrompt,
+} from "@shared/fitness.js";
 
 async function tryJson(url, options) {
   const res = await fetch(url, options);
@@ -73,7 +76,21 @@ export async function fetchHost() {
   }
 }
 
-async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model }) {
+export async function fetchNvidiaStatus() {
+  try {
+    return await tryJson("/api/nvidia");
+  } catch {
+    return {
+      ok: false,
+      connected: false,
+      source: "none",
+      model: DEFAULT_NVIDIA_MODEL,
+      docs: "https://build.nvidia.com",
+    };
+  }
+}
+
+async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model, mode }) {
   const res = await fetch(NVIDIA_URL, {
     method: "POST",
     headers: {
@@ -82,12 +99,11 @@ async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model }) 
       Accept: "application/json",
     },
     body: JSON.stringify({
-      model: model || "meta/llama-3.3-70b-instruct",
+      model: model || DEFAULT_NVIDIA_MODEL,
       messages: [
         {
           role: "system",
-          content:
-            "Sos Lumen, coach en español rioplatense. Devolvé JSON {headline, dayStory, energyWindow, bestDayPlan:[{when,action,why}], watchouts, closing}. No inventes métricas.",
+          content: nvidiaSystemPrompt(profile, analysis, mode),
         },
         {
           role: "user",
@@ -119,6 +135,7 @@ async function nvidiaFromBrowser({ metrics, profile, analysis, apiKey, model }) 
           }))
         : analysis.plan,
       watchouts: Array.isArray(parsed.watchouts) ? parsed.watchouts : analysis.watchouts,
+      mode,
     },
   };
 }
@@ -131,12 +148,19 @@ export async function fetchCoach({ metrics, persona, nvidiaKey, model, profile, 
       body: JSON.stringify({ metrics, persona, nvidiaKey, model, profile, mode }),
     });
   } catch {
-    const analysis = analyzeDay(metrics, profile);
+    const analysis = analyzeDay(metrics, { ...profile, mode });
     if (nvidiaKey) {
       try {
-        const nvidia = await nvidiaFromBrowser({ metrics, profile, analysis, apiKey: nvidiaKey, model });
+        const nvidia = await nvidiaFromBrowser({
+          metrics,
+          profile,
+          analysis,
+          apiKey: nvidiaKey,
+          model,
+          mode,
+        });
         if (nvidia.ok) {
-          return { analysis, narrative: nvidia.narrative, engine: "nvidia", model: nvidia.model };
+          return { analysis, narrative: nvidia.narrative, engine: "nvidia", model: nvidia.model, mode };
         }
       } catch {
         /* CORS u otro recorte: motor local */
@@ -147,6 +171,7 @@ export async function fetchCoach({ metrics, persona, nvidiaKey, model, profile, 
       narrative: localNarrative(analysis),
       engine: "local",
       fallbackReason: "offline",
+      mode,
     };
   }
 }

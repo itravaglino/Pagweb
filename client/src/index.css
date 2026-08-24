@@ -407,6 +407,20 @@ html[data-theme="tinta"] .progress-slab b {
   font-size: 12px;
   color: var(--muted);
 }
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  flex: 0 0 auto;
+}
+.status-dot.on { background: var(--accent-2); }
+.status-dot.off { background: var(--danger, #8f2d24); }
+.mode-hint { margin-top: 8px; font-size: 13px; }
+.nvidia-card .chip.good {
+  color: var(--accent-2);
+  border-color: color-mix(in srgb, var(--accent-2) 45%, var(--line));
+}
 
 .banner {
   border: var(--hair) dashed color-mix(in srgb, var(--accent) 55%, var(--line));

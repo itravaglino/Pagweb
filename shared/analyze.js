@@ -1,5 +1,7 @@
 /** Motor local de "mejor día": puntúa métricas estilo Fitbit y arma un plan horario. */
 
+import { fitnessMode, normalizeMode } from "./fitness.js";
+
 export function clamp(n, min = 0, max = 100) {
   return Math.max(min, Math.min(max, n));
 }
@@ -88,7 +90,29 @@ function bandFor(overall) {
   return { id: "recuperacion", label: "Priorizá recuperar" };
 }
 
-function headlineFor(scores, overall, hour) {
+function depleted(scores) {
+  return (scores.sleep || 0) < 52 || (scores.recovery || 0) < 52;
+}
+
+function headlineFor(scores, overall, hour, mode = "general") {
+  const resolved = normalizeMode(mode);
+  if (resolved === "fitness") {
+    return depleted(scores)
+      ? "Modo fitness, pero hoy no machacás: el HRV y el sueño piden estímulo suave."
+      : "Modo fitness: hay margen para estímulo, volumen y un poco de progresión.";
+  }
+  if (resolved === "recovery") {
+    return "Modo recupero: nada de HIIT. Hoy se baja inflamación y sistema nervioso.";
+  }
+  if (resolved === "sleep") {
+    return "Modo sueño: todo el plan empuja a una noche larga.";
+  }
+  if (resolved === "focus") {
+    return "Modo foco UNC: bloques profundos y movimiento corto entre medio.";
+  }
+  if (resolved === "wellness") {
+    return "Modo wellness: que el día se sienta bien, no que se vea intenso.";
+  }
   if (scores.sleep < 50 && scores.recovery < 55) {
     return hour < 16
       ? "El cuerpo pide suavidad: hoy el mejor día es el que te recarga."
@@ -285,7 +309,85 @@ function buildPlan(metrics, scores, profile, hour) {
     );
   }
 
-  return plan.slice(0, 5);
+  return applyModePlan(plan, metrics, scores, profile, hour).slice(0, 5);
+}
+
+function applyModePlan(plan, metrics, scores, profile, hour) {
+  const mode = normalizeMode(profile.mode);
+  if (mode === "general") return plan;
+
+  const extra = [];
+  const push = (when, action, why, kind) => extra.push({ when, action, why, kind });
+  const bedtime = profile.bedtime || "23:15";
+  const focus = profile.focus || "estudio UNC";
+  const tired = depleted(scores);
+
+  if (mode === "fitness") {
+    if (tired) {
+      push(
+        "ahora",
+        "Hoy no machacás: zona 2, técnica o movilidad. El volumen espera al HRV y al sueño.",
+        "Modo fitness con deuda de recupero: la progresión se pausa, no se fuerza un PR.",
+        "fitness"
+      );
+    } else {
+      push(
+        hour < 18 ? "ahora" : "si todavía no entrenaste",
+        "Sesión de estímulo: fuerza o intervalos, con progresión de volumen (sin ir al fallo).",
+        "Modo fitness: hay margen. El estímulo de hoy es el que suma kilos o minutos a la semana.",
+        "fitness"
+      );
+    }
+  } else if (mode === "recovery") {
+    push(
+      "ahora",
+      "Nada de HIIT. Caminata fácil, movilidad y respiración 10–15 min.",
+      "Modo recupero: el objetivo es bajar inflamación y sistema nervioso, no sumar carga.",
+      "recuperacion"
+    );
+  } else if (mode === "sleep") {
+    push(
+      hour < 16 ? "ahora" : "ya",
+      "Corte de cafeína. Luz cálida de acá en más y hora de apagado concreta.",
+      "Modo sueño: todo empuja a una noche larga. Mañana se gana esta noche.",
+      "sueno"
+    );
+    push(
+      bedtime,
+      `Apagado. Objetivo: estar en cama a las ${bedtime}.`,
+      "Si el modo es sueño, el ROI más alto es apagar a tiempo, no un último bloque de trabajo.",
+      "sueno"
+    );
+  } else if (mode === "focus") {
+    push(
+      "ahora",
+      `Bloque profundo UNC de 50–75 min (${focus}). Celular en otro cuarto.`,
+      "Modo foco: un bloque bien cerrado rinde más que cinco abiertos.",
+      "foco"
+    );
+    push(
+      "entre bloques",
+      "Movimiento corto 5–8 min (escalera o vuelta a la manzana). Nada de gym largo.",
+      "Entre bloques de estudio, el cuerpo se mueve y la cabeza vuelve.",
+      "movimiento"
+    );
+  } else if (mode === "wellness") {
+    push(
+      "ahora",
+      "Día wellness: aire, un vaso de agua y 10 min de movilidad. Sin obsesionarte con el 10k.",
+      "Salud integral: que el día se sienta mejor, no más heroico.",
+      "wellness"
+    );
+  }
+
+  const blob = (step) => `${step.action} ${step.why}`.toLowerCase();
+  const rest = plan.filter((step) => {
+    if (mode === "recovery" && /hiit|intervalos|pr en el gym|al fallo/.test(blob(step))) return false;
+    if (mode === "sleep" && /hiit|gym de 90|intervalos/.test(blob(step))) return false;
+    if (mode === "focus" && /hiit/.test(blob(step))) return false;
+    return !extra.some((lead) => lead.action === step.action);
+  });
+  return [...extra, ...rest];
 }
 
 function watchouts(metrics, scores) {
@@ -325,21 +427,41 @@ export function analyzeDay(metrics = {}, profile = {}, now = new Date()) {
     scores.sleep * 0.35 + scores.movement * 0.3 + scores.recovery * 0.25 + scores.rhythm * 0.1
   );
   const band = bandFor(overall);
+  const mode = normalizeMode(profile.mode);
   return {
     overall,
     band,
     scores,
-    headline: headlineFor(scores, overall, hour),
+    headline: headlineFor(scores, overall, hour, mode),
     summary: summaryFor(metrics, scores, goals),
-    plan: buildPlan(metrics, scores, { ...profile, stepsGoal: goals.steps }, hour),
+    plan: buildPlan(metrics, scores, { ...profile, stepsGoal: goals.steps, mode }, hour),
     watchouts: watchouts(metrics, scores),
     hour,
     goals,
+    mode,
     generatedAt: now.toISOString(),
   };
 }
 
-export function energyWindowFor(hour, scores = {}) {
+export function energyWindowFor(hour, scores = {}, mode = "general") {
+  const resolved = normalizeMode(mode);
+  if (resolved === "sleep") {
+    return "Ventana de sueño: corte de cafeína, luz cálida y apagado. El rendimiento de mañana se fabrica ahora.";
+  }
+  if (resolved === "recovery") {
+    return "Ventana de recupero: nada de HIIT. Movimiento fácil y bajar el sistema nervioso.";
+  }
+  if (resolved === "fitness" && !depleted(scores)) {
+    return hour < 18
+      ? "Ventana de estímulo: si hay margen, entrená con progresión. Después de las 18, no arranques un gym pesado."
+      : "Si todavía no entrenaste, que sea corto. No machacés de noche.";
+  }
+  if (resolved === "focus") {
+    return "Ventana de foco UNC: bloques de 50–75 min y movimiento corto entre medio.";
+  }
+  if (resolved === "wellness") {
+    return "Ventana wellness: aire, agua, movilidad. Sin obsesionarte con el 10k.";
+  }
   if ((scores.sleep || 0) < 52 || (scores.recovery || 0) < 52) {
     return hour < 15
       ? "Hasta media tarde: esfuerzo liviano. La ventana de calidad es recuperar, no empujar."
@@ -352,13 +474,15 @@ export function energyWindowFor(hour, scores = {}) {
 }
 
 export function localNarrative(analysis) {
+  const spec = fitnessMode(analysis.mode);
   return {
     headline: analysis.headline,
     dayStory: analysis.summary,
-    energyWindow: energyWindowFor(analysis.hour, analysis.scores),
-    closing: "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+    energyWindow: energyWindowFor(analysis.hour, analysis.scores, analysis.mode),
+    closing: spec.localClosing,
     plan: analysis.plan,
     watchouts: analysis.watchouts,
+    mode: spec.id,
   };
 }
 

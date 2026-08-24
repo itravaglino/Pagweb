@@ -7,6 +7,7 @@ import { containsWake, createMic, isSpeechSupported, speak, stopSpeaking } from 
 import { connectBleHeartRate } from '../fitbit/bleHeartRate.js';
 
 const SCREENS = ['gemma', 'clock', 'stats'];
+const ALIASES = { today: 'stats', settings: 'control' };
 const IDLE_MS = 22000;
 
 function initialMetrics() {
@@ -83,10 +84,11 @@ export function useWatch() {
 
     const onTick = (event) => setNow(event.date);
     const syncMetrics = () => {
+      const zone = device.today.adjusted.activeZoneMinutes;
       setMetrics({
         steps: Math.round(device.today.adjusted.steps),
         calories: Math.round(device.today.adjusted.calories),
-        zone: device.today.adjusted.activeZoneMinutes.total,
+        zone: typeof zone === 'object' ? zone.total : zone || 0,
         hr: device.hrm.heartRate || 71,
         battery: device.battery.chargeLevel,
       });
@@ -280,7 +282,20 @@ export function useWatch() {
       wake();
       if (g.type === 'swipe') {
         setMenuOpen(false);
-        setScreen((cur) => nextScreen(cur, g.dir, SCREENS));
+        if (g.dir === 'down') {
+          setScreen('control');
+          buzz();
+          return;
+        }
+        if (g.dir === 'up') {
+          setScreen('heart');
+          buzz();
+          return;
+        }
+        setScreen((cur) => {
+          const base = SCREENS.includes(cur) ? cur : 'gemma';
+          return nextScreen(base, g.dir, SCREENS);
+        });
         buzz();
         return;
       }
@@ -347,7 +362,7 @@ export function useWatch() {
 
   const goTo = useCallback(
     (name) => {
-      setScreen(name);
+      setScreen(ALIASES[name] || name);
       setMenuOpen(false);
       setListening(false);
       listenArmedRef.current = false;
@@ -369,6 +384,30 @@ export function useWatch() {
       });
     } catch (err) {
       setStatusText(err?.message || 'BLE no disponible');
+    }
+  }, []);
+
+  const connectFitbitApi = useCallback(async () => {
+    setMenuOpen(false);
+    try {
+      const { fetchFitbitStatus, fetchFitbitToday, fitbitLoginUrl } = await import('../fitbit/webClient.js');
+      const status = await fetchFitbitStatus();
+      if (!status.configured) {
+        setStatusText('Configura FITBIT_CLIENT_ID para la Web API');
+        return;
+      }
+      if (!status.connected) {
+        window.location.href = fitbitLoginUrl();
+        return;
+      }
+      const today = await fetchFitbitToday();
+      if (today?.summary) {
+        deviceRef.current?.activity.ingestFitbitSummary(today.summary);
+        if (today.restingHeartRate) deviceRef.current?.hrm.setBaseline(today.restingHeartRate);
+        setStatusText(`Fitbit Web API · ${today.profile?.name || 'conectado'}`);
+      }
+    } catch {
+      setStatusText('Fitbit Web API no disponible');
     }
   }, []);
 
@@ -405,5 +444,6 @@ export function useWatch() {
     brightness,
     setBrightness,
     connectBle,
+    connectFitbitApi,
   };
 }

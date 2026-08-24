@@ -32,9 +32,7 @@ function Screen({ watch }) {
           onMute={() => watch.setMuted((v) => !v)}
           onLoad={watch.loadOnDevice}
           onBle={watch.connectBle}
-          onFitbit={() => {
-            window.location.href = '/api/fitbit/login';
-          }}
+          onFitbit={watch.connectFitbitApi}
           brightness={watch.brightness}
           onBrightness={watch.setBrightness}
         />

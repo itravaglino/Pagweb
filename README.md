@@ -26,7 +26,7 @@ jsDelivr también tiene el archivo, pero lo sirve como `text/plain` (en el celu 
 
 ### GitHub Pages
 
-https://itravaglino.github.io/Pagweb/ **todavía no está prendido**: este token no puede activar Pages (403). Para publicarlo: Settings → Pages → Source: **Deploy from a branch** → este branch (`cursor/wellness-dashboard-demo-561c`) y carpeta `/docs`, o **GitHub Actions** (el workflow `pages.yml` corre en este branch, en `main` y con `workflow_dispatch`).
+https://itravaglino.github.io/Pagweb/ **todavía no está prendido** (hace falta activarlo una vez; este token no puede — 403). En Settings → Pages → Source: **Deploy from a branch** → `main` (o este branch) y carpeta `/docs`, o **GitHub Actions**. El workflow `pages.yml` solo corre en `main` para no fallar el PR mientras Pages esté apagado.
 
 En Android: Chrome → menú → **Instalar app**.
 

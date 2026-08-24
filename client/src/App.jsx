@@ -11,14 +11,28 @@ import { formatTimer } from '@shared/router.js';
 import './App.css';
 
 function Screen({ watch }) {
+  const layer = watch.layer || 'app';
+  const screen = watch.screen === 'today' ? 'stats' : watch.screen;
   return (
     <>
-      {watch.screen === 'clock' && (
+      {layer === 'control' && (
+        <ControlCenter
+          muted={watch.muted}
+          onMute={() => watch.setMuted((v) => !v)}
+          onLoad={watch.loadOnDevice}
+          onBle={watch.connectBle || watch.connectBleHr}
+          onFitbit={watch.connectFitbitApi}
+          brightness={watch.brightness}
+          onBrightness={watch.setBrightness}
+        />
+      )}
+      {layer === 'widgets' && <StatsFace metrics={watch.metrics} />}
+      {layer === 'app' && screen === 'clock' && (
         <ClockFace now={watch.now} dimmed={!watch.awake} metrics={watch.metrics} />
       )}
-      {watch.screen === 'stats' && <StatsFace metrics={watch.metrics} />}
-      {watch.screen === 'heart' && <HeartFace metrics={watch.metrics} />}
-      {watch.screen === 'exercise' && (
+      {layer === 'app' && screen === 'stats' && <StatsFace metrics={watch.metrics} />}
+      {layer === 'app' && screen === 'heart' && <HeartFace metrics={watch.metrics} />}
+      {layer === 'app' && screen === 'exercise' && (
         <ExerciseFace
           onStart={(sport) => {
             watch.goTo('gemma');
@@ -26,18 +40,18 @@ function Screen({ watch }) {
           }}
         />
       )}
-      {watch.screen === 'control' && (
+      {layer === 'app' && screen === 'control' && (
         <ControlCenter
           muted={watch.muted}
           onMute={() => watch.setMuted((v) => !v)}
           onLoad={watch.loadOnDevice}
-          onBle={watch.connectBle}
+          onBle={watch.connectBle || watch.connectBleHr}
           onFitbit={watch.connectFitbitApi}
           brightness={watch.brightness}
           onBrightness={watch.setBrightness}
         />
       )}
-      {watch.screen === 'gemma' && (
+      {layer === 'app' && screen === 'gemma' && (
         <GemmaBlob
           emotion={watch.emotion}
           bounce={watch.awake ? watch.bounce : 0.12}
@@ -65,7 +79,7 @@ function Screen({ watch }) {
         </div>
       )}
 
-      {watch.bubble && watch.screen === 'gemma' && !watch.listening && (
+      {watch.bubble && screen === 'gemma' && layer === 'app' && !watch.listening && (
         <div className="speech-bubble" data-testid="speech-bubble">
           {watch.bubble}
         </div>

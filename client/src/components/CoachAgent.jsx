@@ -4,12 +4,14 @@ const NUMBER_RE =
   /(\d{1,2}h\s*\d{1,2}m|\d{1,3}(?:[.\u00a0]\d{3})+|\d+(?:[.,]\d+)?\s*(?:ms|lpm|min|kcal|km|ml|h|m|%|pasos)?)/gi;
 
 export function highlightCites(text = "", cite = "") {
-  if (!text) return text;
-  if (cite && text.includes(cite)) {
-    const parts = text.split(cite);
+  const src = typeof text === "string" ? text : text?.text || "";
+  const mark = typeof cite === "string" ? cite : cite?.cite || "";
+  if (!src) return src;
+  if (mark && src.includes(mark)) {
+    const parts = src.split(mark);
     return parts.flatMap((part, i) =>
       i < parts.length - 1
-        ? [part, <mark key={`c-${i}`}>{cite}</mark>]
+        ? [part, <mark key={`c-${i}`}>{mark}</mark>]
         : [part]
     );
   }
@@ -17,13 +19,13 @@ export function highlightCites(text = "", cite = "") {
   let last = 0;
   const re = new RegExp(NUMBER_RE.source, "gi");
   let match;
-  while ((match = re.exec(text))) {
-    if (match.index > last) nodes.push(text.slice(last, match.index));
+  while ((match = re.exec(src))) {
+    if (match.index > last) nodes.push(src.slice(last, match.index));
     nodes.push(<mark key={`${match.index}-${match[0]}`}>{match[0]}</mark>);
     last = match.index + match[0].length;
   }
-  if (last < text.length) nodes.push(text.slice(last));
-  return nodes.length ? nodes : text;
+  if (last < src.length) nodes.push(src.slice(last));
+  return nodes.length ? nodes : src;
 }
 
 function storyParagraphs(dayStory = "") {
@@ -109,12 +111,12 @@ export function CoachAgent({
           <h2>Lo que notó el agente</h2>
           <ul>
             {noticing.map((item, i) => {
-              const text = typeof item === "string" ? item : item.text;
-              const cite = typeof item === "string" ? "" : item.cite;
-              const field = typeof item === "string" ? "" : item.fitbitField;
+              const text = typeof item === "string" ? item : item?.text || "";
+              const cite = typeof item === "string" ? "" : item?.cite || "";
+              const field = typeof item === "string" ? "" : item?.fitbitField || "";
               const on = highlightField && field && tileForField(highlightField) === tileForField(field);
               return (
-                <li key={`${i}-${text.slice(0, 24)}`}>
+                <li key={`n-${i}`}>
                   <button
                     type="button"
                     className={`noticing-item ${on ? "on" : ""}`}
@@ -149,8 +151,8 @@ export function CoachAgent({
         <section className="coach-because">
           <h3>Por eso hoy</h3>
           <ul>
-            {narrative.because.map((line) => (
-              <li key={line}>{highlightCites(line)}</li>
+            {narrative.because.map((line, i) => (
+              <li key={`b-${i}`}>{highlightCites(typeof line === "string" ? line : line?.text)}</li>
             ))}
           </ul>
         </section>
@@ -182,8 +184,8 @@ export function CoachAgent({
         <div className="coach-watchouts">
           <h3>Ojo con</h3>
           <ul>
-            {narrative.watchouts.map((w) => (
-              <li key={w}>{w}</li>
+            {narrative.watchouts.map((w, i) => (
+              <li key={`w-${i}`}>{typeof w === "string" ? w : w?.text || ""}</li>
             ))}
           </ul>
         </div>
@@ -230,8 +232,9 @@ export function CoachNote({ narrative, fallbackMetrics, label = "Así lo leería
       {noticing.length ? (
         <ul className="coach-note-list">
           {noticing.slice(0, 4).map((item, i) => {
-            const text = typeof item === "string" ? item : item.text;
-            return <li key={i}>{highlightCites(text, item.cite)}</li>;
+            const text = typeof item === "string" ? item : item?.text || "";
+            const cite = typeof item === "string" ? "" : item?.cite || "";
+            return <li key={`n-${i}`}>{highlightCites(text, cite)}</li>;
           })}
         </ul>
       ) : null}

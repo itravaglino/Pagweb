@@ -69,6 +69,37 @@ test("nvidia prompt pide noticing y archivo de 4 semanas", () => {
   assert.ok(prompt.toLowerCase().includes("sueño") || prompt.includes("SUEÑO"));
 });
 
+test("normalizeCoachNarrative no deja objetos en because/watchouts", async () => {
+  const { normalizeCoachNarrative } = await import("../shared/fitness.js");
+  const local = {
+    headline: "local",
+    noticing: [{ text: "HRV 21 ms", cite: "21 ms", fitbitField: "hrv" }],
+    because: ["porque 21 ms"],
+    dayStory: "historia",
+    energyWindow: "tarde",
+    plan: [{ when: "ahora", action: "agua", why: "700 ml" }],
+    watchouts: ["ojo"],
+    tonight: "23:15",
+    tradeoff: "sueño",
+    closing: "dale",
+  };
+  const out = normalizeCoachNarrative(
+    {
+      headline: "Nacho, suavidad",
+      noticing: [{ text: "Tu HRV bajó a 21 ms", cite: "21 ms", fitbitField: "hrv" }],
+      because: [{ text: "HRV 21 ms → nada de HIIT", cite: "21 ms", fitbitField: "hrv" }],
+      watchouts: [{ text: "Café gigante con FC 76", cite: "76" }],
+      dayStory: "Anoche 5h 12m.",
+    },
+    local,
+    "nvidia"
+  );
+  assert.equal(typeof out.because[0], "string");
+  assert.match(out.because[0], /21 ms/);
+  assert.equal(typeof out.watchouts[0], "string");
+  assert.match(out.watchouts[0], /76/);
+});
+
 test("coachUserPayload incluye historial de Cami y el diario de hoy", () => {
   const payload = getCharacterPayload("2026-08-11");
   const metrics = toMetrics(payload);

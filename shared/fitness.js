@@ -325,21 +325,43 @@ export function coercePlan(raw, engine = "local") {
   }));
 }
 
+export function lineText(item) {
+  if (item == null) return "";
+  if (typeof item === "string" || typeof item === "number") return String(item);
+  return item.text || item.why || item.note || item.observation || "";
+}
+
+export function coerceLines(raw, max = 6) {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .map(lineText)
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .slice(0, max);
+}
+
+function asStory(value, fallback = "") {
+  if (typeof value === "string" && value.trim()) return value;
+  if (value && typeof value === "object") return lineText(value) || fallback;
+  return fallback;
+}
+
 export function normalizeCoachNarrative(parsed, local, engine = "local") {
   const noticing = coerceNoticing(parsed?.noticing);
-  const because = Array.isArray(parsed?.because) ? parsed.because.filter(Boolean).slice(0, 6) : [];
+  const because = coerceLines(parsed?.because, 6);
   const plan = coercePlan(parsed?.plan || parsed?.bestDayPlan, engine);
+  const watchouts = coerceLines(parsed?.watchouts, 4);
   return {
-    headline: parsed?.headline || local.headline,
+    headline: asStory(parsed?.headline, local.headline),
     noticing: noticing.length ? noticing : local.noticing,
     because: because.length ? because : local.because,
-    dayStory: parsed?.dayStory || local.dayStory,
-    energyWindow: parsed?.energyWindow || local.energyWindow,
+    dayStory: asStory(parsed?.dayStory, local.dayStory),
+    energyWindow: asStory(parsed?.energyWindow, local.energyWindow),
     plan: plan.length ? plan : local.plan,
-    watchouts: Array.isArray(parsed?.watchouts) && parsed.watchouts.length ? parsed.watchouts.slice(0, 4) : local.watchouts,
-    tonight: parsed?.tonight || local.tonight,
-    tradeoff: parsed?.tradeoff || local.tradeoff,
-    closing: parsed?.closing || local.closing,
+    watchouts: watchouts.length ? watchouts : local.watchouts,
+    tonight: asStory(parsed?.tonight, local.tonight),
+    tradeoff: asStory(parsed?.tradeoff, local.tradeoff),
+    closing: asStory(parsed?.closing, local.closing),
     mode: parsed?.mode || local.mode,
     engine,
   };

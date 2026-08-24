@@ -98,6 +98,7 @@ app.use("/data", express.static(path.join(ROOT, "data")));
 
 seedIfEmpty();
 mountDbRoutes(app);
+// voice-loop-hook: POST /api/voice — keep on rebase (bc-ad0b7fdc / nacho-voice)
 mountVoiceRoutes(app);
 
 app.get("/api/health", (_req, res) => {

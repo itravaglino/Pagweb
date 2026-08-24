@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  TASKS_STORAGE_KEY,
   completeByPhrase,
   defaultGoals,
   loadStoredTasks,
@@ -182,6 +181,7 @@ export function VoiceCoach({ metrics, persona, settings, character, embedded = f
     : metrics
       ? progressVsGoals(metrics, goals, summary).rows
       : [];
+
   const Wrap = embedded ? "section" : "article";
 
   return (
@@ -198,8 +198,7 @@ export function VoiceCoach({ metrics, persona, settings, character, embedded = f
         <span className="chip">{engine === "nvidia" ? "NIM" : engine === "local" ? "local" : "mic"}</span>
       </div>
       <p className="muted">
-        Grabá o escribí el día. Lumen compara con tus metas y las 4 semanas de {CHARACTER.nickname}
-        {embedded ? "." : ` (${CHARACTER.goal.label}), y si decís terminé lo tacha.`}
+        Grabá o escribí el día. Lumen compara con tus metas y las 4 semanas de {CHARACTER.nickname}.
       </p>
 
       <div className="voice-coach-controls">

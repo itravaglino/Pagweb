@@ -117,7 +117,7 @@ export async function handleVoiceTurn(body = {}) {
     persona: body.persona || CHARACTER.id,
   };
 
-  const key = body.nvidiaKey || process.env.NVIDIA_API_KEY || process.env.NVIDIA_API_KEY;
+  const key = body.nvidiaKey || process.env.NVIDIA_API_KEY;
   if (key) {
     const chosen = body.model || process.env.NVIDIA_MODEL || DEFAULT_NVIDIA_MODEL;
     const firstTimeout = /70b/i.test(String(chosen)) ? 18000 : 22000;

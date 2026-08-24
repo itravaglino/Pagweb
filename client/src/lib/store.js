@@ -132,6 +132,7 @@ export const defaultStudio = () => ({
     { id: "c3", tag: "Nuevo", text: "PWA instalable (Chrome → Instalar app) sobre HTTPS." },
     { id: "c4", tag: "Nuevo", text: "Modos fitness / recupero / sueño / foco UNC para el coach." },
     { id: "c5", tag: "Nuevo", text: "NVIDIA Developer de primera: build.nvidia.com, clave nvapi- y modos wellness." },
+    { id: "c6", tag: "Nuevo", text: "Semana sintética Charge 6 (pasos/hora, sueño, HR, HRV) lista para demo." },
   ],
   notes:
     "Usá **Personalizar** para cambiar nombre, % de avance, paleta y qué bloques se ven. Exportá el JSON si lo querés versionar en el repo. El archivo de días vive en el servidor, no solo en este navegador.",
@@ -169,10 +170,13 @@ export function loadJson(key, fallback) {
     const parsed = JSON.parse(raw);
     const base = fallback();
     if (key === STORAGE_KEY) {
+      const widgetOrder = [...(parsed.widgetOrder || base.widgetOrder)];
+      if (!widgetOrder.includes("wellbeing")) widgetOrder.push("wellbeing");
       return {
         ...base,
         ...parsed,
         profile: { ...base.profile, ...(parsed.profile || {}) },
+        widgetOrder,
       };
     }
     return { ...base, ...parsed };

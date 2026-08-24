@@ -11,7 +11,8 @@ const { addEntry, loadOrSeed, listEntries, seedDatabase } = await import("../ser
 
 test("siembra días de prueba de Nacho", () => {
   const db = loadOrSeed();
-  assert.ok(db.entries.length >= 4);
+  assert.ok(db.entries.length >= 7);
+  assert.ok(db.entries.some((e) => String(e.id).startsWith("seed-semana-")));
   assert.equal(db.profile.shortName, "Nacho");
   assert.ok(db.entries.some((e) => e.persona === "mixto" || e.label));
   assert.ok(fs.existsSync(tmp));
@@ -28,5 +29,9 @@ test("addEntry prepends and caps", () => {
 test("seedDatabase is deterministic enough", () => {
   const seed = seedDatabase();
   assert.equal(seed.profile.org, "UNC");
+  assert.equal(seed.version, 3);
+  const week = seed.entries.filter((e) => String(e.id).startsWith("seed-semana-"));
+  assert.equal(week.length, 7);
+  assert.equal(week[0].metrics.hourlySteps.length, 24);
   assert.ok(seed.entries.length >= 3);
 });

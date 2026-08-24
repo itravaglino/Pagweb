@@ -1,6 +1,8 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FONTS, STORAGE_KEY, THEMES, defaultStudio } from "../lib/store.js";
-import { Field } from "./ui.jsx";
+import { Field, Ring } from "./ui.jsx";
+import { fetchDay } from "../lib/api.js";
+import { minutesToHm } from "@shared/analyze.js";
 
 function markdownLite(text = "") {
   const escaped = text
@@ -32,6 +34,66 @@ const WIDGET_META = {
   notes: "Notas",
   wellbeing: "Mejor Día",
 };
+
+function WellbeingPreview() {
+  const [pulse, setPulse] = useState(null);
+  useEffect(() => {
+    let cancelled = false;
+    fetchDay("mixto", "demo")
+      .then((data) => {
+        if (!cancelled) setPulse(data);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const m = pulse?.metrics;
+  const max = Math.max(1, ...(m?.week || []).map((d) => d.steps));
+  return (
+    <article className="card">
+      <div className="kicker">Fitbit · demo Córdoba</div>
+      <h2>Mejor Día</h2>
+      <p className="tagline">
+        {m?.story ||
+          "Cinco días sintéticos con la forma de la Web API de Fitbit. Tocá la demo: pasos por hora, sueño, HRV y el coach."}
+      </p>
+      {m ? (
+        <>
+          <div className="meta-row">
+            <span className="chip good">Sueño {minutesToHm(m.sleepMinutes)}</span>
+            <span className="chip">Pasos {(m.steps || 0).toLocaleString("es-AR")}</span>
+            <span className="chip">FC {m.restingHeartRate}</span>
+            <span className="chip">HRV {Math.round(m.hrvRmssd)} ms</span>
+          </div>
+          <div className="week-bars mini">
+            {(m.week || []).map((d) => (
+              <div key={d.date} className="week-col" title={`${d.label} · ${d.steps}`}>
+                <i style={{ height: `${Math.max(8, (d.steps / max) * 100)}%` }} />
+              </div>
+            ))}
+          </div>
+          <div className="rings" style={{ marginTop: 12 }}>
+            <Ring value={Math.round((m.sleepMinutes / 450) * 100)} label="Sueño" />
+            <Ring value={Math.min(100, Math.round((m.steps / 10000) * 100))} label="Pasos" color="var(--accent-2)" />
+            <Ring value={Math.min(100, m.hrvRmssd * 2)} label="HRV" />
+            <Ring value={Math.min(100, m.azmTotal * 2)} label="AZM" color="var(--accent-2)" />
+          </div>
+        </>
+      ) : (
+        <p className="muted">Cargando el Charge 6 de demo…</p>
+      )}
+      <div className="meta-row">
+        <a className="btn primary" href="#/dia">
+          Abrir la demo
+        </a>
+        <a className="btn" href="#/archivo">
+          Ver la semana
+        </a>
+      </div>
+    </article>
+  );
+}
 
 export function Studio({ studio, setStudio, edit, setEdit }) {
   const visible = useMemo(
@@ -174,20 +236,7 @@ export function Studio({ studio, setStudio, edit, setEdit }) {
         <p className="quote">{studio.quote}</p>
       </article>
     ),
-    wellbeing: (
-      <article className="card" key="wellbeing">
-        <div className="kicker">Demo</div>
-        <h2>Mejor Día</h2>
-        <p className="tagline">
-          NVIDIA Developer (NIM) lee métricas estilo Fitbit y, en modos fitness / recupero / sueño / foco UNC / wellness, te arma el plan con las horas que quedan.
-        </p>
-        <div className="meta-row">
-          <a className="btn primary" href="#/dia">
-            Abrir la demo
-          </a>
-        </div>
-      </article>
-    ),
+    wellbeing: <WellbeingPreview key="wellbeing" />,
   };
 
   return (

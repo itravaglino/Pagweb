@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Ring, Field } from "../components/ui.jsx";
+import { FitbitViz, PlanList } from "../components/FitbitViz.jsx";
+import { Field, Ring } from "../components/ui.jsx";
 import { minutesToHm } from "@shared/analyze.js";
 import { PERSONAS } from "@shared/sampleFitbit.js";
 import {
@@ -13,9 +14,11 @@ import { fetchCoach, fetchDay, fetchFitbitStatus, fetchNvidiaStatus } from "../l
 import { saveCoachEntry } from "../lib/db.js";
 
 const FALLBACK_PERSONAS = [
-  { id: "mixto", label: "Hoy realista" },
-  { id: "recargado", label: "Día recargado" },
-  { id: "agotado", label: "Día en deuda" },
+  { id: "mixto", label: "Martes UNC" },
+  { id: "recargado", label: "Sábado gym" },
+  { id: "agotado", label: "Post parcial" },
+  { id: "examen", label: "Semana de mesas" },
+  { id: "barrio", label: "Domingo Güemes" },
 ];
 
 export function Wellness({ settings, setSettings }) {
@@ -152,7 +155,7 @@ export function Wellness({ settings, setSettings }) {
           <h1>¿Cómo viene tu día?</h1>
           <p className="tagline">
             {narrative?.headline ||
-              "Cargamos un Fitbit de demo (o los números de tu app) y NVIDIA te arma el plan para el mejor día posible con las horas que quedan."}
+              "Datos sintéticos con forma de Fitbit Web API (pasos, sueño, FC, HRV, zonas, SpO₂). Tocá un día, un modo y las barras: el coach arma el plan con lo que el reloj habría medido."}
           </p>
           <div className="meta-row">
             {metricChips.map(([k, v]) => (
@@ -288,7 +291,7 @@ export function Wellness({ settings, setSettings }) {
       <article className="card">
         <div className="widget-head">
           <h2>Fuente de datos</h2>
-          <span className="muted">{day?.connected ? "Fitbit en vivo" : persona === "mio" ? "Tus números" : "Demo local"}</span>
+          <span className="muted">{day?.connected ? "Fitbit en vivo" : persona === "mio" ? "Tus números" : PERSONAS[persona]?.blurb || "Demo Fitbit"}</span>
         </div>
         <div className="swatches">
           {sources.map((p) => (
@@ -303,13 +306,23 @@ export function Wellness({ settings, setSettings }) {
           ))}
         </div>
         <p className="muted" style={{ marginTop: 10 }}>
-          La demo no necesita cuenta. Pegá los números que ves hoy en Fitbit, o conectá OAuth: app Client en{" "}
+          Cinco días sintéticos de Córdoba (Charge 6). Cada uno trae pasos por hora, etapas de sueño, zonas cardíacas, HRV, SpO₂ y AZM — los mismos campos que recogería la Web API. O conectá OAuth en{" "}
           <a href="https://dev.fitbit.com/apps" target="_blank" rel="noreferrer">
             dev.fitbit.com
-          </a>{" "}
-          con callback <code>/api/fitbit/callback</code>.
+          </a>
+          .
         </p>
       </article>
+
+      {metrics ? (
+        <article className="card">
+          <div className="widget-head">
+            <h2>El reloj, en números</h2>
+            <span className="muted">{metrics.date}</span>
+          </div>
+          <FitbitViz metrics={metrics} />
+        </article>
+      ) : null}
 
       {showKeys || persona === "mio" ? (
         <article className="card">
@@ -423,7 +436,7 @@ export function Wellness({ settings, setSettings }) {
           {!fitbit.configured ? (
             <div className="banner" style={{ marginTop: 12 }}>
               Fitbit OAuth se activa con <code>FITBIT_CLIENT_ID</code> en el <code>.env</code> del servidor. Mientras
-              tanto, las 3 personas de demo y tus números cubren el flujo completo.
+              tanto, los cinco días de demo y tus números cubren el flujo completo.
             </div>
           ) : null}
         </article>
@@ -447,17 +460,7 @@ export function Wellness({ settings, setSettings }) {
           <article className="card">
             <div className="kicker">Para tu mejor día posible</div>
             <h2>Qué tenés que hacer</h2>
-            <ol className="plan">
-              {(narrative.plan || []).map((step, i) => (
-                <li key={i}>
-                  <time>{step.when}</time>
-                  <div>
-                    <strong>{step.action}</strong>
-                    <div className="muted">{step.why}</div>
-                  </div>
-                </li>
-              ))}
-            </ol>
+            <PlanList key={`${persona}-${settings.fitnessMode}-${narrative?.headline || ""}`} plan={narrative.plan || []} />
             {(narrative.watchouts || []).length ? (
               <div style={{ marginTop: 16 }}>
                 <h3>Ojo con</h3>

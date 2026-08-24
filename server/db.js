@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { PERSONAS, getPersonaPayload, toMetrics } from "../shared/sampleFitbit.js";
+import { PERSONAS, listDemoWeek, toMetrics } from "../shared/sampleFitbit.js";
 import { analyzeDay, localNarrative } from "../shared/analyze.js";
 import { NACHO } from "../shared/profile.js";
 
@@ -41,33 +41,37 @@ function coachProfile() {
   };
 }
 
-function seededDay({ persona, date, at }) {
-  const payload = getPersonaPayload(persona);
-  payload.date = date;
-  const metrics = toMetrics(payload);
-  metrics.date = date;
-  const analysis = analyzeDay(metrics, coachProfile(), new Date(at));
-  return {
-    id: `seed-${persona}`,
-    kind: "fitbit-day",
-    persona,
-    date,
-    label: PERSONAS[persona]?.label || persona,
-    metrics,
-    analysis: {
-      overall: analysis.overall,
-      band: analysis.band,
-      scores: analysis.scores,
-    },
-    narrative: localNarrative(analysis),
-    engine: "local",
-    createdAt: new Date(at).toISOString(),
-  };
+function hasRichWeek(db) {
+  const week = (db?.entries || []).filter(
+    (e) => String(e.id).startsWith("seed-semana-") && (e.metrics?.hourlySteps?.length || 0) === 24
+  );
+  return (db?.version || 0) >= 3 && week.length >= 7;
 }
 
 export function seedDatabase() {
+  const week = listDemoWeek("2026-08-23").map((payload, i) => {
+    const at = `${payload.date}T${["18:40", "16:10", "14:30", "11:05", "19:20", "09:15", "13:00"][i]}:00-03:00`;
+    const metrics = toMetrics(payload);
+    const analysis = analyzeDay(metrics, coachProfile(), new Date(at));
+    return {
+      id: `seed-semana-${payload.persona}-${payload.date}`,
+      kind: "fitbit-day",
+      persona: payload.persona,
+      date: payload.date,
+      label: PERSONAS[payload.persona]?.label || payload.persona,
+      metrics,
+      analysis: {
+        overall: analysis.overall,
+        band: analysis.band,
+        scores: analysis.scores,
+      },
+      narrative: localNarrative(analysis),
+      engine: "local",
+      createdAt: new Date(at).toISOString(),
+    };
+  });
   return {
-    version: 2,
+    version: 3,
     updatedAt: new Date().toISOString(),
     profile: { ...NACHO },
     studio: {
@@ -77,15 +81,13 @@ export function seedDatabase() {
       font: "editorial",
     },
     entries: [
-      seededDay({ persona: "mixto", date: "2026-08-20", at: "2026-08-20T14:30:00-03:00" }),
-      seededDay({ persona: "recargado", date: "2026-08-21", at: "2026-08-21T09:15:00-03:00" }),
-      seededDay({ persona: "agotado", date: "2026-08-22", at: "2026-08-22T18:40:00-03:00" }),
+      ...week,
       {
         id: "seed-unc-note",
         kind: "note",
         date: "2026-08-23",
-        title: "Nota UNC",
-        text: `${NACHO.fullName}, ${NACHO.role} en la ${NACHO.org} (${NACHO.city}). Archivo de prueba de Pagweb: tres días Fitbit (mixto, recargado, agotado) y esta nota. Zona ${NACHO.timezone}. Mail: ${NACHO.email}.`,
+        title: "Semana Fitbit (sintético)",
+        text: `${NACHO.fullName}, ${NACHO.role} en la ${NACHO.org} (${NACHO.city}). Semana de demo: post parcial, mesas, martes UNC, gym y domingo Güemes. Los números imitan Charge 6 (pasos, sueño, FC, HRV, AZM, SpO₂). Zona ${NACHO.timezone}.`,
         createdAt: "2026-08-23T14:00:00.000Z",
       },
     ],
@@ -139,7 +141,7 @@ export function writeDb(db) {
 
 export function loadOrSeed() {
   const existing = readDb();
-  if (existing?.entries?.length) return existing;
+  if (hasRichWeek(existing)) return existing;
   return writeDb(seedDatabase()).db;
 }
 

@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-import { getPersonaPayload, PERSONAS, toMetrics } from "../shared/sampleFitbit.js";
+import { getPersonaPayload, PERSONAS, toMetrics, listDemoWeek } from "../shared/sampleFitbit.js";
 import { buildCoach } from "./nvidia.js";
 import { NACHO } from "../shared/profile.js";
 import {
@@ -123,6 +123,16 @@ app.get("/api/host", (req, res) => {
     forwardedHost: req.get("host"),
     note: "Cursor Cloud abre el puerto 3000. Esta URL pública es el túnel HTTPS mientras el agente corre.",
   });
+});
+
+app.get("/api/week", (_req, res) => {
+  const days = listDemoWeek().map((payload) => ({
+    payload,
+    metrics: toMetrics(payload),
+    persona: payload.persona,
+    label: PERSONAS[payload.persona]?.label,
+  }));
+  res.json({ days, personas: Object.values(PERSONAS) });
 });
 
 app.get("/api/demo/personas", (_req, res) => {

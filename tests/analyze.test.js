@@ -45,10 +45,22 @@ test("extractJsonObject tolera fences markdown", () => {
 });
 
 test("personas exportadas", () => {
-  assert.deepEqual(Object.keys(PERSONAS).sort(), ["agotado", "mixto", "recargado"]);
-  const metrics = toMetrics(getPersonaPayload("mixto"));
-  assert.ok(metrics.steps > 0);
-  assert.ok(metrics.sleepMinutes > 0);
+  assert.ok(["agotado", "mixto", "recargado"].every((id) => PERSONAS[id]));
+  assert.ok(PERSONAS.examen && PERSONAS.barrio);
+  for (const id of Object.keys(PERSONAS)) {
+    const metrics = toMetrics(getPersonaPayload(id));
+    assert.ok(metrics.steps > 0, id);
+    assert.ok(metrics.sleepMinutes > 0, id);
+    assert.equal(metrics.hourlySteps.length, 24, id);
+    assert.equal(
+      metrics.hourlySteps.reduce((a, b) => a + b.value, 0),
+      metrics.steps,
+      id
+    );
+    assert.equal(metrics.week.length, 7, id);
+    assert.ok(metrics.heartZones.length >= 3, id);
+    assert.ok(metrics.spo2 > 90, id);
+  }
 });
 
 test("payloadFromManual respeta sueño y pasos", async () => {

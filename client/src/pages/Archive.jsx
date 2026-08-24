@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { fetchArchive } from "../lib/db.js";
-import { minutesToHm } from "@shared/analyze.js";
+import { FitbitViz } from "../components/FitbitViz.jsx";
 
 function formatWhen(iso) {
   if (!iso) return "";
@@ -63,7 +63,7 @@ export function Archive() {
           </div>
         </div>
         <div>
-          <p className="quote">Tres días Fitbit y una nota UNC, para no arrancar el archivo vacío.</p>
+          <p className="quote">Una semana sintética de Charge 6: mesas, UNC, gym y Güemes.</p>
         </div>
       </article>
 
@@ -72,7 +72,7 @@ export function Archive() {
       <article className="card">
         <div className="widget-head">
           <h2>Entradas</h2>
-          <span className="muted">mixto · recargado · agotado · UNC</span>
+          <span className="muted">post parcial · mesas · UNC · gym · Güemes</span>
         </div>
         <div className="archive-list">
           {entries.map((item) => (
@@ -107,16 +107,7 @@ export function Archive() {
           ) : (
             <>
               <p className="tagline">{selected.narrative?.dayStory}</p>
-              {selected.metrics ? (
-                <div className="meta-row">
-                  <span className="chip">Sueño {minutesToHm(selected.metrics.sleepMinutes)}</span>
-                  <span className="chip">Pasos {(selected.metrics.steps || 0).toLocaleString("es-AR")}</span>
-                  <span className="chip">FC {selected.metrics.restingHeartRate ?? "—"}</span>
-                  <span className="chip">
-                    HRV {selected.metrics.hrvRmssd ? `${Math.round(selected.metrics.hrvRmssd)} ms` : "—"}
-                  </span>
-                </div>
-              ) : null}
+              {selected.metrics?.hourlySteps?.length ? <FitbitViz metrics={selected.metrics} /> : null}
               {selected.narrative?.energyWindow ? (
                 <p>
                   <strong>Ventana: </strong>

@@ -2,7 +2,7 @@
 
 export const NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 export const NVIDIA_DOCS = "https://build.nvidia.com";
-export const DEFAULT_NVIDIA_MODEL = "meta/llama-3.3-70b-instruct";
+export const DEFAULT_NVIDIA_MODEL = "meta/llama-3.1-8b-instruct";
 
 export const NVIDIA_MODELS = [
   "meta/llama-3.3-70b-instruct",

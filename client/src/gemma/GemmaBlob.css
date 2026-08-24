@@ -50,8 +50,8 @@
   --look-y: 0;
   --tongue: 0;
   --tooth: 0;
-  --left-h: var(--eye-h);
-  --right-h: var(--eye-h);
+  --left-h: 11;
+  --right-h: 11;
 }
 
 .eye {

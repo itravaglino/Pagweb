@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "updatedAt": "2026-08-23T23:58:41.304Z",
+  "version": 3,
+  "updatedAt": "2026-08-24T03:16:41.603Z",
   "profile": {
     "fullName": "Ignacio Ricardo Travaglino",
     "shortName": "Nacho",
@@ -19,1156 +19,29 @@
   },
   "entries": [
     {
-      "id": "7d7ef091-5102-4cd0-8cb0-545832127a21",
-      "createdAt": "2026-08-23T23:58:41.304Z",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "label": "Nacho",
-      "metrics": {
-        "date": "2026-08-23",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 68,
-        "band": {
-          "id": "bien",
-          "label": "Vas bien"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 81
-        },
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "summary": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": [],
-        "hour": 20,
-        "goals": {
-          "steps": 10000,
-          "sleepHours": 7.5,
-          "activeMinutes": 30
-        },
-        "generatedAt": "2026-08-23T23:58:41.065Z"
-      },
-      "narrative": {
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "mode": "general"
-    },
-    {
-      "id": "7cd4f5c0-d0a5-468a-ba0b-832fca48624d",
-      "createdAt": "2026-08-23T23:58:41.067Z",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "label": "Nacho",
-      "metrics": {
-        "date": "2026-08-23",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 68,
-        "band": {
-          "id": "bien",
-          "label": "Vas bien"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 81
-        }
-      },
-      "narrative": {
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "mode": "general"
-    },
-    {
-      "id": "9f9e38cb-4106-4226-a114-cfd701a70ee0",
-      "createdAt": "2026-08-23T23:57:54.055Z",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "label": "Nacho",
-      "metrics": {
-        "date": "2026-08-23",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 68,
-        "band": {
-          "id": "bien",
-          "label": "Vas bien"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 81
-        },
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "summary": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": [],
-        "hour": 20,
-        "goals": {
-          "steps": 10000,
-          "sleepHours": 7.5,
-          "activeMinutes": 30
-        },
-        "generatedAt": "2026-08-23T23:57:53.609Z"
-      },
-      "narrative": {
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "mode": "general"
-    },
-    {
-      "id": "d3351de5-3168-4208-b4bb-e32ca5938d6f",
-      "createdAt": "2026-08-23T23:57:53.853Z",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "label": "Nacho",
-      "metrics": {
-        "date": "2026-08-23",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 68,
-        "band": {
-          "id": "bien",
-          "label": "Vas bien"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 81
-        }
-      },
-      "narrative": {
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "mode": "general"
-    },
-    {
-      "id": "8ec800df-6736-47dc-adb3-37c15ca65299",
-      "createdAt": "2026-08-23T23:57:41.265Z",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "label": "Nacho",
-      "metrics": {
-        "date": "2026-08-23",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 68,
-        "band": {
-          "id": "bien",
-          "label": "Vas bien"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 81
-        },
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "summary": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": [],
-        "hour": 20,
-        "goals": {
-          "steps": 10000,
-          "sleepHours": 7.5,
-          "activeMinutes": 30
-        },
-        "generatedAt": "2026-08-23T23:57:40.798Z"
-      },
-      "narrative": {
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "mode": "general"
-    },
-    {
-      "id": "c5e8d0f1-fda2-4fbd-8ff2-9083c037f681",
-      "createdAt": "2026-08-23T23:57:41.028Z",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "label": "Nacho",
-      "metrics": {
-        "date": "2026-08-23",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 68,
-        "band": {
-          "id": "bien",
-          "label": "Vas bien"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 81
-        }
-      },
-      "narrative": {
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "mode": "general"
-    },
-    {
-      "id": "9b5be7ad-fbef-44c6-8727-d300bac5ee63",
-      "createdAt": "2026-08-23T23:56:11.795Z",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "label": "Nacho",
-      "metrics": {
-        "date": "2026-08-23",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 68,
-        "band": {
-          "id": "bien",
-          "label": "Vas bien"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 81
-        },
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "summary": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": [],
-        "hour": 20,
-        "goals": {
-          "steps": 10000,
-          "sleepHours": 7.5,
-          "activeMinutes": 30
-        },
-        "generatedAt": "2026-08-23T23:56:11.371Z"
-      },
-      "narrative": {
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "mode": "general"
-    },
-    {
-      "id": "7a0a8975-17ce-45a9-b441-93b0ad736b5b",
-      "createdAt": "2026-08-23T23:56:11.574Z",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "label": "Nacho",
-      "metrics": {
-        "date": "2026-08-23",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 68,
-        "band": {
-          "id": "bien",
-          "label": "Vas bien"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 81
-        }
-      },
-      "narrative": {
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "mode": "general"
-    },
-    {
-      "id": "d3d67e58-0db0-4083-b30b-38ea843a9fc2",
-      "createdAt": "2026-08-23T23:53:15.037Z",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "label": "Nacho",
-      "metrics": {
-        "date": "2026-08-23",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 68,
-        "band": {
-          "id": "bien",
-          "label": "Vas bien"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 81
-        },
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "summary": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": [],
-        "hour": 20,
-        "goals": {
-          "steps": 10000,
-          "sleepHours": 7.5,
-          "activeMinutes": 30
-        },
-        "generatedAt": "2026-08-23T23:53:14.809Z"
-      },
-      "narrative": {
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "mode": "general"
-    },
-    {
-      "id": "0011cad8-b3df-4b70-94db-25e3a3de4b92",
-      "createdAt": "2026-08-23T23:53:14.812Z",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "label": "Nacho",
-      "metrics": {
-        "date": "2026-08-23",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 68,
-        "band": {
-          "id": "bien",
-          "label": "Vas bien"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 81
-        }
-      },
-      "narrative": {
-        "headline": "Todavía se puede salvar el día: ritual de baja y cama.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el sueño.",
-        "energyWindow": "Cierre del día: movimiento suave y luces cálidas. Nada de HIIT.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Modo aterrizaje: ducha tibia, celular fuera de la cama, 4–7–8 o lectura papel.",
-            "why": "Esta ventana decide si mañana arrancás en 80 o en 40.",
-            "kind": "sueno"
-          },
-          {
-            "when": "antes de las 22",
-            "action": "Vueltita de 8–10 min alrededor de la manzana, sin teléfono.",
-            "why": "Cierra un poco el movimiento y baja la cabeza sin luz azul.",
-            "kind": "movimiento"
-          },
-          {
-            "when": "23:15",
-            "action": "Apagado. Objetivo: estar en cama a las 23:15.",
-            "why": "Hoy el ROI más alto no es producir más: es dormir más.",
-            "kind": "sueno"
-          },
-          {
-            "when": "ahora",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "mode": "general"
-    },
-    {
-      "id": "seed-mixto",
-      "kind": "fitbit-day",
-      "persona": "mixto",
-      "date": "2026-08-20",
-      "label": "Hoy realista",
-      "metrics": {
-        "date": "2026-08-20",
-        "displayName": "Nacho (demo)",
-        "steps": 6420,
-        "calories": 1980,
-        "floors": 8,
-        "distanceKm": 4.7,
-        "sedentaryMinutes": 612,
-        "lightlyActiveMinutes": 164,
-        "fairlyActiveMinutes": 18,
-        "veryActiveMinutes": 6,
-        "restingHeartRate": 68,
-        "hrvRmssd": 32,
-        "sleepMinutes": 378,
-        "timeInBed": 420,
-        "sleepEfficiency": 78,
-        "deepMinutes": 48,
-        "remMinutes": 64,
-        "lightMinutes": 266,
-        "awakeMinutes": 42,
-        "awakenings": 3,
-        "sleepStart": "2026-08-23T00:22:00",
-        "sleepEnd": "2026-08-23T07:04:00",
-        "waterMl": 1100,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 65,
-        "band": {
-          "id": "ajuste",
-          "label": "Con ajustes se arma"
-        },
-        "scores": {
-          "sleep": 60,
-          "movement": 70,
-          "recovery": 71,
-          "rhythm": 53
-        }
-      },
-      "narrative": {
-        "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
-        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el ritmo del día.",
-        "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "15:00",
-            "action": "Último café. Después, agua o té.",
-            "why": "La cafeína tarda ~6 h en bajar a la mitad: si dormiste poco, este corte vale más que cualquier suplemento.",
-            "kind": "sueno"
-          },
-          {
-            "when": "14:00",
-            "action": "Siesta o quietud 12–18 min, alarma dura. No más.",
-            "why": "Recupera alerta sin comerse el sueño de esta noche.",
-            "kind": "recuperacion"
-          },
-          {
-            "when": "durante el día",
-            "action": "Llegá a 2 L de agua. Un vaso ahora.",
-            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
-            "kind": "energia"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "createdAt": "2026-08-20T17:30:00.000Z"
-    },
-    {
-      "id": "seed-recargado",
-      "kind": "fitbit-day",
-      "persona": "recargado",
-      "date": "2026-08-21",
-      "label": "Día recargado",
-      "metrics": {
-        "date": "2026-08-21",
-        "displayName": "Nacho (demo)",
-        "steps": 10840,
-        "calories": 2460,
-        "floors": 14,
-        "distanceKm": 8.2,
-        "sedentaryMinutes": 428,
-        "lightlyActiveMinutes": 210,
-        "fairlyActiveMinutes": 38,
-        "veryActiveMinutes": 22,
-        "restingHeartRate": 56,
-        "hrvRmssd": 49,
-        "sleepMinutes": 472,
-        "timeInBed": 494,
-        "sleepEfficiency": 91,
-        "deepMinutes": 86,
-        "remMinutes": 102,
-        "lightMinutes": 284,
-        "awakeMinutes": 22,
-        "awakenings": 1,
-        "sleepStart": "2026-08-23T23:18:00",
-        "sleepEnd": "2026-08-23T07:22:00",
-        "waterMl": 1800,
-        "source": "demo"
-      },
-      "analysis": {
-        "overall": 88,
-        "band": {
-          "id": "excelente",
-          "label": "Día en racha"
-        },
-        "scores": {
-          "sleep": 89,
-          "movement": 100,
-          "recovery": 85,
-          "rhythm": 57
-        }
-      },
-      "narrative": {
-        "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
-        "dayStory": "Dormiste 7.9 h (objetivo 7.5 h) con eficiencia 91%. Vas 10840 de 10000 pasos y 60 min activos. FC en reposo 56 lpm · HRV 49 ms. El cuello de botella de hoy es el ritmo del día.",
-        "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
-        "plan": [
-          {
-            "when": "ahora",
-            "action": "Hacé el trabajo más difícil de estudio, Pagweb y el mejor día posible en los próximos 90 min.",
-            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día.",
-            "kind": "foco"
-          },
-          {
-            "when": "hoy",
-            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
-            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
-            "kind": "foco"
-          }
-        ],
-        "watchouts": []
-      },
-      "engine": "local",
-      "createdAt": "2026-08-21T12:15:00.000Z"
-    },
-    {
-      "id": "seed-agotado",
+      "id": "seed-semana-agotado-2026-08-17",
       "kind": "fitbit-day",
       "persona": "agotado",
-      "date": "2026-08-22",
-      "label": "Día en deuda",
+      "date": "2026-08-17",
+      "label": "Post parcial",
       "metrics": {
-        "date": "2026-08-22",
-        "displayName": "Nacho (demo)",
+        "date": "2026-08-17",
+        "displayName": "Nacho (Charge 6 · demo)",
+        "persona": "agotado",
+        "story": "Post parcial: 5h 12m, 5 despertares, FC 76, HRV 21 ms. El reloj pide cama, no gym.",
         "steps": 2840,
         "calories": 1620,
+        "caloriesBmr": 1004,
         "floors": 3,
         "distanceKm": 2.1,
         "sedentaryMinutes": 812,
         "lightlyActiveMinutes": 90,
         "fairlyActiveMinutes": 8,
         "veryActiveMinutes": 0,
+        "azmTotal": 8,
+        "azmFat": 8,
+        "azmCardio": 0,
+        "azmPeak": 0,
         "restingHeartRate": 76,
         "hrvRmssd": 21,
         "sleepMinutes": 312,
@@ -1179,9 +52,253 @@
         "lightMinutes": 232,
         "awakeMinutes": 58,
         "awakenings": 5,
-        "sleepStart": "2026-08-23T01:40:00",
-        "sleepEnd": "2026-08-23T07:10:00",
+        "sleepStart": "2026-08-17T01:40:00-03:00",
+        "sleepEnd": "2026-08-17T07:10:00-03:00",
+        "sleepStages": [
+          {
+            "stage": "wake",
+            "minutes": 9
+          },
+          {
+            "stage": "light",
+            "minutes": 81
+          },
+          {
+            "stage": "deep",
+            "minutes": 18
+          },
+          {
+            "stage": "light",
+            "minutes": 58
+          },
+          {
+            "stage": "rem",
+            "minutes": 22
+          },
+          {
+            "stage": "light",
+            "minutes": 93
+          },
+          {
+            "stage": "deep",
+            "minutes": 14
+          },
+          {
+            "stage": "rem",
+            "minutes": 26
+          },
+          {
+            "stage": "wake",
+            "minutes": 49
+          }
+        ],
+        "hourlySteps": [
+          {
+            "hour": 0,
+            "value": 37
+          },
+          {
+            "hour": 1,
+            "value": 19
+          },
+          {
+            "hour": 2,
+            "value": 10
+          },
+          {
+            "hour": 3,
+            "value": 6
+          },
+          {
+            "hour": 4,
+            "value": 6
+          },
+          {
+            "hour": 5,
+            "value": 13
+          },
+          {
+            "hour": 6,
+            "value": 32
+          },
+          {
+            "hour": 7,
+            "value": 128
+          },
+          {
+            "hour": 8,
+            "value": 256
+          },
+          {
+            "hour": 9,
+            "value": 192
+          },
+          {
+            "hour": 10,
+            "value": 160
+          },
+          {
+            "hour": 11,
+            "value": 128
+          },
+          {
+            "hour": 12,
+            "value": 224
+          },
+          {
+            "hour": 13,
+            "value": 128
+          },
+          {
+            "hour": 14,
+            "value": 112
+          },
+          {
+            "hour": 15,
+            "value": 96
+          },
+          {
+            "hour": 16,
+            "value": 288
+          },
+          {
+            "hour": 17,
+            "value": 352
+          },
+          {
+            "hour": 18,
+            "value": 256
+          },
+          {
+            "hour": 19,
+            "value": 160
+          },
+          {
+            "hour": 20,
+            "value": 96
+          },
+          {
+            "hour": 21,
+            "value": 64
+          },
+          {
+            "hour": 22,
+            "value": 45
+          },
+          {
+            "hour": 23,
+            "value": 32
+          }
+        ],
+        "heartZones": [
+          {
+            "name": "Out of Range",
+            "minutes": 812,
+            "min": 30,
+            "max": 104
+          },
+          {
+            "name": "Fat Burn",
+            "minutes": 8,
+            "min": 105,
+            "max": 131
+          },
+          {
+            "name": "Cardio",
+            "minutes": 0,
+            "min": 132,
+            "max": 159
+          },
+          {
+            "name": "Peak",
+            "minutes": 0,
+            "min": 160,
+            "max": 220
+          }
+        ],
+        "activities": [
+          {
+            "name": "Walk",
+            "duration": 11,
+            "calories": 38,
+            "steps": 980
+          }
+        ],
+        "spo2": 95.4,
+        "skinTemp": 0.42,
         "waterMl": 700,
+        "week": [
+          {
+            "date": "2026-08-17",
+            "persona": "agotado",
+            "label": "Post parcial",
+            "steps": 2840,
+            "sleepMinutes": 312,
+            "hrv": 21,
+            "rhr": 76,
+            "calories": 1620
+          },
+          {
+            "date": "2026-08-18",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-19",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-20",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-21",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-22",
+            "persona": "recargado",
+            "label": "Sábado gym",
+            "steps": 10840,
+            "sleepMinutes": 472,
+            "hrv": 49,
+            "rhr": 56,
+            "calories": 2460
+          },
+          {
+            "date": "2026-08-23",
+            "persona": "barrio",
+            "label": "Domingo Güemes",
+            "steps": 12880,
+            "sleepMinutes": 438,
+            "hrv": 41,
+            "rhr": 60,
+            "calories": 2380
+          }
+        ],
         "source": "demo"
       },
       "analysis": {
@@ -1201,7 +318,7 @@
         "headline": "Cerrá el día temprano. Mañana se gana esta noche.",
         "dayStory": "Dormiste 5.2 h (objetivo 7.5 h) con eficiencia 71%. Vas 2840 de 10000 pasos y 8 min activos. FC en reposo 76 lpm · HRV 21 ms. El cuello de botella de hoy es el movimiento.",
         "energyWindow": "Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.",
-        "closing": "Esto es el motor local. Conectá NVIDIA NIM para una lectura más humana.",
+        "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
         "plan": [
           {
             "when": "ahora",
@@ -1226,17 +343,2000 @@
           "Menos de 6 h: no es día para déficits agresivos ni para manejar cansado.",
           "FC en reposo alta: priorizá calorías de verdad, hidratación y no te exijas al máximo.",
           "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity."
-        ]
+        ],
+        "mode": "general"
       },
       "engine": "local",
-      "createdAt": "2026-08-22T21:40:00.000Z"
+      "createdAt": "2026-08-17T21:40:00.000Z"
+    },
+    {
+      "id": "seed-semana-examen-2026-08-18",
+      "kind": "fitbit-day",
+      "persona": "examen",
+      "date": "2026-08-18",
+      "label": "Semana de mesas",
+      "metrics": {
+        "date": "2026-08-18",
+        "displayName": "Nacho (Charge 6 · demo)",
+        "persona": "examen",
+        "story": "Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.",
+        "steps": 4120,
+        "calories": 1760,
+        "caloriesBmr": 1091,
+        "floors": 4,
+        "distanceKm": 3.1,
+        "sedentaryMinutes": 754,
+        "lightlyActiveMinutes": 112,
+        "fairlyActiveMinutes": 10,
+        "veryActiveMinutes": 2,
+        "azmTotal": 12,
+        "azmFat": 10,
+        "azmCardio": 2,
+        "azmPeak": 0,
+        "restingHeartRate": 72,
+        "hrvRmssd": 24,
+        "sleepMinutes": 348,
+        "timeInBed": 394,
+        "sleepEfficiency": 74,
+        "deepMinutes": 38,
+        "remMinutes": 52,
+        "lightMinutes": 258,
+        "awakeMinutes": 46,
+        "awakenings": 4,
+        "sleepStart": "2026-08-18T01:05:00-03:00",
+        "sleepEnd": "2026-08-18T07:18:00-03:00",
+        "sleepStages": [
+          {
+            "stage": "wake",
+            "minutes": 7
+          },
+          {
+            "stage": "light",
+            "minutes": 90
+          },
+          {
+            "stage": "deep",
+            "minutes": 21
+          },
+          {
+            "stage": "light",
+            "minutes": 65
+          },
+          {
+            "stage": "rem",
+            "minutes": 23
+          },
+          {
+            "stage": "light",
+            "minutes": 103
+          },
+          {
+            "stage": "deep",
+            "minutes": 17
+          },
+          {
+            "stage": "rem",
+            "minutes": 29
+          },
+          {
+            "stage": "wake",
+            "minutes": 39
+          }
+        ],
+        "hourlySteps": [
+          {
+            "hour": 0,
+            "value": 13
+          },
+          {
+            "hour": 1,
+            "value": 7
+          },
+          {
+            "hour": 2,
+            "value": 4
+          },
+          {
+            "hour": 3,
+            "value": 4
+          },
+          {
+            "hour": 4,
+            "value": 7
+          },
+          {
+            "hour": 5,
+            "value": 14
+          },
+          {
+            "hour": 6,
+            "value": 42
+          },
+          {
+            "hour": 7,
+            "value": 141
+          },
+          {
+            "hour": 8,
+            "value": 633
+          },
+          {
+            "hour": 9,
+            "value": 317
+          },
+          {
+            "hour": 10,
+            "value": 246
+          },
+          {
+            "hour": 11,
+            "value": 211
+          },
+          {
+            "hour": 12,
+            "value": 387
+          },
+          {
+            "hour": 13,
+            "value": 176
+          },
+          {
+            "hour": 14,
+            "value": 141
+          },
+          {
+            "hour": 15,
+            "value": 123
+          },
+          {
+            "hour": 16,
+            "value": 141
+          },
+          {
+            "hour": 17,
+            "value": 774
+          },
+          {
+            "hour": 18,
+            "value": 317
+          },
+          {
+            "hour": 19,
+            "value": 176
+          },
+          {
+            "hour": 20,
+            "value": 106
+          },
+          {
+            "hour": 21,
+            "value": 70
+          },
+          {
+            "hour": 22,
+            "value": 42
+          },
+          {
+            "hour": 23,
+            "value": 28
+          }
+        ],
+        "heartZones": [
+          {
+            "name": "Out of Range",
+            "minutes": 754,
+            "min": 30,
+            "max": 104
+          },
+          {
+            "name": "Fat Burn",
+            "minutes": 10,
+            "min": 105,
+            "max": 131
+          },
+          {
+            "name": "Cardio",
+            "minutes": 0,
+            "min": 132,
+            "max": 159
+          },
+          {
+            "name": "Peak",
+            "minutes": 2,
+            "min": 160,
+            "max": 220
+          }
+        ],
+        "activities": [
+          {
+            "name": "Walk",
+            "duration": 16,
+            "calories": 54,
+            "steps": 1480
+          }
+        ],
+        "spo2": 95.8,
+        "skinTemp": 0.28,
+        "waterMl": 900,
+        "week": [
+          {
+            "date": "2026-08-17",
+            "persona": "agotado",
+            "label": "Post parcial",
+            "steps": 2840,
+            "sleepMinutes": 312,
+            "hrv": 21,
+            "rhr": 76,
+            "calories": 1620
+          },
+          {
+            "date": "2026-08-18",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-19",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-20",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-21",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-22",
+            "persona": "recargado",
+            "label": "Sábado gym",
+            "steps": 10840,
+            "sleepMinutes": 472,
+            "hrv": 49,
+            "rhr": 56,
+            "calories": 2460
+          },
+          {
+            "date": "2026-08-23",
+            "persona": "barrio",
+            "label": "Domingo Güemes",
+            "steps": 12880,
+            "sleepMinutes": 438,
+            "hrv": 41,
+            "rhr": 60,
+            "calories": 2380
+          }
+        ],
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 44,
+        "band": {
+          "id": "recuperacion",
+          "label": "Priorizá recuperar"
+        },
+        "scores": {
+          "sleep": 47,
+          "movement": 41,
+          "recovery": 52,
+          "rhythm": 25
+        }
+      },
+      "narrative": {
+        "headline": "Cerrá el día temprano. Mañana se gana esta noche.",
+        "dayStory": "Dormiste 5.8 h (objetivo 7.5 h) con eficiencia 74%. Vas 4120 de 10000 pasos y 12 min activos. FC en reposo 72 lpm · HRV 24 ms. El cuello de botella de hoy es el ritmo del día.",
+        "energyWindow": "Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.",
+        "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Movimiento mínimo: 8–12 min al aire o estirar. No persigas los pasos.",
+            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche.",
+            "kind": "recuperacion"
+          },
+          {
+            "when": "21:00",
+            "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
+            "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": [
+          "Menos de 6 h: no es día para déficits agresivos ni para manejar cansado.",
+          "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity.",
+          "Muchas horas sentado: levantate 2 min cada 45."
+        ],
+        "mode": "general"
+      },
+      "engine": "local",
+      "createdAt": "2026-08-18T19:10:00.000Z"
+    },
+    {
+      "id": "seed-semana-mixto-2026-08-19",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "date": "2026-08-19",
+      "label": "Martes UNC",
+      "metrics": {
+        "date": "2026-08-19",
+        "displayName": "Nacho (Charge 6 · demo)",
+        "persona": "mixto",
+        "story": "Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.",
+        "steps": 6420,
+        "calories": 1980,
+        "caloriesBmr": 1228,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "azmTotal": 24,
+        "azmFat": 18,
+        "azmCardio": 6,
+        "azmPeak": 0,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-19T00:22:00-03:00",
+        "sleepEnd": "2026-08-19T07:04:00-03:00",
+        "sleepStages": [
+          {
+            "stage": "wake",
+            "minutes": 6
+          },
+          {
+            "stage": "light",
+            "minutes": 93
+          },
+          {
+            "stage": "deep",
+            "minutes": 26
+          },
+          {
+            "stage": "light",
+            "minutes": 67
+          },
+          {
+            "stage": "rem",
+            "minutes": 29
+          },
+          {
+            "stage": "light",
+            "minutes": 106
+          },
+          {
+            "stage": "deep",
+            "minutes": 22
+          },
+          {
+            "stage": "rem",
+            "minutes": 35
+          },
+          {
+            "stage": "wake",
+            "minutes": 36
+          }
+        ],
+        "hourlySteps": [
+          {
+            "hour": 0,
+            "value": 9
+          },
+          {
+            "hour": 1,
+            "value": 5
+          },
+          {
+            "hour": 2,
+            "value": 3
+          },
+          {
+            "hour": 3,
+            "value": 3
+          },
+          {
+            "hour": 4,
+            "value": 4
+          },
+          {
+            "hour": 5,
+            "value": 8
+          },
+          {
+            "hour": 6,
+            "value": 23
+          },
+          {
+            "hour": 7,
+            "value": 113
+          },
+          {
+            "hour": 8,
+            "value": 1038
+          },
+          {
+            "hour": 9,
+            "value": 392
+          },
+          {
+            "hour": 10,
+            "value": 354
+          },
+          {
+            "hour": 11,
+            "value": 430
+          },
+          {
+            "hour": 12,
+            "value": 785
+          },
+          {
+            "hour": 13,
+            "value": 316
+          },
+          {
+            "hour": 14,
+            "value": 303
+          },
+          {
+            "hour": 15,
+            "value": 342
+          },
+          {
+            "hour": 16,
+            "value": 1114
+          },
+          {
+            "hour": 17,
+            "value": 532
+          },
+          {
+            "hour": 18,
+            "value": 266
+          },
+          {
+            "hour": 19,
+            "value": 177
+          },
+          {
+            "hour": 20,
+            "value": 114
+          },
+          {
+            "hour": 21,
+            "value": 51
+          },
+          {
+            "hour": 22,
+            "value": 23
+          },
+          {
+            "hour": 23,
+            "value": 15
+          }
+        ],
+        "heartZones": [
+          {
+            "name": "Out of Range",
+            "minutes": 612,
+            "min": 30,
+            "max": 104
+          },
+          {
+            "name": "Fat Burn",
+            "minutes": 18,
+            "min": 105,
+            "max": 131
+          },
+          {
+            "name": "Cardio",
+            "minutes": 2,
+            "min": 132,
+            "max": 159
+          },
+          {
+            "name": "Peak",
+            "minutes": 4,
+            "min": 160,
+            "max": 220
+          }
+        ],
+        "activities": [
+          {
+            "name": "Walk",
+            "duration": 18,
+            "calories": 72,
+            "steps": 1840
+          },
+          {
+            "name": "Walk",
+            "duration": 14,
+            "calories": 58,
+            "steps": 1320
+          }
+        ],
+        "spo2": 96.1,
+        "skinTemp": 0.15,
+        "waterMl": 1100,
+        "week": [
+          {
+            "date": "2026-08-17",
+            "persona": "agotado",
+            "label": "Post parcial",
+            "steps": 2840,
+            "sleepMinutes": 312,
+            "hrv": 21,
+            "rhr": 76,
+            "calories": 1620
+          },
+          {
+            "date": "2026-08-18",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-19",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-20",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-21",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-22",
+            "persona": "recargado",
+            "label": "Sábado gym",
+            "steps": 10840,
+            "sleepMinutes": 472,
+            "hrv": 49,
+            "rhr": 56,
+            "calories": 2460
+          },
+          {
+            "date": "2026-08-23",
+            "persona": "barrio",
+            "label": "Domingo Güemes",
+            "steps": 12880,
+            "sleepMinutes": 438,
+            "hrv": 41,
+            "rhr": 60,
+            "calories": 2380
+          }
+        ],
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 65,
+        "band": {
+          "id": "ajuste",
+          "label": "Con ajustes se arma"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 53
+        }
+      },
+      "narrative": {
+        "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el ritmo del día.",
+        "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
+        "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
+        "plan": [
+          {
+            "when": "15:00",
+            "action": "Último café. Después, agua o té.",
+            "why": "La cafeína tarda ~6 h en bajar a la mitad: si dormiste poco, este corte vale más que cualquier suplemento.",
+            "kind": "sueno"
+          },
+          {
+            "when": "14:00",
+            "action": "Siesta o quietud 12–18 min, alarma dura. No más.",
+            "why": "Recupera alerta sin comerse el sueño de esta noche.",
+            "kind": "recuperacion"
+          },
+          {
+            "when": "durante el día",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": [],
+        "mode": "general"
+      },
+      "engine": "local",
+      "createdAt": "2026-08-19T17:30:00.000Z"
+    },
+    {
+      "id": "seed-semana-mixto-2026-08-20",
+      "kind": "fitbit-day",
+      "persona": "mixto",
+      "date": "2026-08-20",
+      "label": "Martes UNC",
+      "metrics": {
+        "date": "2026-08-20",
+        "displayName": "Nacho (Charge 6 · demo)",
+        "persona": "mixto",
+        "story": "Martes típico: 6h 18m de sueño, bondi a Ciudad Universitaria, 6.420 pasos y HRV 32 ms.",
+        "steps": 6420,
+        "calories": 1980,
+        "caloriesBmr": 1228,
+        "floors": 8,
+        "distanceKm": 4.7,
+        "sedentaryMinutes": 612,
+        "lightlyActiveMinutes": 164,
+        "fairlyActiveMinutes": 18,
+        "veryActiveMinutes": 6,
+        "azmTotal": 24,
+        "azmFat": 18,
+        "azmCardio": 6,
+        "azmPeak": 0,
+        "restingHeartRate": 68,
+        "hrvRmssd": 32,
+        "sleepMinutes": 378,
+        "timeInBed": 420,
+        "sleepEfficiency": 78,
+        "deepMinutes": 48,
+        "remMinutes": 64,
+        "lightMinutes": 266,
+        "awakeMinutes": 42,
+        "awakenings": 3,
+        "sleepStart": "2026-08-20T00:22:00-03:00",
+        "sleepEnd": "2026-08-20T07:04:00-03:00",
+        "sleepStages": [
+          {
+            "stage": "wake",
+            "minutes": 6
+          },
+          {
+            "stage": "light",
+            "minutes": 93
+          },
+          {
+            "stage": "deep",
+            "minutes": 26
+          },
+          {
+            "stage": "light",
+            "minutes": 67
+          },
+          {
+            "stage": "rem",
+            "minutes": 29
+          },
+          {
+            "stage": "light",
+            "minutes": 106
+          },
+          {
+            "stage": "deep",
+            "minutes": 22
+          },
+          {
+            "stage": "rem",
+            "minutes": 35
+          },
+          {
+            "stage": "wake",
+            "minutes": 36
+          }
+        ],
+        "hourlySteps": [
+          {
+            "hour": 0,
+            "value": 9
+          },
+          {
+            "hour": 1,
+            "value": 5
+          },
+          {
+            "hour": 2,
+            "value": 3
+          },
+          {
+            "hour": 3,
+            "value": 3
+          },
+          {
+            "hour": 4,
+            "value": 4
+          },
+          {
+            "hour": 5,
+            "value": 8
+          },
+          {
+            "hour": 6,
+            "value": 23
+          },
+          {
+            "hour": 7,
+            "value": 113
+          },
+          {
+            "hour": 8,
+            "value": 1038
+          },
+          {
+            "hour": 9,
+            "value": 392
+          },
+          {
+            "hour": 10,
+            "value": 354
+          },
+          {
+            "hour": 11,
+            "value": 430
+          },
+          {
+            "hour": 12,
+            "value": 785
+          },
+          {
+            "hour": 13,
+            "value": 316
+          },
+          {
+            "hour": 14,
+            "value": 303
+          },
+          {
+            "hour": 15,
+            "value": 342
+          },
+          {
+            "hour": 16,
+            "value": 1114
+          },
+          {
+            "hour": 17,
+            "value": 532
+          },
+          {
+            "hour": 18,
+            "value": 266
+          },
+          {
+            "hour": 19,
+            "value": 177
+          },
+          {
+            "hour": 20,
+            "value": 114
+          },
+          {
+            "hour": 21,
+            "value": 51
+          },
+          {
+            "hour": 22,
+            "value": 23
+          },
+          {
+            "hour": 23,
+            "value": 15
+          }
+        ],
+        "heartZones": [
+          {
+            "name": "Out of Range",
+            "minutes": 612,
+            "min": 30,
+            "max": 104
+          },
+          {
+            "name": "Fat Burn",
+            "minutes": 18,
+            "min": 105,
+            "max": 131
+          },
+          {
+            "name": "Cardio",
+            "minutes": 2,
+            "min": 132,
+            "max": 159
+          },
+          {
+            "name": "Peak",
+            "minutes": 4,
+            "min": 160,
+            "max": 220
+          }
+        ],
+        "activities": [
+          {
+            "name": "Walk",
+            "duration": 18,
+            "calories": 72,
+            "steps": 1840
+          },
+          {
+            "name": "Walk",
+            "duration": 14,
+            "calories": 58,
+            "steps": 1320
+          }
+        ],
+        "spo2": 96.1,
+        "skinTemp": 0.15,
+        "waterMl": 1100,
+        "week": [
+          {
+            "date": "2026-08-17",
+            "persona": "agotado",
+            "label": "Post parcial",
+            "steps": 2840,
+            "sleepMinutes": 312,
+            "hrv": 21,
+            "rhr": 76,
+            "calories": 1620
+          },
+          {
+            "date": "2026-08-18",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-19",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-20",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-21",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-22",
+            "persona": "recargado",
+            "label": "Sábado gym",
+            "steps": 10840,
+            "sleepMinutes": 472,
+            "hrv": 49,
+            "rhr": 56,
+            "calories": 2460
+          },
+          {
+            "date": "2026-08-23",
+            "persona": "barrio",
+            "label": "Domingo Güemes",
+            "steps": 12880,
+            "sleepMinutes": 438,
+            "hrv": 41,
+            "rhr": 60,
+            "calories": 2380
+          }
+        ],
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 62,
+        "band": {
+          "id": "ajuste",
+          "label": "Con ajustes se arma"
+        },
+        "scores": {
+          "sleep": 60,
+          "movement": 70,
+          "recovery": 71,
+          "rhythm": 27
+        }
+      },
+      "narrative": {
+        "headline": "Hay margen real: con 2 o 3 movimientos puntuales, este día sube de nivel.",
+        "dayStory": "Dormiste 6.3 h (objetivo 7.5 h) con eficiencia 78%. Vas 6420 de 10000 pasos y 24 min activos. FC en reposo 68 lpm · HRV 32 ms. El cuello de botella de hoy es el ritmo del día.",
+        "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
+        "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
+        "plan": [
+          {
+            "when": "15:00",
+            "action": "Último café. Después, agua o té.",
+            "why": "La cafeína tarda ~6 h en bajar a la mitad: si dormiste poco, este corte vale más que cualquier suplemento.",
+            "kind": "sueno"
+          },
+          {
+            "when": "14:00",
+            "action": "Siesta o quietud 12–18 min, alarma dura. No más.",
+            "why": "Recupera alerta sin comerse el sueño de esta noche.",
+            "kind": "recuperacion"
+          },
+          {
+            "when": "durante el día",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": [],
+        "mode": "general"
+      },
+      "engine": "local",
+      "createdAt": "2026-08-20T14:05:00.000Z"
+    },
+    {
+      "id": "seed-semana-examen-2026-08-21",
+      "kind": "fitbit-day",
+      "persona": "examen",
+      "date": "2026-08-21",
+      "label": "Semana de mesas",
+      "metrics": {
+        "date": "2026-08-21",
+        "displayName": "Nacho (Charge 6 · demo)",
+        "persona": "examen",
+        "story": "Semana de mesas: 5h 48m, 4.120 pasos (casi todo silla). Café sí, HIIT no.",
+        "steps": 4120,
+        "calories": 1760,
+        "caloriesBmr": 1091,
+        "floors": 4,
+        "distanceKm": 3.1,
+        "sedentaryMinutes": 754,
+        "lightlyActiveMinutes": 112,
+        "fairlyActiveMinutes": 10,
+        "veryActiveMinutes": 2,
+        "azmTotal": 12,
+        "azmFat": 10,
+        "azmCardio": 2,
+        "azmPeak": 0,
+        "restingHeartRate": 72,
+        "hrvRmssd": 24,
+        "sleepMinutes": 348,
+        "timeInBed": 394,
+        "sleepEfficiency": 74,
+        "deepMinutes": 38,
+        "remMinutes": 52,
+        "lightMinutes": 258,
+        "awakeMinutes": 46,
+        "awakenings": 4,
+        "sleepStart": "2026-08-21T01:05:00-03:00",
+        "sleepEnd": "2026-08-21T07:18:00-03:00",
+        "sleepStages": [
+          {
+            "stage": "wake",
+            "minutes": 7
+          },
+          {
+            "stage": "light",
+            "minutes": 90
+          },
+          {
+            "stage": "deep",
+            "minutes": 21
+          },
+          {
+            "stage": "light",
+            "minutes": 65
+          },
+          {
+            "stage": "rem",
+            "minutes": 23
+          },
+          {
+            "stage": "light",
+            "minutes": 103
+          },
+          {
+            "stage": "deep",
+            "minutes": 17
+          },
+          {
+            "stage": "rem",
+            "minutes": 29
+          },
+          {
+            "stage": "wake",
+            "minutes": 39
+          }
+        ],
+        "hourlySteps": [
+          {
+            "hour": 0,
+            "value": 13
+          },
+          {
+            "hour": 1,
+            "value": 7
+          },
+          {
+            "hour": 2,
+            "value": 4
+          },
+          {
+            "hour": 3,
+            "value": 4
+          },
+          {
+            "hour": 4,
+            "value": 7
+          },
+          {
+            "hour": 5,
+            "value": 14
+          },
+          {
+            "hour": 6,
+            "value": 42
+          },
+          {
+            "hour": 7,
+            "value": 141
+          },
+          {
+            "hour": 8,
+            "value": 633
+          },
+          {
+            "hour": 9,
+            "value": 317
+          },
+          {
+            "hour": 10,
+            "value": 246
+          },
+          {
+            "hour": 11,
+            "value": 211
+          },
+          {
+            "hour": 12,
+            "value": 387
+          },
+          {
+            "hour": 13,
+            "value": 176
+          },
+          {
+            "hour": 14,
+            "value": 141
+          },
+          {
+            "hour": 15,
+            "value": 123
+          },
+          {
+            "hour": 16,
+            "value": 141
+          },
+          {
+            "hour": 17,
+            "value": 774
+          },
+          {
+            "hour": 18,
+            "value": 317
+          },
+          {
+            "hour": 19,
+            "value": 176
+          },
+          {
+            "hour": 20,
+            "value": 106
+          },
+          {
+            "hour": 21,
+            "value": 70
+          },
+          {
+            "hour": 22,
+            "value": 42
+          },
+          {
+            "hour": 23,
+            "value": 28
+          }
+        ],
+        "heartZones": [
+          {
+            "name": "Out of Range",
+            "minutes": 754,
+            "min": 30,
+            "max": 104
+          },
+          {
+            "name": "Fat Burn",
+            "minutes": 10,
+            "min": 105,
+            "max": 131
+          },
+          {
+            "name": "Cardio",
+            "minutes": 0,
+            "min": 132,
+            "max": 159
+          },
+          {
+            "name": "Peak",
+            "minutes": 2,
+            "min": 160,
+            "max": 220
+          }
+        ],
+        "activities": [
+          {
+            "name": "Walk",
+            "duration": 16,
+            "calories": 54,
+            "steps": 1480
+          }
+        ],
+        "spo2": 95.8,
+        "skinTemp": 0.28,
+        "waterMl": 900,
+        "week": [
+          {
+            "date": "2026-08-17",
+            "persona": "agotado",
+            "label": "Post parcial",
+            "steps": 2840,
+            "sleepMinutes": 312,
+            "hrv": 21,
+            "rhr": 76,
+            "calories": 1620
+          },
+          {
+            "date": "2026-08-18",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-19",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-20",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-21",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-22",
+            "persona": "recargado",
+            "label": "Sábado gym",
+            "steps": 10840,
+            "sleepMinutes": 472,
+            "hrv": 49,
+            "rhr": 56,
+            "calories": 2460
+          },
+          {
+            "date": "2026-08-23",
+            "persona": "barrio",
+            "label": "Domingo Güemes",
+            "steps": 12880,
+            "sleepMinutes": 438,
+            "hrv": 41,
+            "rhr": 60,
+            "calories": 2380
+          }
+        ],
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 47,
+        "band": {
+          "id": "recuperacion",
+          "label": "Priorizá recuperar"
+        },
+        "scores": {
+          "sleep": 47,
+          "movement": 41,
+          "recovery": 52,
+          "rhythm": 53
+        }
+      },
+      "narrative": {
+        "headline": "Cerrá el día temprano. Mañana se gana esta noche.",
+        "dayStory": "Dormiste 5.8 h (objetivo 7.5 h) con eficiencia 74%. Vas 4120 de 10000 pasos y 12 min activos. FC en reposo 72 lpm · HRV 24 ms. El cuello de botella de hoy es el movimiento.",
+        "energyWindow": "Ya no conviene estimular. La mejor ventana que queda es bajar RPM y dormir más temprano.",
+        "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Movimiento mínimo: 8–12 min al aire o estirar. No persigas los pasos.",
+            "why": "Con sueño corto o HRV/FC cargados, un cardio largo pelearía con la noche.",
+            "kind": "recuperacion"
+          },
+          {
+            "when": "21:00",
+            "action": "Luces cálidas, pantalla más tenue, cena liviana si todavía no comiste.",
+            "why": "El mejor día de mañana se fabrica en las 90 min previas a dormir.",
+            "kind": "sueno"
+          },
+          {
+            "when": "ahora",
+            "action": "Llegá a 2 L de agua. Un vaso ahora.",
+            "why": "La fatiga de la tarde muchas veces es sed disfrazada.",
+            "kind": "energia"
+          }
+        ],
+        "watchouts": [
+          "Menos de 6 h: no es día para déficits agresivos ni para manejar cansado.",
+          "HRV bajo: señal clásica de estrés/carga. Movimiento suave > intensity.",
+          "Muchas horas sentado: levantate 2 min cada 45."
+        ],
+        "mode": "general"
+      },
+      "engine": "local",
+      "createdAt": "2026-08-21T22:20:00.000Z"
+    },
+    {
+      "id": "seed-semana-recargado-2026-08-22",
+      "kind": "fitbit-day",
+      "persona": "recargado",
+      "date": "2026-08-22",
+      "label": "Sábado gym",
+      "metrics": {
+        "date": "2026-08-22",
+        "displayName": "Nacho (Charge 6 · demo)",
+        "persona": "recargado",
+        "story": "Sábado recargado: 7h 52m, HRV 49 ms, pesas + Parque Sarmiento. 10.840 pasos.",
+        "steps": 10840,
+        "calories": 2460,
+        "caloriesBmr": 1525,
+        "floors": 14,
+        "distanceKm": 8.2,
+        "sedentaryMinutes": 428,
+        "lightlyActiveMinutes": 210,
+        "fairlyActiveMinutes": 38,
+        "veryActiveMinutes": 22,
+        "azmTotal": 58,
+        "azmFat": 36,
+        "azmCardio": 18,
+        "azmPeak": 4,
+        "restingHeartRate": 56,
+        "hrvRmssd": 49,
+        "sleepMinutes": 472,
+        "timeInBed": 494,
+        "sleepEfficiency": 91,
+        "deepMinutes": 86,
+        "remMinutes": 102,
+        "lightMinutes": 284,
+        "awakeMinutes": 22,
+        "awakenings": 1,
+        "sleepStart": "2026-08-22T23:18:00-03:00",
+        "sleepEnd": "2026-08-22T07:22:00-03:00",
+        "sleepStages": [
+          {
+            "stage": "wake",
+            "minutes": 3
+          },
+          {
+            "stage": "light",
+            "minutes": 99
+          },
+          {
+            "stage": "deep",
+            "minutes": 47
+          },
+          {
+            "stage": "light",
+            "minutes": 71
+          },
+          {
+            "stage": "rem",
+            "minutes": 46
+          },
+          {
+            "stage": "light",
+            "minutes": 114
+          },
+          {
+            "stage": "deep",
+            "minutes": 39
+          },
+          {
+            "stage": "rem",
+            "minutes": 56
+          },
+          {
+            "stage": "wake",
+            "minutes": 19
+          }
+        ],
+        "hourlySteps": [
+          {
+            "hour": 0,
+            "value": 14
+          },
+          {
+            "hour": 1,
+            "value": 7
+          },
+          {
+            "hour": 2,
+            "value": 5
+          },
+          {
+            "hour": 3,
+            "value": 5
+          },
+          {
+            "hour": 4,
+            "value": 5
+          },
+          {
+            "hour": 5,
+            "value": 12
+          },
+          {
+            "hour": 6,
+            "value": 49
+          },
+          {
+            "hour": 7,
+            "value": 194
+          },
+          {
+            "hour": 8,
+            "value": 582
+          },
+          {
+            "hour": 9,
+            "value": 437
+          },
+          {
+            "hour": 10,
+            "value": 388
+          },
+          {
+            "hour": 11,
+            "value": 340
+          },
+          {
+            "hour": 12,
+            "value": 970
+          },
+          {
+            "hour": 13,
+            "value": 534
+          },
+          {
+            "hour": 14,
+            "value": 437
+          },
+          {
+            "hour": 15,
+            "value": 388
+          },
+          {
+            "hour": 16,
+            "value": 509
+          },
+          {
+            "hour": 17,
+            "value": 3008
+          },
+          {
+            "hour": 18,
+            "value": 1650
+          },
+          {
+            "hour": 19,
+            "value": 631
+          },
+          {
+            "hour": 20,
+            "value": 340
+          },
+          {
+            "hour": 21,
+            "value": 194
+          },
+          {
+            "hour": 22,
+            "value": 97
+          },
+          {
+            "hour": 23,
+            "value": 44
+          }
+        ],
+        "heartZones": [
+          {
+            "name": "Out of Range",
+            "minutes": 428,
+            "min": 30,
+            "max": 104
+          },
+          {
+            "name": "Fat Burn",
+            "minutes": 38,
+            "min": 105,
+            "max": 131
+          },
+          {
+            "name": "Cardio",
+            "minutes": 18,
+            "min": 132,
+            "max": 159
+          },
+          {
+            "name": "Peak",
+            "minutes": 4,
+            "min": 160,
+            "max": 220
+          }
+        ],
+        "activities": [
+          {
+            "name": "Sport",
+            "duration": 52,
+            "calories": 340,
+            "steps": 2100
+          },
+          {
+            "name": "Walk",
+            "duration": 48,
+            "calories": 190,
+            "steps": 5200
+          }
+        ],
+        "spo2": 97.2,
+        "skinTemp": -0.12,
+        "waterMl": 1800,
+        "week": [
+          {
+            "date": "2026-08-17",
+            "persona": "agotado",
+            "label": "Post parcial",
+            "steps": 2840,
+            "sleepMinutes": 312,
+            "hrv": 21,
+            "rhr": 76,
+            "calories": 1620
+          },
+          {
+            "date": "2026-08-18",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-19",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-20",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-21",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-22",
+            "persona": "recargado",
+            "label": "Sábado gym",
+            "steps": 10840,
+            "sleepMinutes": 472,
+            "hrv": 49,
+            "rhr": 56,
+            "calories": 2460
+          },
+          {
+            "date": "2026-08-23",
+            "persona": "barrio",
+            "label": "Domingo Güemes",
+            "steps": 12880,
+            "sleepMinutes": 438,
+            "hrv": 41,
+            "rhr": 60,
+            "calories": 2380
+          }
+        ],
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 88,
+        "band": {
+          "id": "excelente",
+          "label": "Día en racha"
+        },
+        "scores": {
+          "sleep": 89,
+          "movement": 100,
+          "recovery": 85,
+          "rhythm": 57
+        }
+      },
+      "narrative": {
+        "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
+        "dayStory": "Dormiste 7.9 h (objetivo 7.5 h) con eficiencia 91%. Vas 10840 de 10000 pasos y 60 min activos. FC en reposo 56 lpm · HRV 49 ms. El cuello de botella de hoy es el ritmo del día.",
+        "energyWindow": "Ahora–mediodía: trabajo profundo. Movete 8–10 min entre bloques.",
+        "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Hacé el trabajo más difícil de estudio, Pagweb y el mejor día posible en los próximos 90 min.",
+            "why": "Dormiste decente: esa ventana matinal es tu mejor hardware del día.",
+            "kind": "foco"
+          },
+          {
+            "when": "hoy",
+            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
+            "kind": "foco"
+          }
+        ],
+        "watchouts": [],
+        "mode": "general"
+      },
+      "engine": "local",
+      "createdAt": "2026-08-22T12:15:00.000Z"
+    },
+    {
+      "id": "seed-semana-barrio-2026-08-23",
+      "kind": "fitbit-day",
+      "persona": "barrio",
+      "date": "2026-08-23",
+      "label": "Domingo Güemes",
+      "metrics": {
+        "date": "2026-08-23",
+        "displayName": "Nacho (Charge 6 · demo)",
+        "persona": "barrio",
+        "story": "Domingo por Güemes: 7h 18m y 12.880 pasos de zona 2. Siesta corta, no PR.",
+        "steps": 12880,
+        "calories": 2380,
+        "caloriesBmr": 1476,
+        "floors": 11,
+        "distanceKm": 9.6,
+        "sedentaryMinutes": 490,
+        "lightlyActiveMinutes": 248,
+        "fairlyActiveMinutes": 42,
+        "veryActiveMinutes": 12,
+        "azmTotal": 55,
+        "azmFat": 42,
+        "azmCardio": 12,
+        "azmPeak": 1,
+        "restingHeartRate": 60,
+        "hrvRmssd": 41,
+        "sleepMinutes": 438,
+        "timeInBed": 466,
+        "sleepEfficiency": 88,
+        "deepMinutes": 72,
+        "remMinutes": 88,
+        "lightMinutes": 278,
+        "awakeMinutes": 28,
+        "awakenings": 2,
+        "sleepStart": "2026-08-23T23:40:00-03:00",
+        "sleepEnd": "2026-08-23T07:26:00-03:00",
+        "sleepStages": [
+          {
+            "stage": "wake",
+            "minutes": 4
+          },
+          {
+            "stage": "light",
+            "minutes": 97
+          },
+          {
+            "stage": "deep",
+            "minutes": 40
+          },
+          {
+            "stage": "light",
+            "minutes": 70
+          },
+          {
+            "stage": "rem",
+            "minutes": 40
+          },
+          {
+            "stage": "light",
+            "minutes": 111
+          },
+          {
+            "stage": "deep",
+            "minutes": 32
+          },
+          {
+            "stage": "rem",
+            "minutes": 48
+          },
+          {
+            "stage": "wake",
+            "minutes": 24
+          }
+        ],
+        "hourlySteps": [
+          {
+            "hour": 0,
+            "value": 12
+          },
+          {
+            "hour": 1,
+            "value": 7
+          },
+          {
+            "hour": 2,
+            "value": 4
+          },
+          {
+            "hour": 3,
+            "value": 3
+          },
+          {
+            "hour": 4,
+            "value": 4
+          },
+          {
+            "hour": 5,
+            "value": 10
+          },
+          {
+            "hour": 6,
+            "value": 52
+          },
+          {
+            "hour": 7,
+            "value": 233
+          },
+          {
+            "hour": 8,
+            "value": 833
+          },
+          {
+            "hour": 9,
+            "value": 1145
+          },
+          {
+            "hour": 10,
+            "value": 937
+          },
+          {
+            "hour": 11,
+            "value": 702
+          },
+          {
+            "hour": 12,
+            "value": 1249
+          },
+          {
+            "hour": 13,
+            "value": 1067
+          },
+          {
+            "hour": 14,
+            "value": 911
+          },
+          {
+            "hour": 15,
+            "value": 833
+          },
+          {
+            "hour": 16,
+            "value": 1275
+          },
+          {
+            "hour": 17,
+            "value": 1431
+          },
+          {
+            "hour": 18,
+            "value": 963
+          },
+          {
+            "hour": 19,
+            "value": 546
+          },
+          {
+            "hour": 20,
+            "value": 338
+          },
+          {
+            "hour": 21,
+            "value": 182
+          },
+          {
+            "hour": 22,
+            "value": 104
+          },
+          {
+            "hour": 23,
+            "value": 39
+          }
+        ],
+        "heartZones": [
+          {
+            "name": "Out of Range",
+            "minutes": 490,
+            "min": 30,
+            "max": 104
+          },
+          {
+            "name": "Fat Burn",
+            "minutes": 42,
+            "min": 105,
+            "max": 131
+          },
+          {
+            "name": "Cardio",
+            "minutes": 8,
+            "min": 132,
+            "max": 159
+          },
+          {
+            "name": "Peak",
+            "minutes": 4,
+            "min": 160,
+            "max": 220
+          }
+        ],
+        "activities": [
+          {
+            "name": "Walk",
+            "duration": 96,
+            "calories": 380,
+            "steps": 9800
+          },
+          {
+            "name": "Walk",
+            "duration": 22,
+            "calories": 86,
+            "steps": 2100
+          }
+        ],
+        "spo2": 96.8,
+        "skinTemp": -0.04,
+        "waterMl": 1600,
+        "week": [
+          {
+            "date": "2026-08-17",
+            "persona": "agotado",
+            "label": "Post parcial",
+            "steps": 2840,
+            "sleepMinutes": 312,
+            "hrv": 21,
+            "rhr": 76,
+            "calories": 1620
+          },
+          {
+            "date": "2026-08-18",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-19",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-20",
+            "persona": "mixto",
+            "label": "Martes UNC",
+            "steps": 6420,
+            "sleepMinutes": 378,
+            "hrv": 32,
+            "rhr": 68,
+            "calories": 1980
+          },
+          {
+            "date": "2026-08-21",
+            "persona": "examen",
+            "label": "Semana de mesas",
+            "steps": 4120,
+            "sleepMinutes": 348,
+            "hrv": 24,
+            "rhr": 72,
+            "calories": 1760
+          },
+          {
+            "date": "2026-08-22",
+            "persona": "recargado",
+            "label": "Sábado gym",
+            "steps": 10840,
+            "sleepMinutes": 472,
+            "hrv": 49,
+            "rhr": 56,
+            "calories": 2460
+          },
+          {
+            "date": "2026-08-23",
+            "persona": "barrio",
+            "label": "Domingo Güemes",
+            "steps": 12880,
+            "sleepMinutes": 438,
+            "hrv": 41,
+            "rhr": 60,
+            "calories": 2380
+          }
+        ],
+        "source": "demo"
+      },
+      "analysis": {
+        "overall": 88,
+        "band": {
+          "id": "excelente",
+          "label": "Día en racha"
+        },
+        "scores": {
+          "sleep": 83,
+          "movement": 100,
+          "recovery": 85,
+          "rhythm": 77
+        }
+      },
+      "narrative": {
+        "headline": "Estás en un muy buen punto: sostené el ritmo, no lo fuerces.",
+        "dayStory": "Dormiste 7.3 h (objetivo 7.5 h) con eficiencia 88%. Vas 12880 de 10000 pasos y 54 min activos. FC en reposo 60 lpm · HRV 41 ms. El cuello de botella de hoy es el ritmo del día.",
+        "energyWindow": "Tarde: segundo sprint + caminata. Después de las 18, no arranques nada pesado.",
+        "closing": "Motor local, modo día completo. Con NVIDIA NIM el relato se pone más personal.",
+        "plan": [
+          {
+            "when": "ahora",
+            "action": "Segundo bloque profundo de estudio, Pagweb y el mejor día posible (75 min) y después movimiento.",
+            "why": "Estás en la meseta de la tarde: un sprint ahora rinde más que alargarlo hasta las 21.",
+            "kind": "foco"
+          },
+          {
+            "when": "hoy",
+            "action": "Nacho, elegí UNA cosa de estudio, Pagweb y el mejor día posible que si se cumple, el día ya valió.",
+            "why": "El mejor día no es el más ocupado: es el que cierra el asunto que más pesa.",
+            "kind": "foco"
+          }
+        ],
+        "watchouts": [],
+        "mode": "general"
+      },
+      "engine": "local",
+      "createdAt": "2026-08-23T16:00:00.000Z"
     },
     {
       "id": "seed-unc-note",
       "kind": "note",
       "date": "2026-08-23",
-      "title": "Nota UNC",
-      "text": "Ignacio Ricardo Travaglino, estudiante en la UNC (Córdoba). Archivo de prueba de Pagweb: tres días Fitbit (mixto, recargado, agotado) y esta nota. Zona America/Argentina/Buenos_Aires. Mail: ignacio.travaglino@mi.unc.edu.ar.",
+      "title": "Semana Fitbit (sintético)",
+      "text": "Ignacio Ricardo Travaglino, estudiante en la UNC (Córdoba). Semana de demo: post parcial, mesas, martes UNC, gym y domingo Güemes. Los números imitan Charge 6 (pasos, sueño, FC, HRV, AZM, SpO₂). Zona America/Argentina/Buenos_Aires.",
       "createdAt": "2026-08-23T14:00:00.000Z"
     }
   ]

@@ -38,9 +38,9 @@ En Android: Chrome → menú → **Instalar app**.
 
 ## Qué incluye
 
-- **Estudio**: temas caliza / río / asfalto / tinta, Newsreader + IBM Plex, perfil de Nacho (UNC Córdoba), widgets, CSS propio.
-- **Mejor Día**: 3 personas de demo (mixto / recargado / agotado) **o tus números de Fitbit**.
-- **Archivo**: días de prueba persistidos en el store de Cursor (`/cursor/stores/self/pagweb/db.json`) y en `data/pagweb.json`.
+- **Estudio**: temas caliza / río / asfalto / tinta, Newsreader + IBM Plex, perfil de Nacho (UNC Córdoba), widgets, CSS propio. Incluye un pulso Fitbit en vivo (widget Mejor Día).
+- **Mejor Día**: cinco días sintéticos de Charge 6 (Martes UNC, Sábado gym, Post parcial, Semana de mesas, Domingo Güemes) **o tus números de Fitbit**. Pasos por hora, etapas de sueño, zonas cardíacas, HRV, SpO₂ y AZM — lo que recogería la Web API.
+- **Archivo**: una semana sintética persistida en el store de Cursor (`/cursor/stores/self/pagweb/db.json`) y en `data/pagweb.json`.
 - **PWA**: instalable en Android (Chrome → Instalar app). Manifiesto, service worker e iconos maskable.
 - **NVIDIA NIM** y **Fitbit OAuth + PKCE** como antes.
 
@@ -75,7 +75,7 @@ Conexión de primera con [NVIDIA NIM](https://build.nvidia.com) para una IA pers
 1. Entrá a [build.nvidia.com](https://build.nvidia.com) y creá cuenta.
 2. **Get API Key**. La clave empieza con `nvapi-`.
 3. Pegala en **Mejor Día → NVIDIA Developer**, o en `.env` como `NVIDIA_API_KEY`.
-4. Elegí el modelo (por defecto `meta/llama-3.3-70b-instruct`).
+4. Elegí el modelo (por defecto `meta/llama-3.1-8b-instruct`; si el 70B timeout, el servidor reintenta con 8B).
 5. Tocá un modo fitness; el coach (NIM o motor local) cambia de verdad, no solo el chip.
 
 La clave del navegador queda en `localStorage`. **No se commitea.**
@@ -104,7 +104,7 @@ Sin eso, la demo con personas locales cubre el flujo entero.
 
 ## Archivo persistente
 
-Los días de prueba (mixto, recargado, agotado + nota UNC) viven en:
+Los días de prueba (semana Charge 6: post parcial, mesas, UNC, gym, Güemes + nota) viven en:
 
 - Cursor store: `/cursor/stores/self/pagweb/db.json`
 - Fallback local: `data/pagweb.json`

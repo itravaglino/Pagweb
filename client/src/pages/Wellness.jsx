@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FitbitViz, PlanList } from "../components/FitbitViz.jsx";
 import { Field, Ring } from "../components/ui.jsx";
 import { minutesToHm } from "@shared/analyze.js";
@@ -31,6 +31,7 @@ export function Wellness({ settings, setSettings }) {
   const [fitbit, setFitbit] = useState({ configured: false, connected: false });
   const [nvidia, setNvidia] = useState({ connected: false, source: "none" });
   const [showKeys, setShowKeys] = useState(false);
+  const pickSeq = useRef(0);
 
   const metrics = day?.metrics;
   const sources = useMemo(
@@ -41,8 +42,9 @@ export function Wellness({ settings, setSettings }) {
     [personas]
   );
 
-  async function loadDay(nextPersona = persona, source) {
+  async function loadDay(nextPersona = persona, source, seq) {
     const data = await fetchDay(nextPersona, source, settings);
+    if (seq != null && seq !== pickSeq.current) return data;
     setDay(data);
     if (data.personas) setPersonas(data.personas);
     return data;
@@ -54,11 +56,12 @@ export function Wellness({ settings, setSettings }) {
     setNvidia(nvidiaStatus);
   }
 
-  async function runCoach(fromDay, nextSettings = settings, { persist = true, personaId = persona } = {}) {
+  async function runCoach(fromDay, nextSettings = settings, { persist = true, personaId = persona, seq } = {}) {
     setLoading(true);
     setError("");
     try {
       const payload = fromDay || day || (await loadDay());
+      if (seq != null && seq !== pickSeq.current) return;
       const mode = nextSettings.fitnessMode || "general";
       const data = await fetchCoach({
         metrics: payload.metrics,
@@ -80,6 +83,7 @@ export function Wellness({ settings, setSettings }) {
           mode,
         },
       });
+      if (seq != null && seq !== pickSeq.current) return;
       setCoach(data);
       if (persist) {
         saveCoachEntry({
@@ -93,9 +97,10 @@ export function Wellness({ settings, setSettings }) {
         }).catch(() => {});
       }
     } catch (err) {
+      if (seq != null && seq !== pickSeq.current) return;
       setError(err.message);
     } finally {
-      setLoading(false);
+      if (seq == null || seq === pickSeq.current) setLoading(false);
     }
   }
 
@@ -119,11 +124,13 @@ export function Wellness({ settings, setSettings }) {
   }, []);
 
   async function pickPersona(id) {
+    const seq = ++pickSeq.current;
     setPersona(id);
     if (id === "mio") setShowKeys(true);
-    const data = await loadDay(id, id === "mio" ? undefined : "demo");
+    const data = await loadDay(id, id === "mio" ? undefined : "demo", seq);
+    if (seq !== pickSeq.current) return;
     setCoach(null);
-    await runCoach(data, settings, { persist: true, personaId: id });
+    await runCoach(data, settings, { persist: true, personaId: id, seq });
   }
 
   async function pickMode(id) {
